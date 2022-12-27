@@ -3,7 +3,7 @@ Segmented live media delivery protocol utilizing QUIC streams. See the [Warp dra
 
 Time Warp works by delivering each audio and video segment as a separate QUIC stream. These streams are assigned a priority such that old video will arrive last and can be dropped. This avoids buffering in many cases, offering the viewer a potentially better experience.
 
-> This is an actively maintained fork of [warp by luke](https://github.com/kixelated/warp-demo)
+> This is a fork of [warp by luke](https://github.com/kixelated/warp-demo)
 
 # YouTube Presentation
 
