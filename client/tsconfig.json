@@ -4,7 +4,8 @@
     "target": "es2021",
     "strict": true,
 	"typeRoots": [
-      "src/types"
+      "src/types",
+      "node_modules/@types"
 	],
 	"allowJs": true
   }

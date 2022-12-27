@@ -100,7 +100,7 @@ This can be accessed via WebTransport on `https://localhost:4443` by default.
 The web assets need to be hosted with a HTTPS server. If you're using a self-signed certificate, you may need to ignore the security warning in Chrome (Advanced -> proceed to localhost).
 
 ```
-cd player
+cd client
 yarn install
 yarn serve
 ```
@@ -120,5 +120,5 @@ Launch a new instance of Chrome Canary:
 ```
 To get `path/to/chrome.exe` use `chrome://flags`
 
-All this couldn't have been made possible without Luke sharing sharing his code:
-#### ✨✨Thanks Luke✨✨
+>All this couldn't have been made possible without Luke sharing sharing his code:
+✨✨Thanks Luke✨✨
