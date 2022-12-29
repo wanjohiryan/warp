@@ -56,6 +56,8 @@ export class Player {
 
 		// Limit to 4Mb/s
 		this.sendThrottle()
+
+		//keep 
 	}
 
 	async close() {
@@ -92,7 +94,7 @@ export class Player {
 		let rate = 0;
 
 		if (this.throttleCount > 0) {
-			// TODO detect the incoming bitrate instead of hard-coding
+			// TODO: detect the incoming bitrate instead of hard-coding
 			// Right shift by throttle to divide by 2,4,8,16,etc each time
 			const bitrate = 4 * 1024 * 1024 // 4Mb/s
 
