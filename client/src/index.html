@@ -1,82 +1,273 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>TIME WARP</title>
+    <!--==================== UNICONS ====================-->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+    <link rel="stylesheet" href="player.css" />
+  </head>
 
-<head>
-	<meta charset = "UTF-8">
-	<title>TIME WARP</title>
+  <body>
+    <div id="player">
+      <div id="screen">
+        <div id="play">
+          <div id="play-btn">
+            <img src="./icons/Play.svg" id="play-icon" />
+          </div>
+        </div>
+        <div id="play2">
+          <div id="info-container" class="info-container hide-display">
+            <div id="close-info-tab">
+              <div id="close-btn">
+                <img
+                  src="./icons/Close.svg"
+                  id="info-close-icon"
+                  class="close-icon"
+                />
+              </div>
+            </div>
 
-	<link rel="stylesheet" href="player.css">
-</head>
+            <div id="name-value-container">
+              <div id="duo-containers">Name</div>
+              <div id="duo-containers">Value</div>
+            </div>
 
-<body>
-	<div id="player">
-		<div id="screen">
-			<div id="play"><span>click to play</span></div>
-			<video id="vid" ></video>
-		</div>
+            <div id="name-value-container">
+              <div class="text-style">Audio Codec</div>
+              <div class="text-style">aavc</div>
+            </div>
 
-		<div id="controls">
+            <div id="name-value-container">
+              <div class="text-style">Video Codec</div>
+              <div class="text-style">aavc</div>
+            </div>
+
+            <div id="name-value-container">
+              <div class="text-style">Audio Buffer</div>
+              <div class="text-style">aavc</div>
+            </div>
+
+            <div id="name-value-container">
+              <div class="text-style">Video Buffer</div>
+              <div class="text-style">aavc</div>
+            </div>
+
+            <div id="name-value-container">
+              <div class="text-style">Protocol</div>
+              <div class="text-style">HLS</div>
+            </div>
+
+            <div id="name-value-container">
+              <div class="text-style">Latency from source</div>
+              <div class="text-style">20ms</div>
+            </div>
+
+            <div id="name-value-container">
+              <div class="text-style">Latency mode</div>
+              <div class="text-style">Low</div>
+            </div>
+          </div>
+
+          <div id="settings-container" class="settings-container hide-display">
+            <div id="close-settings-tab">
+              <div id="close-settings-btn">
+                <img
+                  src="./icons/Close.svg"
+                  id="settings-close-icon"
+                  class="close-icon"
+                />
+              </div>
+            </div>
+
+            <div  id="latency-setting">
+              <div class="settings-text-style">Lowest latency</div>
+              <!-- use a ticker -->
+              <div class="radio-latency-style"></div>
+            </div>
+
+          </div>
+          <!-- <div id="info-container"></div> -->
+          <div id="bottom-container">
+            <div id="bottom-controls">
+              <div id="bottom-btn">
+                <img
+                  src="./icons/Info Square.svg"
+                  id="info-icon"
+                  class="bottom-icon"
+                />
+              </div>
+
+              <div id="bottom-btn">
+                <img
+                  src="./icons/Setting.svg"
+                  id="settings-icon"
+                  class="bottom-icon"
+                />
+              </div>
+
+              <div id="bottom-btn">
+                <img
+                  src="./icons/Volume On.svg"
+                  id="volume-up-icon"
+                  class="bottom-icon"
+                />
+                <img
+                  src="./icons/Volume Off.svg"
+                  id="volume-down-icon"
+                  class="bottom-icon hide-display"
+                />
+              </div>
+
+              <div id="bottom-btn">
+                <img
+                  src="./icons/Fullscreen.svg"
+                  id="fullscreen-icon"
+                  class="bottom-icon"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <video id="vid"></video>
+        <div id="more-info"></div>
+      </div>
+
+      <!-- <div id="controls">
 			<button type="button" id="live">Go Live</button>
 			<button type="button" id="throttle">Throttle: None</button>
-		</div>
+		</div> -->
 
-		<div id="stats">
+      <!-- <div id="stats">
 			<label>Audio Buffer:</label>
 			<div class="audio buffer"></div>
 
 			<label>Video Buffer:</label>
 			<div class="video buffer"></div>
-		</div>
-	</div>
+		</div> -->
+    </div>
 
-	<script type="module">
-		import { Player } from "./player.ts"
+    <script type="module">
+      import { Player } from "./player.ts";
 
-		// This is so ghetto but I'm too lazy to improve it right now
-		const vidRef = document.getElementById("vid")
-		const liveRef = document.getElementById("live")
-		const throttleRef = document.getElementById("throttle")
-		const statsRef = document.getElementById("stats")
-		const playRef = document.getElementById("play")
+      // This is so ghetto but I'm too lazy to improve it right now
+      const vidRef = document.getElementById("vid");
+      const infoContainer = document.getElementById("info-container");
+      const infoCloseIcon = document.getElementById("info-close-icon");
+      const infoIcon = document.getElementById("info-icon");
+      const settingsIcon = document.getElementById("settings-icon");
+      const settingsCloseIcon = document.getElementById("settings-close-icon");
+      const settingsContainer = document.getElementById("settings-container");
+      const fullscreenIcon = document.getElementById("fullscreen-icon");
+      const volumeUpIcon = document.getElementById("volume-up-icon");
+      const volumeDownIcon = document.getElementById("volume-down-icon");
+      const bottomBtn = document.getElementById("bottom-btn");
+      // const liveRef = document.getElementById("live");
+      // const throttleRef = document.getElementById("throttle");
+      // const statsRef = document.getElementById("stats");
+      const playRef = document.getElementById("play-btn");
+      const playBackRef = document.getElementById("play");
 
-		const params = new URLSearchParams(window.location.search)
+      const params = new URLSearchParams(window.location.search);
 
-		const player = new Player({
-			url: params.get("url") || "https://localhost:4443",
+      //   const player = new Player({
+      //     url: params.get("url") || "https://localhost:4443",
 
-			vid: vidRef,
-			stats: statsRef,
-			throttle: throttleRef,
-		})
+      //     vid: vidRef,
+      //     stats: statsRef,
+      //     throttle: throttleRef
+      //   });
 
-		liveRef.addEventListener("click", (e) => {
-			e.preventDefault()
-			player.goLive()
-		})
+      // liveRef.addEventListener("click", (e) => {
+      //   e.preventDefault();
+      //   player.goLive();
+      // });
 
-		throttleRef.addEventListener("click", (e) => {
-			e.preventDefault()
-			player.throttle()
-		})
+      // throttleRef.addEventListener("click", (e) => {
+      //   e.preventDefault();
+      //   player.throttle();
+      // });
 
-		playRef.addEventListener('click', (e) => {
-			vidRef.play()
-			e.preventDefault()
-		})
+      // playRef.onclick = (e) => {
+      //   console.log("Play");
+      //   vidRef.play();
+      //   e.preventDefault();
+      // };
 
-		function playFunc(e) {
-			playRef.style.display = "none"
-			//player.goLive()
+      infoCloseIcon.addEventListener("click", (e) => {
+        infoContainer.classList.add("hide-display");
 
-			// Only fire once to restore pause/play functionality
-			vidRef.removeEventListener('play', playFunc)
-		}
+        e.preventDefault();
+      });
+      
+      settingsCloseIcon.addEventListener("click", (e) => {
+        settingsContainer.classList.add("hide-display");
 
-		vidRef.addEventListener('play', playFunc)
-		vidRef.volume = 0.5
+        e.preventDefault();
+      });
 
-		// Try to autoplay but ignore errors on mobile; they need to click
-		//vidRef.play().catch((e) => console.warn(e))
-	</script>
-</body>
+      settingsIcon.addEventListener("click", (e) => {
+        settingsContainer.classList.remove("hide-display");
+
+        e.preventDefault();
+      });
+
+      fullscreenIcon.addEventListener("click", (e) => {
+        vidRef.muted = false;
+        volumeUpIcon.classList.add("hide-display");
+
+        volumeDownIcon.classList.remove("hide-display");
+
+        e.preventDefault();
+      });
+
+      infoIcon.addEventListener("click", (e) => {
+        infoContainer.classList.remove("hide-display");
+
+        e.preventDefault();
+      });
+
+      //This is a fix to parcel. Does not bundle volume off icon on 'serve'
+
+      volumeUpIcon.addEventListener("click", (e) => {
+        vidRef.muted = false;
+        volumeUpIcon.classList.add("hide-display");
+
+        volumeDownIcon.classList.remove("hide-display");
+
+        e.preventDefault();
+      });
+
+      volumeDownIcon.addEventListener("click", (e) => {
+        vidRef.muted = true;
+        volumeDownIcon.classList.add("hide-display");
+
+        volumeUpIcon.classList.remove("hide-display");
+
+        e.preventDefault();
+      });
+
+      playRef.addEventListener("click", (e) => {
+        vidRef.play();
+        e.preventDefault();
+      });
+
+      function playFunc(e) {
+        playBackRef.style.display = "none";
+        //player.goLive()
+
+        // Only fire once to restore pause/play functionality
+        vidRef.removeEventListener("play", playFunc);
+      }
+
+      vidRef.addEventListener("play", playFunc);
+      vidRef.volume = 0.5;
+
+      // Try to autoplay but ignore errors on mobile; they need to click
+      //vidRef.play().catch((e) => console.warn(e))
+    </script>
+  </body>
 </html>
