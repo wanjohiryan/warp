@@ -16,6 +16,8 @@ import (
 	"github.com/kixelated/webtransport-go"
 )
 
+// TODO: create a heartbeat stream, to get the exact latency between the server and client
+
 // A single WebTransport session
 type Session struct {
 	conn  quic.Connection

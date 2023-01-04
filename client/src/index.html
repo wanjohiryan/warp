@@ -38,22 +38,22 @@
 
             <div id="name-value-container">
               <div class="text-style">Audio Codec</div>
-              <div class="text-style">aavc</div>
+              <div id="audio-codec" class="text-style"></div>
             </div>
 
             <div id="name-value-container">
               <div class="text-style">Video Codec</div>
-              <div class="text-style">aavc</div>
+              <div id="video-codec" class="text-style"></div>
             </div>
 
             <div id="name-value-container">
               <div class="text-style">Audio Buffer</div>
-              <div class="text-style">aavc</div>
+              <div id="audio-buffer" class="buffer-style"></div>
             </div>
 
             <div id="name-value-container">
               <div class="text-style">Video Buffer</div>
-              <div class="text-style">aavc</div>
+              <div id="video-buffer" class="buffer-style"></div>
             </div>
 
             <div id="name-value-container">
@@ -67,8 +67,13 @@
             </div>
 
             <div id="name-value-container">
+              <div class="text-style">Video resolution</div>
+              <div id="vid-res" class="text-style"></div>
+            </div>
+
+            <div id="name-value-container">
               <div class="text-style">Latency mode</div>
-              <div class="text-style">Low</div>
+              <div id="latency-mode" class="text-style"></div>
             </div>
           </div>
 
@@ -83,12 +88,16 @@
               </div>
             </div>
 
-            <div  id="latency-setting">
+            <div id="latency-setting">
               <div class="settings-text-style">Lowest latency</div>
               <!-- use a ticker -->
-              <div class="radio-latency-style"></div>
+              <div class="radio-latency-style">
+                <label class="switch">
+                  <input id="switch" type="checkbox" />
+                  <span class="slider"></span>
+                </label>
+              </div>
             </div>
-
           </div>
           <!-- <div id="info-container"></div> -->
           <div id="bottom-container">
@@ -137,17 +146,9 @@
       </div>
 
       <!-- <div id="controls">
-			<button type="button" id="live">Go Live</button>
 			<button type="button" id="throttle">Throttle: None</button>
 		</div> -->
 
-      <!-- <div id="stats">
-			<label>Audio Buffer:</label>
-			<div class="audio buffer"></div>
-
-			<label>Video Buffer:</label>
-			<div class="video buffer"></div>
-		</div> -->
     </div>
 
     <script type="module">
@@ -155,8 +156,11 @@
 
       // This is so ghetto but I'm too lazy to improve it right now
       const vidRef = document.getElementById("vid");
+      const vidRes = document.getElementById("vid-res");
+      const playerRef = document.getElementById("player");
       const infoContainer = document.getElementById("info-container");
       const infoCloseIcon = document.getElementById("info-close-icon");
+      const latencyMode = document.getElementById("latency-mode");
       const infoIcon = document.getElementById("info-icon");
       const settingsIcon = document.getElementById("settings-icon");
       const settingsCloseIcon = document.getElementById("settings-close-icon");
@@ -165,25 +169,27 @@
       const volumeUpIcon = document.getElementById("volume-up-icon");
       const volumeDownIcon = document.getElementById("volume-down-icon");
       const bottomBtn = document.getElementById("bottom-btn");
-      // const liveRef = document.getElementById("live");
+      const switchRef = document.getElementById("switch");
+      const audioBufferRef = document.getElementById("audio-buffer");
+      const videoBufferRef = document.getElementById("video-buffer");
       // const throttleRef = document.getElementById("throttle");
-      // const statsRef = document.getElementById("stats");
       const playRef = document.getElementById("play-btn");
       const playBackRef = document.getElementById("play");
 
+      const audioCodec = document.getElementById("audio-codec");
+      const videoCodec = document.getElementById("video-codec");
+
       const params = new URLSearchParams(window.location.search);
 
-      //   const player = new Player({
-      //     url: params.get("url") || "https://localhost:4443",
+      // const player = new Player({
+      //   url: params.get("url") || "https://localhost:4443",
 
-      //     vid: vidRef,
-      //     stats: statsRef,
-      //     throttle: throttleRef
-      //   });
-
-      // liveRef.addEventListener("click", (e) => {
-      //   e.preventDefault();
-      //   player.goLive();
+      //   vid: vidRef,
+      //   audioBuffer: audioBufferRef,
+      //   videoBuffer: videoBufferRef,
+      // audioCodec
+      // videoCodec
+      // vidRes
       // });
 
       // throttleRef.addEventListener("click", (e) => {
@@ -191,18 +197,39 @@
       //   player.throttle();
       // });
 
-      // playRef.onclick = (e) => {
-      //   console.log("Play");
-      //   vidRef.play();
-      //   e.preventDefault();
-      // };
+      switchRef.addEventListener("change", function (event) {
+        let runForever;
+
+        //TODO: tighten this check? Too loose
+        if (event.target.checked) {
+          localStorage.setItem("live", true);
+          latencyMode.innerHTML = "Low"
+
+          runForever = setInterval(() => {
+            //TODO:
+            // player.goLive();
+          }, 100);
+        } else {
+          localStorage.setItem("live", false);
+          latencyMode.innerHTML = "Normal"
+
+          if (runForever) {
+            clearInterval(runForever);
+          }
+        }
+      });
+
+      if (localStorage.getItem("live")) {
+        switchRef.checked = true;
+        latencyMode.innerHTML = "Low"
+      }
 
       infoCloseIcon.addEventListener("click", (e) => {
         infoContainer.classList.add("hide-display");
 
         e.preventDefault();
       });
-      
+
       settingsCloseIcon.addEventListener("click", (e) => {
         settingsContainer.classList.add("hide-display");
 
@@ -211,20 +238,21 @@
 
       settingsIcon.addEventListener("click", (e) => {
         settingsContainer.classList.remove("hide-display");
+        infoContainer.classList.add("hide-display");
 
         e.preventDefault();
       });
 
       fullscreenIcon.addEventListener("click", (e) => {
-        vidRef.muted = false;
-        volumeUpIcon.classList.add("hide-display");
-
-        volumeDownIcon.classList.remove("hide-display");
+        settingsContainer.classList.add("hide-display");
+        infoContainer.classList.add("hide-display");
+        playerRef.requestFullscreen();
 
         e.preventDefault();
       });
 
       infoIcon.addEventListener("click", (e) => {
+        settingsContainer.classList.add("hide-display");
         infoContainer.classList.remove("hide-display");
 
         e.preventDefault();
@@ -257,7 +285,6 @@
 
       function playFunc(e) {
         playBackRef.style.display = "none";
-        //player.goLive()
 
         // Only fire once to restore pause/play functionality
         vidRef.removeEventListener("play", playFunc);

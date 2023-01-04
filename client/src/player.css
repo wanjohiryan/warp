@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500&display=swap');
+
 html,
 body #player {
 	background-color: #000;
@@ -181,20 +183,44 @@ body #player {
 	padding: 5px;
 	width: 50%;
 	color: #FFF;
-	font-size: 20px;
-	font-weight: 600;
-	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	font-family:'Signika Negative', sans-serif;
 }
 
 .text-style{
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: 200;
+	font-family: 'Signika Negative', sans-serif;
+	font-weight: 300;
 	font-size: 15px;
 	height: auto;
 	padding: 2px;
 	width: 50%;
 	color: #FFF;
 	margin-bottom: 10px;
+}
+
+.buffer-style{
+	height: 20px;
+	padding: 2px;
+	width: 50%;
+	color: #FFF;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.buffer-style .fill {
+	position: absolute;
+	transition-duration: 0.1s;
+	transition-property: left, right, background-color;
+	background-color: limeGreen;
+	height: 100%;
+	text-align: right;
+	padding-right: 0.5rem;
+	overflow: hidden;
+}
+
+.buffer-style .fill.net {
+	background-color: Purple;
 }
 
 #latency-setting{
@@ -208,9 +234,9 @@ body #player {
 }
 
 .settings-text-style{
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: 500;
-	font-size: 20px;
+	font-family: 'Signika Negative', sans-serif;
+	font-weight: 300;
+	font-size: 17px;
 	height: auto;
 	padding: 2px;
 	width: 70%;
@@ -222,5 +248,59 @@ body #player {
 	width: 20px;
 	margin-left: 10px;
 	height: 20px;
-	background-color: aqua;
+}
+
+
+/* SWITCH https://codepen.io/alvarotrigo/pen/GROPMZe*/
+.switch input
+{
+  display: none;
+}
+
+.switch 
+{
+  display: inline-block;
+  width: 30px; /*=w*/
+  height: 15px; /*=h*/
+  /* margin: 4px; */
+  /* transform: translateY(50%); */
+  position: relative;
+}
+
+.slider
+{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 30px;
+  box-shadow: 0 0 0 2px #777, 0 0 4px #777;
+  cursor: pointer;
+  border: 4px solid transparent;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.slider:before
+{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #777;
+  border-radius: 30px;
+  transform: translateX(-15px); /*translateX(-(w-h))*/
+  transition: 0.2s;
+}
+
+input:checked + .slider:before
+{
+  transform: translateX(15px); /*translateX(w-h)*/
+  background-color: limeGreen;
+}
+
+input:checked + .slider
+{
+  box-shadow: 0 0 0 2px limeGreen, 0 0 8px limeGreen;
 }

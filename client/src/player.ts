@@ -19,9 +19,15 @@ export class Player {
 
 	// References to elements in the DOM
 	vidRef: HTMLVideoElement; // The video element itself
-	statsRef: HTMLElement; // The stats div
+	audioBuffer: HTMLElement; // The audio buffer div
+	videoBuffer: HTMLElement; // The video buffer div
 	throttleRef: HTMLButtonElement; // The throttle button
 	throttleCount: number; // number of times we've clicked the button in a row
+
+	audioCodecRef: HTMLElement;
+	videoCodecRef: HTMLElement;
+
+	videoResolutionRef: HTMLElement;
 
 	interval: number;
 
@@ -29,9 +35,14 @@ export class Player {
 
 	constructor(props: any) {
 		this.vidRef = props.vid
-		this.statsRef = props.stats
+		this.videoBuffer = props.videoBuffer
+		this.audioBuffer = props.audioBuffer
+		this.videoResolutionRef = props.vidRes
 		this.throttleRef = props.throttle
 		this.throttleCount = 0
+
+		this.audioCodecRef = props.audioCodec
+		this.videoCodecRef	= props.videoCodec
 
 		this.mediaSource = new MediaSource()
 		this.vidRef.src = URL.createObjectURL(this.mediaSource)
@@ -90,6 +101,8 @@ export class Player {
 		}, 5000)
 	}
 
+	//TODO: use this to automatically change video quality(fps) on shitty networks
+
 	sendThrottle() {
 		let rate = 0;
 
@@ -98,10 +111,10 @@ export class Player {
 			// Right shift by throttle to divide by 2,4,8,16,etc each time
 			const bitrate = 4 * 1024 * 1024 // 4Mb/s
 
-			rate = bitrate >> (this.throttleCount-1)
+			rate = bitrate >> (this.throttleCount - 1)
 
 			const str = formatBits(rate) + "/s"
-			this.throttleRef.textContent = `Throttle: ${ str }`;
+			this.throttleRef.textContent = `Throttle: ${str}`;
 		} else {
 			this.throttleRef.textContent = "Throttle: none";
 		}
@@ -116,14 +129,14 @@ export class Player {
 
 	tick() {
 		// Try skipping ahead if there's no data in the current buffer.
-		this.trySeek()
+		this.trySeek();
 
 		// Try skipping video if it would fix any desync.
-		this.trySkip()
+		this.trySkip();
 
 		// Update the stats at the end
-		this.updateStats()
-	}
+		this.updateStats();
+	};
 
 	goLive() {
 		const ranges = this.vidRef.buffered
@@ -131,7 +144,7 @@ export class Player {
 			return
 		}
 
-		this.vidRef.currentTime = ranges.end(ranges.length-1);
+		this.vidRef.currentTime = ranges.end(ranges.length - 1);
 		this.vidRef.play();
 	}
 
@@ -237,8 +250,12 @@ export class Player {
 		let track: Track;
 		if (init.info.videoTracks.length) {
 			track = this.video
+			this.videoCodecRef.innerHTML = init.info.videoTracks[0].codec + "" //set video codec
+			const fps = init.info.videoTracks[0].movie_duration / init.info.videoTracks[0].timescale / init.info.videoTracks[0].nb_samples + ""
+			this.videoResolutionRef.innerHTML = `${init.info.videoTracks[0].track_height}x${init.info.videoTracks[0].track_width}@${fps}`
 		} else {
 			track = this.audio
+			this.audioCodecRef.innerHTML = init.info.audioTracks[0].codec + ""
 		}
 
 		const segment = new Segment(track.source, init, msg.timestamp)
@@ -270,15 +287,11 @@ export class Player {
 	}
 
 	updateStats() {
-		for (const child of this.statsRef.children) {
-			if (child.className == "audio buffer") {
-				const ranges: any = (this.audio) ? this.audio.buffered() : { length: 0 }
-				this.visualizeBuffer(child as HTMLElement, ranges)
-			} else if (child.className == "video buffer") {
-				const ranges: any = (this.video) ? this.video.buffered() : { length: 0 }
-				this.visualizeBuffer(child as HTMLElement, ranges)
-			}
-		}
+		const audioRanges: any = (this.audio) ? this.audio.buffered() : { length: 0 }
+		this.visualizeBuffer(this.audioBuffer as HTMLElement, audioRanges)
+
+		const videoRanges: any = (this.video) ? this.video.buffered() : { length: 0 }
+		this.visualizeBuffer(this.videoBuffer as HTMLElement, videoRanges)
 	}
 
 	visualizeBuffer(element: HTMLElement, ranges: TimeRanges) {
