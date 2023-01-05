@@ -103,7 +103,7 @@ export class Source {
 				break;
 			case "data":
 				if (!this.sourceBuffer) {
-					throw "failed to call initailize before append"
+					throw "failed to call initialize before append"
 				}
 
 				this.sourceBuffer.appendBuffer(next.data)

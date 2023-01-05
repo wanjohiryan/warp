@@ -287,7 +287,7 @@ func (s *Session) heartBeat(ctx context.Context) (err error) {
 		// newer heartbeats take priority
 		stream.SetPriority(ms)
 
-		timeNow := int(time.Now().Unix())
+		timeNow := int(time.Now().UnixMilli())
 
 		err = stream.WriteMessage(Message{
 			Beat: &MessageHeartBeat{
@@ -299,6 +299,14 @@ func (s *Session) heartBeat(ctx context.Context) (err error) {
 			return fmt.Errorf("failed to write heart beat: %w", err)
 		}
 
+		// beat := make([]byte, 8)
+		// binary.LittleEndian.PutUint64(beat, uint64(timeNow))
+
+		// _, err = stream.Write(beat)
+
+		if err != nil {
+			return fmt.Errorf("failed to write init data: %w", err)
+		}
 		//every 2 seconds
 		time.Sleep(2 * time.Second)
 	}

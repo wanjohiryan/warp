@@ -214,6 +214,7 @@ body #player {
 	transition-property: left, right, background-color;
 	background-color: limeGreen;
 	height: 100%;
+	font-family: 'Signika Negative', sans-serif;
 	text-align: right;
 	padding-right: 0.5rem;
 	overflow: hidden;

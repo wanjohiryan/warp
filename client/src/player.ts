@@ -21,13 +21,14 @@ export class Player {
 	vidRef: HTMLVideoElement; // The video element itself
 	audioBuffer: HTMLElement; // The audio buffer div
 	videoBuffer: HTMLElement; // The video buffer div
-	throttleRef: HTMLButtonElement; // The throttle button
+	// throttleRef: HTMLButtonElement; // The throttle button
 	throttleCount: number; // number of times we've clicked the button in a row
 
 	audioCodecRef: HTMLElement;
 	videoCodecRef: HTMLElement;
 
 	videoResolutionRef: HTMLElement;
+	latencyRef: HTMLElement;
 
 	interval: number;
 
@@ -38,11 +39,13 @@ export class Player {
 		this.videoBuffer = props.videoBuffer
 		this.audioBuffer = props.audioBuffer
 		this.videoResolutionRef = props.vidRes
-		this.throttleRef = props.throttle
+		// this.throttleRef = props.throttle
 		this.throttleCount = 0
 
 		this.audioCodecRef = props.audioCodec
 		this.videoCodecRef = props.videoCodec
+
+		this.latencyRef = props.latencySource
 
 		this.mediaSource = new MediaSource()
 		this.vidRef.src = URL.createObjectURL(this.mediaSource)
@@ -65,8 +68,8 @@ export class Player {
 		// async functions
 		this.receiveStreams()
 
-		// Limit to 4Mb/s
-		this.sendThrottle()
+		// // Limit to 4Mb/s
+		// this.sendThrottle()
 
 		//keep 
 	}
@@ -114,9 +117,11 @@ export class Player {
 			rate = bitrate >> (this.throttleCount - 1)
 
 			const str = formatBits(rate) + "/s"
-			this.throttleRef.textContent = `Throttle: ${str}`;
+			// this.throttleRef.textContent = `Throttle: ${str}`;
+			console.log(`Throttle: ${str}`)
 		} else {
-			this.throttleRef.textContent = "Throttle: none";
+			// this.throttleRef.textContent = "Throttle: none";
+			console.log("Throttle: none")
 		}
 
 		// Send the server a message to fake network congestion.
@@ -145,7 +150,7 @@ export class Player {
 		}
 
 		this.vidRef.currentTime = ranges.end(ranges.length - 1);
-		this.vidRef.play();
+		// this.vidRef.play();
 	}
 
 	// Try seeking ahead to the next buffered range if there's a gap
@@ -253,8 +258,9 @@ export class Player {
 		if (init.info.videoTracks.length) {
 			track = this.video
 			this.videoCodecRef.innerHTML = init.info.videoTracks[0].codec + "" //set video codec
-			const fps = init.info.videoTracks[0].movie_duration / init.info.videoTracks[0].timescale / init.info.videoTracks[0].nb_samples + ""
-			this.videoResolutionRef.innerHTML = `${init.info.videoTracks[0].track_height}x${init.info.videoTracks[0].track_width}@${fps}`
+			//@ts-expect-error
+			const fps =  init.info.videoTracks[0].timescale / init.info.videoTracks[0].movie_timescale// init.info.videoTracks[0].nb_samples
+			this.videoResolutionRef.innerHTML = `${init.info.videoTracks[0].track_width}x${init.info.videoTracks[0].track_height}@${fps}fps`
 		} else {
 			track = this.audio
 			this.audioCodecRef.innerHTML = init.info.audioTracks[0].codec + ""
@@ -289,14 +295,20 @@ export class Player {
 	}
 
 	async handleHeartBeat(stream: StreamReader, msg: MessageBeat) {
-		console.log("received heartbeat message:", msg)
-
+		//TODO: use the initial latency to calculate the network quality over time
+		// const now = Date.now()
+		// console.log("latency:", now - msg.timestamp);
 		// nothing expected here
+
 		while (1) {
 			const data = await stream.read()
 			if (!data) break
 
-			console.log("still receiving heartbeat message:", data)
+			const rightNow = Date.now()
+			// gets the numbers only
+			const t = new TextDecoder('utf-8').decode(data.slice(data.length - 15, data.length - 2));
+
+			this.latencyRef.innerHTML = rightNow - Number(t) + "ms"
 		}
 	}
 

@@ -32,18 +32,13 @@
             </div>
 
             <div id="name-value-container">
-              <div class="text-style">Audio Codec</div>
-              <div id="audio-codec" class="text-style"></div>
-            </div>
-
-            <div id="name-value-container">
               <div class="text-style">Video Codec</div>
               <div id="video-codec" class="text-style"></div>
             </div>
 
             <div id="name-value-container">
-              <div class="text-style">Audio Buffer</div>
-              <div id="audio-buffer" class="buffer-style"></div>
+              <div class="text-style">Audio Codec</div>
+              <div id="audio-codec" class="text-style"></div>
             </div>
 
             <div id="name-value-container">
@@ -52,13 +47,13 @@
             </div>
 
             <div id="name-value-container">
-              <div class="text-style">Protocol</div>
-              <div class="text-style">HLS</div>
+              <div class="text-style">Audio Buffer</div>
+              <div id="audio-buffer" class="buffer-style"></div>
             </div>
 
             <div id="name-value-container">
               <div class="text-style">Latency from source</div>
-              <div class="text-style">20ms</div>
+              <div id="latency-source" class="text-style"></div>
             </div>
 
             <div id="name-value-container">
@@ -71,6 +66,11 @@
               <div id="latency-mode" class="text-style"></div>
             </div>
           </div>
+
+          <!-- <div id="name-value-container">
+            <div class="text-style">Protocol</div>
+            <div class="text-style">HLS</div>
+          </div> -->
 
           <div id="settings-container" class="settings-container hide-display">
             <div id="close-settings-tab">
@@ -117,12 +117,12 @@
                 <img
                   src="./icons/Volume On.svg"
                   id="volume-up-icon"
-                  class="bottom-icon"
+                  class="bottom-icon hide-display"
                 />
                 <img
                   src="./icons/Volume Off.svg"
                   id="volume-down-icon"
-                  class="bottom-icon hide-display"
+                  class="bottom-icon"
                 />
               </div>
 
@@ -152,6 +152,7 @@
       const vidRef = document.getElementById("vid");
       const vidRes = document.getElementById("vid-res");
       const playerRef = document.getElementById("player");
+      const latencySource = document.getElementById("latency-source");
       const infoContainer = document.getElementById("info-container");
       const infoCloseIcon = document.getElementById("info-close-icon");
       const latencyMode = document.getElementById("latency-mode");
@@ -183,7 +184,8 @@
         videoBuffer: videoBufferRef,
         audioCodec,
         videoCodec,
-        vidRes
+        vidRes,
+        latencySource
       });
 
       // throttleRef.addEventListener("click", (e) => {
@@ -198,18 +200,11 @@
         if (event.target.checked) {
           localStorage.setItem("live", true);
           latencyMode.innerHTML = "Low";
-
-          runForever = setInterval(() => {
-            //TODO:
-            player.goLive();
-          }, 100);
+          //TODO: call go live if buffer goes beyond a certain threshold
+          player.goLive();
         } else {
           localStorage.setItem("live", false);
           latencyMode.innerHTML = "Normal";
-
-          if (runForever) {
-            clearInterval(runForever);
-          }
         }
       });
 
@@ -258,6 +253,16 @@
         e.preventDefault();
       });
 
+      vidRef.addEventListener("volumechange", () => {
+          console.log("muted", vidRef.muted);
+
+          if(vidRef.muted){
+            volumeUpIcon.classList.remove("hide-display");
+            volumeDownIcon.classList.add("hide-display");
+          }
+
+        });
+
       //This is a fix to parcel. Does not bundle volume off icon on 'serve'
       // increase volume
       volumeUpIcon.addEventListener("click", (e) => {
@@ -292,7 +297,7 @@
       }
 
       vidRef.addEventListener("play", playFunc);
-      vidRef.volume = 0.5;
+      // vidRef.volume = 0.5;
 
       // Try to autoplay but ignore errors on mobile; they need to click
       //vidRef.play().catch((e) => console.warn(e))
