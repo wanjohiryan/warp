@@ -46,7 +46,7 @@ func (s *Session) Run(ctx context.Context) (err error) {
 	}
 
 	// Once we've validated the session, now we can start accessing the streams
-	return invoker.Run(ctx, s.runAccept, s.runAcceptUni, s.runInit, s.runAudio, s.runVideo, s.streams.Repeat)
+	return invoker.Run(ctx, s.runAccept, s.runAcceptUni, s.runInit, s.runAudio, s.runVideo, s.streams.Repeat, s.heartBeat)
 }
 
 func (s *Session) runAccept(ctx context.Context) (err error) {
@@ -255,10 +255,53 @@ func (s *Session) writeSegment(ctx context.Context, segment *MediaSegment) (err 
 
 	err = stream.Close()
 	if err != nil {
-		return fmt.Errorf("failed to close segemnt stream: %w", err)
+		return fmt.Errorf("failed to close segment stream: %w", err)
 	}
 
 	return nil
+}
+
+//get latency between server and client via a heartbeat uni-stream
+func (s *Session) heartBeat(ctx context.Context) (err error) {
+
+	temp, err := s.inner.OpenUniStreamSync(ctx)
+	if err != nil {
+		return fmt.Errorf("failed to create stream: %w", err)
+	}
+
+	// Wrap the stream in an object that buffers writes instead of blocking.
+	stream := NewStream(temp)
+	s.streams.Add(stream.Run)
+
+	defer func() {
+		if err != nil {
+			stream.WriteCancel(1)
+		}
+	}()
+
+	start := time.Now()
+
+	for {
+		ms := int(time.Since(start).Milliseconds() / 1000)
+
+		// newer heartbeats take priority
+		stream.SetPriority(ms)
+
+		timeNow := int(time.Now().Unix())
+
+		err = stream.WriteMessage(Message{
+			Beat: &MessageHeartBeat{
+				Timestamp: timeNow,
+			},
+		})
+
+		if err != nil {
+			return fmt.Errorf("failed to write heart beat: %w", err)
+		}
+
+		//every 2 seconds
+		time.Sleep(2 * time.Second)
+	}
 }
 
 func (s *Session) setDebug(msg *MessageDebug) {

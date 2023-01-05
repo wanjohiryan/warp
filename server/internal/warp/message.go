@@ -1,9 +1,10 @@
 package warp
 
 type Message struct {
-	Init    *MessageInit    `json:"init,omitempty"`
-	Segment *MessageSegment `json:"segment,omitempty"`
-	Debug   *MessageDebug   `json:"debug,omitempty"`
+	Init    *MessageInit      `json:"init,omitempty"`
+	Segment *MessageSegment   `json:"segment,omitempty"`
+	Debug   *MessageDebug     `json:"debug,omitempty"`
+	Beat    *MessageHeartBeat `json:"beat,omitempty"`
 }
 
 type MessageInit struct {
@@ -13,6 +14,10 @@ type MessageInit struct {
 type MessageSegment struct {
 	Init      string `json:"init"`      // ID of the init segment to use for this segment
 	Timestamp int    `json:"timestamp"` // PTS of the first frame in milliseconds
+}
+
+type MessageHeartBeat struct {
+	Timestamp int `json:"timestamp"`
 }
 
 type MessageDebug struct {

@@ -148,7 +148,6 @@
       <!-- <div id="controls">
 			<button type="button" id="throttle">Throttle: None</button>
 		</div> -->
-
     </div>
 
     <script type="module">
@@ -181,16 +180,16 @@
 
       const params = new URLSearchParams(window.location.search);
 
-      // const player = new Player({
-      //   url: params.get("url") || "https://localhost:4443",
+      const player = new Player({
+        url: params.get("url") || "https://localhost:4443",
 
-      //   vid: vidRef,
-      //   audioBuffer: audioBufferRef,
-      //   videoBuffer: videoBufferRef,
-      // audioCodec
-      // videoCodec
-      // vidRes
-      // });
+        vid: vidRef,
+        audioBuffer: audioBufferRef,
+        videoBuffer: videoBufferRef,
+        audioCodec,
+        videoCodec,
+        vidRes
+      });
 
       // throttleRef.addEventListener("click", (e) => {
       //   e.preventDefault();
@@ -203,15 +202,15 @@
         //TODO: tighten this check? Too loose
         if (event.target.checked) {
           localStorage.setItem("live", true);
-          latencyMode.innerHTML = "Low"
+          latencyMode.innerHTML = "Low";
 
           runForever = setInterval(() => {
             //TODO:
-            // player.goLive();
+            player.goLive();
           }, 100);
         } else {
           localStorage.setItem("live", false);
-          latencyMode.innerHTML = "Normal"
+          latencyMode.innerHTML = "Normal";
 
           if (runForever) {
             clearInterval(runForever);
@@ -219,23 +218,27 @@
         }
       });
 
+      // on startup, check whether user prefers live or normal latency mode
       if (localStorage.getItem("live")) {
         switchRef.checked = true;
-        latencyMode.innerHTML = "Low"
+        latencyMode.innerHTML = "Low";
       }
 
+      // close info card
       infoCloseIcon.addEventListener("click", (e) => {
         infoContainer.classList.add("hide-display");
 
         e.preventDefault();
       });
 
+      // close settings card
       settingsCloseIcon.addEventListener("click", (e) => {
         settingsContainer.classList.add("hide-display");
 
         e.preventDefault();
       });
 
+      // show settings card, close info card if open
       settingsIcon.addEventListener("click", (e) => {
         settingsContainer.classList.remove("hide-display");
         infoContainer.classList.add("hide-display");
@@ -243,6 +246,7 @@
         e.preventDefault();
       });
 
+      // set timewarp to fullscreen mode
       fullscreenIcon.addEventListener("click", (e) => {
         settingsContainer.classList.add("hide-display");
         infoContainer.classList.add("hide-display");
@@ -251,6 +255,7 @@
         e.preventDefault();
       });
 
+      // display infocard and close settings card if open
       infoIcon.addEventListener("click", (e) => {
         settingsContainer.classList.add("hide-display");
         infoContainer.classList.remove("hide-display");
@@ -259,7 +264,7 @@
       });
 
       //This is a fix to parcel. Does not bundle volume off icon on 'serve'
-
+      // increase volume
       volumeUpIcon.addEventListener("click", (e) => {
         vidRef.muted = false;
         volumeUpIcon.classList.add("hide-display");
@@ -269,6 +274,7 @@
         e.preventDefault();
       });
 
+      // reduce volume
       volumeDownIcon.addEventListener("click", (e) => {
         vidRef.muted = true;
         volumeDownIcon.classList.add("hide-display");

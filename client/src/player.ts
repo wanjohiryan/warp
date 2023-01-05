@@ -3,7 +3,7 @@ import { StreamReader, StreamWriter } from "./stream"
 import { InitParser } from "./init"
 import { Segment } from "./segment"
 import { Track } from "./track"
-import { Message, MessageInit, MessageSegment } from "./message"
+import { Message, MessageBeat, MessageInit, MessageSegment } from "./message"
 
 ///<reference path="./types/webtransport.d.ts"/>
 
@@ -42,7 +42,7 @@ export class Player {
 		this.throttleCount = 0
 
 		this.audioCodecRef = props.audioCodec
-		this.videoCodecRef	= props.videoCodec
+		this.videoCodecRef = props.videoCodec
 
 		this.mediaSource = new MediaSource()
 		this.vidRef.src = URL.createObjectURL(this.mediaSource)
@@ -218,6 +218,8 @@ export class Player {
 				return this.handleInit(r, msg.init)
 			} else if (msg.segment) {
 				return this.handleSegment(r, msg.segment)
+			} else if (msg.beat) {
+				return this.handleHeartBeat(r, msg.beat)
 			}
 		}
 	}
@@ -286,6 +288,18 @@ export class Player {
 		segment.finish()
 	}
 
+	async handleHeartBeat(stream: StreamReader, msg: MessageBeat) {
+		console.log("received heartbeat message:", msg)
+
+		// nothing expected here
+		while (1) {
+			const data = await stream.read()
+			if (!data) break
+
+			console.log("still receiving heartbeat message:", data)
+		}
+	}
+
 	updateStats() {
 		const audioRanges: any = (this.audio) ? this.audio.buffered() : { length: 0 }
 		this.visualizeBuffer(this.audioBuffer as HTMLElement, audioRanges)
@@ -331,6 +345,8 @@ export class Player {
 		}
 	}
 }
+
+
 
 // https://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
 function formatBits(bits: number, decimals: number = 1) {
