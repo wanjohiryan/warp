@@ -30,6 +30,7 @@ type ServerConfig struct {
 	Addr   string
 	Cert   *tls.Certificate
 	LogDir string
+	Client string
 }
 
 func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
@@ -91,7 +92,7 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 
 	//FIXME: handle React index.html stuff here
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-
+		// config.Client
 	})
 
 	return s, nil
