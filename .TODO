@@ -6,3 +6,4 @@
 
 //TODO soonest
 [x] Get latency from server to client using multidirectional stream via a heartbeat
+[]Expose server and client from one udp port.

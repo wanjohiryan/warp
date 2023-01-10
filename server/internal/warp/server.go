@@ -68,8 +68,8 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 	}
 
 	s.media = media
-
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	//for webtransport
+	mux.HandleFunc("/api", func(w http.ResponseWriter, r *http.Request) {
 		hijacker, ok := w.(http3.Hijacker)
 		if !ok {
 			panic("unable to hijack connection: must use kixelated/quic-go")
@@ -87,6 +87,11 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 		if err != nil {
 			log.Println(err)
 		}
+	})
+
+	//FIXME: handle React index.html stuff here
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+
 	})
 
 	return s, nil
