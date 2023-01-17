@@ -16,10 +16,10 @@ function App(props: any) {
     const getUrl = () => {
         if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
             // we are in localhost
-            return "https://localhost:3000/api"
+            return "https://localhost:8080/api"
         } else {
             //we are in some remote instance
-            return window.location.protocol + "//" + window.location.host + "/api"
+            return window.location.protocol + "//" + window.location.host + '/' + window.location.pathname + "/api"
         }
     }
 
