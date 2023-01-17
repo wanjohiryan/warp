@@ -1,7 +1,8 @@
 {
   "source": "src/index.html",
   "scripts": {
-    "build":"esbuild src/index.tsx src/index.css  --bundle --outdir=static --watch",
+    "dev":"esbuild src/index.tsx src/index.css  --bundle --outdir=static --watch",
+    "build":"esbuild src/index.tsx src/index.css  --bundle --outdir=static",
     "check": "tsc --noEmit"
   },
   "devDependencies": {
