@@ -8,7 +8,7 @@ import (
 	"log"
 
 	"github.com/kixelated/invoker"
-	"github.com/wanjohiryan/time-warp/server/internal/warp"
+	"github.com/wanjohiryan/time-warp/internal/warp"
 )
 
 func main() {
@@ -19,12 +19,12 @@ func main() {
 }
 
 func run(ctx context.Context) (err error) {
-	addr := flag.String("addr", ":4443", "HTTPS server address")
-	cert := flag.String("tls-cert", "../cert/localhost.crt", "TLS certificate file path")
-	key := flag.String("tls-key", "../cert/localhost.key", "TLS certificate file path")
+	addr := flag.String("addr", ":8080", "HTTPS server address")
+	cert := flag.String("tls-cert", "./certs/localhost.crt", "TLS certificate file path")
+	key := flag.String("tls-key", "./certs/localhost.key", "TLS certificate file path")
 	logDir := flag.String("log-dir", "", "logs will be written to the provided directory")
 
-	dash := flag.String("dash", "../media/playlist.mpd", "DASH playlist path")
+	dash := flag.String("dash", "./media/playlist.mpd", "DASH playlist path")
 
 	flag.Parse()
 

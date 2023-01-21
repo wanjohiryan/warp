@@ -11,6 +11,8 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/wanjohiryan/time-warp/internal/ui"
+
 	"github.com/kixelated/invoker"
 	"github.com/kixelated/quic-go"
 	"github.com/kixelated/quic-go/http3"
@@ -55,7 +57,8 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 		Certificates: []tls.Certificate{*config.Cert},
 	}
 
-	mux := http.NewServeMux()
+	//first prepare the client side then 'import' the http mux handler to this side
+	mux := ui.NewClient()
 
 	s.inner = &webtransport.Server{
 		H3: http3.Server{
@@ -68,8 +71,9 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 	}
 
 	s.media = media
+	//for webtransport
+	mux.HandleFunc("/api", func(w http.ResponseWriter, r *http.Request) {
 
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		hijacker, ok := w.(http3.Hijacker)
 		if !ok {
 			panic("unable to hijack connection: must use kixelated/quic-go")

@@ -85,7 +85,7 @@ If you have a valid certificate you can use it instead of self-signing. The go b
 Generate a self signed certificate:
 
 ```bash
-cd cert && ./generate && ./fingerprint
+cd certs && ./generate && ./fingerprint
 ```
 
 Then, use [mkcert](https://github.com/FiloSottile/mkcert) to install a self-signed CA:
@@ -101,24 +101,24 @@ With no arguments, the server will generate self-signed cert using this root CA.
 The Warp server supports WebTransport, pushing media over streams once a connection has been established. A more refined implementation would load content based on the WebTransport URL or some other messaging scheme.
 
 ```bash
-cd server && go run main.go
+go run main.go
 ```
 
-This can be accessed via WebTransport on `https://localhost:4443` by default.
+This can be accessed via WebTransport on `https://localhost:8080/api` by default.
 
 ## Web Player
 
 The web assets need to be hosted with a HTTPS server. If you're using a self-signed certificate, you may need to ignore the security warning in Chrome (Advanced -> proceed to localhost).
 
 ```bash
-cd client
+cd internal/ui
 yarn install
 yarn serve
 ```
 
-These can be accessed on `https://localhost:4444` by default.
+These can be accessed on `https://localhost:8080` by default.
 
-If you use a custom domain for the Warp server, make sure to override the server URL with the `url` query string parameter, e.g. `https://localhost:4444/?url=https://warp.demo`.
+If you use a custom domain for the Warp server, make sure to override the server URL with the `url` query string parameter, e.g. `https://localhost:8080/?url=https://warp.demo`.
 
 ## Chrome
 
@@ -129,7 +129,7 @@ Instead, we need to run a *fresh instance* of Chrome, instructing it to allow ou
 Launch a new instance of Chrome Canary:
 
 ```bash
-/path/to/chrome.exe --origin-to-force-quic-on=localhost:4443 https://localhost:4444
+/path/to/chrome.exe --origin-to-force-quic-on=localhost:8080 https://localhost:8080
 ```
 
 To get `path/to/chrome.exe` use `chrome://flags`

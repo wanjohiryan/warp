@@ -1,3 +1,4 @@
+import React, { RefObject } from "react"
 import { Source } from "./source"
 import { StreamReader, StreamWriter } from "./stream"
 import { InitParser } from "./init"
@@ -7,6 +8,11 @@ import { Message, MessageBeat, MessageInit, MessageSegment } from "./message"
 
 ///<reference path="./types/webtransport.d.ts"/>
 
+interface PlayerProps {
+	vidRef: RefObject<HTMLVideoElement | null>;
+	infoRef: RefObject<HTMLDivElement | null>;
+	url: string;
+}
 export class Player {
 	mediaSource: MediaSource;
 
@@ -18,44 +24,57 @@ export class Player {
 	api: Promise<WritableStream>;
 
 	// References to elements in the DOM
-	vidRef: HTMLVideoElement; // The video element itself
-	audioBuffer: HTMLElement; // The audio buffer div
-	videoBuffer: HTMLElement; // The video buffer div
+	vidRef: RefObject<HTMLVideoElement | null>; // The video element itself
+	infoRef: RefObject<HTMLDivElement | null>; // The video element itself
+	audioBuffer: Element; // The audio buffer div
+	videoBuffer: Element; // The video buffer div
 	// throttleRef: HTMLButtonElement; // The throttle button
 	throttleCount: number; // number of times we've clicked the button in a row
 
-	audioCodecRef: HTMLElement;
-	videoCodecRef: HTMLElement;
+	audioCodecRef: Element;
+	videoCodecRef: Element;
 
-	videoResolutionRef: HTMLElement;
-	latencyRef: HTMLElement;
+	videoResolutionRef: Element;
+	latencyRef: Element;
 
-	interval: number;
+	interval!: number;
 
 	timeRef?: DOMHighResTimeStamp;
 
-	constructor(props: any) {
-		this.vidRef = props.vid
-		this.videoBuffer = props.videoBuffer
-		this.audioBuffer = props.audioBuffer
-		this.videoResolutionRef = props.vidRes
-		// this.throttleRef = props.throttle
+	constructor(props: PlayerProps) {
+		this.vidRef = props.vidRef
 		this.throttleCount = 0
 
-		this.audioCodecRef = props.audioCodec
-		this.videoCodecRef = props.videoCodec
+	
 
-		this.latencyRef = props.latencySource
+		this.infoRef = props.infoRef;
+
+		this.videoBuffer = this.getElement("video-buffer")
+		this.audioBuffer = this.getElement("audio-buffer");
+		this.videoResolutionRef = this.getElement("vid-res");
+		// this.throttleRef = props.throttle
+
+		this.audioCodecRef = this.getElement("audio-codec");
+		this.videoCodecRef = this.getElement("video-codec");
+
+		this.latencyRef = this.getElement("latency-source");
 
 		this.mediaSource = new MediaSource()
-		this.vidRef.src = URL.createObjectURL(this.mediaSource)
 
 		this.init = new Map()
+
+		//this if statement might break something, but am too lazy lmao
+		//FIXME:
+		// if (this.vidRef.current) {
+		this.vidRef.current!.src = URL.createObjectURL(this.mediaSource)
 		this.audio = new Track(new Source(this.mediaSource));
 		this.video = new Track(new Source(this.mediaSource));
 
 		this.interval = setInterval(this.tick.bind(this), 100)
-		this.vidRef.addEventListener("waiting", this.tick.bind(this))
+		this.vidRef.current!.addEventListener("waiting", this.tick.bind(this))
+		// }
+
+
 
 		const quic = new WebTransport(props.url)
 		this.quic = quic.ready.then(() => { return quic });
@@ -72,6 +91,18 @@ export class Player {
 		// this.sendThrottle()
 
 		//keep 
+	}
+
+	getElement(element: string) {
+		const parent = this.infoRef.current!.getElementsByClassName(element)[0];
+
+		const child = parent.querySelector(`#${element}`);
+
+		if (child) {
+			return child
+		} else {
+			throw new Error(`found no ${element}`)
+		}
 	}
 
 	async close() {
@@ -144,23 +175,31 @@ export class Player {
 	};
 
 	goLive() {
-		const ranges = this.vidRef.buffered
+		if (!this.vidRef.current) {
+			return;
+		}
+
+		const ranges = this.vidRef.current.buffered
 		if (!ranges.length) {
 			return
 		}
 
-		this.vidRef.currentTime = ranges.end(ranges.length - 1);
+		this.vidRef.current.currentTime = ranges.end(ranges.length - 1);
 		// this.vidRef.play();
 	}
 
 	// Try seeking ahead to the next buffered range if there's a gap
 	trySeek() {
-		if (this.vidRef.readyState > 2) { // HAVE_CURRENT_DATA
+		if (!this.vidRef.current) {
+			return;
+		}
+
+		if (this.vidRef.current.readyState > 2) { // HAVE_CURRENT_DATA
 			// No need to seek
 			return
 		}
 
-		const ranges = this.vidRef.buffered
+		const ranges = this.vidRef.current.buffered
 		if (!ranges.length) {
 			// Video has not started yet
 			return
@@ -169,25 +208,28 @@ export class Player {
 		for (let i = 0; i < ranges.length; i += 1) {
 			const pos = ranges.start(i)
 
-			if (this.vidRef.currentTime >= pos) {
+			if (this.vidRef.current.currentTime >= pos) {
 				// This would involve seeking backwards
 				continue
 			}
 
-			console.warn("seeking forward", pos - this.vidRef.currentTime)
+			console.warn("seeking forward", pos - this.vidRef.current.currentTime)
 
-			this.vidRef.currentTime = pos
+			this.vidRef.current.currentTime = pos
 			return
 		}
 	}
 
 	// Try dropping video frames if there is future data available.
 	trySkip() {
+		if (!this.vidRef.current) {
+			return;
+		}
 		let playhead: number | undefined
 
-		if (this.vidRef.readyState > 2) {
+		if (this.vidRef.current.readyState > 2) {
 			// If we're not buffering, only skip video if it's before the current playhead
-			playhead = this.vidRef.currentTime
+			playhead = this.vidRef.current.currentTime
 		}
 
 		this.video.advance(playhead)
@@ -259,7 +301,7 @@ export class Player {
 			track = this.video
 			this.videoCodecRef.innerHTML = init.info.videoTracks[0].codec + "" //set video codec
 			//@ts-expect-error
-			const fps =  init.info.videoTracks[0].timescale / init.info.videoTracks[0].movie_timescale// init.info.videoTracks[0].nb_samples
+			const fps = init.info.videoTracks[0].timescale / init.info.videoTracks[0].movie_timescale// init.info.videoTracks[0].nb_samples
 			this.videoResolutionRef.innerHTML = `${init.info.videoTracks[0].track_width}x${init.info.videoTracks[0].track_height}@${fps}fps`
 		} else {
 			track = this.audio
@@ -314,13 +356,17 @@ export class Player {
 
 	updateStats() {
 		const audioRanges: any = (this.audio) ? this.audio.buffered() : { length: 0 }
-		this.visualizeBuffer(this.audioBuffer as HTMLElement, audioRanges)
+		this.visualizeBuffer(this.audioBuffer as Element, audioRanges)
 
 		const videoRanges: any = (this.video) ? this.video.buffered() : { length: 0 }
-		this.visualizeBuffer(this.videoBuffer as HTMLElement, videoRanges)
+		this.visualizeBuffer(this.videoBuffer as Element, videoRanges)
 	}
 
-	visualizeBuffer(element: HTMLElement, ranges: TimeRanges) {
+	visualizeBuffer(element: Element, ranges: TimeRanges) {
+		if (!this.vidRef.current) {
+			return;
+		}
+
 		const children = element.children
 		const max = 5
 
@@ -328,17 +374,17 @@ export class Player {
 		let prev = 0
 
 		for (let i = 0; i < ranges.length; i += 1) {
-			let start = ranges.start(i) - this.vidRef.currentTime
-			let end = ranges.end(i) - this.vidRef.currentTime
+			let start = ranges.start(i) - this.vidRef.current.currentTime
+			let end = ranges.end(i) - this.vidRef.current.currentTime
 
 			if (end < 0 || start > max) {
 				continue
 			}
 
-			let fill: HTMLElement;
+			let fill: Element;
 
 			if (index < children.length) {
-				fill = children[index] as HTMLElement;
+				fill = children[index] as Element;
 			} else {
 				fill = document.createElement("div")
 				element.appendChild(fill)
