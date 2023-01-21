@@ -511,7 +511,7 @@
             }
             return element;
           };
-          function createElement(type, config, children) {
+          function createElement8(type, config, children) {
             var propName;
             var props = {};
             var key = null;
@@ -1610,7 +1610,7 @@
                 error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
               }
             }
-            var element = createElement.apply(this, arguments);
+            var element = createElement8.apply(this, arguments);
             if (element == null) {
               return element;
             }
@@ -2383,9 +2383,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React7 = require_react();
+          var React14 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React7.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React14.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3990,7 +3990,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React7.Children.forEach(props.children, function(child) {
+                  React14.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -9389,7 +9389,7 @@
               }
             }
           }
-          function createElement(type, props, rootContainerElement, parentNamespace) {
+          function createElement8(type, props, rootContainerElement, parentNamespace) {
             var isCustomComponentTag;
             var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
             var domElement;
@@ -10250,7 +10250,7 @@
               }
               parentNamespace = hostContextDev.namespace;
             }
-            var domElement = createElement(type, props, rootContainerInstance, parentNamespace);
+            var domElement = createElement8(type, props, rootContainerInstance, parentNamespace);
             precacheFiberNode(internalInstanceHandle, domElement);
             updateFiberProps(domElement, props);
             return domElement;
@@ -12437,7 +12437,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React7.Component().refs;
+          var emptyRefsObject = new React14.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -30202,6 +30202,25 @@
 
   // src/components/PlayScreenOne.tsx
   var import_react = __toESM(require_react());
+
+  // icons/Play.tsx
+  var React = __toESM(require_react());
+  var SvgComponent = (props) => /* @__PURE__ */ React.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React.createElement(
+    "g",
+    {
+      stroke: "#FFF",
+      strokeWidth: 1.5,
+      fill: "none",
+      fillRule: "evenodd",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    },
+    /* @__PURE__ */ React.createElement("path", { d: "M12 2.5c5.246 0 9.5 4.253 9.5 9.5s-4.254 9.5-9.5 9.5A9.5 9.5 0 0 1 2.5 12 9.5 9.5 0 0 1 12 2.5Z" }),
+    /* @__PURE__ */ React.createElement("path", { d: "M15 11.995c0-.811-4.157-3.406-4.63-2.94-.47.467-.516 5.369 0 5.88.518.512 4.63-2.129 4.63-2.94Z" })
+  ));
+  var Play_default = SvgComponent;
+
+  // src/components/PlayScreenOne.tsx
   function PlayScreenOne({ videoRef }) {
     const [showContainer, setShowContainer] = (0, import_react.useState)(true);
     (0, import_react.useEffect)(() => {
@@ -30223,7 +30242,7 @@
         },
         id: "play-btn"
       },
-      /* @__PURE__ */ import_react.default.createElement("img", { src: "../icons/Play.svg", id: "play-icon" })
+      /* @__PURE__ */ import_react.default.createElement(Play_default, { height: 70, width: 70 })
     )));
   }
 
@@ -30232,6 +30251,33 @@
 
   // src/components/InfoContainer.tsx
   var import_react2 = __toESM(require_react());
+
+  // icons/Close.tsx
+  var React3 = __toESM(require_react());
+  var SvgComponent2 = (props) => /* @__PURE__ */ React3.createElement(
+    "svg",
+    {
+      strokeWidth: 0.7,
+      fill: "#FFF",
+      viewBox: "0 0 121.31 122.876",
+      xmlns: "http://www.w3.org/2000/svg",
+      width: 121.31,
+      height: 122.876,
+      xmlSpace: "preserve",
+      ...props
+    },
+    /* @__PURE__ */ React3.createElement(
+      "path",
+      {
+        fillRule: "evenodd",
+        clipRule: "evenodd",
+        d: "M90.914 5.296a17.662 17.662 0 0 1 25.154-.068c6.961 6.995 6.991 18.369.068 25.397L85.743 61.452l30.425 30.855c6.866 6.978 6.773 18.28-.208 25.247-6.983 6.964-18.21 6.946-25.074-.031L60.669 86.881 30.395 117.58a17.662 17.662 0 0 1-25.154.068c-6.961-6.995-6.992-18.369-.068-25.397l30.393-30.827L5.142 30.568c-6.867-6.978-6.773-18.28.208-25.247 6.983-6.963 18.21-6.946 25.074.031l30.217 30.643L90.914 5.296z"
+      }
+    )
+  );
+  var Close_default = SvgComponent2;
+
+  // src/components/InfoContainer.tsx
   function InfoContainer({ infoRef, latencyMode }) {
     return /* @__PURE__ */ import_react2.default.createElement(import_react2.default.Fragment, null, /* @__PURE__ */ import_react2.default.createElement(
       "div",
@@ -30249,14 +30295,7 @@
             e.preventDefault();
           }
         },
-        /* @__PURE__ */ import_react2.default.createElement(
-          "img",
-          {
-            src: "../icons/Close.svg",
-            id: "info-close-icon",
-            className: "close-icon"
-          }
-        )
+        /* @__PURE__ */ import_react2.default.createElement(Close_default, { className: "close-icon", height: 15, width: 15 })
       )),
       /* @__PURE__ */ import_react2.default.createElement("div", { id: "name-value-container" }, /* @__PURE__ */ import_react2.default.createElement("div", { id: "duo-containers" }, "Name"), /* @__PURE__ */ import_react2.default.createElement("div", { id: "duo-containers" }, "Value")),
       /* @__PURE__ */ import_react2.default.createElement("div", { id: "name-value-container", className: "video-codec" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "text-style" }, "Video Codec"), /* @__PURE__ */ import_react2.default.createElement("div", { id: "video-codec", className: "text-style" })),
@@ -30316,16 +30355,9 @@
             settingsRef.current && settingsRef.current.classList.add("hide-display");
             e.preventDefault();
           },
-          id: "close-settings-btn"
+          id: "close-btn"
         },
-        /* @__PURE__ */ import_react3.default.createElement(
-          "img",
-          {
-            src: "../icons/Close.svg",
-            id: "settings-close-icon",
-            className: "close-icon"
-          }
-        )
+        /* @__PURE__ */ import_react3.default.createElement(Close_default, { className: "close-icon", height: 15, width: 15 })
       )),
       /* @__PURE__ */ import_react3.default.createElement("div", { id: "latency-setting" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "settings-text-style" }, "Lowest latency"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "radio-latency-style" }, /* @__PURE__ */ import_react3.default.createElement("label", { className: "switch" }, /* @__PURE__ */ import_react3.default.createElement("input", { ref: switchRef, id: "switch", type: "checkbox" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "slider" }))))
     );
@@ -30333,6 +30365,89 @@
 
   // src/components/BottomContainer.tsx
   var import_react4 = __toESM(require_react());
+
+  // icons/Info Square.tsx
+  var React6 = __toESM(require_react());
+  var SvgComponent3 = (props) => /* @__PURE__ */ React6.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React6.createElement(
+    "g",
+    {
+      stroke: "#FFF",
+      fill: "none",
+      fillRule: "evenodd",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    },
+    /* @__PURE__ */ React6.createElement(
+      "path",
+      {
+        d: "M16.334 2.75H7.665c-3.02 0-4.915 2.14-4.915 5.166v8.168c0 3.027 1.885 5.166 4.915 5.166h8.668c3.031 0 4.917-2.139 4.917-5.166V7.916c0-3.027-1.886-5.166-4.916-5.166ZM11.995 16v-4",
+        strokeWidth: 1.5
+      }
+    ),
+    /* @__PURE__ */ React6.createElement("path", { strokeWidth: 2, d: "M11.99 8.204H12" })
+  ));
+  var Info_Square_default = SvgComponent3;
+
+  // icons/Setting.tsx
+  var React7 = __toESM(require_react());
+  var SvgComponent4 = (props) => /* @__PURE__ */ React7.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React7.createElement(
+    "path",
+    {
+      d: "M12.267 2c.716 0 1.412.295 1.911.806.498.514.773 1.218.752 1.933.002.162.055.348.151.51a1.157 1.157 0 0 0 1.583.416 2.67 2.67 0 0 1 3.64.976l.623 1.08a.85.85 0 0 1 .042.085 2.673 2.673 0 0 1-1.01 3.545 1.142 1.142 0 0 0-.424.421 1.174 1.174 0 0 0-.12.883c.08.3.271.55.54.704a2.67 2.67 0 0 1 1.241 1.616 2.674 2.674 0 0 1-.27 2.02l-.665 1.107a2.665 2.665 0 0 1-3.627.959 1.19 1.19 0 0 0-.558-.155h-.006c-.289 0-.586.123-.802.338a1.143 1.143 0 0 0-.337.82 2.67 2.67 0 0 1-2.664 2.657h-1.253a2.666 2.666 0 0 1-2.664-2.663 1.076 1.076 0 0 0-.15-.532 1.158 1.158 0 0 0-.705-.547 1.157 1.157 0 0 0-.872.117 2.706 2.706 0 0 1-2.043.244 2.681 2.681 0 0 1-1.6-1.27l-.625-1.077a2.658 2.658 0 0 1 .97-3.624c.36-.207.582-.594.582-1.008 0-.414-.223-.8-.582-1.008a2.668 2.668 0 0 1-.97-3.632l.677-1.114c.721-1.253 2.351-1.696 3.622-.966.173.104.361.155.552.157.623 0 1.144-.513 1.154-1.146a2.63 2.63 0 0 1 .772-1.87A2.64 2.64 0 0 1 11.014 2h1.253Zm0 1.5h-1.253A1.153 1.153 0 0 0 9.86 4.66a2.677 2.677 0 0 1-2.663 2.638 2.58 2.58 0 0 1-1.299-.362 1.165 1.165 0 0 0-1.576.436l-.677 1.114c-.31.537-.12 1.248.432 1.57a2.674 2.674 0 0 1 1.33 2.306c0 .947-.51 1.83-1.332 2.306a1.155 1.155 0 0 0-.42 1.575l.63 1.088c.156.28.411.483.706.567.294.082.618.047.888-.104a2.625 2.625 0 0 1 1.323-.354 2.633 2.633 0 0 1 2.293 1.33c.226.381.351.826.355 1.28 0 .65.522 1.171 1.164 1.171h1.253c.64 0 1.161-.518 1.164-1.157a2.628 2.628 0 0 1 .777-1.881c.498-.498 1.194-.797 1.89-.777.456.01.895.134 1.282.354a1.17 1.17 0 0 0 1.59-.422l.664-1.107a1.157 1.157 0 0 0-.426-1.572 2.637 2.637 0 0 1-1.242-1.618 2.67 2.67 0 0 1 .271-2.018c.23-.4.567-.737.971-.97a1.166 1.166 0 0 0 .417-1.578.558.558 0 0 1-.035-.068l-.586-1.016a1.165 1.165 0 0 0-1.586-.43 2.616 2.616 0 0 1-2.006.277 2.63 2.63 0 0 1-1.622-1.227 2.554 2.554 0 0 1-.359-1.285 1.193 1.193 0 0 0-.329-.874 1.168 1.168 0 0 0-.835-.351Zm-.622 5.475a3.39 3.39 0 0 1 3.386 3.387 3.389 3.389 0 0 1-3.386 3.385 3.389 3.389 0 0 1-3.386-3.385 3.39 3.39 0 0 1 3.386-3.387Zm0 1.5a1.887 1.887 0 1 0 1.886 1.887c0-1.04-.846-1.887-1.886-1.887Z",
+      fill: "#FFF",
+      fillRule: "evenodd"
+    }
+  ));
+  var Setting_default = SvgComponent4;
+
+  // icons/Volume On.tsx
+  var React8 = __toESM(require_react());
+  var SvgComponent5 = (props) => /* @__PURE__ */ React8.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React8.createElement(
+    "path",
+    {
+      d: "M12.474 4.335a.798.798 0 0 1 .09.062c1.352 1.062 1.45 3.036 1.456 6.978v.375c0 4.194-.062 6.26-1.456 7.355a.722.722 0 0 1-.091.061 2.492 2.492 0 0 1-1.255.336c-1.391 0-2.77-1.095-3.844-1.947-.485-.385-1.218-.967-1.471-.993a14.952 14.952 0 0 0-.754-.037c-.798-.029-1.43-.05-2.171-.662-.893-.735-.975-2.192-.978-3.476v-.42l.002-.217L2 11.534 2 11.114c.003-1.284.085-2.74.978-3.476.743-.612 1.375-.634 2.175-.66.218-.009.465-.017.752-.038.25-.027.984-.609 1.469-.994 1.399-1.11 3.315-2.628 5.1-1.61Zm7.975.892c2.713 3.904 2.713 9.147 0 13.048a.75.75 0 0 1-1.23-.858c2.392-3.44 2.392-7.889 0-11.335a.749.749 0 1 1 1.23-.855Zm-9.241.28c-.868 0-1.978.88-2.902 1.614-.89.705-1.591 1.263-2.291 1.315-.31.022-.576.032-.81.04-.747.025-.936.042-1.273.32-.387.318-.43 1.493-.432 2.375v.356l.002.221v.004l-.001.221v.357c.001.883.044 2.058.43 2.375.337.278.526.294 1.27.321.236.007.503.017.814.04.7.051 1.402.61 2.29 1.314 1.104.875 2.47 1.96 3.376 1.51.733-.636.833-2.288.839-5.784v-.356c0-3.74-.081-5.48-.84-6.139a1.05 1.05 0 0 0-.472-.105Zm6.773 2.185a8.192 8.192 0 0 1 0 8.118.749.749 0 1 1-1.3-.746 6.688 6.688 0 0 0 0-6.626.75.75 0 0 1 1.3-.746Z",
+      fill: "#FFF",
+      fillRule: "evenodd"
+    }
+  ));
+  var Volume_On_default = SvgComponent5;
+
+  // icons/Volume Off.tsx
+  var React9 = __toESM(require_react());
+  var SvgComponent6 = (props) => /* @__PURE__ */ React9.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React9.createElement(
+    "path",
+    {
+      d: "M20.28 3.22a.749.749 0 0 1 0 1.06l-5.463 5.463a.756.756 0 0 1-.004.004l-6.819 6.82-.006.005-3.707 3.708a.744.744 0 0 1-.53.22.749.749 0 0 1-.53-1.28l2.66-2.66c-.68-.032-1.254-.12-1.909-.68-.882-.754-.967-2.251-.972-3.572v-.432l.001-.243v-.242L3 10.959c.005-1.321.09-2.819.973-3.572.74-.633 1.374-.657 2.175-.687.221-.009.47-.018.762-.04.251-.033.98-.633 1.462-1.029 1.406-1.159 3.333-2.745 5.135-1.677a.59.59 0 0 1 .093.064c.864.703 1.205 1.78 1.349 3.473L19.22 3.22a.749.749 0 0 1 1.06 0Zm-5.987 9.697a.75.75 0 0 1 .74.76c-.038 2.955-.27 4.628-1.433 5.573a.79.79 0 0 1-.092.063 2.461 2.461 0 0 1-1.275.353c-1.01 0-1.97-.585-2.68-1.1a.749.749 0 1 1 .879-1.214c1.313.949 1.905.886 2.264.698.582-.52.803-1.687.837-4.393.006-.414.309-.736.76-.74ZM12.23 5.11c-.866 0-1.979.916-2.905 1.678-.89.732-1.592 1.31-2.297 1.366-.315.024-.585.035-.823.044-.739.027-.926.045-1.258.33-.453.386-.449 1.934-.447 2.858l.001.246v.247c-.003.924-.007 2.472.446 2.859.34.29.531.308 1.288.334.23.008.488.017.787.038.086.006.174.02.264.042l6.238-6.238c-.073-2.225-.298-3.223-.828-3.697a1.003 1.003 0 0 0-.466-.107Z",
+      fill: "#FFF",
+      fillRule: "evenodd"
+    }
+  ));
+  var Volume_Off_default = SvgComponent6;
+
+  // icons/Fullscreen.tsx
+  var React10 = __toESM(require_react());
+  var SvgComponent7 = (props) => /* @__PURE__ */ React10.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React10.createElement(
+    "path",
+    {
+      style: {
+        stroke: "none",
+        strokeWidth: 1,
+        strokeDasharray: "none",
+        strokeLinecap: "butt",
+        strokeDashoffset: 0,
+        strokeLinejoin: "miter",
+        strokeMiterlimit: 4,
+        fill: "#fff",
+        fillRule: "nonzero",
+        opacity: 1
+      },
+      transform: "matrix(.48 0 0 .48 .48 .48)",
+      d: "M8.5 7C5.48 7 3 9.48 3 12.5v23C3 38.52 5.48 41 8.5 41h31c3.02 0 5.5-2.48 5.5-5.5v-23C45 9.48 42.52 7 39.5 7h-31zm0 3h31c1.398 0 2.5 1.102 2.5 2.5v23c0 1.398-1.102 2.5-2.5 2.5H28v-8.5a5.5 5.5 0 0 0-5.5-5.5H6V12.5C6 11.102 7.102 10 8.5 10zm28.97 2.986a1.5 1.5 0 0 0-.16.014H32.5a1.5 1.5 0 1 0 0 3h1.379l-5.44 5.44a1.5 1.5 0 1 0 2.122 2.12L36 18.122V19.5a1.5 1.5 0 1 0 3 0v-4.826a1.5 1.5 0 0 0-1.53-1.688z"
+    }
+  ));
+  var Fullscreen_default = SvgComponent7;
+
+  // src/components/BottomContainer.tsx
   function BottomContainer({ infoRef, settingsRef, playerRef, vidRef }) {
     const [videoMuted, setVideoMuted] = (0, import_react4.useState)(() => vidRef.current ? vidRef.current.muted : true);
     return /* @__PURE__ */ import_react4.default.createElement("div", { id: "bottom-container" }, /* @__PURE__ */ import_react4.default.createElement("div", { id: "bottom-controls" }, /* @__PURE__ */ import_react4.default.createElement(
@@ -30345,14 +30460,7 @@
         },
         id: "bottom-btn"
       },
-      /* @__PURE__ */ import_react4.default.createElement(
-        "img",
-        {
-          src: "../icons/Info Square.svg",
-          id: "info-icon",
-          className: "bottom-icon"
-        }
-      )
+      /* @__PURE__ */ import_react4.default.createElement(Info_Square_default, { className: "bottom-icon", height: 50, width: 50 })
     ), /* @__PURE__ */ import_react4.default.createElement(
       "div",
       {
@@ -30363,14 +30471,7 @@
         },
         id: "bottom-btn"
       },
-      /* @__PURE__ */ import_react4.default.createElement(
-        "img",
-        {
-          src: "../icons/Setting.svg",
-          id: "settings-icon",
-          className: "bottom-icon"
-        }
-      )
+      /* @__PURE__ */ import_react4.default.createElement(Setting_default, { className: "bottom-icon", height: 50, width: 50 })
     ), /* @__PURE__ */ import_react4.default.createElement(
       "div",
       {
@@ -30382,21 +30483,7 @@
         },
         id: "bottom-btn"
       },
-      videoMuted ? /* @__PURE__ */ import_react4.default.createElement(
-        "img",
-        {
-          src: "../icons/Volume On.svg",
-          id: "volume-up-icon",
-          className: "bottom-icon"
-        }
-      ) : /* @__PURE__ */ import_react4.default.createElement(
-        "img",
-        {
-          src: "../icons/Volume Off.svg",
-          id: "volume-down-icon",
-          className: "bottom-icon"
-        }
-      )
+      videoMuted ? /* @__PURE__ */ import_react4.default.createElement(Volume_On_default, { className: "bottom-icon", height: 50, width: 50 }) : /* @__PURE__ */ import_react4.default.createElement(Volume_Off_default, { className: "bottom-icon", height: 50, width: 50 })
     ), /* @__PURE__ */ import_react4.default.createElement(
       "div",
       {
@@ -30407,14 +30494,7 @@
         },
         id: "bottom-btn"
       },
-      /* @__PURE__ */ import_react4.default.createElement(
-        "img",
-        {
-          src: "../icons/Fullscreen.svg",
-          id: "fullscreen-icon",
-          className: "bottom-icon"
-        }
-      )
+      /* @__PURE__ */ import_react4.default.createElement(Fullscreen_default, { className: "bottom-icon", height: 50, width: 50 })
     )));
   }
 
@@ -31210,15 +31290,16 @@
     const playerRef = (0, import_react6.useRef)(null);
     const params = new URLSearchParams(window.location.search);
     const getUrl = () => {
-      if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-        return "https://localhost:3000/api";
+      if (location.href.endsWith("/")) {
+        return location.href + "api";
       } else {
-        return window.location.protocol + "//" + window.location.host + "/api";
+        return location.href + "/api";
       }
     };
+    const url = params.get("url") || getUrl();
     (0, import_react6.useEffect)(() => {
       const p = new Player({
-        url: params.get("url") || getUrl(),
+        url,
         vidRef,
         infoRef
       });

@@ -5,7 +5,7 @@ import PlayScreenTwo from "./components/PlayScreenTwo";
 import { Player } from "./player/index";
 
 function App(props: any) {
-    const [player, setPlayer]  = useState<any>();
+    const [player, setPlayer] = useState<any>();
 
     const vidRef = useRef<HTMLVideoElement>(null);
     const infoRef = useRef<HTMLDivElement>(null);
@@ -14,23 +14,19 @@ function App(props: any) {
     const params = new URLSearchParams(window.location.search);
 
     const getUrl = () => {
-        if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-            // we are in localhost
-            return "https://localhost:8080/api"
+        //to make sure there is no trailing slash ' /'
+        if (location.href.endsWith('/')) {
+            return location.href + 'api'
         } else {
-            //we are in some remote instance
-            return window.location.protocol + "//" + window.location.host + '/' + window.location.pathname + "/api"
+            return location.href + '/api'
         }
     }
 
-
-    // const player = {
-    //     goLive:() => {}
-    // }
+    const url = params.get("url") || getUrl();
 
     useEffect(() => {
         const p = new Player({
-            url: params.get("url") || getUrl(),
+            url,
             vidRef,
             infoRef
         });

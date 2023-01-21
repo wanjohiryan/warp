@@ -1,4 +1,5 @@
 import React, { RefObject, useState } from 'react';
+import Close from "../../icons/Close"
 
 interface Props {
     infoRef: RefObject<HTMLDivElement | null>;
@@ -22,11 +23,7 @@ export default function InfoContainer({ infoRef, latencyMode }: Props) {
 
                             e.preventDefault()
                         }}>
-                        <img
-                            src="../icons/Close.svg"
-                            id="info-close-icon"
-                            className="close-icon"
-                        />
+                            <Close className="close-icon" height={15} width={15} />
                     </div>
                 </div>
 

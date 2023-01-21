@@ -3,17 +3,15 @@ package warp
 import (
 	"context"
 	"crypto/tls"
-	"embed"
 	"encoding/hex"
 	"fmt"
 	"io"
-	"io/fs"
 	"log"
-	"mime"
 	"net/http"
 	"os"
 	"path/filepath"
-	"strings"
+
+	"github.com/wanjohiryan/time-warp/internal/ui"
 
 	"github.com/kixelated/invoker"
 	"github.com/kixelated/quic-go"
@@ -36,20 +34,10 @@ type ServerConfig struct {
 	LogDir string
 }
 
-//go:embed static
-var content embed.FS
-
 func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 	s = new(Server)
 
 	quicConfig := &quic.Config{}
-
-	fsys := fs.FS(content)
-	html, err := fs.Sub(fsys, "static")
-
-	if err != nil {
-		log.Fatal("failed to get ui fs", err)
-	}
 
 	if config.LogDir != "" {
 		quicConfig.Tracer = qlog.NewTracer(func(p logging.Perspective, connectionID []byte) io.WriteCloser {
@@ -69,7 +57,8 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 		Certificates: []tls.Certificate{*config.Cert},
 	}
 
-	mux := http.NewServeMux()
+	//first prepare the client side then 'import' the http mux handler to this side
+	mux := ui.NewClient()
 
 	s.inner = &webtransport.Server{
 		H3: http3.Server{
@@ -102,53 +91,6 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 		if err != nil {
 			log.Println(err)
 		}
-	})
-
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		//must be aget method (browser)
-		if r.Method != "GET" {
-			http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
-			return
-		}
-
-		path := filepath.Clean(r.URL.Path)
-
-		//FIXME: how to solve this one
-
-		if path == "/" || path == "" { // Add other paths that you route on the UI side here
-			path = "index.html"
-		}
-
-		path = strings.TrimPrefix(path, "/")
-
-		fmt.Println("file requested is", path)
-
-		// http.FileServer(http.FS(html))
-		file, err := html.Open("index.html")
-		if err != nil {
-			if os.IsNotExist(err) {
-				log.Println("file", path, "not found:", err)
-				http.NotFound(w, r)
-				return
-			}
-			log.Println("file", path, "cannot be read:", err)
-			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
-			return
-		}
-
-		contentType := mime.TypeByExtension(filepath.Ext(path))
-		w.Header().Set("Content-Type", contentType)
-		if strings.HasPrefix(path, "static/") {
-			w.Header().Set("Cache-Control", "public, max-age=31536000")
-		}
-		stat, err := file.Stat()
-		if err == nil && stat.Size() > 0 {
-			w.Header().Set("Content-Length", fmt.Sprintf("%d", stat.Size()))
-		}
-
-		n, _ := io.Copy(w, file)
-
-		log.Println("file", path, "copied", n, "bytes")
 	})
 
 	return s, nil

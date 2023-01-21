@@ -1,7 +1,0 @@
-node_modules
-.parcel-cache
-dist
-
-#out-directory
-static/index.css
-static/index.js

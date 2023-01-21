@@ -1,4 +1,5 @@
 import React, { RefObject, SetStateAction, useEffect, useRef } from "react";
+import Close from "../../icons/Close"
 
 interface Props {
     settingsRef: RefObject<HTMLDivElement | null>;
@@ -66,12 +67,8 @@ export default function SettingsContainer({ settingsRef, setLatencyMode, player 
 
                         e.preventDefault()
                     }}
-                    id="close-settings-btn">
-                    <img
-                        src="../icons/Close.svg"
-                        id="settings-close-icon"
-                        className="close-icon"
-                    />
+                    id="close-btn">
+                    <Close className='close-icon' height={15} width={15} />
                 </div>
             </div>
 

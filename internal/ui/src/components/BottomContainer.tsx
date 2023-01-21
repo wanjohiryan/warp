@@ -1,4 +1,9 @@
 import React, { RefObject, useState } from 'react';
+import Info from '../../icons/Info Square'
+import Settings from '../../icons/Setting'
+import VolumeOn from '../../icons/Volume On'
+import VolumeOff from '../../icons/Volume Off'
+import FullScreen from '../../icons/Fullscreen'
 
 interface Props {
     infoRef: RefObject<HTMLDivElement | null>;
@@ -23,11 +28,7 @@ export default function BottomContainer({ infoRef, settingsRef, playerRef, vidRe
                         e.preventDefault()
                     }}
                     id="bottom-btn">
-                    <img
-                        src="../icons/Info Square.svg"
-                        id="info-icon"
-                        className="bottom-icon"
-                    />
+                    <Info className='bottom-icon' height={50} width={50} />
                 </div>
 
                 <div
@@ -39,11 +40,7 @@ export default function BottomContainer({ infoRef, settingsRef, playerRef, vidRe
                         e.preventDefault()
                     }}
                     id="bottom-btn">
-                    <img
-                        src="../icons/Setting.svg"
-                        id="settings-icon"
-                        className="bottom-icon"
-                    />
+                    <Settings className='bottom-icon' height={50} width={50} />
                 </div>
 
                 <div
@@ -57,16 +54,9 @@ export default function BottomContainer({ infoRef, settingsRef, playerRef, vidRe
                     }}
                     id="bottom-btn">
                     {videoMuted ? (
-                        <img
-                            src="../icons/Volume On.svg"
-                            id="volume-up-icon"
-                            className="bottom-icon"
-                        />) : (
-                        <img
-                            src="../icons/Volume Off.svg"
-                            id="volume-down-icon"
-                            className="bottom-icon"
-                        />
+                        <VolumeOn className='bottom-icon' height={50} width={50}/>
+                       ) : (
+                        <VolumeOff className='bottom-icon' height={50} width={50}/>
                     )}
                 </div>
 
@@ -80,11 +70,7 @@ export default function BottomContainer({ infoRef, settingsRef, playerRef, vidRe
                         playerRef.current && playerRef.current.requestFullscreen();
                     }}
                     id="bottom-btn">
-                    <img
-                        src="../icons/Fullscreen.svg"
-                        id="fullscreen-icon"
-                        className="bottom-icon"
-                    />
+                   <FullScreen className='bottom-icon' height={50} width={50}/>
                 </div>
             </div>
         </div >

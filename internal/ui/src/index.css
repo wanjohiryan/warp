@@ -94,6 +94,8 @@ body #player {
 #bottom-btn {
 	cursor: pointer;
 	overflow: hidden;
+	padding: 10px;
+	border-radius: 10px;
 }
 
 #bottom-btn :hover{
@@ -150,15 +152,6 @@ body #player {
 #close-btn {
 	cursor: pointer;
 	overflow: hidden;
-}
-
-#close-settings-btn {
-	cursor: pointer;
-	overflow: hidden;
-}
-
-#close-settings-btn :hover{
-	background-color: rgb(40, 40, 41);
 }
 
 #close-btn :hover{
