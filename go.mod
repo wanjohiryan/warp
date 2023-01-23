@@ -1,4 +1,4 @@
-module github.com/wanjohiryan/time-warp
+module github.com/wanjohiryan/warp
 
 go 1.18
 
