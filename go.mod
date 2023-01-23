@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/abema/go-mp4 v0.10.0
-	github.com/kixelated/invoker v1.0.0
+	github.com/kixelated/invoker v1.0.2
 	github.com/kixelated/quic-go v1.31.0
 	github.com/kixelated/webtransport-go v1.4.1
 	github.com/zencoder/go-dash/v3 v3.0.3
