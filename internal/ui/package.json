@@ -10,7 +10,7 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
     "esbuild": "^0.17.0",
-    "parcel": "^2.6.0",
+    "parcel": "^2.8.3",
     "typescript": ">=3.0.0"
   },
   "dependencies": {
