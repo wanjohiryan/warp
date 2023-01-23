@@ -8,7 +8,7 @@ import (
 	"log"
 
 	"github.com/kixelated/invoker"
-	"github.com/wanjohiryan/time-warp/internal/warp"
+	"github.com/wanjohiryan/warp/internal/warp"
 )
 
 func main() {

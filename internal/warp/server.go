@@ -11,7 +11,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/wanjohiryan/time-warp/internal/ui"
+	"github.com/wanjohiryan/warp/internal/ui"
 
 	"github.com/kixelated/invoker"
 	"github.com/kixelated/quic-go"
