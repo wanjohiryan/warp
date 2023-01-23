@@ -1,0 +1,25 @@
+version: 2
+updates:
+  - package-ecosystem: docker
+    directory: '/'
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: npm
+    directory: '/internal/ui'
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    labels:
+      - 'type: dependencies'
+  - package-ecosystem: gomod
+    directory: '/'
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    labels:
+      - 'type: dependencies'
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'daily'
