@@ -1,10 +1,24 @@
-# Time Warp
+# Warp
 
 Segmented live media delivery protocol utilizing QUIC streams. See the [Warp draft](https://datatracker.ietf.org/doc/draft-lcurley-warp/).
 
-Time Warp works by delivering each audio and video segment as a separate QUIC stream. These streams are assigned a priority such that old video will arrive last and can be dropped. This avoids buffering in many cases, offering the viewer a potentially better experience.
+Warp works by delivering each audio and video segment as a separate QUIC stream. These streams are assigned a priority such that old video will arrive last and can be dropped. This avoids buffering in many cases, offering the viewer a potentially better experience.
 
-> This is a fork of [warp by luke](https://github.com/kixelated/warp-demo)
+> This is a fork of [Warp by luke](https://github.com/kixelated/warp-demo) with my personal tweaks
+## Possible use cases:
+
+1. Building a low latency web conferencing webpage.
+2. Streaming a Graphical User Interface from docker containers to web browsers with ffmpeg using a single UDP port
+
+## Features:
+
+1. Exposes a single port, which is especially useful for scaling docker containers with K8s
+2. Unlike WebRTC, supports both server-to-client architecture(s) as well as peer-to-peer
+3. Encrypted and secure end-to-end connections by default
+4. Faster handshake, 1RTT, which is especially useful for mobile-first applications
+5. Roaming support
+6. Congestion Control
+7. Load balancing
 
 # YouTube Presentation
 
@@ -45,7 +59,6 @@ This demo uses a single rendition. A production implementation will want to:
 3. or both!
 
 Also, quic-go ships with the default New Reno congestion control. Something like [BBRv2](https://github.com/lucas-clemente/quic-go/issues/341) will work much better for live video as it limits RTT growth.
-
 
 # Setup
 ## Requirements
@@ -118,7 +131,7 @@ yarn serve
 
 These can be accessed on `https://localhost:8080` by default.
 
-If you use a custom domain for the Warp server, make sure to override the server URL with the `url` query string parameter, e.g. `https://localhost:8080/?url=https://warp.demo`.
+If you use a custom domain for the Warp server, make sure to override the server URL with the `url` query string parameter, e.g. `https://localhost:8080/?url=https://warp.server.com`.
 
 ## Chrome
 
@@ -132,7 +145,7 @@ Launch a new instance of Chrome Canary:
 /path/to/chrome.exe --origin-to-force-quic-on=localhost:8080 https://localhost:8080
 ```
 
-To get `path/to/chrome.exe` use `chrome://flags`
+To get `path/to/chrome.exe` use `chrome://version`
 
 >All this couldn't have been made possible without Luke sharing sharing his code:
 ✨✨Thanks Luke✨✨
