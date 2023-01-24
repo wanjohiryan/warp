@@ -2,15 +2,16 @@ name: "Push image to ghcr"
 
 on:
   push:
-   branches: [ main ]
+    branches: [main]
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: wanjohiryan/warp
-  TAG_PREFIX: h264-
+  BASE_TAG_PREFIX: h264
+  CHROME_TAG_PREFIX: chrome-h264
 
 jobs:
-  build-git-package:
+  build-git-h264-base:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -20,36 +21,73 @@ jobs:
     #
     if: github.repository_owner == 'wanjohiryan'
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - 
-        name: Log into registry ${{ env.REGISTRY }}
+      - name: Log into registry ${{ env.REGISTRY }}
         uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
 
-      - 
-        name: Extract Container metadata
+      - name: Extract Container metadata
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ env.TAG_PREFIX }}base
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ env.BASE_TAG_PREFIX }}
           tags: |
-              type=semver,pattern={{version}}
-              type=semver,pattern={{major}}.{{minor}}
-              type=semver,pattern={{major}}
-              type=sha,format=long
-            
-      - 
-        name: Build and push image
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha,format=long
+
+      - name: Build and push image
         uses: docker/build-push-action@v3
         with:
           context: ./
           file: .docker/base/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  build-git-h264-chrome:
+    runs-on: ubuntu-latest
+    needs: build-git-h264-base
+    permissions:
+      contents: read
+      packages: write
+    #
+    # do not run on forks
+    #
+    if: github.repository_owner == 'wanjohiryan'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Log into registry ${{ env.REGISTRY }}
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Extract Container metadata
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ env.CHROME_TAG_PREFIX }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha,format=long
+
+      - name: Build and push image
+        uses: docker/build-push-action@v3
+        with:
+          context: ./
+          file: examples/h264-chrome/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
