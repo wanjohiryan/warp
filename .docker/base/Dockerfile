@@ -19,7 +19,7 @@ COPY ./ .
 #
 #make self signed certs
 #
-RUN chmod +x ./certs/generate-cert.sh && ./certs/generate.sh
+RUN chmod +x ./certs/generate.sh && ./certs/generate.sh
 
 #
 # build executable
