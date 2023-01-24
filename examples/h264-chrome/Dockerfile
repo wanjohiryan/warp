@@ -19,7 +19,7 @@ RUN set -eux; apt-get update; \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 #
 # config files   
-COPY supervisord.conf /etc/warp/supervisord/chrome.conf
-COPY --chown=warp preferences.json /home/warp/.config/google-chrome/Default/Preferences
-COPY policies.json /etc/opt/chrome/policies/managed/policies.json
-COPY openbox.xml /etc/warp/openbox.xml
+COPY examples/h264-chrome/supervisord.conf /etc/warp/supervisord/chrome.conf
+COPY --chown=warp examples/h264-chrome/preferences.json /home/warp/.config/google-chrome/Default/Preferences
+COPY examples/h264-chrome/policies.json /etc/opt/chrome/policies/managed/policies.json
+COPY examples/h264-chrome/openbox.xml /etc/warp/openbox.xml
