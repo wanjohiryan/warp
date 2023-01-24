@@ -89,7 +89,6 @@ RUN set -eux; \
 COPY .docker/base/dbus /usr/bin/dbus
 COPY .docker/base/default.pa /etc/pulse/default.pa
 COPY .docker/base/supervisord.conf /etc/warp/supervisord.conf
-COPY .docker/base/ffmpeg.sh /usr/bin/warp/media/ffmpeg.sh
 
 #
 #set default envs
@@ -103,7 +102,9 @@ ENV SWIDTH 1920
 # copy static files from previous stage
 #
 COPY --from=warp /src /usr/bin/warp
+COPY .docker/base/ffmpeg.sh /usr/bin/warp/media/ffmpeg.sh
 
+EXPOSE 8080/udp
 
 #
 # run 
