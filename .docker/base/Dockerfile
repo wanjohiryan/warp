@@ -93,6 +93,7 @@ COPY .docker/base/supervisord.conf /etc/warp/supervisord.conf
 #
 #set default envs
 #
+ENV USER=$USERNAME
 ENV DISPLAY=:99.0
 ENV DPI 96
 ENV SHEIGHT 1080
