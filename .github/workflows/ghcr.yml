@@ -7,8 +7,8 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: wanjohiryan/warp
-  BASE_TAG_PREFIX: h264
-  CHROME_TAG_PREFIX: chrome-h264
+  BASE_TAG_PREFIX: x264
+  CHROME_TAG_PREFIX: chrome-x264
 
 jobs:
   build-git-h264-base:
@@ -46,7 +46,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: .docker/base/Dockerfile
+          file: .docker/x264-base/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -87,7 +87,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: examples/h264-chrome/Dockerfile
+          file: examples/chrome-x264/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
