@@ -97,6 +97,7 @@ ENV DISPLAY=:99.0
 ENV DPI 96
 ENV SHEIGHT 1080
 ENV SWIDTH 1920
+ENV USER=$USERNAME
 
 #
 # copy static files from previous stage

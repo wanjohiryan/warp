@@ -1,7 +1,7 @@
 #
 #Import from base
 #
-FROM wanjohiryan/warp:h264
+FROM wanjohiryan/warp:x264
 
 
 #
