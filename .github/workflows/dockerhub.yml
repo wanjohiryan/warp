@@ -39,9 +39,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: .docker/base/Dockerfile
+          file: .docker/x264-base/Dockerfile
           push: true
-          tags: wanjohiryan/warp:h264
+          tags: wanjohiryan/warp:x264
   build-docker-chrome:
     needs: build-docker-base-package
     runs-on: ubuntu-latest
@@ -70,6 +70,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./
-          file: examples/h264-chrome/Dockerfile
+          file: examples/chrome-x264/Dockerfile
           push: true
-          tags: wanjohiryan/warp:chrome-h264
+          tags: wanjohiryan/warp:chrome-x264

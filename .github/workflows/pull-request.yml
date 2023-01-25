@@ -18,7 +18,7 @@ jobs:
           name: Build docker image and clean up
           run: |
             cp .docker/base/Dockerfile .
-            docker build -t wanjohiryan/warp:h264 .
+            docker build -t wanjohiryan/warp:x264 .
             rm Dockerfile 
   
   build-chrome-example:
@@ -35,4 +35,4 @@ jobs:
           name: Build docker image
           run: |
             cp examples/h264-chrome/Dockerfile .
-            docker build -t wanjohiryan/warp:chrome-h264 .
+            docker build -t wanjohiryan/warp:chrome-x264 .
