@@ -2,8 +2,8 @@
 
 #TODO: Add support for env directory for playlist.mpd
 
-ffmpeg -r 30 -f x11grab -draw_mouse 0 \
-    -s "$SWIDTH"x"$SHEIGHT" -i "$DISPLAY" \
+ffmpeg -r 60 -f x11grab -draw_mouse 0 \
+    -s "$SWIDTH"x"$SHEIGHT" -i "$DISPLAY" -deadline realtime -quality realtime \
     -f pulse -re -i default -c:a libopus \
 	-c:v libx264 \
     -preset veryfast -tune zerolatency \
