@@ -86,9 +86,8 @@ RUN set -eux; \
 #
 # copy config files
 #
-COPY .docker/x264-base/dbus /usr/bin/dbus
-COPY .docker/x264-base/default.pa /etc/pulse/default.pa
 COPY .docker/x264-base/supervisord.conf /etc/warp/supervisord.conf
+COPY .docker/x264-base/default.pa /etc/pulse/default.pa
 
 #
 #set default envs
@@ -104,11 +103,12 @@ ENV USER=$USERNAME
 #
 COPY --from=warp /src /usr/bin/warp
 COPY .docker/x264-base/ffmpeg.sh /usr/bin/warp/media/ffmpeg.sh
+RUN chmod +x /usr/bin/warp/media/ffmpeg.sh
 
 EXPOSE 8080/udp
 
 #
-# run 
+# run supervisord
 #
 CMD ["/usr/bin/supervisord", "-c", "/etc/warp/supervisord.conf"]
 
