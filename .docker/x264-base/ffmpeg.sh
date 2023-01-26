@@ -3,7 +3,7 @@
 #TODO: Add support for env directory for playlist.mpd
 
 ffmpeg -r 60 -f x11grab -draw_mouse 0 \
-    -s "$SWIDTH"x"$SHEIGHT" -i "$DISPLAY" -deadline realtime -quality realtime \
+    -s "$SWIDTH"x"$SHEIGHT" -i "$DISPLAY" -quality realtime -probesize 64M\
     -f pulse -re -i default -c:a libopus \
 	-c:v libx264 \
     -preset veryfast -tune zerolatency \
@@ -20,3 +20,5 @@ ffmpeg -r 60 -f x11grab -draw_mouse 0 \
 	-seg_duration 2 -frag_duration 0.01 \
 	-frag_type duration \
 	playlist.mpd
+
+#FIXME: use some other output other than .mpd file. It's getting lqrge really fast
