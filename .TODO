@@ -10,3 +10,5 @@
 
 //TODO soonest
 [] incorporate gamepad, mouse and keyboard inputs
+[] create workflow test for go
+[] automatically build nodejs pkgs on push
