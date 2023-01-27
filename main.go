@@ -105,6 +105,7 @@ func getConfig() Config {
 
 	if _, err := os.Stat(conf.media); err != nil {
 		//loop for 10 seconds until we get the media file
+		log.Printf("Media file not found, waiting...")
 
 		while(1){
 			now := time.Now().UnixNano() / int64(time.Millisecond)
