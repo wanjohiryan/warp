@@ -78,7 +78,8 @@ Then access the webpage on `https://localhost:8080` by default.
 >All this couldn't have been made possible without Luke sharing sharing his code:
 ✨✨Thanks Luke✨✨
 
-#TODO
+# TODO
+
  - Support various encodings:
    - [ ] nvenc for nvidia HW acceleration
    - [x] x264 software-rendering
