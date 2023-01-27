@@ -29,7 +29,7 @@ RUN go build
 #
 # STAGE 2: RUNTIME
 #
-FROM debian:bullseye-slim
+FROM ubuntu:20.04
 
 #
 # avoid warnings by switching to noninteractive
@@ -44,15 +44,21 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 
+RUN set -eux;\
+    apt update; \
+    #
+    # Install dependencies
+    #
+    apt-get install --no-install-recommends --assume-yes wget ca-certificates software-properties-common gpg-agent supervisor xvfb mingw-w64 dbus-x11 ffmpeg cabextract aptitude vim pulseaudio; \
+    #
+    # clean up
+    #
+    apt-get clean -y; \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+
+
 RUN set -eux; \
     apt-get update; \
-    #
-    # install dependencies
-    #
-    apt-get install -y --no-install-recommends wget ca-certificates supervisor; \
-    apt-get install -y --no-install-recommends pulseaudio dbus-x11 xvfb; \
-    apt-get install --no-install-recommends --assume-yes software-properties-common gpg-agent mingw-w64 ffmpeg cabextract aptitude vim; \
-    apt-get install -y --no-install-recommends libcairo2 libxcb1 libxrandr2 libxv1 libopus0 libvpx6; \
     #
     # create a non-root user
     #
@@ -80,6 +86,7 @@ RUN set -eux; \
     chown -R $USERNAME:$USERNAME /home/$USERNAME; \
     #
     # clean up
+    #
     apt-get clean -y; \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
@@ -87,6 +94,7 @@ RUN set -eux; \
 # copy config files
 #
 COPY .docker/x264-base/supervisord.conf /etc/warp/supervisord.conf
+RUN chmod 755 /etc/warp/supervisord.conf
 
 #
 #set default envs
@@ -102,8 +110,11 @@ ENV USER=$USERNAME
 #
 COPY --from=warp /src /usr/bin/warp
 COPY .docker/x264-base/ffmpeg.sh /usr/bin/warp/media/ffmpeg.sh
-RUN chmod +x /usr/bin/warp/media/ffmpeg.sh
+RUN chmod 755 /usr/bin/warp/media/ffmpeg.sh
 
+#
+# expose port 8080 for QUIC streams
+#
 EXPOSE 8080/udp
 
 #

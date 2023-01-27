@@ -20,6 +20,13 @@ RUN set -eux; apt-get update; \
 #
 # config files   
 COPY examples/chrome-x264/supervisord.conf /etc/warp/supervisord/chrome.conf
+RUN chmod 755 /etc/warp/supervisord/chrome.conf
+
 COPY --chown=warp examples/chrome-x264/preferences.json /home/warp/.config/google-chrome/Default/Preferences
+RUN chmod 755 -R /home/warp/.config/google-chrome/
+ 
 COPY examples/chrome-x264/policies.json /etc/opt/chrome/policies/managed/policies.json
+RUN chmod 755 /etc/opt/chrome/policies/managed/policies.json
+
 COPY examples/chrome-x264/openbox.xml /etc/warp/openbox.xml
+RUN chmod 755 /etc/warp/openbox.xml
