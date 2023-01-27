@@ -87,7 +87,6 @@ RUN set -eux; \
 # copy config files
 #
 COPY .docker/x264-base/supervisord.conf /etc/warp/supervisord.conf
-COPY .docker/x264-base/default.pa /etc/pulse/default.pa
 
 #
 #set default envs

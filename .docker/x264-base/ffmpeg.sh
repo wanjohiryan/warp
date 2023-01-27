@@ -3,8 +3,8 @@
 #TODO: Add support for env directory for playlist.mpd
 
 ffmpeg -r 60 -f x11grab -draw_mouse 0 \
-    -s "$SWIDTH"x"$SHEIGHT" -i "$DISPLAY" -quality realtime -probesize 64M\
-    -f pulse -re -i default -c:a libopus \
+    -s "$SWIDTH"x"$SHEIGHT" -i "$DISPLAY" -probesize 64M\
+    -f pulse -re -i default \
 	-c:v libx264 \
     -preset veryfast -tune zerolatency \
 	-c:a aac \
