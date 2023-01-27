@@ -5,14 +5,8 @@ name: "Test go package"
 #
 
 on:
-  pull_request:
-  #
-  # Run this action periodically to keep docker up-to-date
-  # even if there is no activity in this repo.
-  #
-  schedule:
-    - cron: "5 0 * * 1-7" #every thursday
   # run it during pull request
+  pull_request:
 
 jobs:
   test-go:
