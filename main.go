@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/kixelated/invoker"
 	"github.com/wanjohiryan/warp/internal/warp"
@@ -97,6 +98,30 @@ func getConfig() Config {
 		conf.media = os.Getenv("WARP_MEDIA")
 	} else {
 		conf.media = *dash
+	}
+
+
+	start := time.Now().UnixNano() / int64(time.Millisecond)
+
+
+	if _, err := os.Stat(conf.media); err != nil {
+		//loop for 10 seconds until we get the media file
+		log.Printf("Media file not found, waiting...")
+
+		for {
+			now := time.Now().UnixNano() / int64(time.Millisecond)
+			diff := now - start
+			if diff > 10000 {
+				break 
+			} else {
+				//if file is found break
+				// conf.media = fmt.Sprintf("%s%d.mpd", conf.media, os.Getpid())
+				if _, err := os.Stat(conf.media); err == nil {
+					break
+				}
+			}
+			time.Sleep(2 * time.Second)
+		}
 	}
 
 	return conf
