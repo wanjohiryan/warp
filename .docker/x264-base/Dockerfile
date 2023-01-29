@@ -49,13 +49,28 @@ RUN set -eux;\
     #
     # Install dependencies
     #
-    apt-get install --no-install-recommends --assume-yes wget ca-certificates software-properties-common gpg-agent supervisor xvfb mingw-w64 dbus-x11 ffmpeg cabextract aptitude vim pulseaudio; \
+    apt-get install --no-install-recommends --assume-yes wget ca-certificates software-properties-common gpg-agent supervisor xvfb mingw-w64 dbus-x11 cabextract aptitude vim pulseaudio; \
     #
     # clean up
     #
     apt-get clean -y; \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-
+#
+#Install ffmpeg5
+#
+RUN set -eux; \
+        apt-get update; \
+        apt-get upgrade -y; \
+        apt-get install --no-install-recommends --assume-yes ffmpeg; \
+        #
+        # clean up
+        #
+        apt-get clean -y; \
+        rm -rf /var/lib/apt/lists/* /var/cache/apt/* ;\
+         #
+         #check version
+         #
+         ffmpeg  --version;
 
 RUN set -eux; \
     apt-get update; \

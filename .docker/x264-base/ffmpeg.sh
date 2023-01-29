@@ -2,7 +2,7 @@
 
 #TODO: Add support for env directory for playlist.mpd
 
-ffmpeg -r 60 -f x11grab -draw_mouse 0 \
+ffmpeg -r 30 -f x11grab -draw_mouse 0 \
     -s "$SWIDTH"x"$SHEIGHT" -i "$DISPLAY" -probesize 64M\
     -f pulse -re -i default \
 	-c:v libx264 \
@@ -12,7 +12,7 @@ ffmpeg -r 60 -f x11grab -draw_mouse 0 \
 	-map v:0 -s:v:0 1280x720 -b:v:0 3M   \
 	-map v:0 -s:v:1 854x480  -b:v:1 1.1M \
 	-map v:0 -s:v:2 640x360  -b:v:2 365k \
-	-map 0:a \
+	-map 1:a \
 	-force_key_frames "expr:gte(t,n_forced*2)" \
 	-sc_threshold 0 \
 	-streaming 1 \
@@ -21,4 +21,4 @@ ffmpeg -r 60 -f x11grab -draw_mouse 0 \
 	-frag_type duration \
 	playlist.mpd
 
-#FIXME: use some other output other than .mpd file. It's getting lqrge really fast
+#FIXME: use some other output other than .mpd file. It's getting large really fast
