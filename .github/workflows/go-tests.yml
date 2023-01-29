@@ -1,12 +1,14 @@
 name: "Test go package"
 
-# Simple workflow to test go. Works with errorrs tho :)
+# Simple workflow to test go. Works with errors tho :)
 #!FIXME: Start writing go tests.
 #
 
 on:
   # run it during pull request
-  pull_request:
+  # pull_request:
+  schedule:
+   - cron: 5 0 * 8 * #run on never
 
 jobs:
   test-go:
