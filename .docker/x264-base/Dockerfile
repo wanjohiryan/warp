@@ -59,18 +59,22 @@ RUN set -eux;\
 #Install ffmpeg5
 #
 RUN set -eux; \
-        apt-get update; \
-        apt-get upgrade -y; \
-        apt-get install --no-install-recommends --assume-yes ffmpeg; \
+        apt update; \
+        apt upgrade -y; \
+        add-apt-repository ppa:savoury1/ffmpeg4 -y ; \
+        add-apt-repository ppa:savoury1/ffmpeg5 -y ;\
+        apt update; \
+        apt upgrade -y;\
+        apt install --no-install-recommends --assume-yes ffmpeg; \
         #
         # clean up
         #
-        apt-get clean -y; \
+        apt clean -y; \
         rm -rf /var/lib/apt/lists/* /var/cache/apt/* ;\
          #
          #check version
          #
-         ffmpeg  --version;
+        ffmpeg -version
 
 RUN set -eux; \
     apt-get update; \
