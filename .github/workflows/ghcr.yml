@@ -3,6 +3,8 @@ name: "Push image to ghcr"
 on:
   push:
     branches: [main]
+    tags:
+      - v*.*.*
 
 env:
   REGISTRY: ghcr.io
@@ -36,11 +38,14 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ env.BASE_TAG_PREFIX }}
+          flavor: |
+            latest=${{github.ref == 'refs/tags'}}
+          #tag on release, and a nightly build for 'dev'
           tags: |
+            type=raw,value=nightly,enable={{is_default_branch}}
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-            type=sha,format=long
 
       - name: Build and push image
         uses: docker/build-push-action@v3
@@ -77,11 +82,15 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ env.CHROME_TAG_PREFIX }}
+          flavor: |
+            latest=${{github.ref == 'refs/tags'}}
+          #tag on release, and a nightly build for 'dev'
           tags: |
+            type=raw,value=nightly,enable={{is_default_branch}}
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-            type=sha,format=long
+            type=schedule,pattern=nightly
 
       - name: Build and push image
         uses: docker/build-push-action@v3
