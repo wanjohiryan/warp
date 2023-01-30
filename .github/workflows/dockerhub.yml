@@ -10,6 +10,12 @@ on:
   schedule:
     - cron: "5 0 * * THU" #every thursday
   # run it during pull request
+  
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: wanjohiryan/warp
+  BASE_TAG_PREFIX: x264
+  CHROME_TAG_PREFIX: chrome-x264
 
 jobs:
   build-docker-base-package:
@@ -34,6 +40,21 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - 
+        name: Extract Container metadata
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{github.actor}}/warp
+          flavor: |
+            latest=${{github.ref == 'refs/tags'}}
+            prefix=${{ env.BASE_TAG_PREFIX }}, onlatest=true
+          #tag on release, and a nightly build for 'dev'
+          tags: |
+            type=raw, value=nightly, enable={{is_default_branch}}
+            type=semver, pattern={{version}}
+            type=semver, pattern={{major}}.{{minor}}
+            type=semver, pattern={{major}}
       -
         name: Build and push image
         uses: docker/build-push-action@v3
@@ -41,7 +62,9 @@ jobs:
           context: ./
           file: .docker/x264-base/Dockerfile
           push: true
-          tags: wanjohiryan/warp:x264
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
   build-docker-chrome:
     needs: build-docker-base-package
     runs-on: ubuntu-latest
@@ -65,6 +88,21 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - 
+        name: Extract Container metadata
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{github.actor}}/warp
+          flavor: |
+            latest=${{github.ref == 'refs/tags'}}
+            prefix=${{ env.CHROME_TAG_PREFIX }}, onlatest=true
+          #tag on release, and a nightly build for 'dev'
+          tags: |
+            type=raw, value=nightly, enable={{is_default_branch}}
+            type=semver, pattern={{version}}
+            type=semver, pattern={{major}}.{{minor}}
+            type=semver, pattern={{major}}
       -
         name: Build and push image
         uses: docker/build-push-action@v3
@@ -72,4 +110,5 @@ jobs:
           context: ./
           file: examples/chrome-x264/Dockerfile
           push: true
-          tags: wanjohiryan/warp:chrome-x264
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
