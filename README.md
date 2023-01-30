@@ -49,17 +49,47 @@ This demo uses a single rendition. A production implementation will want to:
 Also, quic-go ships with the default New Reno congestion control. Something like [BBRv2](https://github.com/lucas-clemente/quic-go/issues/341) will work much better for live video as it limits RTT growth. -->
 
 # Setup
+
+To use this image(s) in your project import in your Dockerfile like,
+
+ `FROM wanjohiryan/warp:x264.{version}`
+
+Valid values of `{version}` are:
+
+| Value | Description |
+|---|------|
+| {major} (semver) | use a specific major release |
+| {major}.{minor} (semver)| use a specific version with patches |
+| latest | use the current stable version |
+| nightly | use the current nightly build, not stable at all |
+
+Example:
+```bash
+FROM wanjohiryan/warp:x264.0 #major release
+
+FROM wanjohiryan/warp:x264.0.2.1 #current version
+
+FROM wanjohiryan/warp:x264.latest #latest stable release
+
+FROM wanjohiryan/warp:x264.nightly #use the nightly build, stability is not a guarantee
+
+```
+
+
 ## Requirements
 To run the example `chrome-x264` which uses h264 software endering(no need for a GPU), you will need:
 
 * Docker engine v20.10.23 or higher
 
 ```bash
-docker run -p 8080:8080/udp wanjohiryan/warp:chrome-x264
+docker run -p 8080:8080/udp wanjohiryan/warp:chrome-x264.0.2.1 # or ghcr.io/wanjohiryan/warp/chrome-x264:0.2.1
 ```
-We need to run a *fresh instance* of Chrome, instructing it to force QUIC streaming to our port. This command will not work if Chrome is already running, so it's easier to use Chrome Canary instead.
 
-Launch a new instance of Chrome Canary:
+> **NOTE** this example docker image versioning rule highlighted earlier
+
+We need to run a *fresh instance* of Chrome, instructing it to force QUIC streaming to our port. This command will not work if Chrome is already running, so it's easier to use Chrome instead.
+
+Launch a new instance of Chrome:
 
 ```bash
 /path/to/chrome.exe --origin-to-force-quic-on=localhost:8080 https://localhost:8080
