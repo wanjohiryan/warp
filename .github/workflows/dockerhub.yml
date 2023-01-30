@@ -5,7 +5,10 @@ on:
     branches: [ main ]
     tags:
       - v*.*.*
-  
+  release:
+   types: [created]
+
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: wanjohiryan/warp
@@ -42,7 +45,7 @@ jobs:
         with:
           images: ${{github.actor}}/warp
           flavor: |
-            latest=${{github.ref == 'refs/tags'}}
+            latest=${{github.event_name == 'release'}}
             prefix=${{ env.BASE_TAG_PREFIX }}, onlatest=true
           #tag on release, and a nightly build for 'dev'
           tags: |
@@ -90,7 +93,7 @@ jobs:
         with:
           images: ${{github.actor}}/warp
           flavor: |
-            latest=${{github.ref == 'refs/tags'}}
+            latest=${{github.event_name == 'release'}}
             prefix=${{ env.CHROME_TAG_PREFIX }}, onlatest=true
           #tag on release, and a nightly build for 'dev'
           tags: |

@@ -5,6 +5,8 @@ on:
     branches: [main]
     tags:
       - v*.*.*
+  release:
+    types: [created]
 
 env:
   REGISTRY: ghcr.io
@@ -39,7 +41,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ env.BASE_TAG_PREFIX }}
           flavor: |
-            latest=${{github.ref == 'refs/tags'}}
+            latest=${{github.event_name == 'release'}}
           #tag on release, and a nightly build for 'dev'
           tags: |
             type=raw,value=nightly,enable={{is_default_branch}}
@@ -83,7 +85,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ env.CHROME_TAG_PREFIX }}
           flavor: |
-            latest=${{github.ref == 'refs/tags'}}
+            latest=${{github.event_name == 'release'}}
           #tag on release, and a nightly build for 'dev'
           tags: |
             type=raw,value=nightly,enable={{is_default_branch}}
