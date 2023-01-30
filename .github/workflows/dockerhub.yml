@@ -3,19 +3,14 @@ name: "Push image to Docker Hub"
 on:
   push:
     branches: [ main ]
-  #
-  # Run this action periodically to keep docker up-to-date
-  # even if there is no activity in this repo.
-  #
-  schedule:
-    - cron: "5 0 * * THU" #every thursday
-  # run it during pull request
+    tags:
+      - v*.*.*
   
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: wanjohiryan/warp
-  BASE_TAG_PREFIX: x264
-  CHROME_TAG_PREFIX: chrome-x264
+  BASE_TAG_PREFIX: x264.
+  CHROME_TAG_PREFIX: chrome-x264.
 
 jobs:
   build-docker-base-package:
