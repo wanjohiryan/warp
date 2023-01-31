@@ -11,7 +11,7 @@
     "@types/react-dom": "^18.0.10",
     "esbuild": "^0.17.0",
     "parcel": "^2.8.3",
-    "typescript": ">=4.9.4"
+    "typescript": ">=4.9.5"
   },
   "dependencies": {
     "react": "^18.2.0",
