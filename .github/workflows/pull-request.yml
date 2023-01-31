@@ -5,10 +5,9 @@ on:
   pull_request:
 
 jobs:
-  auto-label-prs:
+  build-docker-base:
       name: Build docker image for testing
       runs-on: ubuntu-latest
-              
       steps:
         -
           name: Checkout repo
