@@ -29,7 +29,7 @@ RUN go build
 #
 # STAGE 2: RUNTIME
 #
-FROM ubuntu:20.04
+FROM ubuntu:23.04
 
 #
 # avoid warnings by switching to noninteractive
