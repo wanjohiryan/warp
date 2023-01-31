@@ -3,8 +3,8 @@ name: Release Drafter
 on:
     push:
       branches: [ main ]
-    schedule:
-    - cron: "5 0 * * THU" #every thursday
+    # schedule: TODO: schedule a public release each week
+    # - cron: "5 0 * * THU" #every thursday
 
 jobs:
   update_release_draft:
