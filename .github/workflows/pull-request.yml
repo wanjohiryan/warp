@@ -19,19 +19,8 @@ jobs:
             cp .docker/x264-base/Dockerfile .
             docker build -t wanjohiryan/warp:x264 .
             rm Dockerfile 
-  
-  build-chrome-example:
-      name: Build docker example for testing
-      runs-on: ubuntu-latest
-      needs: build-docker-base
-              
-      steps:
-        -
-          name: Checkout repo
-          uses: actions/checkout@v3
-        
         - 
-          name: Build docker image
+          name: Build docker image for chrome
           run: |
             cp examples/chrome-x264/Dockerfile .
-            docker build -t wanjohiryan/warp:chrome-x264 --build-arg WARP_IMAGE=wanjohiryan/warp:x264 .
+            docker build -t wanjohiryan/warp:chrome-x264 --build-arg WARP_IMAGE=wanjohiryan/warp:x264  .
