@@ -55,11 +55,14 @@ To run the example `chrome-x264` which uses h264 software endering(no need for a
 * Docker engine v20.10.23 or higher
 
 ```bash
-docker run -p 8080:8080/udp wanjohiryan/warp:chrome-x264
+docker run -p 8080:8080/udp ghcr.io/wanjohiryan/warp/chrome-x264:0
 ```
-We need to run a *fresh instance* of Chrome, instructing it to force QUIC streaming to our port. This command will not work if Chrome is already running, so it's easier to use Chrome Canary instead.
 
-Launch a new instance of Chrome Canary:
+>To get the supported image versions, refer to [this](https://github.com/wanjohiryan?tab=packages&repo_name=warp)
+
+We need to run a *fresh instance* of Chrome, instructing it to force QUIC streaming to our port. This command will not work if Chrome is already running, so we need to launch a new instance.
+
+To launch a new instance of Chrome:
 
 ```bash
 /path/to/chrome.exe --origin-to-force-quic-on=localhost:8080 https://localhost:8080
@@ -74,10 +77,6 @@ Then access the webpage on `https://localhost:8080` by default.
 >To you use a custom domain for the Warp server, make sure to override the server URL with the `url` query string parameter, e.g. `https://localhost:8080/?url=https://warp.server.com`.
 
 
-
->All this couldn't have been made possible without Luke sharing sharing his code:
-✨✨Thanks Luke✨✨
-
 # TODO
 
  - Support various encodings:
@@ -91,3 +90,6 @@ Then access the webpage on `https://localhost:8080` by default.
  - Add uinput support:
     - [ ] keyboard and mouse
     - [ ] gamepads
+
+>All this couldn't have been made possible without Luke sharing sharing his code:
+✨✨Thanks Luke✨✨
