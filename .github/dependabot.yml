@@ -1,10 +1,19 @@
 version: 2
 updates:
   - package-ecosystem: docker
-    directory: '/'
+    directory: '/.docker/x264-base/'
     schedule:
       interval: daily
     open-pull-requests-limit: 10
+    labels:
+      - 'type: dependencies'
+  - package-ecosystem: docker
+    directory: '/examples/chrome-x264/'
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    labels:
+      - 'type: dependencies'
   - package-ecosystem: npm
     directory: '/internal/ui'
     schedule:
@@ -23,3 +32,5 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
+    labels:
+      - 'type: dependencies'
