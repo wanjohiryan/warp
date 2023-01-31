@@ -35,4 +35,4 @@ jobs:
           name: Build docker image
           run: |
             cp examples/chrome-x264/Dockerfile .
-            docker build -t wanjohiryan/warp:chrome-x264 .
+            docker build -t wanjohiryan/warp:chrome-x264 --build-arg WARP_IMAGE=wanjohiryan/warp:x264 .

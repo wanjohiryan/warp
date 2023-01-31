@@ -1,7 +1,8 @@
 #
 #Import from base
-#
-FROM wanjohiryan/warp:x264
+#!uses 'major' release.
+ARG WARP_IMAGE=wanjohiryan/warp:x264.0 
+FROM $WARP_IMAGE
 
 
 #
