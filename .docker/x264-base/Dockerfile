@@ -1,7 +1,7 @@
 #
 #   Build warp golang
 
-FROM golang:1.18-bullseye as warp
+FROM golang:1.20-bullseye as warp
 
 WORKDIR /src
 
