@@ -14,12 +14,6 @@ jobs:
           uses: actions/checkout@v3
         
         - 
-          name: Build docker image and clean up
+          name: Build and run warp docker
           run: |
-            cp .docker/base/Dockerfile .
-            docker build -t wanjohiryan/warp:x264 .
-            rm Dockerfile 
-        - 
-          name: Run base docker image
-          run: |
-            docker run wanjohiryan/warp:x264
+           ./build.sh
