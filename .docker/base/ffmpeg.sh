@@ -37,7 +37,7 @@ CMD=(
     -streaming 1
     -use_timeline 0
     -seg_duration 2
-    -frag_duration 10000
+    -frag_duration 0.01
     -frag_type duration
     -movflags frag_keyframe+empty_moov
 
