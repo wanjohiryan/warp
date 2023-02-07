@@ -5,8 +5,8 @@ FROM golang:1.18-bullseye as warp
 
 WORKDIR /src
 
-COPY ./internal .
-COPY  go.mod main.go go.sum ./
+COPY ./  .
+# COPY  go.mod main.go go.sum ./
 
 #
 # build executable
