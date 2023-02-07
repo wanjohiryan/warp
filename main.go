@@ -61,8 +61,8 @@ func run(ctx context.Context) (err error) {
 func getConfig() Config {
 	//TODO: support config files
 	addr := flag.String("port", ":8080", "HTTPS server address")
-	cert := flag.String("tls-cert", "./certs/localhost.crt", "TLS certificate file path")
-	key := flag.String("tls-key", "./certs/localhost.key", "TLS certificate file path")
+	cert := flag.String("tls-cert", "/certs/localhost.crt", "TLS certificate file path")
+	key := flag.String("tls-key", "/certs/localhost.key", "TLS certificate file path")
 	logDir := flag.String("log-dir", "", "logs will be written to the provided directory")
 	dash := flag.String("media", "/media/playlist.mpd", "DASH playlist path")
 
