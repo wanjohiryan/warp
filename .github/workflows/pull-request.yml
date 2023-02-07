@@ -16,7 +16,7 @@ jobs:
         - 
           name: Build docker image and clean up
           run: |
-            cp .docker/base/Dockerfile.x264 .
+            cp .docker/base/Dockerfile .
             docker build -t wanjohiryan/warp:x264 .
             rm Dockerfile 
         - 
