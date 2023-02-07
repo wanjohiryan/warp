@@ -16,7 +16,6 @@ CMD=(
     #grab x11 display
     -f x11grab
         -i ${DISPLAY}
-        -pix_fmt yuv420p #let us use 4:4:4 for now
     #capture pulse audio
     -f pulse
         -ac 2
@@ -25,6 +24,7 @@ CMD=(
         -preset veryfast
         -tune zerolatency
         -profile main
+        -pix_fmt yuv420p #let us use 4:4:4 for now
     -c:a aac
         -b:a 128k
         -ar 44100
