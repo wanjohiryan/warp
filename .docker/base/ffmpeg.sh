@@ -24,7 +24,8 @@ CMD=(
         -preset veryfast
         -tune zerolatency
         -profile main
-        -pix_fmt yuv420p #let us use 4:4:4 for now
+        -pix_fmt yuv420p #let us use 4:2:0 for now 
+        #full color 4:4:4 causes an error in warp
     -c:a aac
         -b:a 128k
         -ar 44100

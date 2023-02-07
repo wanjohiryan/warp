@@ -5,21 +5,8 @@ FROM golang:1.18-bullseye as warp
 
 WORKDIR /src
 
-#
-# install mkcert
-#
-RUN apt-get update; \
-    apt install libnss3-tools -y;\
-    wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
-    chmod +x /usr/local/bin/mkcert;
-
-
-COPY ./ .
-
-#
-#make self signed certs
-#
-RUN chmod +x ./certs/generate.sh && ./certs/generate.sh
+COPY ./internal .
+COPY  go.mod main.go go.sum ./
 
 #
 # build executable
@@ -47,7 +34,7 @@ ARG USER_GID=${USER_UID}
 RUN apt-get update; \ 
     apt-get -y upgrade;\
     apt-get install --assume-yes --no-install-recommends \ 
-    sudo software-properties-common ca-certificates \
+    sudo software-properties-common ca-certificates libnss3-tools \
     wget curl vim pulseaudio xvfb dbus-x11 libdbus-c++-1-0v5; \
     #
     #clean up
@@ -70,6 +57,13 @@ RUN apt update; \
     apt clean -y; \ 
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
+#
+# install mkcert
+#
+RUN apt-get update; \
+    wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
+    chmod +x /usr/local/bin/mkcert;
+
 RUN apt-get update; \
     #
     #create a non-root user
@@ -81,11 +75,11 @@ RUN apt-get update; \
     #
     #make directories for warp
     #
-    mkdir -p /etc/warp /var/log/warp /media/ /usr/bin/warp;\
-    chmod 1777 /var/log/warp; \
+    mkdir -p /etc/warp /certs/ /media/ /usr/bin/warp;\
+    chmod 1777 /certs/; \
     chmod 1777 /media/; \
     chmod 1777 /usr/bin/warp; \
-    chown ${USERNAME} /var/log/warp/; \
+    chown ${USERNAME} /certs/; \
     chown ${USERNAME} /usr/bin/warp/; \
     chown ${USERNAME} /media/; \
     chown -R $USERNAME:$USERNAME /home/${USERNAME}
@@ -110,6 +104,9 @@ ENTRYPOINT [ "/tini","--" ]
 #
 COPY .docker/base/entrypoint.sh /etc/warp/entrypoint.sh
 RUN chmod +x /etc/warp/entrypoint.sh
+
+COPY .docker/base/generate-certs.sh /certs/generate-certs.sh
+RUN chmod +x /certs/generate-certs.sh
 
 COPY .docker/base/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
