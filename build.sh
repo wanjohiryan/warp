@@ -13,4 +13,4 @@ rm Dockerfile
 
 set -e
 #run the image for 4 minutes
-timeout 4m docker run wanjohiryan/warp:x264
+timeout 2m docker run wanjohiryan/warp:x264
