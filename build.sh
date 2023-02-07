@@ -13,9 +13,9 @@ rm Dockerfile
 
 set -e
 #run the image for 4 minutes
-timeout 2m docker run wanjohiryan/warp:x264
+docker run wanjohiryan/warp:x264 &
 
 sleep 60
-killall vlc
+kill %?docker
 
 exit 0
