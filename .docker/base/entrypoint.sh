@@ -22,6 +22,7 @@ pacmd set-default-source vsink.monitor
 
 #Start ffmpeg
 source /etc/warp/ffmpeg.sh &
+sleep 0.7 #ensure this has started before moving on
 
 #Start warp server
 /usr/bin/warp/warp &

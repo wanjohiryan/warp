@@ -20,7 +20,6 @@ CMD=(
     #capture pulse audio
     -f pulse
         -ac 2
-        -re
         -i default
     -c:v libx264 
         -preset veryfast
@@ -40,6 +39,7 @@ CMD=(
     -seg_duration 2
     -frag_duration 0.01
     -frag_type duration
+    -movflags frag_keyframe+empty_moov
 
     /media/playlist.mpd
 )
