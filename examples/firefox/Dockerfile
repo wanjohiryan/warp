@@ -20,11 +20,6 @@ RUN apt-get update;\
             unzip   \
             firefox
 
-ARG TINI_VERSION=v0.19.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
-ENTRYPOINT [ "/tini","--" ]
-
 #
 #Install chrome
 #
@@ -34,5 +29,5 @@ RUN  curl -s http://ciscobinary.openh264.org/openh264-linux64-2e1774ab6dc6c43deb
 COPY examples/firefox/firefox.sh /etc/warp/firefox.sh
 RUN sudo chmod +x /etc/warp/firefox.sh
 
+ENTRYPOINT [ "/tini","--", "/etc/warp/firefox.sh" ]
 
-CMD [ "/etc/warp/firefox.sh" ]
