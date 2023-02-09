@@ -17,6 +17,7 @@ RUN apt-get update;\
             fonts-liberation \
             fonts-ipafont-gothic \
             fonts-wqy-zenhei \
+            unzip   \
             firefox
 
 #

@@ -1,7 +1,8 @@
 #!/bin/bash
 
-set -e
-set -o pipefail
+set -xeo pipefail
+
+trap 'trap " " SIGINT; kill -SIGINT 0; wait;' SIGINT SIGTERM
 
 YOUTUBE_URL="https://www.youtube.com/watch?v=mCCOz1dUz-Q"
 SCREEN_WIDTH=1920
