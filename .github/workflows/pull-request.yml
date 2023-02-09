@@ -16,7 +16,15 @@ jobs:
         - 
           name: Build and run warp docker
           run: bash ${GITHUB_WORKSPACE}/build.sh
-        
-        -
-          name: Build example
-          run:  bash ${GITHUB_WORKSPACE}/build-example.sh
+  
+  build-firefox-example:
+      name: Build docker image for chrome
+      needs: build-docker-base
+      runs-on: ubuntu-latest
+      steps:
+      - 
+        name: Checkout repo
+        uses: actions/checkout@v3
+      - 
+        name: Build and run firefox docker
+        run: bash ${GITHUB_WORKSPACE}/build-example.sh
