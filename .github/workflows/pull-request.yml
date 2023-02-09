@@ -16,3 +16,7 @@ jobs:
         - 
           name: Build and run warp docker
           run: bash ${GITHUB_WORKSPACE}/build.sh
+        
+        -
+          name: Build example
+          run:  bash ${GITHUB_WORKSPACE}/build-example.sh

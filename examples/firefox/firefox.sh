@@ -32,6 +32,7 @@ user_pref("dom.allow_scripts_to_close_windows", true);
 user_pref("datareporting.policy.firstRunURL", "");
 EOF
 
+set -e
 #Run the base entrypoint and wait for 10 seconds
 source /etc/warp/entrypoint.sh &
 sleep 10
