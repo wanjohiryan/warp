@@ -22,7 +22,7 @@ RUN apt-get update;\
 #
 #Install chrome
 #
-RUN  curl -s http://ciscobinary.openh264.org/openh264-linux64-2e1774ab6dc6c43debb0b5b628bdf122a391d521.zip -o /openh264-1.8.1.1.zip && \
+RUN  curl -s http://ciscobinary.openh264.org/openh264-linux64-2e1774ab6dc6c43debb0b5b628bdf122a391d521.zip -o /tmp/openh264-1.8.1.1.zip && \
     chmod a+r /tmp/openh264-1.8.1.1.zip
 
 COPY examples/firefox/firefox.sh /etc/warp/firefox.sh
