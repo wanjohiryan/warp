@@ -11,7 +11,6 @@ docker build -t wanjohiryan/warp:firefox-x264 .
 #on build remove the Dockerfile, in case we create an 'example'
 rm Dockerfile 
 
-set -e
 #run the image for 4 minutes
 docker run wanjohiryan/warp:firefox-x264 &
 
