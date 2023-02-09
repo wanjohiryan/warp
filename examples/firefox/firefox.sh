@@ -11,7 +11,7 @@ firefox --no-remote --new-instance --createprofile "temp-profile /tmp/firefox-pr
 
 # Install the OpenH264 plugin for Firefox
 mkdir -p /tmp/firefox-profile/gmp-gmpopenh264/1.8.1.1/
-unzip /openh264-1.8.1.1.zip -d /tmp/firefox-profile/gmp-gmpopenh264/1.8.1.1/
+unzip /tmp/openh264-1.8.1.1.zip -d /tmp/firefox-profile/gmp-gmpopenh264/1.8.1.1/
 
 # Install additional CA certificates to Firefox (e.g. for development)
 mkdir -p ~/ca/
