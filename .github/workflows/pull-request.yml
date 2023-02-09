@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-docker-base:
-      name: Build docker image for testing
+      name: Build base image
       runs-on: ubuntu-latest
       steps:
         -
@@ -18,7 +18,7 @@ jobs:
           run: bash ${GITHUB_WORKSPACE}/build.sh
   
   build-firefox-example:
-      name: Build docker image for chrome
+      name: Build firefox
       needs: build-docker-base
       runs-on: ubuntu-latest
       steps:

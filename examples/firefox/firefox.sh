@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -o pipefail
 
 YOUTUBE_URL="https://www.youtube.com/watch?v=mCCOz1dUz-Q"
 SCREEN_WIDTH=1920
