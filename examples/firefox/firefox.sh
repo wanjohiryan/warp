@@ -2,16 +2,21 @@
 
 set -xeo pipefail
 
-YOUTUBE_URL=1920x1080
+YOUTUBE_URL="https://www.youtube.com/watch?v=mCCOz1dUz-Q"
 SCREEN_WIDTH=1920
 SCREEN_HEIGHT=1080
+
+set -e
+#Run the base entrypoint and wait for 10 seconds
+source /etc/warp/entrypoint.sh &
+sleep 10
 
 # Create a new Firefox profile for capturing preferences for this
 firefox --no-remote --new-instance --createprofile "temp-profile /tmp/firefox-profile"
 
 # Install the OpenH264 plugin for Firefox
-mkdir -p /tmp/firefox-profile/gmp-gmpopenh264/1.8.1.1/
-unzip /tmp/openh264-1.8.1.1.zip -d /tmp/firefox-profile/gmp-gmpopenh264/1.8.1.1/
+sudo mkdir -p /tmp/firefox-profile/gmp-gmpopenh264/1.8.1.1/
+sudo unzip /tmp/openh264-1.8.1.1.zip -d /tmp/firefox-profile/gmp-gmpopenh264/1.8.1.1/
 
 # Install additional CA certificates to Firefox (e.g. for development)
 mkdir -p ~/ca/
@@ -31,11 +36,6 @@ user_pref("doh-rollout.doorhanger-shown", true);
 user_pref("dom.allow_scripts_to_close_windows", true);
 user_pref("datareporting.policy.firstRunURL", "");
 EOF
-
-set -e
-#Run the base entrypoint and wait for 10 seconds
-source /etc/warp/entrypoint.sh &
-sleep 10
 
 # Start Firefox browser and point it at the URL we want to capture
 #
