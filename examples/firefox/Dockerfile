@@ -19,6 +19,7 @@ RUN apt-get update;\
             fonts-wqy-zenhei \
             firefox
 
+USER root
 #
 #Install chrome
 #
@@ -27,5 +28,7 @@ RUN curl -s http://ciscobinary.openh264.org/openh264-linux64-2e1774ab6dc6c43debb
 
 COPY examples/firefox/firefox.sh /etc/warp/firefox.sh
 RUN chmod +x /etc/warp/firefox.sh
+
+USER ${USERNAME}
 
 CMD [ "/etc/warp/firefox.sh" ]
