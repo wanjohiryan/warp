@@ -22,9 +22,10 @@ jobs:
             context: ./
             file: .docker/base/Dockerfile
             push: false
+            load: true
             tags: wanjohiryan/warp:latest
         - 
-          name: Run Docker Container with Entry Point
+          name: Run Docker Container
           id: run-container
           run: |
             set -o pipefail
@@ -54,9 +55,10 @@ jobs:
           context: ./
           file: examples/brave/Dockerfile
           push: false
+          load: true
           tags: wanjohiryan/warp:brave-x264
       - 
-        name: Run Docker Container with Entry Point
+        name: Run Docker Container
         id: run-container
         run: |
           set -o pipefail
