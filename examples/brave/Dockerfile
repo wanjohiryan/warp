@@ -15,8 +15,8 @@ RUN wget -qO - https://brave-browser-apt-release.s3.brave.com/brave-core.asc | s
     #
     # clean up
     #
-    apt-get clean -y; \
-    rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+    sudo apt-get clean -y; \
+    sudo rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 #
 #Copy entrypoint into a directory the parent entrypoint will see
