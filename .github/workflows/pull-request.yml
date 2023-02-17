@@ -29,8 +29,7 @@ jobs:
           id: run-container
           run: |
             set -o pipefail
-            docker run -d wanjohiryan/warp:latest
-            container_id=$!
+            container_id=$(docker run -d wanjohiryan/warp:latest)
             sleep 20s
             docker stop $container_id >/dev/null 2>&1 || true
             exitcode=$(docker wait $container_id)
