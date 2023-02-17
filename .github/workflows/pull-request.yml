@@ -83,16 +83,10 @@ jobs:
           
           cp examples/brave/Dockerfile .
 
-          output=$(docker build --tag warp:brave --build-arg WARP_IMAGE=warp:latest . 2>&1) || exitcode=$?
+          docker build --tag warp:brave --build-arg WARP_IMAGE=warp:latest .
 
-          if [[ $exitcode != 0 ]]; then
-            echo "::error::Docker container failed with error: $exitcode"
-            echo "$output"
-            exit 1
-          else 
-            echo "Docker container ran successfully for 20 seconds."
-            exit 0
-          fi
+          rm Dockerfile 
+
       - 
         name: Run Docker Container example
         run: |
