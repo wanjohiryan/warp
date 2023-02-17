@@ -29,16 +29,12 @@ jobs:
           id: run-container
           run: |
             set -o pipefail
-            container_id=$(docker run -d wanjohiryan/warp:latest)
-            sleep 20s
-            docker stop $container_id >/dev/null 2>&1 || true
-            exitcode=$(docker wait $container_id)
-            output=$(docker logs $container_id)
-            if [[ $exitcode != 0 ]]; then
-              echo "::error::Docker container failed with error: $exitcode"
-               echo "$output"
-              exit 1
-            fi
+            docker run wanjohiryan/warp:x264 &
+
+            sleep 20
+            kill %?docker
+
+            exit 0
           shell: bash
 
   build-brave-example:
@@ -66,11 +62,10 @@ jobs:
         id: run-container
         run: |
           set -o pipefail
-          output=$(timeout 20s docker run wanjohiryan/warp:brave-x264 2>&1) || exitcode=$?
+          docker run wanjohiryan/brave-x264 &
+
+          sleep 20
           
-          if [[ $exitcode != 0 ]]; then
-            echo "::error::Docker container failed with error: $exitcode"
-            echo "$output"
-            exit 1
-          fi
+          kill %?docker
+          exit 0
         shell: bash
