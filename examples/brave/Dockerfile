@@ -9,12 +9,17 @@ FROM $WARP_IMAGE
 #Install brave
 #
 # Add Brave Browser repository and key
-RUN wget -qO - https://brave-browser-apt-release.s3.brave.com/brave-core.asc | apt-key add - ;\
-    echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list; \
-    apt-get update && apt-get install -y brave-browser
+RUN wget -qO - https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key add - ;\
+    echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list; \
+    sudo apt-get update && sudo apt-get install -y brave-browser; \
+    #
+    # clean up
+    #
+    apt-get clean -y; \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 #
 #Copy entrypoint into a directory the parent entrypoint will see
 #
 COPY examples/brave/brave.sh /etc/warp/entrypoint.d/brave.sh
-RUN  chmod +x /etc/warp/entrypoint.d/brave.sh
+RUN  sudo chmod +x /etc/warp/entrypoint.d/brave.sh
