@@ -5,6 +5,8 @@ set -xeuo pipefail
 # Set the directory where the other bash files are located
 OTHER_SCRIPTS_DIR="/etc/warp/entrypoint.d/"
 
+mkdir -p $OTHER_SCRIPTS_DIR
+
 # Check if the directory exists
 if [ -d "$OTHER_SCRIPTS_DIR" ]; then
   # Loop through all the files in the directory
@@ -17,8 +19,7 @@ if [ -d "$OTHER_SCRIPTS_DIR" ]; then
     fi
   done
 else
-  echo "Directory $OTHER_SCRIPTS_DIR not found or child image's entrypoint script do not exit"
-  exit 0
+  echo "Directory $OTHER_SCRIPTS_DIR not found " 
 fi
 
 # Run the default command (if provided)
