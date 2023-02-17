@@ -105,6 +105,9 @@ ENTRYPOINT [ "/usr/bin/tini","--" ]
 COPY .docker/base/entrypoint.sh /etc/warp/entrypoint.sh
 RUN chmod +x /etc/warp/entrypoint.sh
 
+COPY .docker/base/run-bash.sh /etc/warp/run-bash.sh
+RUN chmod +x /etc/warp/run-bash.sh
+
 COPY .docker/base/generate-certs.sh /certs/generate-certs.sh
 RUN chmod +x /certs/generate-certs.sh
 
@@ -119,5 +122,10 @@ ENV SHELL /bin/bash
 ENV DISPLAY=:99.0
 
 EXPOSE 8080/udp
+
+#
+#Run as user `Warp`
+#
+USER ${USERNAME}
 
 CMD [ "/etc/warp/entrypoint.sh" ]
