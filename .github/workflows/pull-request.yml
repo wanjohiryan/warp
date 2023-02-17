@@ -29,11 +29,15 @@ jobs:
           id: run-container
           run: |
             set -o pipefail
-            output=$(timeout 20s docker run wanjohiryan/warp:latest 2>&1) || exitcode=$?
-            
+            docker run -d wanjohiryan/warp:latest
+            container_id=$!
+            sleep 20s
+            docker stop $container_id >/dev/null 2>&1 || true
+            exitcode=$(docker wait $container_id)
+            output=$(docker logs $container_id)
             if [[ $exitcode != 0 ]]; then
               echo "::error::Docker container failed with error: $exitcode"
-              echo "$output"
+               echo "$output"
               exit 1
             fi
           shell: bash
