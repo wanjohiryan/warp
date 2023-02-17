@@ -23,13 +23,13 @@ jobs:
             file: .docker/base/Dockerfile
             push: false
             load: true
-            tags: wanjohiryan/warp:x264
+            tags: warp:latest
         - 
           name: Run Docker Container
           #error code 124 is timeout error
           run: |
             set -o pipefail
-            output=$(timeout 20s docker run wanjohiryan/warp:x264 2>&1) || exitcode=$?
+            output=$(timeout 20s docker run warp:latest 2>&1) || exitcode=$?
 
             if [[ $exitcode != 0 && $exitcode != 124 ]]; then
               echo "::error::Docker container failed with error: $exitcode"
@@ -48,7 +48,7 @@ jobs:
             context: ./
             file: .docker/base/Dockerfile
             outputs: type=docker,dest=/tmp/warp.tar
-            tags: wanjohiryan/warp:x264
+            tags: warp:latest
 
         -
           name: Upload artifact
@@ -86,14 +86,14 @@ jobs:
           context: ./
           file: examples/brave/Dockerfile
           push: false
-          build-args: WARP_IMAGE=warp:x264
+          build-args: WARP_IMAGE=warp:latest
           load: true
-          tags: wanjohiryan/warp:brave-x264
+          tags: warp:brave
       - 
         name: Run Docker Container example
         run: |
           set -o pipefail
-          output=$(timeout 20s docker run wanjohiryan/brave-x264 2>&1) || exitcode=$?
+          output=$(timeout 20s docker run warp:brave 2>&1) || exitcode=$?
           
           if [[ $exitcode != 0 && $exitcode != 124 ]]; then
             echo "::error::Docker container failed with error: $exitcode"
