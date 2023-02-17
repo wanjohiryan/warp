@@ -12,13 +12,32 @@ jobs:
         -
           name: Checkout repo
           uses: actions/checkout@v3
-        
+        - 
+          name: Setup Docker Buildx
+          uses: docker/setup-buildx-action@v2
         - 
           name: Build and run warp docker
-          run: bash ${GITHUB_WORKSPACE}/build.sh
-  
-  build-firefox-example:
-      name: Build firefox
+          uses: docker/build-push-action@v4
+          with:
+            context: ./
+            file: .docker/base/Dockerfile
+            push: false
+            tags: wanjohiryan/warp:latest
+        - 
+          name: Run Docker Container with Entry Point
+          id: run-container
+          run: |
+            set -o pipefail
+            output=$(docker run wanjohiryan/warp:latest 2>&1) || exitcode=$?
+            if [[ $exitcode != 0 ]]; then
+              echo "::error::Docker container failed with error: $exitcode"
+              echo "$output"
+              exit 1
+            fi
+          shell: bash
+
+  build-brave-example:
+      name: Build brave browser
       needs: build-docker-base
       runs-on: ubuntu-latest
       steps:
@@ -26,5 +45,25 @@ jobs:
         name: Checkout repo
         uses: actions/checkout@v3
       - 
-        name: Build and run firefox docker
-        run: bash ${GITHUB_WORKSPACE}/build-example.sh
+          name: Setup Docker Buildx
+          uses: docker/setup-buildx-action@v2
+      - 
+        name: Build and run warp docker
+        uses: docker/build-push-action@v4
+        with:
+          context: ./
+          file: examples/brave/Dockerfile
+          push: false
+          tags: wanjohiryan/warp:brave-x264
+      - 
+        name: Run Docker Container with Entry Point
+        id: run-container
+        run: |
+          set -o pipefail
+          output=$(docker run wanjohiryan/warp:brave-x264 2>&1) || exitcode=$?
+          if [[ $exitcode != 0 ]]; then
+            echo "::error::Docker container failed with error: $exitcode"
+            echo "$output"
+            exit 1
+          fi
+        shell: bash
