@@ -23,18 +23,21 @@ jobs:
             file: .docker/base/Dockerfile
             push: false
             load: true
-            tags: wanjohiryan/warp:latest
+            tags: wanjohiryan/warp:x264
         - 
           name: Run Docker Container
-          id: run-container
+          #error code 124 is timeout error
           run: |
             set -o pipefail
-            docker run wanjohiryan/warp:x264 &
+            output=$(timeout 20s docker run wanjohiryan/warp:x264 2>&1) || exitcode=$?
 
-            sleep 20
-            kill %?docker
-
-            exit 0
+            if [[ $exitcode != 0 && $exitcode != 124 ]]; then
+              echo "::error::Docker container failed with error: $exitcode"
+              echo "$output"
+              exit 1
+            else 
+              echo "Docker container ran successfully for 20 seconds."
+              exit 0
           shell: bash
 
   build-brave-example:
@@ -59,13 +62,16 @@ jobs:
           tags: wanjohiryan/warp:brave-x264
       - 
         name: Run Docker Container example
-        id: run-container
         run: |
           set -o pipefail
-          docker run wanjohiryan/brave-x264 &
-
-          sleep 20
+          output=$(timeout 20s docker run wanjohiryan/brave-x264 2>&1) || exitcode=$?
           
-          kill %?docker
-          exit 0
+          if [[ $exitcode != 0 && $exitcode != 124 ]]; then
+            echo "::error::Docker container failed with error: $exitcode"
+            echo "$output"
+            exit 1
+          else 
+            echo "Docker container ran successfully for 20 seconds."
+            exit 0
+
         shell: bash
