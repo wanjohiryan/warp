@@ -32,11 +32,11 @@ jobs:
             output=$(timeout 20s docker run warp:latest 2>&1) || exitcode=$?
 
             if [[ $exitcode != 0 && $exitcode != 124 ]]; then
-              echo "::error::Docker container failed with error: $exitcode"
               echo "$output"
-              exit 1
+              exit $exitcode
             else 
-              echo "Docker container ran successfully for 20 seconds."
+              echo "$output"
+              echo "::info::Docker container ran successfully for 20 seconds."
               exit 0
             fi
           shell: bash
@@ -94,11 +94,11 @@ jobs:
           output=$(timeout 20s docker run warp:brave 2>&1) || exitcode=$?
           
           if [[ $exitcode != 0 && $exitcode != 124 ]]; then
-            echo "::error::Docker container failed with error: $exitcode"
             echo "$output"
-            exit 1
+            exit $exitcode
           else 
-            echo "Docker container ran successfully for 20 seconds."
+            echo "$output"
+            echo "::info::Docker container ran successfully for 20 seconds."
             exit 0
           fi
 
