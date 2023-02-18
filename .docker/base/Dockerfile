@@ -34,7 +34,7 @@ ARG USER_GID=${USER_UID}
 RUN apt-get update; \ 
     apt-get -y upgrade;\
     apt-get install --assume-yes --no-install-recommends \ 
-    sudo software-properties-common ca-certificates libnss3-tools \
+    sudo software-properties-common ca-certificates gnupg libnss3-tools \
     wget curl vim pulseaudio xvfb dbus-x11 libdbus-c++-1-0v5; \
     #
     #clean up
@@ -75,12 +75,14 @@ RUN apt-get update; \
     #
     #make directories for warp
     #
-    mkdir -p /etc/warp /certs/ /media/ /usr/bin/warp;\
+    mkdir -p /etc/warp /certs/ /media/ /usr/bin/warp /etc/warp/entrypoint.d/;\
     chmod 1777 /certs/; \
     chmod 1777 /media/; \
     chmod 1777 /usr/bin/warp; \
+    chmod 1777 /etc/warp/entrypoint.d/; \
     chown ${USERNAME} /certs/; \
     chown ${USERNAME} /usr/bin/warp/; \
+    chown ${USERNAME} /etc/warp/entrypoint.d/; \
     chown ${USERNAME} /media/; \
     chown -R $USERNAME:$USERNAME /home/${USERNAME}
 
@@ -95,15 +97,18 @@ RUN mkdir /tmp/.X11-unix; \
 #Install tini Reference:https://github.com/krallin/tini
 #
 ARG TINI_VERSION=v0.19.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
-ENTRYPOINT [ "/tini","--" ]
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
+RUN chmod +x /usr/bin/tini
+ENTRYPOINT [ "/usr/bin/tini","--" ]
 
 #
 #Copy config files
 #
 COPY .docker/base/entrypoint.sh /etc/warp/entrypoint.sh
 RUN chmod +x /etc/warp/entrypoint.sh
+
+COPY .docker/base/run-bash.sh /etc/warp/run-bash.sh
+RUN chmod +x /etc/warp/run-bash.sh
 
 COPY .docker/base/generate-certs.sh /certs/generate-certs.sh
 RUN chmod +x /certs/generate-certs.sh
@@ -113,12 +118,16 @@ RUN chmod +x /etc/warp/ffmpeg.sh
 
 COPY --from=warp /src /usr/bin/warp
 
-USER ${USERNAME}
 
 ENV USER ${USERNAME}
 ENV SHELL /bin/bash
 ENV DISPLAY=:99.0
 
 EXPOSE 8080/udp
+
+#
+#Run as user `Warp`
+#
+USER ${USERNAME}
 
 CMD [ "/etc/warp/entrypoint.sh" ]

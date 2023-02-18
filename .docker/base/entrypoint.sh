@@ -22,7 +22,7 @@ pacmd set-default-source vsink.monitor
 
 #Start ffmpeg
 source /etc/warp/ffmpeg.sh &
-sleep 0.7 #ensure this has started before moving on
+sleep 1 #ensure this has started before moving on
 
 #Generate selfsigned certs for warp
 source /certs/generate-certs.sh
@@ -30,6 +30,10 @@ source /certs/generate-certs.sh
 set -e
 #Start warp server
 /usr/bin/warp/warp &
+
+set -e
+#run child image entrypoint
+source /etc/warp/run-bash.sh
 
 wait -n
 
