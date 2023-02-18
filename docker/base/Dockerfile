@@ -67,12 +67,13 @@ RUN apt-get update; \
 #
 #Create mouse and keyboard nodes
 #
-RUN mknod /dev/input/mouse c 10 131; \
-        mknod /dev/input/keyboard c 13 63; \
-        chown root:root /dev/input/mouse; \
-        chown root:root /dev/input/keyboard; \
-        chmod 660 /dev/input/keyboard; \
-        chmod 660 /dev/input/mouse
+RUN mkdir -p /dev/input; \
+    mknod /dev/input/mouse c 10 131; \
+    mknod /dev/input/keyboard c 13 63; \
+    chown root:root /dev/input/mouse; \
+    chown root:root /dev/input/keyboard; \
+    chmod 660 /dev/input/keyboard; \
+    chmod 660 /dev/input/mouse
 
 
 
