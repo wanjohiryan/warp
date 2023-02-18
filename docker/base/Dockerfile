@@ -67,13 +67,15 @@ RUN apt-get update; \
 #
 #Create mouse and keyboard nodes
 #
-RUN mknod /dev/input/mouse c 10 131; \
-        mknod /dev/input/keyboard c 13 63; \
-        chown root:root /dev/input/mouse; \
-        chown root:root /dev/input/keyboard; \
-        chmod 660 /dev/input/keyboard; \
-        chmod 660 /dev/input/mouse
-
+RUN mkdir -p /dev/input; \
+    mknod /dev/input/mouse c 10 131; \
+    mknod /dev/input/keyboard c 13 63; \
+    #
+    #create group input and add user:root there
+    #
+    groupadd --gid 1001 input && usermod -a -G input root;\
+    chown root:input /dev/input/mouse /dev/input/keyboard; \
+    chmod 660 /dev/input/keyboard /dev/input/mouse
 
 
 RUN apt-get update; \
@@ -87,15 +89,9 @@ RUN apt-get update; \
     #
     #make directories for warp
     #
-    mkdir -p /etc/warp /certs/ /media/ /usr/bin/warp /etc/warp/entrypoint.d/;\
-    chmod 1777 /certs/; \
-    chmod 1777 /media/; \
-    chmod 1777 /usr/bin/warp; \
-    chmod 1777 /etc/warp/entrypoint.d/; \
-    chown ${USERNAME} /certs/; \
-    chown ${USERNAME} /usr/bin/warp/; \
-    chown ${USERNAME} /etc/warp/entrypoint.d/; \
-    chown ${USERNAME} /media/; \
+    mkdir -p /etc/warp /certs /media /usr/bin/warp /etc/warp/entrypoint.d;\
+    chmod 1777 /certs /media /usr/bin/warp /etc/warp/entrypoint.d; \
+    chown ${USERNAME} /certs /usr/bin/warp /etc/warp/entrypoint.d /media; \
     chown -R $USERNAME:$USERNAME /home/${USERNAME}
 
 #
