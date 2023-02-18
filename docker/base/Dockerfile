@@ -73,7 +73,7 @@ RUN mkdir -p /dev/input; \
     #
     #create group input and add user:root there
     #
-    groupadd input && usermod -a -G input root;\
+    groupadd --gid 1001 input && usermod -a -G input root;\
     chown root:input /dev/input/mouse /dev/input/keyboard; \
     chmod 660 /dev/input/keyboard /dev/input/mouse
 
