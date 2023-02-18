@@ -21,5 +21,5 @@ RUN wget -qO - https://brave-browser-apt-release.s3.brave.com/brave-core.asc | s
 #
 #Copy entrypoint into a directory the parent entrypoint will see
 #
-COPY examples/brave/brave.sh /etc/warp/entrypoint.d/brave.sh
+COPY docker/brave/brave.sh /etc/warp/entrypoint.d/brave.sh
 RUN  sudo chmod +x /etc/warp/entrypoint.d/brave.sh

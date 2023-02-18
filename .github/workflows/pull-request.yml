@@ -20,7 +20,7 @@ jobs:
           uses: docker/build-push-action@v4
           with:
             context: ./
-            file: .docker/base/Dockerfile
+            file: docker/base/Dockerfile
             push: false
             load: true
             tags: warp:latest
@@ -46,7 +46,7 @@ jobs:
           uses: docker/build-push-action@v4
           with:
             context: ./
-            file: .docker/base/Dockerfile
+            file: docker/base/Dockerfile
             outputs: type=docker,dest=/tmp/warp.tar
             tags: warp:latest
 
@@ -81,7 +81,7 @@ jobs:
         run: |
           set -o pipefail
           
-          cp examples/brave/Dockerfile .
+          cp docker/brave/Dockerfile .
 
           docker build --tag warp:brave --build-arg WARP_IMAGE=warp:latest .
 
