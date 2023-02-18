@@ -36,7 +36,7 @@ jobs:
               exit $exitcode
             else 
               echo "$output"
-              echo "::info::Docker container ran successfully for 20 seconds."
+             echo -e "\033[01;34mDocker run successful\033[0m"
               exit 0
             fi
           shell: bash
@@ -98,7 +98,7 @@ jobs:
             exit $exitcode
           else 
             echo "$output"
-            echo "::info::Docker container ran successfully for 20 seconds."
+           echo -e "\033[01;34mDocker run successful\033[0m"
             exit 0
           fi
 
