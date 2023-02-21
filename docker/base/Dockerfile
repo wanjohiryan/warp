@@ -68,14 +68,14 @@ RUN apt-get update; \
 #Create mouse and keyboard nodes
 #
 RUN mkdir -p /dev/input; \
-    mknod /dev/input/mouse c 10 131; \
-    mknod /dev/input/keyboard c 13 63; \
+    mknod /dev/input/mouse0 c 10 131; \
+    mknod /dev/input/keyboard0 c 13 63; \
     #
     #create group input and add user:root there
     #
     groupadd --gid 1001 input && usermod -a -G input root;\
-    chown root:input /dev/input/mouse /dev/input/keyboard; \
-    chmod 660 /dev/input/keyboard /dev/input/mouse
+    chown root:input /dev/input/mouse0 /dev/input/keyboard0; \
+    chmod 660 /dev/input/keyboard0 /dev/input/mouse0
 
 
 RUN apt-get update; \
