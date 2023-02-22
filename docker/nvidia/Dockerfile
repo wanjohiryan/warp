@@ -74,10 +74,10 @@ RUN apt update; \
 #
 #Install Vulkan
 #
-RUN  apt-get install --no-install-recommends -y vulkan-tools; fi && \
-    rm -rf /var/lib/apt/lists/* && \
+RUN  apt-get install --no-install-recommends -y vulkan-tools; \
+    rm -rf /var/lib/apt/lists/*; \
     # Configure EGL manually
-    mkdir -p /usr/share/glvnd/egl_vendor.d/ && \
+    mkdir -p /usr/share/glvnd/egl_vendor.d/; \
     echo "{\n\
     \"file_format_version\" : \"1.0.0\",\n\
     \"ICD\": {\n\
