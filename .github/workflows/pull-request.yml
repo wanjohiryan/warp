@@ -103,3 +103,38 @@ jobs:
           fi
 
         shell: bash
+  build-docker-nvidia:
+      name: Build nvidia base image
+      runs-on: ubuntu-latest
+      steps:
+        -
+          name: Checkout repo
+          uses: actions/checkout@v3
+        - 
+          name: Setup Docker Buildx
+          uses: docker/setup-buildx-action@v2
+        - 
+          name: Build Docker image
+          uses: docker/build-push-action@v4
+          with:
+            context: ./
+            file: docker/nvidia/Dockerfile
+            push: false
+            load: true
+            tags: warp:nvidia
+        # - 
+        #   name: Run Docker Container
+        #   #error code 124 is timeout error
+        #   run: |
+        #     set -o pipefail
+        #     output=$(timeout 20s docker run warp:latest 2>&1) || exitcode=$?
+
+        #     if [[ $exitcode != 0 && $exitcode != 124 ]]; then
+        #       echo "$output"
+        #       exit $exitcode
+        #     else 
+        #       echo "$output"
+        #      echo -e "\033[01;34mDocker run successful\033[0m"
+        #       exit 0
+        #     fi
+        #   shell: bash

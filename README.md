@@ -80,7 +80,7 @@ Then access the webpage on `https://localhost:8080` by default.
 # TODO
 
  - Support various encodings:
-   - [ ] nvenc for nvidia HW acceleration
+   - [x] nvenc for nvidia HW acceleration
    - [x] x264 software-rendering
    - [ ] vaapi for AMD/Intel HW acceleration
  - Create examples to showcase features:
@@ -91,5 +91,11 @@ Then access the webpage on `https://localhost:8080` by default.
     - [ ] keyboard and mouse
     - [ ] gamepads
 
->All this couldn't have been made possible without Luke sharing sharing his code:
-✨✨Thanks Luke✨✨
+# Special Thanks
+This project could not have been possible without the great work done by:
+
+<a href="https://github.com/ehfd"><img src="https://avatars.githubusercontent.com/u/8457324?v=4" width="50" height="50" alt=""/></a><a href="https://github.com/kixelated"><img src="https://avatars.githubusercontent.com/u/432854?v=4" width="50" height="50" alt=""/></a><a href="https://github.com/matteocontrini"><img src="https://avatars.githubusercontent.com/u/2164763?v=4" width="50" height="50" alt=""/></a>
+
+
+# License
+This project is licensed under **Mozilla Public License, v2.0**
