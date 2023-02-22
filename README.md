@@ -92,7 +92,7 @@ Then access the webpage on `https://localhost:8080` by default.
     - [ ] gamepads
 
 # Special Thanks
-This project could not have been possible for the great work by;
+This project could not have been possible without the great work done by:
 
 <a href="https://github.com/ehfd"><img src="https://avatars.githubusercontent.com/u/8457324?v=4" width="50" height="50" alt=""/></a><a href="https://github.com/kixelated"><img src="https://avatars.githubusercontent.com/u/432854?v=4" width="50" height="50" alt=""/></a><a href="https://github.com/matteocontrini"><img src="https://avatars.githubusercontent.com/u/2164763?v=4" width="50" height="50" alt=""/></a>
 
