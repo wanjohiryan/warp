@@ -74,7 +74,7 @@ RUN apt update; \
 #
 #Install Vulkan
 #
-RUN if [ "${UBUNTU_RELEASE}" \< "20.04" ]; then apt-get install --no-install-recommends -y vulkan-utils; else apt-get install --no-install-recommends -y vulkan-tools; fi && \
+RUN  apt-get install --no-install-recommends -y vulkan-tools; fi && \
     rm -rf /var/lib/apt/lists/* && \
     # Configure EGL manually
     mkdir -p /usr/share/glvnd/egl_vendor.d/ && \
