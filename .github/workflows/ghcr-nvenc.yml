@@ -40,11 +40,10 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ env.BASE_TAG_PREFIX }}
-          flavor: |
-            latest=${{github.event_name == 'release'}}
           #tag on release, and a nightly build for 'dev'
           tags: |
             type=raw,value=nightly,enable={{is_default_branch}}
+            type=raw,value=latest,enable={{github.event_name == 'release'}}
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
