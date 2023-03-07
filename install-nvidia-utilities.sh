@@ -6,14 +6,14 @@ set -xeo pipefail
 
 trap 'trap " " SIGINT; kill -SIGINT 0; wait;' SIGINT SIGTERM
 
-add-apt-repository ppa:graphics-drivers/ppa
-apt update
-apt install ubuntu-drivers-common
+add-apt-repository -y ppa:graphics-drivers/ppa
+apt update -y
+apt install -y ubuntu-drivers-common
 
 #log the drivers we just installed
 ubuntu-drivers devices
 
-apt install nvidia-driver-520
+apt install -y nvidia-driver-520
 
 #create a temporary download folder
 mkdir temp
@@ -49,12 +49,10 @@ apt-get install -y nvidia-container-toolkit-base
 #log the nvidia-container-toolkit version installed
 nvidia-ctk --version
 
-#install nvidia-docker2
-
 #remove any containers using nvidia-docker1 then install nvidia-docker2
 docker volume ls -q -f driver=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a -f volume={} | xargs -r docker rm -f
 apt-get purge nvidia-docker
-apt-get install nvidia-docker2
+apt-get install -y nvidia-docker2
 pkill -SIGHUP dockerd
 
 #reboot for changes to take effect
