@@ -15,9 +15,6 @@ ubuntu-drivers devices
 
 apt install nvidia-driver-520
 
-#reboot for changes to take effect
-reboot
-
 #create a temporary download folder
 mkdir temp
 cd temp
@@ -59,3 +56,6 @@ docker volume ls -q -f driver=nvidia-docker | xargs -r -I{} -n1 docker ps -q -a 
 apt-get purge nvidia-docker
 apt-get install nvidia-docker2
 pkill -SIGHUP dockerd
+
+#reboot for changes to take effect
+reboot
