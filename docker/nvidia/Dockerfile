@@ -125,16 +125,16 @@ ENTRYPOINT [ "/usr/bin/tini","--" ]
 #
 #Copy config files
 #
-COPY docker/base/entrypoint.sh /etc/warp/entrypoint.sh
+COPY docker/nvidia/entrypoint.sh /etc/warp/entrypoint.sh
 RUN chmod +x /etc/warp/entrypoint.sh
 
-COPY docker/base/run-bash.sh /etc/warp/run-bash.sh
+COPY docker/nvidia/run-bash.sh /etc/warp/run-bash.sh
 RUN chmod +x /etc/warp/run-bash.sh
 
-COPY docker/base/generate-certs.sh /certs/generate-certs.sh
+COPY docker/nvidia/generate-certs.sh /certs/generate-certs.sh
 RUN chmod +x /certs/generate-certs.sh
 
-COPY docker/base/ffmpeg.sh /etc/warp/ffmpeg.sh
+COPY docker/nvidia/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
 
 COPY --from=warp /src /usr/bin/warp
