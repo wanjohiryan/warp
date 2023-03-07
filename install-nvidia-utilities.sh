@@ -5,6 +5,9 @@
 set -xeo pipefail
 
 trap 'trap " " SIGINT; kill -SIGINT 0; wait;' SIGINT SIGTERM
+#Remove any nvidia packages first
+apt-get remove --purge nvidia-* -y
+apt autoremove -y
 
 add-apt-repository -y ppa:graphics-drivers/ppa
 apt update -y
