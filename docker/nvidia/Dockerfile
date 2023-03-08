@@ -23,7 +23,7 @@ RUN go build
 #
 #Use cuda 11.7 for backwards compatibility with hosts that have >=v11.6
 #
-FROM nvcr.io/nvidia/cuda:11.7.1-runtime-ubuntu22.04
+FROM nvcr.io/nvidia/cuda:11.6.0-runtime-ubuntu20.04
 
 ARG CUDA_VERSION
 
