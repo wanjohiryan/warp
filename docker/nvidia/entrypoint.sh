@@ -8,9 +8,9 @@ set -xeo pipefail
 trap 'trap " " SIGINT; kill -SIGINT 0; wait;' SIGINT SIGTERM
 
 # Create and modify permissions of XDG_RUNTIME_DIR
-sudo -u user mkdir -pm700 /tmp/runtime-user
-sudo chown user:user /tmp/runtime-user
-sudo -u user chmod 700 /tmp/runtime-user
+sudo -u ${USERNAME} mkdir -pm700 /tmp/runtime-user
+sudo chown ${USERNAME}:${USERNAME} /tmp/runtime-user
+sudo -u ${USERNAME} chmod 700 /tmp/runtime-user
 
 # Remove directories to make sure the desktop environment starts
 sudo rm -rf /tmp/.X* ~/.cache
