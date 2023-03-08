@@ -21,7 +21,9 @@ RUN go build
 #
 # STAGE 2: RUNTIME
 #
-FROM nvidia/cuda:11.8.0-devel-ubuntu22.04
+#Use cuda 11.7 for backwards compatibility with hosts that have >=v11.6
+#
+FROM nvidia/cuda:11.7.1-runtime-ubuntu22.04
 
 LABEL maintainer https://github.com/wanjohiryan
 
