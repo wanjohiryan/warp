@@ -23,7 +23,7 @@ RUN go build
 #
 #Use cuda 11.7 for backwards compatibility with hosts that have >=v11.6
 #
-FROM nvidia/cuda:11.7.1-devel-ubuntu22.04
+FROM nvidia/cuda:11.7.1-runtime-ubuntu22.04
 
 LABEL maintainer https://github.com/wanjohiryan
 
