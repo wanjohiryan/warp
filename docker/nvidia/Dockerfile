@@ -23,9 +23,11 @@ RUN go build
 #
 #Use cuda 11.7 for backwards compatibility with hosts that have >=v11.6
 #
-FROM nvidia/cuda:11.7.1-runtime-ubuntu22.04
+FROM nvcr.io/nvidia/cuda:11.7.1-runtime-ubuntu22.04
 
-LABEL maintainer https://github.com/wanjohiryan
+ARG CUDA_VERSION
+
+LABEL maintainer "https://github.com/wanjohiryan"
 
 SHELL [ "/bin/bash","-o", "pipefail", "-c" ]
 
@@ -36,8 +38,10 @@ ARG USER_UID=1000
 ARG USER_GID=${USER_UID}
 
 #make all nvidia gpus visible and allow all capabilities
-ENV NVIDIA_DRIVER_CAPABILITIES all
 ARG NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES all
+ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+ENV XDG_RUNTIME_DIR /tmp/runtime-user
 
 #
 #Install dependencies
@@ -74,10 +78,12 @@ RUN apt update; \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 #
-#Install Vulkan
+#Install and configure Vulkan
 #
+
 RUN  apt-get install --no-install-recommends -y vulkan-tools; \
     rm -rf /var/lib/apt/lists/*; \
+    #
     # Configure EGL manually
     mkdir -p /usr/share/glvnd/egl_vendor.d/; \
     echo "{\n\
@@ -85,7 +91,33 @@ RUN  apt-get install --no-install-recommends -y vulkan-tools; \
     \"ICD\": {\n\
         \"library_path\": \"libEGL_nvidia.so.0\"\n\
     }\n\
-}" > /usr/share/glvnd/egl_vendor.d/10_nvidia.json
+}" > /usr/share/glvnd/egl_vendor.d/10_nvidia.json; \
+    VULKAN_API_VERSION=$(dpkg -s libvulkan1 | grep -oP 'Version: [0-9|\.]+' | grep -oP '[0-9]+(\.[0-9]+)(\.[0-9]+)'); \
+    mkdir -p /etc/vulkan/icd.d/; \
+    echo "{\n\
+    \"file_format_version\" : \"1.0.0\",\n\
+    \"ICD\": {\n\
+        \"library_path\": \"libGLX_nvidia.so.0\",\n\
+        \"api_version\" : \"${VULKAN_API_VERSION}\"\n\
+    }\n\
+}" > /etc/vulkan/icd.d/nvidia_icd.json
+
+#
+#Install Virtualgl and make libraries available for preload
+#
+ARG VIRTUALGL_URL="https://sourceforge.net/projects/virtualgl/files"
+ARG VIRTUALGL_VERSION=3.0.2
+RUN curl -fsSL -O "${VIRTUALGL_URL}/virtualgl_${VIRTUALGL_VERSION}_amd64.deb"; \
+    curl -fsSL -O "${VIRTUALGL_URL}/virtualgl32_${VIRTUALGL_VERSION}_amd64.deb"; \
+    apt-get update && apt-get install -y --no-install-recommends ./virtualgl_${VIRTUALGL_VERSION}_amd64.deb ./virtualgl32_${VIRTUALGL_VERSION}_amd64.deb; \
+    rm -f "virtualgl_${VIRTUALGL_VERSION}_amd64.deb" "virtualgl32_${VIRTUALGL_VERSION}_amd64.deb"; \
+    rm -rf /var/lib/apt/lists/*; \
+    chmod u+s /usr/lib/libvglfaker.so; \
+    chmod u+s /usr/lib/libdlfaker.so; \
+    chmod u+s /usr/lib32/libvglfaker.so; \
+    chmod u+s /usr/lib32/libdlfaker.so; \
+    chmod u+s /usr/lib/i386-linux-gnu/libvglfaker.so; \
+    chmod u+s /usr/lib/i386-linux-gnu/libdlfaker.so
 
 #
 # install mkcert
