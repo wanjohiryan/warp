@@ -100,7 +100,7 @@ RUN apt update; \
 #Install and configure Vulkan and EGL manually
 #
 
-RUN  apt-get install --no-install-recommends -y vulkan-tools; \
+RUN  apt-get install --no-install-recommends -y vulkan-utils; \
     rm -rf /var/lib/apt/lists/*; \
     #
     # Configure EGL manually
