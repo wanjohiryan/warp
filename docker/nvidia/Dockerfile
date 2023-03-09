@@ -71,7 +71,7 @@ RUN dpkg --add-architecture i386 && apt-get update; \
     libegl1-mesa-dev libegl1-mesa-dev:i386 libgles2-mesa-dev libgles2-mesa-dev:i386 \
     libglvnd0:i386 libgl1 libgl1:i386 libglx0 libglx0:i386 libegl1 libegl1:i386 \
     libgles2 libgles2:i386 libglu1 libglu1:i386 libsm6 libsm6:i386 libsm6:i386 vainfo vdpauinfo pkg-config \
-    mesa-utils mesa-utils-extra va-driver-all xserver-xorg-input-all xserver-xorg-video-all mesa-vulkan-drivers libvulkan-dev \
+    mesa-utils mesa-utils-extra va-driver-all xserver-xorg-input-all xserver-xorg-core xserver-xorg-video-all mesa-vulkan-drivers libvulkan-dev \
     libvulkan-dev:i386 libxau6 libxau6:i386 libxdmcp6 libxdmcp6:i386 libxcb1 libxcb1:i386 libxext6 libxext6:i386 \
     libx11-6 libx11-6:i386 libxv1 libxv1:i386 libxtst6 libxtst6:i386 xdg-utils dbus-x11  xkb-data \
     x11-xkb-utils x11-xserver-utils x11-utils x11-apps xauth xbitmaps xinit xfonts-base \
