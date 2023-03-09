@@ -75,7 +75,7 @@ RUN dpkg --add-architecture i386 && apt-get update; \
     libvulkan-dev:i386 libxau6 libxau6:i386 libxdmcp6 libxdmcp6:i386 libxcb1 libxcb1:i386 libxext6 libxext6:i386 \
     libx11-6 libx11-6:i386 libxv1 libxv1:i386 libxtst6 libxtst6:i386 xdg-utils dbus-x11  xkb-data \
     x11-xkb-utils x11-xserver-utils x11-utils x11-apps xauth xbitmaps xinit xfonts-base \
-    libxrandr-dev xcvt;\
+    libxrandr-dev;\
     #
     #clean up
     #
@@ -100,7 +100,7 @@ RUN apt update; \
 #Install and configure Vulkan and EGL manually
 #
 
-RUN  apt-get install --no-install-recommends -y vulkan-utils; \
+RUN  apt-get install --no-install-recommends -y vulkan-utils vulkan-tools; \
     rm -rf /var/lib/apt/lists/*; \
     #
     # Configure EGL manually
