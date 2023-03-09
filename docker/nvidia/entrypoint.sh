@@ -3,13 +3,12 @@
 # The project is licensed under MPL v2.0
 #Thanks ehfd :)
 
-trap 'kill $(jobs -p); echo "Error: Command failed with exit code $?" >&2; wait $(jobs -p); exit 1' ERR
+trap '[[ -n $(jobs -p) ]] && kill $(jobs -p); echo "Error: Warp failed with exit code $?" >&2; [[ -n $(jobs -p) ]] && wait $(jobs -p); exit $?' ERR
 
-# Create and modify permissions of XDG_RUNTIME_DIR
-sudo mkdir /tmp/runtime-user
+# Modify permissions of XDG_RUNTIME_DIR
 
-sudo -u ${USERNAME} mkdir -pm700 /tmp/runtime-user
-sudo chown ${USERNAME}:${USERNAME} /tmp/runtime-user
+sudo -u $USERNAME mkdir -pm700 /tmp/runtime-user
+sudo chown $USERNAME:$USERNAME /tmp/runtime-user
 sudo chmod 700 /tmp/runtime-user
 
 # Remove directories to make sure the desktop environment starts

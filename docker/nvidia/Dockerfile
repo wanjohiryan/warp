@@ -75,7 +75,7 @@ RUN dpkg --add-architecture i386 && apt-get update; \
     libvulkan-dev:i386 libxau6 libxau6:i386 libxdmcp6 libxdmcp6:i386 libxcb1 libxcb1:i386 libxext6 libxext6:i386 \
     libx11-6 libx11-6:i386 libxv1 libxv1:i386 libxtst6 libxtst6:i386 xdg-utils dbus-x11  xkb-data \
     x11-xkb-utils x11-xserver-utils x11-utils x11-apps xauth xbitmaps xinit xfonts-base \
-    libxrandr-dev ;\
+    libxrandr-dev xcvt;\
     #
     #clean up
     #
@@ -156,7 +156,7 @@ RUN apt-get update; \
     #
     #make directories for warp
     #
-    mkdir -p /etc/warp /certs/ /media/ /usr/bin/warp /etc/warp/entrypoint.d/;\
+    mkdir -p /etc/warp /certs /media /usr/bin/warp /etc/warp/entrypoint.d;\
     chmod 1777 /certs/; \
     chmod 1777 /media/; \
     chmod 1777 /usr/bin/warp; \
