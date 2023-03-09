@@ -3,8 +3,6 @@
 # The project is licensed under MPL v2.0
 #Thanks ehfd :)
 
-set -xeo pipefail
-
 trap 'trap " " SIGINT; kill -SIGINT 0; wait;' SIGINT SIGTERM
 
 # Create and modify permissions of XDG_RUNTIME_DIR
@@ -96,7 +94,7 @@ echo -e "Section \"ServerFlags\"\n    Option \"AutoAddGPU\" \"false\"\nEndSectio
 SCREEN_RESOLUTION=1920x1080
 DPI=96
 # Run Xorg server with required extensions
-Xorg vt7 -noreset -novtswitch -sharevts -dpi "${DPI}" +extension "GLX" +extension "RANDR" +extension "RENDER" +extension "MIT-SHM" "${DISPLAY}" & &
+Xorg vt7 -noreset -novtswitch -sharevts -dpi "${DPI}" +extension "GLX" +extension "RANDR" +extension "RENDER" +extension "MIT-SHM" "${DISPLAY}" &
 sleep 0.5 #ensure this has started before moving on
 
 # Wait for X11 to start
