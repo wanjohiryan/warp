@@ -3,12 +3,14 @@
 # The project is licensed under MPL v2.0
 #Thanks ehfd :)
 
-trap 'trap " " SIGINT; kill -SIGINT 0; wait;' SIGINT SIGTERM
+trap 'kill $(jobs -p); echo "Error: Command failed with exit code $?" >&2; wait $(jobs -p); exit 1' ERR
 
 # Create and modify permissions of XDG_RUNTIME_DIR
+sudo mkdir /tmp/runtime-user
+
 sudo -u ${USERNAME} mkdir -pm700 /tmp/runtime-user
 sudo chown ${USERNAME}:${USERNAME} /tmp/runtime-user
-sudo -u ${USERNAME} chmod 700 /tmp/runtime-user
+sudo chmod 700 /tmp/runtime-user
 
 # Remove directories to make sure the desktop environment starts
 sudo rm -rf /tmp/.X* ~/.cache
