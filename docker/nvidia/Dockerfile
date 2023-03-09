@@ -100,7 +100,10 @@ RUN apt update; \
 #Install and configure Vulkan and EGL manually
 #
 
-RUN  apt-get install --no-install-recommends -y vulkan-utils vulkan-tools; \
+RUN  wget -qO - http://packages.lunarg.com/lunarg-signing-key-pub.asc | apt-key add - ;\
+    wget -qO /etc/apt/sources.list.d/lunarg-vulkan-focal.list http://packages.lunarg.com/vulkan/lunarg-vulkan-focal.list ;\
+    apt update; \
+    apt install vulkan-sdk; \
     rm -rf /var/lib/apt/lists/*; \
     #
     # Configure EGL manually
