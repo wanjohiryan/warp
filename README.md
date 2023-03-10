@@ -12,7 +12,8 @@ Warp works by delivering each audio and video segment as a separate QUIC stream.
 
 ## Possible use cases:
 
-1. Streaming a Graphical User Interface from docker containers to web browsers using a single UDP port
+ - [x] Streaming a Graphical User Interface from docker containers to web browsers using a single UDP port and with hardware acceleration
+ - [ ] Fast file transfers between remote (docker) instances
 
 ## Features:
 
@@ -50,12 +51,14 @@ Also, quic-go ships with the default New Reno congestion control. Something like
 
 # Setup
 ## Requirements
-To run the example `chrome-x264` which uses h264 software endering(no need for a GPU), you will need:
+To use this docker image in your project, you will need
 
 * Docker engine v20.10.23 or higher
+* CUDA v11.7 or higher
+* Nvidia Docker 2
 
 ```bash
-docker run -p 8080:8080/udp ghcr.io/wanjohiryan/warp/chrome-x264:0
+FROM ghcr.io/wanjohiryan/warp/nvidia:0
 ```
 
 >To get the supported image versions, refer to [this](https://github.com/wanjohiryan?tab=packages&repo_name=warp)
@@ -90,7 +93,7 @@ Then access the webpage on `https://localhost:8080` by default.
  - Add uinput support:
     - [ ] keyboard and mouse
     - [ ] gamepads
-
+ - [ ] Access warp instances remotely (currently only works on localhost unless you use Traefik)
 # Special Thanks
 This project could not have been possible without the great work done by:
 
