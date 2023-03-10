@@ -21,9 +21,9 @@ RUN go build
 #
 # STAGE 2: RUNTIME
 #
-#Use cuda 11.7 for backwards compatibility with hosts that have >=v11.6
+#Use cuda 11.7 for backwards compatibility with hosts that have >=v11.7
 #
-FROM nvcr.io/nvidia/cuda:11.6.0-runtime-ubuntu20.04
+FROM nvcr.io/nvidia/cuda:11.7.1-runtime-ubuntu20.04
 
 ARG CUDA_VERSION
 
@@ -99,7 +99,6 @@ RUN apt update; \
 #
 #Install and configure Vulkan and EGL manually
 #
-
 RUN  wget -qO - http://packages.lunarg.com/lunarg-signing-key-pub.asc | apt-key add - ;\
     wget -qO /etc/apt/sources.list.d/lunarg-vulkan-focal.list http://packages.lunarg.com/vulkan/lunarg-vulkan-focal.list ;\
     apt update -y; \
@@ -148,27 +147,31 @@ RUN apt-get update; \
     wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
     chmod +x /usr/local/bin/mkcert;
 
+#
+#Create a non-root user Warp
+#
 RUN apt-get update; \
     #
     #create a non-root user
     #
     groupadd --gid ${USER_GID} ${USERNAME}; \
     useradd --uid ${USER_UID} --gid ${USERNAME} --shell /bin/bash --create-home ${USERNAME};\
-    usermod -a -G adm,audio,pulse-access,sudo,tty,video ${USERNAME} ;\
+    usermod -a -G adm,audio,sudo,pulse-access,sudo,tty,video ${USERNAME} ;\
     echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
     #
     #make directories for warp
     #
     mkdir -p /etc/warp /certs /media /usr/bin/warp /etc/warp/entrypoint.d;\
-    chmod 1777 /certs/; \
-    chmod 1777 /media/; \
+    chmod 1777 /certs; \
+    chmod 1777 /media; \
     chmod 1777 /usr/bin/warp; \
-    chmod 1777 /etc/warp/entrypoint.d/; \
-    chown ${USERNAME} /certs/; \
-    chown ${USERNAME} /usr/bin/warp/; \
-    chown ${USERNAME} /etc/warp/entrypoint.d/; \
-    chown ${USERNAME} /media/; \
-    chown -R $USERNAME:$USERNAME /home/${USERNAME}
+    chmod 1777 /etc/warp/entrypoint.d; \
+    chown ${USERNAME} /certs; \
+    chown ${USERNAME} /usr/bin/warp; \
+    chown ${USERNAME} /etc/warp/entrypoint.d; \
+    chown ${USERNAME} /media; \
+    chown -R $USERNAME:$USERNAME /home/${USERNAME} ;\
+    ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" > /etc/timezone
 
 #
 #Install tini Reference:https://github.com/krallin/tini
