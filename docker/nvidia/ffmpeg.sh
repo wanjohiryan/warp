@@ -43,6 +43,8 @@ CMD=(
     -frag_type duration
     -movflags frag_keyframe+empty_moov
 
+    #FIXME: Use remote server instead and pass in the rtmp url here. 
+    #This /media directory could potentially get too large during long sessions
     /media/playlist.mpd
 )
 
