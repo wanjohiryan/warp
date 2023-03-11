@@ -7,7 +7,8 @@ SCREEN_HEIGHT=1080
 
 #Create brave user directory
 USER_DATA_DIR="/home/$USER/.config/brave-browser"
-sudo mkdir -p "$USER_DATA_DIR"
+mkdir -p "$USER_DATA_DIR"
+sudo service dbus start
 
 # Start Brave browser and play kygo
 brave-browser \

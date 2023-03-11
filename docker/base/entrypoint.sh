@@ -2,7 +2,7 @@
 
 set -xeo pipefail
 
-trap 'trap " " SIGINT; kill -SIGINT 0; wait;' SIGINT SIGTERM
+trap '[[ -n $(jobs -p) ]] && kill $(jobs -p); echo "Error: Warp failed with exit code $?" >&2; [[ -n $(jobs -p) ]] && wait $(jobs -p); exit $?' ERR
 
 #Start dbus for pulseaudio
 sudo /etc/init.d/dbus start
@@ -21,19 +21,37 @@ pacmd set-default-sink vsink
 pacmd set-default-source vsink.monitor
 
 #Start ffmpeg
-source /etc/warp/ffmpeg.sh &
+source /etc/warp/ffmpeg.sh 2>&1 | awk '{ print "ffmpeg: " $0 }' &
 sleep 1 #ensure this has started before moving on
 
 #Generate selfsigned certs for warp
-source /certs/generate-certs.sh
+source /certs/generate-certs.sh 2>&1 | awk '{ print "generate-certs: " $0 }'
 
 set -e
 #Start warp server
 /usr/bin/warp/warp &
+sleep 1 #ensure this has started before moving on
 
 set -e
 #run child image entrypoint
-source /etc/warp/run-bash.sh
+echo "Running child scripts..."
+# Set the directory where the other bash files are located
+OTHER_SCRIPTS_DIR="/etc/warp/entrypoint.d"
+
+# Check if the directory exists
+if [ -d "$OTHER_SCRIPTS_DIR" ]; then
+  # Loop through all the files in the directory
+  for script_file in $OTHER_SCRIPTS_DIR/*.sh; do
+    # Check if the file is a bash script and is executable
+    if [ -x "$script_file" ] && [ "${script_file: -3}" == ".sh" ]; then
+      # Run the script
+      echo "Running script $script_file"
+      bash "$script_file"
+    fi
+  done
+else
+  echo "Directory $OTHER_SCRIPTS_DIR not found " 
+fi
 
 wait -n
 
