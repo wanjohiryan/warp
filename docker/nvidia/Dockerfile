@@ -21,11 +21,13 @@ RUN go build
 #
 # STAGE 2: RUNTIME
 #
-#Use cuda 11.7 for backwards compatibility with hosts that have >=v11.6
+#Use cuda 11.7 for backwards compatibility with hosts that have >=v11.7
 #
-FROM nvidia/cuda:11.7.1-runtime-ubuntu22.04
+FROM nvcr.io/nvidia/cuda:11.7.1-runtime-ubuntu22.04
 
-LABEL maintainer https://github.com/wanjohiryan
+ARG CUDA_VERSION
+
+LABEL maintainer "https://github.com/wanjohiryan"
 
 SHELL [ "/bin/bash","-o", "pipefail", "-c" ]
 
@@ -35,9 +37,29 @@ ARG USERNAME=warp
 ARG USER_UID=1000
 ARG USER_GID=${USER_UID}
 
+# Enable AppImage execution in a container
+ENV APPIMAGE_EXTRACT_AND_RUN 1
+
+ENV VGL_DISPLAY egl
+ENV REFRESH 60
+
 #make all nvidia gpus visible and allow all capabilities
-ENV NVIDIA_DRIVER_CAPABILITIES all
 ARG NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES all
+
+ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+ENV XDG_RUNTIME_DIR /tmp/runtime-user
+
+#
+# Install locales to prevent X11 errors
+#
+RUN apt-get clean && \
+    apt-get update && apt-get install --no-install-recommends -y locales && \
+    rm -rf /var/lib/apt/lists/* && \
+    locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 #
 #Install dependencies
@@ -45,14 +67,21 @@ ARG NVIDIA_VISIBLE_DEVICES=all
 RUN dpkg --add-architecture i386 && apt-get update; \ 
     apt-get -y upgrade;\
     apt-get install --assume-yes --no-install-recommends \ 
-    sudo software-properties-common ca-certificates gnupg libnss3-tools \
+    sudo software-properties-common ca-certificates gnupg xvfb libnss3-tools \
     wget curl vim pulseaudio  dbus-x11 libdbus-c++-1-0v5\
-    xorg xauth x11-utils kmod libc6-dev libc6:i386 libpci3  libelf-dev \
-    mesa-vulkan-drivers mesa-utils-extra mesa-utils\
-    libglvnd-dev libglvnd-dev:i386 libgl1-mesa-dev libgl1-mesa-dev:i386 libegl1-mesa-dev \
-    libegl1-mesa-dev:i386 libgles2-mesa-dev libgles2-mesa-dev:i386 libglvnd0 \
-    libglvnd0:i386 libgl1 libgl1:i386 libglx0 libglx0:i386 libegl1 libegl1:i386 libgles2 \
-    libgles2:i386 libglu1 libglu1:i386 libsm6 libsm6:i386; \
+    alsa-base alsa-utils apt-transport-https apt-utils build-essential ca-certificates \
+    curl file wget bzip2 gzip p7zip-full xz-utils zip \
+    unzip zstd gcc git jq make mlocate nano vim \
+    htop libpulse0 pulseaudio supervisor net-tools libglvnd-dev libglvnd-dev:i386 \
+    libgl1-mesa-dev libgl1-mesa-dev:i386 libegl1-mesa-dev libegl1-mesa-dev:i386 libgles2-mesa-dev \
+    libgles2-mesa-dev:i386 libglvnd0 libglvnd0:i386 libgl1 libgl1:i386 libglx0 libglx0:i386 libegl1 \
+    libegl1:i386 libgles2 libgles2:i386 libglu1 libglu1:i386 libsm6 libsm6:i386 \
+    vainfo vdpauinfo pkg-config mesa-utils mesa-utils-extra va-driver-all \
+    xserver-xorg-input-all xserver-xorg-video-all mesa-vulkan-drivers libvulkan-dev \
+    libvulkan-dev:i386 libxau6 libxau6:i386 libxdmcp6 libxdmcp6:i386 libxcb1 libxcb1:i386 \
+    libxext6 libxext6:i386 libx11-6 libx11-6:i386 libxv1 libxv1:i386 libxtst6 libxtst6:i386 \
+    xdg-utils dbus-x11 libdbus-c++-1-0v5 xkb-data x11-xkb-utils x11-xserver-utils x11-utils \ 
+    x11-apps xauth xbitmaps xinit libxrandr-dev;\
     #
     #clean up
     #
@@ -74,10 +103,14 @@ RUN apt update; \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 #
-#Install Vulkan
+#Install and configure Vulkan and EGL manually
 #
-RUN  apt-get install --no-install-recommends -y vulkan-tools; \
+RUN  wget -qO - http://packages.lunarg.com/lunarg-signing-key-pub.asc | apt-key add - ;\
+    wget -qO /etc/apt/sources.list.d/lunarg-vulkan-focal.list http://packages.lunarg.com/vulkan/lunarg-vulkan-focal.list ;\
+    apt update -y; \
+    apt install --no-install-recommends -y vulkan-sdk; \
     rm -rf /var/lib/apt/lists/*; \
+    #
     # Configure EGL manually
     mkdir -p /usr/share/glvnd/egl_vendor.d/; \
     echo "{\n\
@@ -85,7 +118,33 @@ RUN  apt-get install --no-install-recommends -y vulkan-tools; \
     \"ICD\": {\n\
         \"library_path\": \"libEGL_nvidia.so.0\"\n\
     }\n\
-}" > /usr/share/glvnd/egl_vendor.d/10_nvidia.json
+}" > /usr/share/glvnd/egl_vendor.d/10_nvidia.json; \
+    VULKAN_API_VERSION=$(dpkg -s libvulkan1 | grep -oP 'Version: [0-9|\.]+' | grep -oP '[0-9]+(\.[0-9]+)(\.[0-9]+)'); \
+    mkdir -p /etc/vulkan/icd.d/; \
+    echo "{\n\
+    \"file_format_version\" : \"1.0.0\",\n\
+    \"ICD\": {\n\
+        \"library_path\": \"libGLX_nvidia.so.0\",\n\
+        \"api_version\" : \"${VULKAN_API_VERSION}\"\n\
+    }\n\
+}" > /etc/vulkan/icd.d/nvidia_icd.json
+
+#
+#Install Virtualgl and make libraries available for preload
+#
+ARG VIRTUALGL_URL="https://sourceforge.net/projects/virtualgl/files"
+ARG VIRTUALGL_VERSION=3.0.2
+RUN curl -fsSL -O "${VIRTUALGL_URL}/virtualgl_${VIRTUALGL_VERSION}_amd64.deb"; \
+    curl -fsSL -O "${VIRTUALGL_URL}/virtualgl32_${VIRTUALGL_VERSION}_amd64.deb"; \
+    apt-get update && apt-get install -y --no-install-recommends ./virtualgl_${VIRTUALGL_VERSION}_amd64.deb ./virtualgl32_${VIRTUALGL_VERSION}_amd64.deb; \
+    rm -f "virtualgl_${VIRTUALGL_VERSION}_amd64.deb" "virtualgl32_${VIRTUALGL_VERSION}_amd64.deb"; \
+    rm -rf /var/lib/apt/lists/*; \
+    chmod u+s /usr/lib/libvglfaker.so; \
+    chmod u+s /usr/lib/libdlfaker.so; \
+    chmod u+s /usr/lib32/libvglfaker.so; \
+    chmod u+s /usr/lib32/libdlfaker.so; \
+    chmod u+s /usr/lib/i386-linux-gnu/libvglfaker.so; \
+    chmod u+s /usr/lib/i386-linux-gnu/libdlfaker.so
 
 #
 # install mkcert
@@ -94,27 +153,31 @@ RUN apt-get update; \
     wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
     chmod +x /usr/local/bin/mkcert;
 
+#
+#Create a non-root user Warp
+#
 RUN apt-get update; \
     #
     #create a non-root user
     #
     groupadd --gid ${USER_GID} ${USERNAME}; \
     useradd --uid ${USER_UID} --gid ${USERNAME} --shell /bin/bash --create-home ${USERNAME};\
-    usermod -a -G adm,audio,pulse-access,sudo,tty,video ${USERNAME} ;\
+    usermod -a -G adm,audio,input,pulse-access,sudo,tape,tty,video ${USERNAME} ;\
     echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
     #
     #make directories for warp
     #
-    mkdir -p /etc/warp /certs/ /media/ /usr/bin/warp /etc/warp/entrypoint.d/;\
-    chmod 1777 /certs/; \
-    chmod 1777 /media/; \
+    mkdir -p /etc/warp /certs /media /usr/bin/warp /etc/warp/entrypoint.d;\
+    chmod 1777 /certs; \
+    chmod 1777 /media; \
     chmod 1777 /usr/bin/warp; \
-    chmod 1777 /etc/warp/entrypoint.d/; \
-    chown ${USERNAME} /certs/; \
-    chown ${USERNAME} /usr/bin/warp/; \
-    chown ${USERNAME} /etc/warp/entrypoint.d/; \
-    chown ${USERNAME} /media/; \
-    chown -R $USERNAME:$USERNAME /home/${USERNAME}
+    chmod 1777 /etc/warp/entrypoint.d; \
+    chown ${USERNAME} /certs; \
+    chown ${USERNAME} /usr/bin/warp; \
+    chown ${USERNAME} /etc/warp/entrypoint.d; \
+    chown ${USERNAME} /media; \
+    chown -R $USERNAME:$USERNAME /home/${USERNAME} ;\
+    ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" > /etc/timezone
 
 #
 #Install tini Reference:https://github.com/krallin/tini
@@ -152,5 +215,7 @@ EXPOSE 8080/udp
 #Run as user `Warp`
 #
 USER ${USERNAME}
+WORKDIR /home/${USERNAME}
+
 
 CMD [ "/etc/warp/entrypoint.sh" ]
