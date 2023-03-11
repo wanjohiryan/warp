@@ -41,7 +41,7 @@ pacmd load-module module-virtual-sink sink_name=vsink #load a virtual sink as `v
 pacmd set-default-sink vsink
 pacmd set-default-source vsink.monitor
 
-LOG_DIR=/var/log/${USERNAME}
+LOG_DIR=/var/log/$USER
 
 #Start ffmpeg
 source /etc/warp/ffmpeg.sh > $LOG_DIR/ffmpeg.log 2>&1 &
