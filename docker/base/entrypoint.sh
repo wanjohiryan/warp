@@ -60,7 +60,7 @@ if [ -d "$OTHER_SCRIPTS_DIR" ]; then
       SCRIPT_NAME=$(basename "$script_file" .sh)
       # Run the script and log the output to the console
       echo "Running script $script_file"
-      bash "$script_file" 2>&1 | awk '{ print "'"$SCRIPT_NAME"': " $0 }'
+      bash "$script_file" 2>&1 | awk '{ print "'"$SCRIPT_NAME"': " $0 }' &
     fi
   done
 else
