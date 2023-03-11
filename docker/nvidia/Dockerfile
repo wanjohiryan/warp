@@ -167,9 +167,9 @@ RUN apt-get update; \
     #
     #make directories for warp
     #
-    mkdir -p /etc/warp /certs /media /usr/bin/warp /etc/warp/entrypoint.d /var/log/${USERNAME};\
-    chmod 1777 /certs /media /usr/bin/warp /etc/warp/entrypoint.d /var/log/${USERNAME}; \
-    chown ${USERNAME} /certs /usr/bin/warp /etc/warp/entrypoint.d /media /var/log/${USERNAME}; \
+    mkdir -p /etc/warp /certs /media /usr/bin/warp /etc/warp/entrypoint.d;\
+    chmod 1777 /certs /media /usr/bin/warp /etc/warp/entrypoint.d; \
+    chown ${USERNAME} /certs /usr/bin/warp /etc/warp/entrypoint.d /media; \
     chown -R $USERNAME:$USERNAME /home/${USERNAME} ;\
     ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" > /etc/timezone
 
