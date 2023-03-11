@@ -11,7 +11,7 @@ FROM $WARP_IMAGE
 # Add Brave Browser repository and key
 RUN wget -qO - https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key add - ;\
     echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list; \
-    sudo apt-get update && sudo apt-get install -y brave-browser; \
+    sudo apt-get update && sudo apt-get install -y brave-browser  dbus; \
     #
     # clean up
     #
