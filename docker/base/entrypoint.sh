@@ -28,7 +28,7 @@ echo "Pulse audio socket and sink created"
 #Start ffmpeg
 echo "Starting ffmpeg"
 source /etc/warp/ffmpeg.sh > $LOG_DIR/ffmpeg.log 2>&1 &
-tail -f $LOG_DIR/ffmpeg.log | awk '{ print "ffmpeg: " $0 }'
+tail -f $LOG_DIR/ffmpeg.log | awk '{ print "ffmpeg: " $0 }' &
 sleep 1 #ensure this has started before moving on
 echo "Ffmpeg started succesfully"
 
@@ -41,7 +41,7 @@ set -e
 #Start warp server
 echo "Starting server..."
 /usr/bin/warp/warp > $LOG_DIR/warp.log 2>&1 &
-tail -f $LOG_DIR/warp.log | awk '{ print "server: " $0 }'
+tail -f $LOG_DIR/warp.log | awk '{ print "server: " $0 }' &
 sleep 1 #ensure this has started before moving on
 echo "Server started succesfully"
 

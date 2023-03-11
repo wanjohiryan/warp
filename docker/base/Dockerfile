@@ -75,15 +75,9 @@ RUN apt-get update; \
     #
     #make directories for warp
     #
-    mkdir -p /etc/warp /certs/ /media/ /usr/bin/warp /etc/warp/entrypoint.d/;\
-    chmod 1777 /certs/; \
-    chmod 1777 /media/; \
-    chmod 1777 /usr/bin/warp; \
-    chmod 1777 /etc/warp/entrypoint.d/; \
-    chown ${USERNAME} /certs/; \
-    chown ${USERNAME} /usr/bin/warp/; \
-    chown ${USERNAME} /etc/warp/entrypoint.d/; \
-    chown ${USERNAME} /media/; \
+    mkdir -p /etc/warp /certs /media /usr/bin/warp /etc/warp/entrypoint.d /var/log/${USERNAME};\
+    chmod 1777 /certs /media /usr/bin/warp /etc/warp/entrypoint.d /var/log/${USERNAME}; \
+    chown ${USERNAME} /certs /usr/bin/warp /etc/warp/entrypoint.d /media /var/log/${USERNAME}; \
     chown -R $USERNAME:$USERNAME /home/${USERNAME}
 
 #
