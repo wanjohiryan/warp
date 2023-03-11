@@ -64,13 +64,27 @@ RUN apt-get update; \
     wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
     chmod +x /usr/local/bin/mkcert;
 
+#
+#Create mouse and keyboard nodes
+#
+RUN mkdir -p /dev/input; \
+    mknod /dev/input/mouse0 c 10 131; \
+    mknod /dev/input/keyboard0 c 13 63; \
+    #
+    #create group input and add user:root there
+    #
+    groupadd --gid 1001 input && usermod -a -G input root;\
+    chown root:input /dev/input/mouse0 /dev/input/keyboard0; \
+    chmod 660 /dev/input/keyboard0 /dev/input/mouse0
+
+
 RUN apt-get update; \
     #
     #create a non-root user
     #
     groupadd --gid ${USER_GID} ${USERNAME}; \
     useradd --uid ${USER_UID} --gid ${USERNAME} --shell /bin/bash --create-home ${USERNAME};\
-    usermod -a -G adm,audio,pulse-access,sudo,tty,video ${USERNAME} ;\
+    usermod -a -G adm,audio,input,pulse-access,sudo,tty,video ${USERNAME} ;\
     echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
     #
     #make directories for warp
