@@ -41,20 +41,26 @@ pacmd load-module module-virtual-sink sink_name=vsink #load a virtual sink as `v
 pacmd set-default-sink vsink
 pacmd set-default-source vsink.monitor
 
+LOG_DIR=/var/log/${USERNAME}
+
 #Start ffmpeg
-source /etc/warp/ffmpeg.sh &
+source /etc/warp/ffmpeg.sh > $LOG_DIR/ffmpeg.log 2>&1 &
+tail -f $LOG_DIR/ffmpeg.log
 sleep 1 #ensure this has started before moving on
 
 #Generate selfsigned certs for warp
-source /certs/generate-certs.sh
+source /certs/generate-certs.sh > $LOG_DIR/certs.log 2>&1
+tail -f $LOG_DIR/certs.log
 
 set -e
 #Start warp server
-/usr/bin/warp/warp &
+/usr/bin/warp/warp > $LOG_DIR/warp.log 2>&1 &
+tail -f $LOG_DIR/warp.log
 
 set -e
 #run child image entrypoint
-source /etc/warp/run-bash.sh
+source /etc/warp/run-bash.sh >> $LOG_DIR/run-bash.log 2>&1 &
+tail -f $LOG_DIR/run-bash.log
 
 wait -n
 
