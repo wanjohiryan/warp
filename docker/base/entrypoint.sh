@@ -11,29 +11,24 @@ sudo /etc/init.d/dbus start
 SCREEN_RESOLUTION=1920x1080
 DPI=96
 
-echo "Starting Xvfb.."
 Xvfb -dpi ${DPI} -screen 0 ${SCREEN_RESOLUTION}x16 ${DISPLAY} 2>&1 &
 sleep 0.5 #ensure this has started before moving on
 
 #Start pulseaudio
-echo "Creating pulse audio  and sink..."
 pulseaudio --fail -D --exit-idle-time=-1
 pacmd load-module module-virtual-sink sink_name=vsink #load a virtual sink as `vsink`
 pacmd set-default-sink vsink
 pacmd set-default-source vsink.monitor
 
 #Start ffmpeg
-echo "Starting ffmpeg"
 source /etc/warp/ffmpeg.sh 2>&1 | awk '{ print "ffmpeg: " $0 }' &
 sleep 1 #ensure this has started before moving on
 
 #Generate selfsigned certs for warp
-echo "Generating SSL certs..."
 source /certs/generate-certs.sh 2>&1 | awk '{ print "generate-certs: " $0 }'
 
 set -e
 #Start warp server
-echo "Starting server..."
 /usr/bin/warp/warp &
 sleep 1 #ensure this has started before moving on
 
@@ -51,10 +46,7 @@ if [ -d "$OTHER_SCRIPTS_DIR" ]; then
     if [ -x "$script_file" ] && [ "${script_file: -3}" == ".sh" ]; then
       # Run the script
       echo "Running script $script_file"
-      SCRIPT_NAME=$(basename "$script_file" .sh)
-      # Run the script and log the output to the console
-      echo "Running script $script_file"
-      bash "$script_file" 2>&1 | awk '{ print "'"$SCRIPT_NAME"': " $0 }' &
+      bash "$script_file"
     fi
   done
 else

@@ -66,11 +66,7 @@ if [ -d "$OTHER_SCRIPTS_DIR" ]; then
     # Check if the file is a bash script and is executable
     if [ -x "$script_file" ] && [ "${script_file: -3}" == ".sh" ]; then
       # Run the script
-      echo "Running script $script_file"
-      SCRIPT_NAME=$(basename "$script_file" .sh)
-      # Run the script and log the output to the console
-      echo "Running script $script_file"
-      bash "$script_file" 2>&1 | awk '{ print "'"$SCRIPT_NAME"': " $0 }'
+      bash "$script_file"
     fi
   done
 else
