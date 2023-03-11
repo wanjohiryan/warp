@@ -29,7 +29,6 @@ export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 echo "Starting Xvfb..."
 Xvfb "${DISPLAY}" -ac -screen "0" "8192x4096x24" -dpi "96" +extension "RANDR" +extension "GLX" +iglx +extension "MIT-SHM" +render -nolisten "tcp" -noreset -shmem &
 sleep 0.5
-echo "Xvfb was started succesfully"
 
 # Wait for X11 to start
 echo "Waiting for X socket"
@@ -37,36 +36,28 @@ until [ -S "/tmp/.X11-unix/X${DISPLAY/:/}" ]; do sleep 1; done
 echo "X socket is ready"
 
 #Start pulseaudio
-echo "Creating pulse audio  and sink..."
 pulseaudio --fail -D --exit-idle-time=-1
 pacmd load-module module-virtual-sink sink_name=vsink #load a virtual sink as `vsink`
 pacmd set-default-sink vsink
 pacmd set-default-source vsink.monitor
-echo "Pulse audio socket and sink created"
 
 #Start ffmpeg
-echo "Starting ffmpeg"
 source /etc/warp/ffmpeg.sh 2>&1 | awk '{ print "ffmpeg: " $0 }' &
 sleep 1 #ensure this has started before moving on
-echo "Ffmpeg started succesfully"
 
 #Generate selfsigned certs for warp
-echo "Generating SSL certs..."
 source /certs/generate-certs.sh 2>&1 | awk '{ print "generate-certs: " $0 }'
-echo "SSL certs generated succesfully"
 
 set -e
 #Start warp server
-echo "Starting server..."
-/usr/bin/warp/warp 2>&1 | awk '{ print "server: " $0 }' &
+/usr/bin/warp/warp &
 sleep 1 #ensure this has started before moving on
-echo "Server started succesfully"
 
 set -e
 #run child image entrypoint
 echo "Running child scripts..."
 # Set the directory where the other bash files are located
-OTHER_SCRIPTS_DIR="/etc/warp/entrypoint.d/"
+OTHER_SCRIPTS_DIR="/etc/warp/entrypoint.d"
 
 # Check if the directory exists
 if [ -d "$OTHER_SCRIPTS_DIR" ]; then
@@ -79,7 +70,7 @@ if [ -d "$OTHER_SCRIPTS_DIR" ]; then
       SCRIPT_NAME=$(basename "$script_file" .sh)
       # Run the script and log the output to the console
       echo "Running script $script_file"
-      bash "$script_file" 2>&1 | awk '{ print "'"$SCRIPT_NAME"': " $0 }' &
+      bash "$script_file" 2>&1 | awk '{ print "'"$SCRIPT_NAME"': " $0 }'
     fi
   done
 else
