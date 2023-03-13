@@ -25,6 +25,9 @@ export PATH="${PATH}:/usr/games:/opt/VirtualGL/bin"
 # Add CUDA library path
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 
+#start udev
+sudo /etc/init. d/udev start
+
 #Udev stuff
 sudo udevadm control --reload-rules || echo "done reloading udev rules"
 sudo udevadm trigger
