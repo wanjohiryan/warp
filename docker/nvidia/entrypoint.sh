@@ -13,7 +13,17 @@ sudo chmod 700 /tmp/runtime-user
 # Remove directories to make sure the desktop environment starts
 sudo rm -rf /tmp/.X* ~/.cache
 
-#Start dbus for pulseaudio
+#start udev without systemctl
+sudo /etc/init.d/udev start
+
+#Udev stuff
+sudo udevadm control --reload-rules || echo "done reloading udev rules"
+sudo udevadm trigger
+
+#TEST whether device and event* nodes were created
+ls -l /dev/input/
+
+#Start dbus for pulseaudio without systemctl
 sudo /etc/init.d/dbus start
 
 # Change time zone from environment variable
@@ -24,16 +34,6 @@ export PATH="${PATH}:/usr/games:/opt/VirtualGL/bin"
 
 # Add CUDA library path
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
-
-#start udev
-sudo /etc/init. d/udev start
-
-#Udev stuff
-sudo udevadm control --reload-rules || echo "done reloading udev rules"
-sudo udevadm trigger
-
-#TEST whether device and event* nodes were created
-ls -l /dev/input/
 
 # Run Xvfb server with required extensions
 echo "Starting Xvfb..."
