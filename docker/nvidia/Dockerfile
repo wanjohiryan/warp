@@ -157,10 +157,11 @@ RUN apt-get update; \
 #Make joystick nodes
 #
 RUN apt-get update; \
+    apt-get install -y udev;\
     mkdir -p /dev/input/;\
     mknod /dev/input/js0 c 10 131; \
     chown root:input /dev/input/js0; \
-    chmod 660 /dev/input/js0
+    chmod 660 /dev/input/js0;
 
 #
 #Create a non-root user Warp
