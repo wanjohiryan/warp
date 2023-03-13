@@ -13,13 +13,6 @@ sudo chmod 700 /tmp/runtime-user
 # Remove directories to make sure the desktop environment starts
 sudo rm -rf /tmp/.X* ~/.cache
 
-#start udev without systemctl
-sudo /etc/init.d/udev start
-
-#Udev stuff
-sudo udevadm control --reload-rules || echo "done reloading udev rules"
-sudo udevadm trigger
-
 #TEST whether device and event* nodes were created
 ls -l /dev/input/
 

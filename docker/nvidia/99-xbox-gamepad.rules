@@ -1,2 +1,0 @@
-SUBSYSTEM=="input", ATTRS{name}=="Microsoft X-Box 360 pad", MODE="0666"
-KERNEL=="js[0-9]*", SUBSYSTEM=="input", ATTRS{name}=="Microsoft X-Box 360 pad", MODE="0666"

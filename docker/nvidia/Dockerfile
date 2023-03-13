@@ -159,9 +159,14 @@ RUN apt-get update; \
 RUN apt-get update; \
     apt-get install -y udev;\
     mkdir -p /dev/input/;\
-    mknod /dev/input/js0 c 10 131; \
-    chown root:input /dev/input/js0; \
-    chmod 660 /dev/input/js0;
+    #
+    #make evdev nodes for our gamepad(s). Max number is 4
+    mknod /dev/input/event0 c 13 63; \
+    mknod /dev/input/event1 c 13 64; \
+    mknod /dev/input/event2 c 13 65; \
+    mknod /dev/input/event3 c 13 66; \
+    chown root:input /dev/input/event0 /dev/input/event1 /dev/input/event2 /dev/input/event3; \
+    chmod 660 /dev/input/event0 /dev/input/event1 /dev/input/event2 /dev/input/event3;
 
 #
 #Create a non-root user Warp
@@ -202,8 +207,6 @@ RUN chmod +x /certs/generate-certs.sh
 
 COPY docker/nvidia/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
-
-COPY docker/nvidia/99-xbox-gamepad.rules /etc/udev/rules.d/99-xbox-gamepad.rules
 
 COPY --from=warp /src /usr/bin/warp
 
