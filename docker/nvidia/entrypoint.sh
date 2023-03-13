@@ -26,11 +26,11 @@ export PATH="${PATH}:/usr/games:/opt/VirtualGL/bin"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 
 # Start udevd daemon in background
-sudo /sbin/udevd --daemon
+sudo -u $USER /sbin/udevd --daemon
 sleep 2
 
 # Trigger udev to reload rules and create device nodes
-sudo udevadm trigger --action=add
+sudo -u $USER udevadm trigger --action=add
 
 #TEST whether device and event* nodes were created
 ls -l /dev/input/

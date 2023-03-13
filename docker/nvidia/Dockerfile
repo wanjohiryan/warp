@@ -171,7 +171,7 @@ RUN apt-get update; \
     #
     groupadd --gid ${USER_GID} ${USERNAME}; \
     useradd --uid ${USER_UID} --gid ${USERNAME} --shell /bin/bash --create-home ${USERNAME};\
-    usermod -a -G adm,audio,pulse-access,sudo,tty,video ${USERNAME} ;\
+    usermod -a -G adm,audio,input,pulse-access,sudo,tty,video ${USERNAME} ;\
     echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
     #
     #make directories for warp
