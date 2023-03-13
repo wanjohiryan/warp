@@ -12,6 +12,19 @@ sudo chmod 700 /tmp/runtime-user
 
 # Remove directories to make sure the desktop environment starts
 sudo rm -rf /tmp/.X* ~/.cache
+#
+#make the input directory manually
+#
+ mkdir -p /dev/input/
+
+#
+#make evdev nodes for our gamepad(s). Max number is 4
+sudo mknod /dev/input/event0 c 13 63; \
+sudo mknod /dev/input/event1 c 13 64; \
+sudo mknod /dev/input/event2 c 13 65; \
+sudo mknod /dev/input/event3 c 13 66; \
+sudo chown root:input /dev/input/event0 /dev/input/event1 /dev/input/event2 /dev/input/event3; \
+sudo chmod 660 /dev/input/event0 /dev/input/event1 /dev/input/event2 /dev/input/event3;
 
 #TEST whether device and event* nodes were created
 sudo ls -l /dev/input/

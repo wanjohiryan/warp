@@ -154,20 +154,6 @@ RUN apt-get update; \
     chmod +x /usr/local/bin/mkcert;
 
 #
-#Make joystick nodes
-#
-RUN apt-get update; \
-    mkdir -p /dev/input/;\
-    #
-    #make evdev nodes for our gamepad(s). Max number is 4
-    mknod /dev/input/event0 c 13 63; \
-    mknod /dev/input/event1 c 13 64; \
-    mknod /dev/input/event2 c 13 65; \
-    mknod /dev/input/event3 c 13 66; \
-    chown root:input /dev/input/event0 /dev/input/event1 /dev/input/event2 /dev/input/event3; \
-    chmod 660 /dev/input/event0 /dev/input/event1 /dev/input/event2 /dev/input/event3;
-
-#
 #Create a non-root user Warp
 #
 RUN apt-get update; \
