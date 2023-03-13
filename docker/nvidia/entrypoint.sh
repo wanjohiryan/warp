@@ -15,7 +15,7 @@ sudo rm -rf /tmp/.X* ~/.cache
 #
 #make the input directory manually
 #
- mkdir -p /dev/input/
+sudo mkdir -p /dev/input/
 
 #
 #make evdev nodes for our gamepad(s). Max number is 4
