@@ -14,7 +14,7 @@ sudo chmod 700 /tmp/runtime-user
 sudo rm -rf /tmp/.X* ~/.cache
 
 #TEST whether device and event* nodes were created
-ls -l /dev/input/
+sudo ls -l /dev/input/
 
 #Start dbus for pulseaudio without systemctl
 sudo /etc/init.d/dbus start

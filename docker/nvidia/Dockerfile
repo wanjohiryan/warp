@@ -157,7 +157,6 @@ RUN apt-get update; \
 #Make joystick nodes
 #
 RUN apt-get update; \
-    apt-get install -y udev;\
     mkdir -p /dev/input/;\
     #
     #make evdev nodes for our gamepad(s). Max number is 4
