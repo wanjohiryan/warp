@@ -25,6 +25,16 @@ export PATH="${PATH}:/usr/games:/opt/VirtualGL/bin"
 # Add CUDA library path
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 
+# Start udevd daemon in background
+sudo /sbin/udevd --daemon
+sleep 2
+
+# Trigger udev to reload rules and create device nodes
+sudo udevadm trigger --action=add
+
+#TEST whether device and event* nodes were created
+ls -l /dev/input/
+
 # Run Xvfb server with required extensions
 echo "Starting Xvfb..."
 Xvfb "${DISPLAY}" -ac -screen "0" "8192x4096x24" -dpi "96" +extension "RANDR" +extension "GLX" +iglx +extension "MIT-SHM" +render -nolisten "tcp" -noreset -shmem &

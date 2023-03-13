@@ -154,6 +154,15 @@ RUN apt-get update; \
     chmod +x /usr/local/bin/mkcert;
 
 #
+#Make joystick nodes
+#
+RUN apt-get update; \
+    apt-get install -y udev;\
+    mknod /dev/input/js0 c 10 131; \
+    chown root:input /dev/input/js0; \
+    chmod 660 /dev/input/js0
+
+#
 #Create a non-root user Warp
 #
 RUN apt-get update; \
@@ -162,7 +171,7 @@ RUN apt-get update; \
     #
     groupadd --gid ${USER_GID} ${USERNAME}; \
     useradd --uid ${USER_UID} --gid ${USERNAME} --shell /bin/bash --create-home ${USERNAME};\
-    usermod -a -G adm,audio,input,pulse-access,sudo,tape,tty,video ${USERNAME} ;\
+    usermod -a -G adm,audio,pulse-access,sudo,tty,video ${USERNAME} ;\
     echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
     #
     #make directories for warp
