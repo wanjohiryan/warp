@@ -37,7 +37,7 @@ RUN apt-get update; \
     sudo software-properties-common ca-certificates gnupg libnss3-tools \
     wget curl vim pulseaudio xvfb dbus-x11 libdbus-c++-1-0v5 xserver-xorg-input-all \
     xkb-data x11-xkb-utils x11-xserver-utils x11-utils \ 
-    x11-apps xauth xbitmaps xinit; \
+    x11-apps xauth xbitmaps xinit kmod; \
     #
     #clean up
     #
@@ -81,7 +81,7 @@ RUN apt-get update; \
     chmod 1777 /certs /media /usr/bin/warp /etc/warp/entrypoint.d; \
     chown ${USERNAME} /certs /usr/bin/warp /etc/warp/entrypoint.d /media; \
     chown -R $USERNAME:$USERNAME /home/${USERNAME}
-    
+
 #
 #Make directories for x-server
 #

@@ -20,6 +20,9 @@ sudo chmod 660 /dev/input /dev/uinput
 sudo ls -l /dev/input
 sudo ls -l /dev/uinput
 
+# Load the uinput kernel module
+sudo modprobe uinput
+
 #RUN x11 virtual framebuffer
 SCREEN_RESOLUTION=1920x1080
 DPI=96
