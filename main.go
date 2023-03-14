@@ -30,16 +30,16 @@ func main() {
 
 	vg, err := uinput.CreateGamepad("/dev/uinput", []byte("Xbox Wireless Controller"), 0x045e, 0x028e)
 	if err != nil {
-		fmt.Print("Error creating input device file")
+		fmt.Println("Error creating input device file", err)
 	}
-	fmt.Print("virtual gamepad", vg)
+	fmt.Println("virtual gamepad", vg)
 
 	devices, err := os.ReadFile("/proc/bus/input/devices")
 	if err != nil {
 		fmt.Print("Error accessing input devices file")
 	}
 
-	fmt.Print("devices", devices)
+	fmt.Println("devices", devices)
 }
 
 func run(ctx context.Context) (err error) {
