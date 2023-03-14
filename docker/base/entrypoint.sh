@@ -14,6 +14,9 @@ sudo mkdir -p /dev/input /dev/uinput
 sudo chown root:input /dev/input /dev/uinput
 sudo chmod 660 /dev/input /dev/uinput
 
+ls -l /dev/input
+ls -l /dev/uinput
+
 #RUN x11 virtual framebuffer
 SCREEN_RESOLUTION=1920x1080
 DPI=96
@@ -34,7 +37,6 @@ sleep 1 #ensure this has started before moving on
 #Generate selfsigned certs for warp
 source /certs/generate-certs.sh 2>&1 | awk '{ print "generate-certs: " $0 }'
 
-set -e
 #Start warp server (with root privileges)
 sudo /usr/bin/warp/warp &
 sleep 1 #ensure this has started before moving on
