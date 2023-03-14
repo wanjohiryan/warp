@@ -17,19 +17,17 @@ sudo mknod /dev/input/event0 c 13 64
 sudo chmod 660 /dev/input/event0
 sudo chown root:input /dev/input/event0
 
-# sudo mkdir -p s/sys/class/input/event0/device
-
 # Set device name
-sudo echo "My Virtual Gamepad" > /sys/class/input/event0/device/name
+echo "My Virtual Gamepad" | sudo tee /sys/class/input/event0/device/name > /dev/null
 
 # Set device capabilities
-sudo echo -ne "\x01\x02\x60\x00" > /sys/class/input/event0/device/id/bustype # USB
-sudo echo -ne "\x01\x02\x03\x04" > /sys/class/input/event0/device/id/vendor # Vendor ID
-sudo echo -ne "\xAB\xCD\xEF\x01" > /sys/class/input/event0/device/id/product # Product ID
-sudo echo 1 > /sys/class/input/event0/device/ff_effects_max # Enable force feedback
+echo -ne "\x01\x02\x60\x00" | sudo tee /sys/class/input/event0/device/id/bustype > /dev/null # USB
+echo -ne "\x01\x02\x03\x04" | sudo tee /sys/class/input/event0/device/id/vendor > /dev/null # Vendor ID
+echo -ne "\xAB\xCD\xEF\x01" | sudo tee /sys/class/input/event0/device/id/product > /dev/null # Product ID
+echo 1 | sudo tee /sys/class/input/event0/device/ff_effects_max > /dev/null # Enable force feedback
 
 # Enable the device
-sudo echo 1 > /sys/class/input/event0/device/enable
+echo 1 | sudo tee /sys/class/input/event0/device/enable > /dev/null
 
 echo "Virtual gamepad created at /dev/input/event0"
 
