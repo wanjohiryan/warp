@@ -17,6 +17,9 @@ sudo mknod /dev/input/event0 c 13 64
 sudo chmod 660 /dev/input/event0
 sudo chown root:input /dev/input/event0
 
+#tempararily mount system as read and write
+sudo mount -o remount,rw /
+
 # Set device name
 echo "My Virtual Gamepad" | sudo tee /sys/class/input/event0/device/name > /dev/null
 
@@ -28,6 +31,9 @@ echo 1 | sudo tee /sys/class/input/event0/device/ff_effects_max > /dev/null # En
 
 # Enable the device
 echo 1 | sudo tee /sys/class/input/event0/device/enable > /dev/null
+
+#remount as read-only
+sudo mount -o remount,ro /
 
 echo "Virtual gamepad created at /dev/input/event0"
 
