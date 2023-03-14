@@ -35,7 +35,9 @@ RUN apt-get update; \
     apt-get -y upgrade;\
     apt-get install --assume-yes --no-install-recommends \ 
     sudo software-properties-common ca-certificates gnupg libnss3-tools \
-    wget curl vim pulseaudio xvfb dbus-x11 libdbus-c++-1-0v5; \
+    wget curl vim pulseaudio xvfb dbus-x11 libdbus-c++-1-0v5 xserver-xorg-input-all \
+    xkb-data x11-xkb-utils x11-xserver-utils x11-utils \ 
+    x11-apps xauth xbitmaps xinit; \
     #
     #clean up
     #
@@ -63,10 +65,6 @@ RUN apt update; \
 RUN apt-get update; \
     wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
     chmod +x /usr/local/bin/mkcert;
-#
-#Add input devices
-#
-RUN apt-get install -y libdrm-dev libhidapi-dev libusb-1.0-0 libusb-1.0-0-dev libevdev-dev
 
 RUN apt-get update; \
     #
@@ -74,7 +72,7 @@ RUN apt-get update; \
     #
     groupadd --gid ${USER_GID} ${USERNAME}; \
     useradd --uid ${USER_UID} --gid ${USERNAME} --shell /bin/bash --create-home ${USERNAME};\
-    usermod -a -G adm,audio,pulse-access,sudo,tty,video ${USERNAME} ;\
+    usermod -a -G adm,audio,pulse-access,sudo,tty,video,input ${USERNAME} ;\
     echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
     #
     #make directories for warp
