@@ -63,6 +63,10 @@ RUN apt update; \
 RUN apt-get update; \
     wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
     chmod +x /usr/local/bin/mkcert;
+#
+#Add input devices
+#
+RUN apt-get install -y libdrm-dev libhidapi-dev libusb-1.0-0 libusb-1.0-0-dev libevdev-dev
 
 RUN apt-get update; \
     #

@@ -7,6 +7,32 @@ trap '[[ -n $(jobs -p) ]] && kill $(jobs -p); echo "Error: Warp failed with exit
 #Start dbus for pulseaudio
 sudo /etc/init.d/dbus start
 
+#create /dev/uinput directory
+sudo mkdir -p /dev/input
+
+# Create evdev node for gamepad
+sudo mknod /dev/input/event0 c 13 64
+
+# Set device permissions
+sudo chmod 660 /dev/input/event0
+sudo chown root:input /dev/input/event0
+
+# sudo mkdir -p s/sys/class/input/event0/device
+
+# Set device name
+sudo echo "My Virtual Gamepad" > /sys/class/input/event0/device/name
+
+# Set device capabilities
+sudo echo -ne "\x01\x02\x60\x00" > /sys/class/input/event0/device/id/bustype # USB
+sudo echo -ne "\x01\x02\x03\x04" > /sys/class/input/event0/device/id/vendor # Vendor ID
+sudo echo -ne "\xAB\xCD\xEF\x01" > /sys/class/input/event0/device/id/product # Product ID
+sudo echo 1 > /sys/class/input/event0/device/ff_effects_max # Enable force feedback
+
+# Enable the device
+sudo echo 1 > /sys/class/input/event0/device/enable
+
+echo "Virtual gamepad created at /dev/input/event0"
+
 #RUN x11 virtual framebuffer
 SCREEN_RESOLUTION=1920x1080
 DPI=96
