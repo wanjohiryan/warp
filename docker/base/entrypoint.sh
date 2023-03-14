@@ -7,9 +7,6 @@ trap '[[ -n $(jobs -p) ]] && kill $(jobs -p); echo "Error: Warp failed with exit
 #Start dbus for pulseaudio
 sudo /etc/init.d/dbus start
 
-#start udev
-sudo /etc/init.d/udev start
-
 #create /dev/uinput directory
 sudo mkdir -p /dev/input /dev/uinput
 
@@ -38,8 +35,8 @@ sleep 1 #ensure this has started before moving on
 source /certs/generate-certs.sh 2>&1 | awk '{ print "generate-certs: " $0 }'
 
 set -e
-#Start warp server
-/usr/bin/warp/warp &
+#Start warp server (with root privileges)
+sudo /usr/bin/warp/warp &
 sleep 1 #ensure this has started before moving on
 
 set -e
