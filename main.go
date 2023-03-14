@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/bendahl/uinput"
 	"github.com/kixelated/invoker"
 	"github.com/wanjohiryan/warp/internal/warp"
 )
@@ -22,10 +23,23 @@ type Config struct {
 }
 
 func main() {
-	err := run(context.Background())
+	// err := run(context.Background())
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+
+	vg, err := uinput.CreateGamepad("/dev/uinput", []byte("Xbox Wireless Controller"), 0x045e, 0x028e)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("Error creating input device file", err)
 	}
+	fmt.Println("virtual gamepad", vg)
+
+	devices, err := os.ReadFile("/proc/bus/input/devices")
+	if err != nil {
+		fmt.Print("Error accessing input devices file")
+	}
+
+	fmt.Println("devices", devices)
 }
 
 func run(ctx context.Context) (err error) {
@@ -100,9 +114,7 @@ func getConfig() Config {
 		conf.media = *dash
 	}
 
-
 	start := time.Now().UnixNano() / int64(time.Millisecond)
-
 
 	if _, err := os.Stat(conf.media); err != nil {
 		//loop for 10 seconds until we get the media file
@@ -112,7 +124,7 @@ func getConfig() Config {
 			now := time.Now().UnixNano() / int64(time.Millisecond)
 			diff := now - start
 			if diff > 10000 {
-				break 
+				break
 			} else {
 				//if file is found break
 				// conf.media = fmt.Sprintf("%s%d.mpd", conf.media, os.Getpid())

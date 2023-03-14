@@ -35,7 +35,9 @@ RUN apt-get update; \
     apt-get -y upgrade;\
     apt-get install --assume-yes --no-install-recommends \ 
     sudo software-properties-common ca-certificates gnupg libnss3-tools \
-    wget curl vim pulseaudio xvfb dbus-x11 libdbus-c++-1-0v5; \
+    wget curl vim pulseaudio xvfb dbus-x11 libdbus-c++-1-0v5 xserver-xorg-input-all \
+    xkb-data x11-xkb-utils x11-xserver-utils x11-utils \ 
+    x11-apps xauth xbitmaps xinit kmod; \
     #
     #clean up
     #
@@ -70,7 +72,7 @@ RUN apt-get update; \
     #
     groupadd --gid ${USER_GID} ${USERNAME}; \
     useradd --uid ${USER_UID} --gid ${USERNAME} --shell /bin/bash --create-home ${USERNAME};\
-    usermod -a -G adm,audio,pulse-access,sudo,tty,video ${USERNAME} ;\
+    usermod -a -G adm,audio,pulse-access,sudo,tty,video,input ${USERNAME} ;\
     echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
     #
     #make directories for warp
