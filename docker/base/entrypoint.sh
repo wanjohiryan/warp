@@ -7,15 +7,18 @@ trap '[[ -n $(jobs -p) ]] && kill $(jobs -p); echo "Error: Warp failed with exit
 #Start dbus for pulseaudio
 sudo /etc/init.d/dbus start
 
-#create /dev/uinput directory
-sudo mkdir -p /dev/input /dev/uinput
+#create /dev/input directory
+sudo mkdir -p /dev/input
+
+#make a device node to write virtual events
+sudo mknod /dev/uinput c 10 223
 
 #add to usergroup input and access to every user
 sudo chown root:input /dev/input /dev/uinput
 sudo chmod 660 /dev/input /dev/uinput
 
-ls -l /dev/input
-ls -l /dev/uinput
+sudo ls -l /dev/input
+sudo ls -l /dev/uinput
 
 #RUN x11 virtual framebuffer
 SCREEN_RESOLUTION=1920x1080
@@ -38,7 +41,7 @@ sleep 1 #ensure this has started before moving on
 source /certs/generate-certs.sh 2>&1 | awk '{ print "generate-certs: " $0 }'
 
 #Start warp server (with root privileges)
-sudo /usr/bin/warp/warp &
+/usr/bin/warp/warp &
 sleep 1 #ensure this has started before moving on
 
 set -e
