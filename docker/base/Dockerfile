@@ -80,7 +80,11 @@ RUN apt-get update; \
     mkdir -p /etc/warp /certs /media /usr/bin/warp /etc/warp/entrypoint.d;\
     chmod 1777 /certs /media /usr/bin/warp /etc/warp/entrypoint.d; \
     chown ${USERNAME} /certs /usr/bin/warp /etc/warp/entrypoint.d /media; \
-    chown -R $USERNAME:$USERNAME /home/${USERNAME}
+    chown -R $USERNAME:$USERNAME /home/${USERNAME}; \
+    #
+    #input stuff
+    chown -R root:input /sys/class/input/*/; \
+    chmod -R 770 /sys/class/input/*/
 
 #
 #Make directories for x-server

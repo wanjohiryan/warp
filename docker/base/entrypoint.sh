@@ -7,35 +7,15 @@ trap '[[ -n $(jobs -p) ]] && kill $(jobs -p); echo "Error: Warp failed with exit
 #Start dbus for pulseaudio
 sudo /etc/init.d/dbus start
 
+#start udev
+sudo /etc/init.d/udev start
+
 #create /dev/uinput directory
-sudo mkdir -p /dev/input
+sudo mkdir -p /dev/input /dev/uinput
 
-# Create evdev node for gamepad
-sudo mknod /dev/input/event0 c 13 64
-
-# Set device permissions
-sudo chmod 660 /dev/input/event0
-sudo chown root:input /dev/input/event0
-
-#tempararily mount system as read and write
-sudo mount -o remount,rw /
-
-# Set device name
-echo "My Virtual Gamepad" | sudo tee /sys/class/input/event0/device/name > /dev/null
-
-# Set device capabilities
-echo -ne "\x01\x02\x60\x00" | sudo tee /sys/class/input/event0/device/id/bustype > /dev/null # USB
-echo -ne "\x01\x02\x03\x04" | sudo tee /sys/class/input/event0/device/id/vendor > /dev/null # Vendor ID
-echo -ne "\xAB\xCD\xEF\x01" | sudo tee /sys/class/input/event0/device/id/product > /dev/null # Product ID
-echo 1 | sudo tee /sys/class/input/event0/device/ff_effects_max > /dev/null # Enable force feedback
-
-# Enable the device
-echo 1 | sudo tee /sys/class/input/event0/device/enable > /dev/null
-
-#remount as read-only
-sudo mount -o remount,ro /
-
-echo "Virtual gamepad created at /dev/input/event0"
+#add to usergroup input and access to every user
+sudo chown root:input /dev/input /dev/uinput
+sudo chmod 660 /dev/input /dev/uinput
 
 #RUN x11 virtual framebuffer
 SCREEN_RESOLUTION=1920x1080

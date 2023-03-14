@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/bendahl/uinput"
 	"github.com/kixelated/invoker"
 	"github.com/wanjohiryan/warp/internal/warp"
 )
@@ -22,10 +23,23 @@ type Config struct {
 }
 
 func main() {
-	err := run(context.Background())
+	// err := run(context.Background())
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+
+	vg, err := uinput.CreateGamepad("/dev/uinput", []byte("Xbox Wireless Controller"), 0x045e, 0x028e)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Print("Error creating input device file")
 	}
+	fmt.Print("virtual gamepad", vg)
+
+	devices, err := os.ReadFile("/proc/bus/input/devices")
+	if err != nil {
+		fmt.Print("Error accessing input devices file")
+	}
+
+	fmt.Print("devices", devices)
 }
 
 func run(ctx context.Context) (err error) {
