@@ -41,7 +41,7 @@ sleep 1 #ensure this has started before moving on
 source /certs/generate-certs.sh 2>&1 | awk '{ print "generate-certs: " $0 }'
 
 #Start warp server (with root privileges)
-/usr/bin/warp/warp &
+sudo /usr/bin/warp/warp &
 sleep 1 #ensure this has started before moving on
 
 set -e
