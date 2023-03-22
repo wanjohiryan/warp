@@ -1,21 +1,3 @@
-#
-#   Build warp golang
-#
-FROM golang:1.18-bullseye as warp
-
-WORKDIR /src
-
-COPY ./  .
-# COPY  go.mod main.go go.sum ./
-
-#
-# build executable
-#
-RUN go build
-
-#
-# STAGE 2: RUNTIME
-#
 FROM ubuntu:20.04
 
 LABEL maintainer https://github.com/wanjohiryan
@@ -107,7 +89,9 @@ RUN chmod +x /certs/generate-certs.sh
 COPY docker/base/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
 
-COPY --from=warp /src /usr/bin/warp
+COPY gpad.exe /etc/warp/gpad.exe
+
+COPY warp /usr/bin/warp
 
 
 ENV USER ${USERNAME}
