@@ -92,6 +92,7 @@ RUN chmod +x /etc/warp/ffmpeg.sh
 COPY gpad.exe /etc/warp/gpad.exe
 
 COPY warp /usr/bin/warp
+RUN chmod +x /usr/bin/warp
 
 
 ENV USER ${USERNAME}

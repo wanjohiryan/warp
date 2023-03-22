@@ -41,12 +41,20 @@ jobs:
       #   with:
       #     command: run
       #     args: '-- -h' 
+      # - 
+      #   name: Build Rust script
+      #   uses: actions-rs/cargo@v1
+      #   with:
+      #     command: build
+      #     args: '--release'
       - 
-        name: Build Rust script
-        uses: actions-rs/cargo@v1
+        name: Setup Rust
+        uses:  hecrj/setup-rust-action@v1
         with:
-          command: build
-          args: '--release'
+          rust-version: stable
+      -
+        name: Build Gpad.exe
+        run: cargo build --release
       -
         name: Upload artifact
         uses: actions/upload-artifact@v3
