@@ -27,6 +27,7 @@ type Session struct {
 	inits map[string]*MediaInit
 	audio *MediaStream
 	video *MediaStream
+	joypad *Gpad
 
 	streams invoker.Tasks
 }
@@ -36,6 +37,7 @@ func NewSession(connection quic.Connection, session *webtransport.Session, media
 	s.conn = connection
 	s.inner = session
 	s.media = media
+	s
 	return s, nil
 }
 
@@ -56,6 +58,10 @@ func (s *Session) runAccept(ctx context.Context) (err error) {
 			return fmt.Errorf("failed to accept bidirectional stream: %w", err)
 		}
 
+		//TODO: handle gamepad input with a bidirectional stream ?
+		// s.streams.Add(func(ctx context.Context) (err error) {
+		// 	return s.handleGamepads(ctx, stream)
+		// })
 		// Warp doesn't utilize bidirectional streams so just close them immediately.
 		// We might use them in the future so don't close the connection with an error.
 		stream.CancelRead(1)
@@ -261,10 +267,11 @@ func (s *Session) writeSegment(ctx context.Context, segment *MediaSegment) (err 
 	return nil
 }
 
-//get latency between server and client via a heartbeat uni-stream
+// get latency between server and client via a heartbeat uni-stream
 func (s *Session) heartBeat(ctx context.Context) (err error) {
 
 	temp, err := s.inner.OpenUniStreamSync(ctx)
+
 	if err != nil {
 		return fmt.Errorf("failed to create stream: %w", err)
 	}
@@ -299,19 +306,21 @@ func (s *Session) heartBeat(ctx context.Context) (err error) {
 			return fmt.Errorf("failed to write heart beat: %w", err)
 		}
 
-		// beat := make([]byte, 8)
-		// binary.LittleEndian.PutUint64(beat, uint64(timeNow))
-
-		// _, err = stream.Write(beat)
-
-		if err != nil {
-			return fmt.Errorf("failed to write init data: %w", err)
-		}
 		//every 2 seconds
 		time.Sleep(2 * time.Second)
 	}
 }
 
+// handle gamepads for each session
+// func (s *Session) handleGamepads(ctx context.Context, stream webtransport.ReceiveStream) (err error){
+// 	defer func() {
+// 		if err != nil {
+// 			stream.CancelRead(1)
+// 		}
+// 	}()
+// }
+
+// set max bitrate for bandwidth
 func (s *Session) setDebug(msg *MessageDebug) {
 	s.conn.SetMaxBandwidth(uint64(msg.MaxBitrate))
 }
