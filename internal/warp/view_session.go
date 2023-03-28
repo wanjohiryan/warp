@@ -27,7 +27,6 @@ type Session struct {
 	inits map[string]*MediaInit
 	audio *MediaStream
 	video *MediaStream
-	joypad *Gpad
 
 	streams invoker.Tasks
 }
@@ -37,7 +36,6 @@ func NewSession(connection quic.Connection, session *webtransport.Session, media
 	s.conn = connection
 	s.inner = session
 	s.media = media
-	s
 	return s, nil
 }
 
