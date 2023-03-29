@@ -72,21 +72,16 @@ RUN dpkg --add-architecture i386 && apt-get update; \
 #
 RUN apt update; \ 
     apt upgrade -y; \
-    apt install -y ffmpeg;\
+    add-apt-repository ppa:savoury1/ffmpeg4 -y; \
+    add-apt-repository ppa:savoury1/ffmpeg5 -y; \
+    apt update; \
+    apt upgrade -y; \
+    apt install --no-install-recommends --assume-yes ffmpeg; \
     ffmpeg -version;\
     #
     #clean up
     #
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-    # add-apt-repository ppa:savoury1/ffmpeg4 -y; \
-    # add-apt-repository ppa:savoury1/ffmpeg5 -y; \
-    # apt update; \
-    # apt upgrade -y; \
-    # apt install --no-install-recommends --assume-yes ffmpeg; \
-    # #
-    # #clean up
-    # #
-    # rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 #
 #Install and configure Vulkan and EGL manually
@@ -149,6 +144,11 @@ RUN chmod +x /root/download_gecko_and_mono.sh \
     && /root/download_gecko_and_mono.sh "$(dpkg -s wine-${WINE_BRANCH} | grep "^Version:\s" | awk '{print $2}' | sed -E 's/~.*$//')"
 
 #
+# Install winetricks
+RUN wget -nv -O /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
+    && chmod +x /usr/bin/winetricks
+
+#
 # install mkcert
 #
 RUN apt-get update; \
@@ -187,7 +187,7 @@ ENTRYPOINT [ "/usr/bin/tini","--" ]
 #Cache Vigembus for later use
 #
 ENV VIGEM_VERSION=1.21.442
-RUN wget -P /usr/bin/warp "https://github.com/ViGEm/ViGEmBus/releases/download/v${VIGEM_VERSION}.0/ViGEmBus_${VIGEM_VERSION}_x64_x86_arm64.exe"
+RUN wget -P /etc/warp "https://github.com/ViGEm/ViGEmBus/releases/download/v${VIGEM_VERSION}.0/ViGEmBus_${VIGEM_VERSION}_x64_x86_arm64.exe"
 
 #
 #Cache dxvk
