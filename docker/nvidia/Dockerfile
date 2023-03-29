@@ -2,25 +2,6 @@
 #! The project is licensed under MPL v2.0
 #Thanks ehfd :)
 
-
-#
-#   Build warp golang
-#
-FROM golang:1.18-bullseye as warp
-
-WORKDIR /src
-
-COPY ./  .
-# COPY  go.mod main.go go.sum ./
-
-#
-# build executable
-#
-RUN go build
-
-#
-# STAGE 2: RUNTIME
-#
 #Use cuda 11.7 for backwards compatibility with hosts that have >=v11.7
 #
 FROM nvcr.io/nvidia/cuda:11.7.1-runtime-ubuntu22.04
@@ -48,7 +29,6 @@ ARG NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES all
 
 ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-ENV XDG_RUNTIME_DIR /tmp/runtime-user
 
 #
 # Install locales to prevent X11 errors
@@ -147,6 +127,22 @@ RUN curl -fsSL -O "${VIRTUALGL_URL}/virtualgl_${VIRTUALGL_VERSION}_amd64.deb"; \
     chmod u+s /usr/lib/i386-linux-gnu/libdlfaker.so
 
 #
+# Install wine
+ARG WINE_BRANCH="staging"
+RUN wget -nv -O- https://dl.winehq.org/wine-builds/winehq.key | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add - \
+    && apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu/ $(grep VERSION_CODENAME= /etc/os-release | cut -d= -f2) main" \
+    && dpkg --add-architecture i386 \
+    && apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get install -y --install-recommends winehq-${WINE_BRANCH} \
+    && rm -rf /var/lib/apt/lists/*
+
+#
+# Download gecko and mono installers
+COPY docker/nvidia/download_gecko_and_mono.sh /root/download_gecko_and_mono.sh
+RUN chmod +x /root/download_gecko_and_mono.sh \
+    && /root/download_gecko_and_mono.sh "$(dpkg -s wine-${WINE_BRANCH} | grep "^Version:\s" | awk '{print $2}' | sed -E 's/~.*$//')"
+
+#
 # install mkcert
 #
 RUN apt-get update; \
@@ -182,6 +178,19 @@ RUN chmod +x /usr/bin/tini
 ENTRYPOINT [ "/usr/bin/tini","--" ]
 
 #
+#Cache Vigembus for later use
+#
+ENV VIGEM_VERSION=v1.21.442.0
+RUN wget -P /usr/bin/warp https://github.com/ViGEm/ViGEmBus/releases/download/${VIGEM_VERSION}/ViGEmBus_${VIGEM_VERSION}_x64_x86_arm64.exe
+
+#
+#Cache dxvk
+#TODO: make this work
+# RUN wget -P /usr/bin/warp https://github.com/doitsujin/dxvk/releases/latest/download/dxvk-2.1.tar.gz ;\
+#     mkdir ./dxvk;\
+#     tar xvf dxvk-2.1.tar.gz -C ./dxvk;
+
+#
 #Copy config files
 #
 COPY docker/nvidia/entrypoint.sh /etc/warp/entrypoint.sh
@@ -193,8 +202,10 @@ RUN chmod +x /certs/generate-certs.sh
 COPY docker/nvidia/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
 
-COPY --from=warp /src /usr/bin/warp
+COPY gpad.exe /etc/warp/gpad.exe
 
+COPY warp /usr/bin/warp/warp
+RUN chmod +x /usr/bin/warp/warp
 
 ENV USER ${USERNAME}
 ENV SHELL /bin/bash

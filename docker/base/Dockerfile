@@ -36,7 +36,6 @@ RUN apt update; \
     #
     #clean up
     #
-    apt clean -y; \ 
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 #
@@ -45,7 +44,7 @@ RUN apt update; \
 RUN apt-get update; \
     wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
     chmod +x /usr/local/bin/mkcert;
-
+    
 RUN apt-get update; \
     #
     #create a non-root user
@@ -93,7 +92,6 @@ COPY gpad.exe /etc/warp/gpad.exe
 
 COPY warp /usr/bin/warp/warp
 RUN chmod +x /usr/bin/warp/warp
-
 
 ENV USER ${USERNAME}
 ENV SHELL /bin/bash
