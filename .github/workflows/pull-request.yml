@@ -157,7 +157,7 @@ jobs:
           #error code 124 is timeout error
           run: |
             set -o pipefail
-            output=$(timeout 50s docker run warp:nvenc 2>&1) || exitcode=$?
+            output=$(timeout 70s docker run warp:nvenc 2>&1) || exitcode=$?
 
             if [[ $exitcode != 0 && $exitcode != 124 ]]; then
               echo "$output"

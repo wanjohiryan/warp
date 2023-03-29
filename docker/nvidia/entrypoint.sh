@@ -69,10 +69,10 @@ winecfg -v win10
 
 #install vigembus
 wine /usr/bin/warp/ViGEmBus_${VIGEM_VERSION}_x64_x86_arm64.exe /qn
+sleep 40
 
 #run the gamepad server
 wine /etc/warp/gpad.exe &
-sleep 10
 
 set -e
 #run child image entrypoint
