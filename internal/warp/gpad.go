@@ -14,8 +14,8 @@ type Gpad struct {
 }
 
 type VibrationState struct {
-	LeftTrigger  int `json:"large_motor"`
-	RightTrigger int `json:"small_motor"`
+	LargeMotor  int `json:"large_motor"`
+	SmallMotor int `json:"small_motor"`
 }
 
 type ControllerState struct {
@@ -29,7 +29,7 @@ type ControllerState struct {
 }
 
 // create a new virtual gpad [maximum is 4]
-func NewGamepad() (s *Gpad, err error) {
+func NewGamePad() (s *Gpad) {
 	s = new(Gpad)
 
 	// Create a WebSocket dialer
@@ -44,7 +44,7 @@ func NewGamepad() (s *Gpad, err error) {
 
 	s.pad = conn
 
-	return s, nil
+	return s
 }
 
 // send input to our virtual gpad
@@ -56,7 +56,7 @@ func (s *Gpad) SendInput(message ControllerState) {
 }
 
 // receive vibrations to our virtual gpad
-func (s *Gpad) ReceiveVibrations() (myMsg VibrationState, err error) {
+func (s *Gpad) ReceiveVibrations() (myMsg VibrationState) {
 	// Read a message from the server
 	_, message, err := s.pad.ReadMessage()
 	if err != nil {
@@ -69,5 +69,5 @@ func (s *Gpad) ReceiveVibrations() (myMsg VibrationState, err error) {
 		log.Fatal("Failed to decode message:", err)
 	}
 
-	return messageData, nil
+	return messageData
 }

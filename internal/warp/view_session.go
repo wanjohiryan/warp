@@ -7,7 +7,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log"
 	"math"
 	"time"
 
@@ -56,12 +55,6 @@ func (s *Session) runAccept(ctx context.Context) (err error) {
 			return fmt.Errorf("failed to accept bidirectional stream: %w", err)
 		}
 
-		//TODO: handle gamepad input with a bidirectional stream ?
-		// s.streams.Add(func(ctx context.Context) (err error) {
-		// 	return s.handleGamepads(ctx, stream)
-		// })
-		// Warp doesn't utilize bidirectional streams so just close them immediately.
-		// We might use them in the future so don't close the connection with an error.
 		stream.CancelRead(1)
 	}
 }
@@ -112,8 +105,6 @@ func (s *Session) handleStream(ctx context.Context, stream webtransport.ReceiveS
 		if err != nil {
 			return fmt.Errorf("failed to read atom payload: %w", err)
 		}
-
-		log.Println("received message:", string(payload))
 
 		msg := Message{}
 
@@ -308,15 +299,6 @@ func (s *Session) heartBeat(ctx context.Context) (err error) {
 		time.Sleep(2 * time.Second)
 	}
 }
-
-// handle gamepads for each session
-// func (s *Session) handleGamepads(ctx context.Context, stream webtransport.ReceiveStream) (err error){
-// 	defer func() {
-// 		if err != nil {
-// 			stream.CancelRead(1)
-// 		}
-// 	}()
-// }
 
 // set max bitrate for bandwidth
 func (s *Session) setDebug(msg *MessageDebug) {

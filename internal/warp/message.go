@@ -5,6 +5,9 @@ type Message struct {
 	Segment *MessageSegment   `json:"segment,omitempty"`
 	Debug   *MessageDebug     `json:"debug,omitempty"`
 	Beat    *MessageHeartBeat `json:"beat,omitempty"`
+	//too lazy to create a new struct for each route
+	Pad          *ControllerState `json:"pad,omitempty"`
+	Notification *VibrationState  `json:"notification,omitempty"`
 }
 
 type MessageInit struct {

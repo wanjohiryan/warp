@@ -177,7 +177,9 @@ func (s *Server) servePlay(ctx context.Context, conn quic.Connection, sess *webt
 		}
 	}()
 
-	ss, err := NewPlaySession(conn, sess, s.media)
+	pad := NewGamePad()
+
+	ss, err := NewPlaySession(conn, sess, pad)
 	if err != nil {
 		return fmt.Errorf("failed to create session: %w", err)
 	}
