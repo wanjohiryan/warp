@@ -25,23 +25,6 @@ export PATH="${PATH}:/usr/games:/opt/VirtualGL/bin"
 # Add CUDA library path
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 
-#create a non-root wineprefix
-export WINEPREFIX=/home/$USER/.wine
-export WINEARCH=win64
-
-sudo -u $USER mkdir -p $WINEPREFIX
-sudo chown -R $USER:$USER $WINEPREFIX
-
-# Set the Windows version to Windows 10
-winecfg -v win10
-
-#install vigembus
-wine /usr/bin/warp/ViGEmBus_${VIGEM_VERSION}_x64_x86_arm64.exe /qn
-
-#run the gamepad server
-wine /etc/warp/gpad.exe &
-sleep 10
-
 #TODO: install dxvk
 # # Set the audio driver to ALSA
 # wine reg add 'HKEY_CURRENT_USER\Software\Wine\Drivers' /v 'Audio' /t 'REG_SZ' /d 'alsa' /f
@@ -73,6 +56,23 @@ set -e
 #Start warp server
 /usr/bin/warp/warp &
 sleep 1 #ensure this has started before moving on
+
+#create a non-root wineprefix
+export WINEPREFIX=/home/$USER/.wine
+export WINEARCH=win64
+
+sudo -u $USER mkdir -p $WINEPREFIX
+sudo chown -R $USER:$USER $WINEPREFIX
+
+# Set the Windows version to Windows 10
+winecfg -v win10
+
+#install vigembus
+wine /usr/bin/warp/ViGEmBus_${VIGEM_VERSION}_x64_x86_arm64.exe /qn
+
+#run the gamepad server
+wine /etc/warp/gpad.exe &
+sleep 10
 
 set -e
 #run child image entrypoint
