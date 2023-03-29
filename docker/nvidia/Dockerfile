@@ -180,8 +180,8 @@ ENTRYPOINT [ "/usr/bin/tini","--" ]
 #
 #Cache Vigembus for later use
 #
-ENV VIGEM_VERSION=v1.21.442.0
-RUN wget -P /usr/bin/warp https://github.com/ViGEm/ViGEmBus/releases/download/${VIGEM_VERSION}/ViGEmBus_${VIGEM_VERSION}_x64_x86_arm64.exe
+ENV VIGEM_VERSION=1.21.442
+RUN wget -P /usr/bin/warp "https://github.com/ViGEm/ViGEmBus/releases/download/v${VIGEM_VERSION}.0/ViGEmBus_${VIGEM_VERSION}_x64_x86_arm64.exe"
 
 #
 #Cache dxvk
