@@ -72,15 +72,21 @@ RUN dpkg --add-architecture i386 && apt-get update; \
 #
 RUN apt update; \ 
     apt upgrade -y; \
-    add-apt-repository ppa:savoury1/ffmpeg4 -y; \
-    add-apt-repository ppa:savoury1/ffmpeg5 -y; \
-    apt update; \
-    apt upgrade -y; \
-    apt install --no-install-recommends --assume-yes ffmpeg; \
+    apt install -y ffmpeg;\
+    ffmpeg -version;\
     #
     #clean up
     #
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+    # add-apt-repository ppa:savoury1/ffmpeg4 -y; \
+    # add-apt-repository ppa:savoury1/ffmpeg5 -y; \
+    # apt update; \
+    # apt upgrade -y; \
+    # apt install --no-install-recommends --assume-yes ffmpeg; \
+    # #
+    # #clean up
+    # #
+    # rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 #
 #Install and configure Vulkan and EGL manually
