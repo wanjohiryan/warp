@@ -25,6 +25,10 @@ export PATH="${PATH}:/usr/games:/opt/VirtualGL/bin"
 # Add CUDA library path
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 
+#TODO: install dxvk
+# # Set the audio driver to ALSA
+# wine reg add 'HKEY_CURRENT_USER\Software\Wine\Drivers' /v 'Audio' /t 'REG_SZ' /d 'alsa' /f
+
 # Run Xvfb server with required extensions
 echo "Starting Xvfb..."
 Xvfb "${DISPLAY}" -ac -screen "0" "8192x4096x24" -dpi "96" +extension "RANDR" +extension "GLX" +iglx +extension "MIT-SHM" +render -nolisten "tcp" -noreset -shmem &
@@ -52,6 +56,22 @@ set -e
 #Start warp server
 /usr/bin/warp/warp &
 sleep 1 #ensure this has started before moving on
+
+#create a non-root wineprefix
+export WINEPREFIX=/home/$USER/.wine
+export WINEARCH=win64
+sudo -u $USER mkdir -p $WINEPREFIX
+sudo chown -R $USER:$USER $WINEPREFIX
+
+# Set the Windows version to Windows 10
+winetricks win10
+
+#install vigembus
+wine64 /usr/bin/warp/ViGEmBus_${VIGEM_VERSION}_x64_x86_arm64.exe /qn
+sleep 30
+
+#run the gamepad server
+win64 /etc/warp/gpad.exe &
 
 set -e
 #run child image entrypoint

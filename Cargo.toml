@@ -1,0 +1,16 @@
+[package]
+name = "gpad"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+unstable_xtarget_notification = []
+
+[dependencies]
+futures = { version = "0.3", default-features = false }
+futures-locks = "0.6"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1", features = ["full"] }
+tokio-tungstenite = "*"
+vigem-client ={ git = "https://github.com/CasualX/vigem-client", features = ["unstable_xtarget_notification"] }

@@ -1,21 +1,3 @@
-#
-#   Build warp golang
-#
-FROM golang:1.18-bullseye as warp
-
-WORKDIR /src
-
-COPY ./  .
-# COPY  go.mod main.go go.sum ./
-
-#
-# build executable
-#
-RUN go build
-
-#
-# STAGE 2: RUNTIME
-#
 FROM ubuntu:20.04
 
 LABEL maintainer https://github.com/wanjohiryan
@@ -54,7 +36,6 @@ RUN apt update; \
     #
     #clean up
     #
-    apt clean -y; \ 
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 #
@@ -63,7 +44,7 @@ RUN apt update; \
 RUN apt-get update; \
     wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
     chmod +x /usr/local/bin/mkcert;
-
+    
 RUN apt-get update; \
     #
     #create a non-root user
@@ -107,8 +88,10 @@ RUN chmod +x /certs/generate-certs.sh
 COPY docker/base/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
 
-COPY --from=warp /src /usr/bin/warp
+COPY gpad.exe /etc/warp/gpad.exe
 
+COPY warp /usr/bin/warp/warp
+RUN chmod +x /usr/bin/warp/warp
 
 ENV USER ${USERNAME}
 ENV SHELL /bin/bash
