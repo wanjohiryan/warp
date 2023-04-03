@@ -6,7 +6,7 @@
 #
 #Use cuda 11.7 for backwards compatibility with hosts that have >=v11.7
 #
-FROM nvcr.io/nvidia/cuda:11.7.1-runtime-ubuntu22.04
+FROM aperimau/nvidia-cuda-ffmpeg:11.7.0-6.0-ubuntu22.04-0.3.3
 
 ARG CUDA_VERSION
 
@@ -17,7 +17,8 @@ SHELL [ "/bin/bash","-o", "pipefail", "-c" ]
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG USERNAME=warp
-ARG USER_UID=1000
+#fixme: remove user ffmpeg
+ARG USER_UID=1001 
 ARG USER_GID=${USER_UID}
 
 # Enable AppImage execution in a container
@@ -31,8 +32,8 @@ ARG NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES all
 
 ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-ENV XDG_RUNTIME_DIR /tmp/runtime-user
 
+RUN ffmpeg -version
 #
 # Install locales to prevent X11 errors
 #
@@ -48,9 +49,8 @@ ENV LC_ALL en_US.UTF-8
 #Install dependencies
 #
 RUN dpkg --add-architecture i386 && apt-get update; \ 
-    apt-get -y upgrade;\
     apt-get install --assume-yes --no-install-recommends \ 
-    sudo software-properties-common ca-certificates gnupg xvfb libnss3-tools \
+    sudo cabextract software-properties-common ca-certificates gnupg xvfb libnss3-tools \
     wget curl vim pulseaudio  dbus-x11 libdbus-c++-1-0v5\
     alsa-base alsa-utils apt-transport-https apt-utils build-essential ca-certificates \
     curl file wget bzip2 gzip p7zip-full xz-utils zip \
@@ -60,38 +60,16 @@ RUN dpkg --add-architecture i386 && apt-get update; \
     libgles2-mesa-dev:i386 libglvnd0 libglvnd0:i386 libgl1 libgl1:i386 libglx0 libglx0:i386 libegl1 \
     libegl1:i386 libgles2 libgles2:i386 libglu1 libglu1:i386 libsm6 libsm6:i386 \
     vainfo vdpauinfo pkg-config mesa-utils mesa-utils-extra va-driver-all \
-    xserver-xorg-input-all xserver-xorg-video-all mesa-vulkan-drivers libvulkan-dev \
+    xserver-xorg-input-all xserver-xorg-video-all libvulkan-dev mesa-vulkan-drivers \
     libvulkan-dev:i386 libxau6 libxau6:i386 libxdmcp6 libxdmcp6:i386 libxcb1 libxcb1:i386 \
     libxext6 libxext6:i386 libx11-6 libx11-6:i386 libxv1 libxv1:i386 libxtst6 libxtst6:i386 \
     xdg-utils dbus-x11 libdbus-c++-1-0v5 xkb-data x11-xkb-utils x11-xserver-utils x11-utils \ 
-    x11-apps xauth xbitmaps xinit libxrandr-dev;\
-    #
-    #clean up
-    #
-    rm -rf /var/lib/apt/lists/*
-
-#
-#Install ffmpeg5
-#
-RUN apt update; \ 
-    apt upgrade -y; \
-    add-apt-repository ppa:savoury1/ffmpeg4 -y; \
-    add-apt-repository ppa:savoury1/ffmpeg5 -y; \
-    apt update; \
-    apt upgrade -y; \
-    apt install --no-install-recommends --assume-yes ffmpeg; \
-    #
-    #clean up
-    #
-    rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+    x11-apps xauth xbitmaps xinit libxrandr-dev
 
 #
 #Install and configure Vulkan and EGL manually
 #
-RUN  wget -qO - http://packages.lunarg.com/lunarg-signing-key-pub.asc | apt-key add - ;\
-    wget -qO /etc/apt/sources.list.d/lunarg-vulkan-focal.list http://packages.lunarg.com/vulkan/lunarg-vulkan-focal.list ;\
-    apt update -y; \
-    apt install --no-install-recommends -y vulkan-sdk; \
+RUN  apt-get install --no-install-recommends -y vulkan-tools;\
     rm -rf /var/lib/apt/lists/*; \
     #
     # Configure EGL manually
@@ -110,13 +88,13 @@ RUN  wget -qO - http://packages.lunarg.com/lunarg-signing-key-pub.asc | apt-key 
         \"library_path\": \"libGLX_nvidia.so.0\",\n\
         \"api_version\" : \"${VULKAN_API_VERSION}\"\n\
     }\n\
-}" > /etc/vulkan/icd.d/nvidia_icd.json
+}" > /etc/vulkan/icd.d/nvidia_icd.json 
 
 #
 #Install Virtualgl and make libraries available for preload
 #
 ARG VIRTUALGL_URL="https://sourceforge.net/projects/virtualgl/files"
-ARG VIRTUALGL_VERSION=3.0.2
+ARG VIRTUALGL_VERSION=3.1
 RUN curl -fsSL -O "${VIRTUALGL_URL}/virtualgl_${VIRTUALGL_VERSION}_amd64.deb"; \
     curl -fsSL -O "${VIRTUALGL_URL}/virtualgl32_${VIRTUALGL_VERSION}_amd64.deb"; \
     apt-get update && apt-get install -y --no-install-recommends ./virtualgl_${VIRTUALGL_VERSION}_amd64.deb ./virtualgl32_${VIRTUALGL_VERSION}_amd64.deb; \
@@ -128,6 +106,29 @@ RUN curl -fsSL -O "${VIRTUALGL_URL}/virtualgl_${VIRTUALGL_VERSION}_amd64.deb"; \
     chmod u+s /usr/lib32/libdlfaker.so; \
     chmod u+s /usr/lib/i386-linux-gnu/libvglfaker.so; \
     chmod u+s /usr/lib/i386-linux-gnu/libdlfaker.so
+    
+
+#
+# Install wine
+ARG WINE_BRANCH="staging"
+RUN wget -nv -O- https://dl.winehq.org/wine-builds/winehq.key | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add - \
+    && apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu/ $(grep VERSION_CODENAME= /etc/os-release | cut -d= -f2) main" \
+    && dpkg --add-architecture i386 \
+    && apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get install -y --install-recommends winehq-${WINE_BRANCH} \
+    && rm -rf /var/lib/apt/lists/*
+
+#
+# Download gecko and mono installers
+COPY docker/nvidia/download_gecko_and_mono.sh /root/download_gecko_and_mono.sh
+RUN chmod +x /root/download_gecko_and_mono.sh \
+    && /root/download_gecko_and_mono.sh "$(dpkg -s wine-${WINE_BRANCH} | grep "^Version:\s" | awk '{print $2}' | sed -E 's/~.*$//')"
+
+
+#
+# Install winetricks
+RUN wget -nv -O /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
+    && chmod +x /usr/bin/winetricks
 
 #
 # install mkcert
@@ -135,6 +136,7 @@ RUN curl -fsSL -O "${VIRTUALGL_URL}/virtualgl_${VIRTUALGL_VERSION}_amd64.deb"; \
 RUN apt-get update; \
     wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
     chmod +x /usr/local/bin/mkcert;
+
 
 #
 #Create a non-root user Warp
@@ -145,14 +147,14 @@ RUN apt-get update; \
     #
     groupadd --gid ${USER_GID} ${USERNAME}; \
     useradd --uid ${USER_UID} --gid ${USERNAME} --shell /bin/bash --create-home ${USERNAME};\
-    usermod -a -G adm,audio,input,pulse-access,sudo,tape,tty,video ${USERNAME} ;\
+    usermod -a -G adm,audio,input,pulse-access,sudo,tape,tty,video,ffmpeg ${USERNAME} ;\
     echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
     #
     #make directories for warp
     #
-    mkdir -p /etc/warp /certs /media /usr/bin/warp /etc/warp/entrypoint.d;\
-    chmod 1777 /certs /media /usr/bin/warp /etc/warp/entrypoint.d; \
-    chown ${USERNAME} /certs /usr/bin/warp /etc/warp/entrypoint.d /media; \
+    mkdir -p /etc/warp /certs /gpad /media /usr/bin/warp /etc/warp/entrypoint.d;\
+    chmod 1777 /certs /media /gpad /usr/bin/warp /etc/warp/entrypoint.d; \
+    chown ${USERNAME} /certs /usr/bin/warp /gpad /etc/warp/entrypoint.d /media; \
     chown -R $USERNAME:$USERNAME /home/${USERNAME} ;\
     ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" > /etc/timezone
 
@@ -191,6 +193,5 @@ EXPOSE 8080/udp
 #
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
-
 
 CMD [ "/etc/warp/entrypoint.sh" ]
