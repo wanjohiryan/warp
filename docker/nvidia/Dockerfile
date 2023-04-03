@@ -1,25 +1,8 @@
 #! Highly inspired by https://github.com/selkies-project/docker-nvidia-glx-desktop/blob/main/Dockerfile 
 #! The project is licensed under MPL v2.0
 #Thanks ehfd :)
-
-
 #
-#   Build warp golang
-#
-FROM golang:1.18-bullseye as warp
-
-WORKDIR /src
-
-COPY ./  .
-# COPY  go.mod main.go go.sum ./
-
-#
-# build executable
-#
-RUN go build
-
-#
-# STAGE 2: RUNTIME
+# STAGE 1: RUNTIME
 #
 #Use cuda 11.7 for backwards compatibility with hosts that have >=v11.7
 #
@@ -193,7 +176,8 @@ RUN chmod +x /certs/generate-certs.sh
 COPY docker/nvidia/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
 
-COPY --from=warp /src /usr/bin/warp
+COPY warp /usr/bin/warp/warp
+RUN chmod +x /usr/bin/warp/warp
 
 
 ENV USER ${USERNAME}

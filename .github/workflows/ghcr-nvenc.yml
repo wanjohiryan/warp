@@ -12,11 +12,39 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: wanjohiryan/warp
   BASE_TAG_PREFIX: nvenc
-  BRAVE_TAG_PREFIX: brave-nvenc
 
 jobs:
+  build-go:
+    name: Build go binary
+    runs-on: ubuntu-latest
+    #
+    # do not run on forks
+    #
+    if: github.repository_owner == 'wanjohiryan'
+    steps: 
+      -
+        name: Checkout repo
+        uses: actions/checkout@v3
+      - 
+        name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+      #TODO: Find a way to test this before building
+      - 
+        name: Build binary
+        run: go build -v ./
+      -
+       name: Upload artifact
+       uses: actions/upload-artifact@v3
+       with:
+         name: gobinary
+         path: ./warp
+    
   build-git-h264-base:
     runs-on: ubuntu-latest
+    needs:
+     - build-go
     permissions:
       contents: read
       packages: write
@@ -47,6 +75,13 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
+      
+      -
+        name: Download go binary
+        uses: actions/download-artifact@v3
+        with:
+          name: gobinary
+          path: ./
 
       - name: Build and push image
         uses: docker/build-push-action@v4
@@ -56,48 +91,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-  # build-git-h264-brave:
-  #   runs-on: ubuntu-latest
-  #   needs: build-git-h264-base
-  #   permissions:
-  #     contents: read
-  #     packages: write
-  #   #
-  #   # do not run on forks
-  #   #
-  #   if: github.repository_owner == 'wanjohiryan'
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-
-  #     - name: Log into registry ${{ env.REGISTRY }}
-  #       uses: docker/login-action@v2
-  #       with:
-  #         registry: ${{ env.REGISTRY }}
-  #         username: ${{ github.actor }}
-  #         password: ${{ secrets.GHCR_TOKEN }}
-
-  #     - name: Extract Container metadata
-  #       id: meta
-  #       uses: docker/metadata-action@v4
-  #       with:
-  #         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ env.BRAVE_TAG_PREFIX }}
-  #         flavor: |
-  #           latest=${{github.event_name == 'release'}}
-  #         #tag on release, and a nightly build for 'dev'
-  #         tags: |
-  #           type=raw,value=nightly,enable={{is_default_branch}}
-  #           type=semver,pattern={{version}}
-  #           type=semver,pattern={{major}}.{{minor}}
-  #           type=semver,pattern={{major}}
-  #           type=schedule,pattern=nightly
-
-  #     - name: Build and push image
-  #       uses: docker/build-push-action@v4
-  #       with:
-  #         context: ./
-  #         file: docker/brave/Dockerfile
-  #         push: true
-  #         tags: ${{ steps.meta.outputs.tags }}
-  #         labels: ${{ steps.meta.outputs.labels }}

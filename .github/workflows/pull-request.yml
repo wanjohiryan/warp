@@ -5,106 +5,33 @@ on:
   pull_request:
 
 jobs:
-  build-docker-base:
-      name: Build base image
-      runs-on: ubuntu-latest
-      steps:
-        -
-          name: Checkout repo
-          uses: actions/checkout@v3
-        - 
-          name: Setup Docker Buildx
-          uses: docker/setup-buildx-action@v2
-        - 
-          name: Build Docker image
-          uses: docker/build-push-action@v4
-          with:
-            context: ./
-            file: docker/base/Dockerfile
-            push: false
-            load: true
-            tags: warp:latest
-        - 
-          name: Run Docker Container
-          #error code 124 is timeout error
-          run: |
-            set -o pipefail
-            output=$(timeout 20s docker run warp:latest 2>&1) || exitcode=$?
-
-            if [[ $exitcode != 0 && $exitcode != 124 ]]; then
-              echo "$output"
-              exit $exitcode
-            else 
-              echo "$output"
-             echo -e "\033[01;34mDocker run successful\033[0m"
-              exit 0
-            fi
-          shell: bash
-        
-        - 
-          name: Push Docker Image temporarily
-          uses: docker/build-push-action@v4
-          with:
-            context: ./
-            file: docker/base/Dockerfile
-            outputs: type=docker,dest=/tmp/warp.tar
-            tags: warp:latest
-
-        -
-          name: Upload artifact
-          uses: actions/upload-artifact@v3
-          with:
-            name: warp
-            path: /tmp/warp.tar
-
-  build-brave-example:
-      name: Build brave browser
-      needs: build-docker-base
-      runs-on: ubuntu-latest
-      steps:
-      - 
+  build-go:
+    name: Build go binary
+    runs-on: ubuntu-latest
+    steps: 
+      -
         name: Checkout repo
         uses: actions/checkout@v3
-      -
-        name: Download artifact
-        uses: actions/download-artifact@v3
+      - 
+        name: Set up Go
+        uses: actions/setup-go@v3
         with:
-          name: warp
-          path: /tmp
+          go-version: 1.18
+      #TODO: Find a way to test this before building
+      - 
+        name: Build binary
+        run: go build -v ./
       -
-        name: Load Docker image
-        run: |
-          docker load --input /tmp/warp.tar
-          docker image ls -a
-      - 
-        name: Build Docker example
-        run: |
-          set -o pipefail
-          
-          cp docker/brave/Dockerfile .
+       name: Upload artifact
+       uses: actions/upload-artifact@v3
+       with:
+         name: gobinary
+         path: ./warp
 
-          docker build --tag warp:brave --build-arg WARP_IMAGE=warp:latest .
-
-          rm Dockerfile 
-
-      - 
-        name: Run Docker Container example
-        run: |
-          set -o pipefail
-          output=$(timeout 20s docker run warp:brave 2>&1) || exitcode=$?
-          
-          if [[ $exitcode != 0 && $exitcode != 124 ]]; then
-            echo "$output"
-            exit $exitcode
-          else 
-            echo "$output"
-           echo -e "\033[01;34mDocker run successful\033[0m"
-            exit 0
-          fi
-
-        shell: bash
   build-docker-nvidia:
       name: Build nvidia base image
+      needs: 
+        - build-go
       runs-on: ubuntu-latest
       steps:
         -
@@ -113,6 +40,12 @@ jobs:
         - 
           name: Setup Docker Buildx
           uses: docker/setup-buildx-action@v2
+        -
+          name: Download go binary
+          uses: actions/download-artifact@v3
+          with:
+            name: gobinary
+            path: ./
         - 
           name: Build Docker image
           uses: docker/build-push-action@v4
@@ -127,7 +60,7 @@ jobs:
           #error code 124 is timeout error
           run: |
             set -o pipefail
-            output=$(timeout 20s docker run warp:nvenc 2>&1) || exitcode=$?
+            output=$(timeout 2m docker run warp:nvenc 2>&1) || exitcode=$?
 
             if [[ $exitcode != 0 && $exitcode != 124 ]]; then
               echo "$output"
