@@ -120,7 +120,7 @@ RUN wget -nv -O- https://dl.winehq.org/wine-builds/winehq.key | APT_KEY_DONT_WAR
 
 #
 # Download gecko and mono installers
-COPY download_gecko_and_mono.sh /root/download_gecko_and_mono.sh
+COPY docker/nvidia/download_gecko_and_mono.sh /root/download_gecko_and_mono.sh
 RUN chmod +x /root/download_gecko_and_mono.sh \
     && /root/download_gecko_and_mono.sh "$(dpkg -s wine-${WINE_BRANCH} | grep "^Version:\s" | awk '{print $2}' | sed -E 's/~.*$//')"
 
@@ -161,10 +161,10 @@ ENTRYPOINT [ "/usr/bin/tini","--" ]
 #
 #Copy config files
 #
-COPY entrypoint.sh /etc/warp/entrypoint.sh
+COPY docker/nvidia/entrypoint.sh /etc/warp/entrypoint.sh
 RUN chmod +x /etc/warp/entrypoint.sh
 
-COPY ffmpeg.sh /etc/warp/ffmpeg.sh
+COPY docker/nvidia/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
 
 COPY warp /usr/bin/warp/warp
