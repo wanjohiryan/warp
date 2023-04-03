@@ -76,6 +76,7 @@ jobs:
         run: |
           docker load --input /tmp/warp.tar
           docker image ls -a
+          
       - 
         name: Build Docker example
         run: |
