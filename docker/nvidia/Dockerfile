@@ -131,6 +131,14 @@ RUN wget -nv -O /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks
     && chmod +x /usr/bin/winetricks
 
 #
+# install mkcert
+#
+RUN apt-get update; \
+    wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
+    chmod +x /usr/local/bin/mkcert;
+
+
+#
 #Create a non-root user Warp
 #
 RUN apt-get update; \
