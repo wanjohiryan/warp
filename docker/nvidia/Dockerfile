@@ -1,4 +1,16 @@
+#! Highly inspired by https://github.com/selkies-project/docker-nvidia-glx-desktop/blob/main/Dockerfile 
+#! The project is licensed under MPL v2.0
+#Thanks ehfd :)
+#
+# STAGE 1: RUNTIME
+#
+#Use cuda 11.7 for backwards compatibility with hosts that have >=v11.7
+#
 FROM aperimau/nvidia-cuda-ffmpeg:11.7.0-6.0-ubuntu22.04-0.3.3
+
+ARG CUDA_VERSION
+
+LABEL maintainer "https://github.com/wanjohiryan"
 
 SHELL [ "/bin/bash","-o", "pipefail", "-c" ]
 
@@ -155,11 +167,15 @@ RUN chmod +x /etc/warp/entrypoint.sh
 COPY ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
 
-COPY --chown=warp warp /usr/bin/warp/warp
+COPY warp /usr/bin/warp/warp
+RUN chmod +x /usr/bin/warp/warp
+
 
 ENV USER ${USERNAME}
 ENV SHELL /bin/bash
 ENV DISPLAY=:0
+
+EXPOSE 8080/udp
 
 #
 #Run as user `Warp`
