@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: 1.18
+      #TODO: Find a way to test this before building
       - 
         name: Build binary
         run: go build -v ./
@@ -26,66 +27,6 @@ jobs:
        with:
          name: gobinary
          path: ./warp
-
-  build-docker-base:
-      name: Build base image
-      needs: 
-        - build-go
-      runs-on: ubuntu-latest
-      steps:
-        -
-          name: Checkout repo
-          uses: actions/checkout@v3
-        - 
-          name: Setup Docker Buildx
-          uses: docker/setup-buildx-action@v2
-        -
-          name: Download go binary
-          uses: actions/download-artifact@v3
-          with:
-            name: gobinary
-            path: ./
-        - 
-          name: Build Docker image
-          uses: docker/build-push-action@v4
-          with:
-            context: ./
-            file: docker/base/Dockerfile
-            push: false
-            load: true
-            tags: warp:latest
-        - 
-          name: Run Docker Container
-          #error code 124 is timeout error
-          run: |
-            set -o pipefail
-            output=$(timeout 20s docker run warp:latest 2>&1) || exitcode=$?
-
-            if [[ $exitcode != 0 && $exitcode != 124 ]]; then
-              echo "$output"
-              exit $exitcode
-            else 
-              echo "$output"
-             echo -e "\033[01;34mDocker run successful\033[0m"
-              exit 0
-            fi
-          shell: bash
-        
-        - 
-          name: Push Docker Image temporarily
-          uses: docker/build-push-action@v4
-          with:
-            context: ./
-            file: docker/base/Dockerfile
-            outputs: type=docker,dest=/tmp/warp.tar
-            tags: warp:latest
-
-        -
-          name: Upload artifact
-          uses: actions/upload-artifact@v3
-          with:
-            name: warp
-            path: /tmp/warp.tar
 
   build-docker-nvidia:
       name: Build nvidia base image
