@@ -164,6 +164,9 @@ ENTRYPOINT [ "/usr/bin/tini","--" ]
 COPY docker/nvidia/entrypoint.sh /etc/warp/entrypoint.sh
 RUN chmod +x /etc/warp/entrypoint.sh
 
+COPY docker/nvidia/generate-certs.sh /certs/generate-certs.sh
+RUN chmod +x /certs/generate-certs.sh
+
 COPY docker/nvidia/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
 
