@@ -15,8 +15,37 @@ env:
   BRAVE_TAG_PREFIX: brave-nvenc
 
 jobs:
+  build-go:
+    name: Build go binary
+    runs-on: ubuntu-latest
+    #
+    # do not run on forks
+    #
+    if: github.repository_owner == 'wanjohiryan'
+    steps: 
+      -
+        name: Checkout repo
+        uses: actions/checkout@v3
+      - 
+        name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+      #TODO: Find a way to test this before building
+      - 
+        name: Build binary
+        run: go build -v ./
+      -
+       name: Upload artifact
+       uses: actions/upload-artifact@v3
+       with:
+         name: gobinary
+         path: ./warp
+    
   build-git-h264-base:
     runs-on: ubuntu-latest
+    needs:
+     - build-go
     permissions:
       contents: read
       packages: write
@@ -47,6 +76,13 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
+      
+      -
+        name: Download go binary
+        uses: actions/download-artifact@v3
+        with:
+          name: gobinary
+          path: ./
 
       - name: Build and push image
         uses: docker/build-push-action@v4
