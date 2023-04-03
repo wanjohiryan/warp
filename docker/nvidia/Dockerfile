@@ -155,6 +155,8 @@ RUN chmod +x /etc/warp/entrypoint.sh
 COPY ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
 
+COPY --chown=warp warp /usr/bin/warp/warp
+
 ENV USER ${USERNAME}
 ENV SHELL /bin/bash
 ENV DISPLAY=:0
