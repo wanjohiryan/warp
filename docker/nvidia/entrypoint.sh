@@ -17,7 +17,7 @@ sudo rm -rf /tmp/.X* ~/.cache
 sudo /etc/init.d/dbus start
 
 # Change time zone from environment variable
-sudo ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" | sudo tee /etc/timezone > /dev/null
+sudo ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" | sudo tee /etc/timezone >/dev/null
 
 # Add game directories for VirtualGL directories to path
 export PATH="${PATH}:/usr/games:/opt/VirtualGL/bin"
@@ -53,24 +53,35 @@ set -e
 /usr/bin/warp/warp &
 sleep 1 #ensure this has started before moving on
 
+if [[ -z "${GAME_EXE}" ]]; then
+  echo "The GAME_EXE environment variable is not set. Exiting."
+  exit 0
+fi
+
 set -e
 #run child image entrypoint
-echo "Running child scripts..."
-# Set the directory where the other bash files are located
-OTHER_SCRIPTS_DIR="/etc/warp/entrypoint.d"
+echo "Running executable..."
 
-# Check if the directory exists
-if [ -d "$OTHER_SCRIPTS_DIR" ]; then
-  # Loop through all the files in the directory
-  for script_file in $OTHER_SCRIPTS_DIR/*.sh; do
-    # Check if the file is a bash script and is executable
-    if [ -x "$script_file" ] && [ "${script_file: -3}" == ".sh" ]; then
-      # Run the script
-      bash "$script_file"
-    fi
-  done
+# sudo chown $USER:$USER /data
+
+# Use VirtualGL to run wine with OpenGL if the GPU is available, otherwise use barebone wine
+if [ -n "$(nvidia-smi --query-gpu=uuid --format=csv | sed -n 2p)" ]; then
+  export VGL_DISPLAY="${VGL_DISPLAY:-egl}"
+  export VGL_REFRESHRATE="$REFRESH"
+
+  echo "Nvidia GPU detected..."
+  if [[ "${GAME_EXE}" == *".exe" ]]; then
+    vglrun +wm wine "/game/${GAME_EXE}"
+  else
+    vglrun +wm "/game/${GAME_EXE}"
+  fi
 else
-  echo "Directory $OTHER_SCRIPTS_DIR not found " 
+  echo "No Nvidia GPU detected..."
+  if [[ "${GAME_EXE}" == *".exe" ]]; then
+    wine "/game/${GAME_EXE}"
+  else
+    "/game/${GAME_EXE}"
+  fi
 fi
 
 wait -n
