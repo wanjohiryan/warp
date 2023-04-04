@@ -23,8 +23,10 @@ ARG USER_GID=${USER_UID}
 
 # Enable AppImage execution in a container
 ENV APPIMAGE_EXTRACT_AND_RUN 1
-
+#
+# set vgl-display to headless 3d gpu card/// correct values are egl[n] or /dev/dri/card0:if this is passed into container
 ENV VGL_DISPLAY egl
+
 ENV REFRESH 60
 
 #make all nvidia gpus visible and allow all capabilities
@@ -185,6 +187,8 @@ RUN chmod +x /usr/bin/warp/warp
 ENV USER ${USERNAME}
 ENV SHELL /bin/bash
 ENV DISPLAY=:0
+
+VOLUME [ "/game" ]
 
 EXPOSE 8080/udp
 
