@@ -87,16 +87,6 @@ jobs:
             name: certfiles
             path: ./
         - 
-          name: Create certs
-          run: |
-            set -o pipefail
-
-            ls -l
-
-            ls -l ./certs
-
-          shell: bash
-        - 
           name: Setup Docker Buildx
           uses: docker/setup-buildx-action@v2
         - 
