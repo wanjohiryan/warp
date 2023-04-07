@@ -43,7 +43,7 @@ jobs:
 
         shell: bash
       - 
-        name: Install mkcert
+        name: Create certs
         run: |
           set -o pipefail
 
@@ -81,6 +81,16 @@ jobs:
           with:
             name: certs
             path: ./
+        - 
+          name: Create certs
+          run: |
+            set -o pipefail
+
+            ls -l
+
+            ls -l ./certs
+
+          shell: bash
         - 
           name: Setup Docker Buildx
           uses: docker/setup-buildx-action@v2

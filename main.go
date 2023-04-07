@@ -100,9 +100,7 @@ func getConfig() Config {
 		conf.media = *dash
 	}
 
-
 	start := time.Now().UnixNano() / int64(time.Millisecond)
-
 
 	if _, err := os.Stat(conf.media); err != nil {
 		//loop for 10 seconds until we get the media file
@@ -112,7 +110,7 @@ func getConfig() Config {
 			now := time.Now().UnixNano() / int64(time.Millisecond)
 			diff := now - start
 			if diff > 10000 {
-				break 
+				break
 			} else {
 				//if file is found break
 				// conf.media = fmt.Sprintf("%s%d.mpd", conf.media, os.Getpid())
