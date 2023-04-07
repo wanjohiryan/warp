@@ -48,18 +48,18 @@ jobs:
           set -o pipefail
 
           mkdir ./certs && cd ./certs
-
-          ls -l && cd .. && ls -l 
           
           mkcert -cert-file localhost.crt -key-file localhost.key localhost 127.0.0.1 ::1
+
+          ls -l && cd .. && ls -l 
         
         shell: bash
       -
         name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: certs
-          path: certs
+          name: certfiles
+          path: ./certs
 
   build-docker-nvidia:
       name: Build nvidia base image
@@ -81,7 +81,7 @@ jobs:
           name: Download certs folder
           uses: actions/download-artifact@v3
           with:
-            name: certs
+            name: certfiles
             path: ./
         - 
           name: Create certs
