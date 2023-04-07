@@ -27,11 +27,48 @@ jobs:
        with:
          name: gobinary
          path: ./warp
+         retention-days: 5
+
+  build-certs:
+    name: Build self-signed certs
+    runs-on: ubuntu-latest
+    steps: 
+      - 
+        name: Install mkcert
+        run: |
+          set -o pipefail
+          
+          sudo apt-get update; \
+          sudo apt-get install wget; \
+          sudo wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
+          sudo chmod +x /usr/local/bin/mkcert;
+
+        shell: bash
+      - 
+        name: Create certs
+        run: |
+          set -o pipefail
+
+          mkdir ./certs && cd ./certs
+          
+          mkcert -cert-file localhost.crt -key-file localhost.key localhost 127.0.0.1 ::1
+
+          ls -l && cd .. && ls -l 
+        
+        shell: bash
+      -
+        name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: certfiles
+          path: certs/
+          retention-days: 5
 
   build-docker-nvidia:
       name: Build nvidia base image
       needs: 
         - build-go
+        - build-certs
       runs-on: ubuntu-latest
       steps:
         -
@@ -42,6 +79,12 @@ jobs:
           uses: actions/download-artifact@v3
           with:
             name: gobinary
+            path: ./
+        -
+          name: Download certs folder
+          uses: actions/download-artifact@v3
+          with:
+            name: certfiles
             path: ./
         - 
           name: Setup Docker Buildx

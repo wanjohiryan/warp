@@ -43,10 +43,7 @@ pacmd set-default-source vsink.monitor
 
 #Start ffmpeg
 source /etc/warp/ffmpeg.sh 2>&1 | awk '{ print "ffmpeg: " $0 }' &
-sleep 1 #ensure this has started before moving on
-
-#Generate selfsigned certs for warp
-source /certs/generate-certs.sh 2>&1 | awk '{ print "generate-certs: " $0 }'
+sleep 10 #ensure this has started before moving on
 
 set -e
 #Start warp server
