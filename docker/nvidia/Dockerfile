@@ -133,14 +133,6 @@ RUN wget -nv -O /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks
     && chmod +x /usr/bin/winetricks
 
 #
-# install mkcert
-#
-RUN apt-get update; \
-    wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
-    chmod +x /usr/local/bin/mkcert;
-
-
-#
 #Create a non-root user Warp
 #
 RUN apt-get update; \
@@ -174,8 +166,7 @@ ENTRYPOINT [ "/usr/bin/tini","--" ]
 COPY docker/nvidia/entrypoint.sh /etc/warp/entrypoint.sh
 RUN chmod +x /etc/warp/entrypoint.sh
 
-COPY docker/nvidia/generate-certs.sh /certs/generate-certs.sh
-RUN chmod +x /certs/generate-certs.sh
+COPY certs /certs
 
 COPY docker/nvidia/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
