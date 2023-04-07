@@ -146,9 +146,9 @@ RUN apt-get update; \
     #
     #make directories for warp
     #
-    mkdir -p /etc/warp /certs /gpad /media /usr/bin/warp /etc/warp/entrypoint.d;\
-    chmod 1777 /certs /media /gpad /usr/bin/warp /etc/warp/entrypoint.d; \
-    chown ${USERNAME} /certs /usr/bin/warp /gpad /etc/warp/entrypoint.d /media; \
+    mkdir -p /etc/warp /certs /gpad /media /usr/bin/warp;\
+    chmod 1777 /certs /media /gpad /usr/bin/warp; \
+    chown ${USERNAME} /certs /usr/bin/warp /gpad /media; \
     chown -R $USERNAME:$USERNAME /home/${USERNAME} ;\
     ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" > /etc/timezone
 
@@ -166,7 +166,7 @@ ENTRYPOINT [ "/usr/bin/tini","--" ]
 COPY docker/nvidia/entrypoint.sh /etc/warp/entrypoint.sh
 RUN chmod +x /etc/warp/entrypoint.sh
 
-COPY certs /certs
+COPY certs /etc/warp/certs
 
 COPY docker/nvidia/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
