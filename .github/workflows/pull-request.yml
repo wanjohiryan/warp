@@ -27,6 +27,8 @@ jobs:
        with:
          name: gobinary
          path: ./warp
+         retention-days: 5
+
   build-certs:
     name: Build self-signed certs
     runs-on: ubuntu-latest
@@ -59,7 +61,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: certfiles
-          path: ./certs
+          path: certs/
+          retention-days: 5
 
   build-docker-nvidia:
       name: Build nvidia base image
