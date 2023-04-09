@@ -78,14 +78,14 @@ if [ -n "$(nvidia-smi --query-gpu=uuid --format=csv | sed -n 2p)" ]; then
 
   echo "Nvidia GPU detected..."
   if [[ "${GAME_EXE}" == *".exe" ]]; then
-    $WINEPREFIX $WINEARCH vglrun +wm wine "/game/${GAME_EXE}"
+    $WINEPREFIX $WINEARCH vglrun +wm wine64 "/game/${GAME_EXE}"
   else
     vglrun +wm "/game/${GAME_EXE}"
   fi
 else
   echo "No Nvidia GPU detected..."
   if [[ "${GAME_EXE}" == *".exe" ]]; then
-    $WINEPREFIX $WINEARCH wine "/game/${GAME_EXE}"
+    $WINEPREFIX $WINEARCH wine64 "/game/${GAME_EXE}"
   else
     "/game/${GAME_EXE}"
   fi
