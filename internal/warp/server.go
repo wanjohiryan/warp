@@ -93,6 +93,44 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 		}
 	})
 
+	//limit players to four per session
+	maxConcurrentConn := 4
+	sem := make(chan struct{}, maxConcurrentConn)
+	mux.HandleFunc("/play", func(w http.ResponseWriter, r *http.Request) {
+
+		// Try to acquire a slot from the channel.
+		select {
+
+		case sem <- struct{}{}:
+			defer func() {
+				// Release the slot back to the channel when the request is done.
+				<-sem
+			}()
+
+			hijacker, ok := w.(http3.Hijacker)
+			if !ok {
+				panic("unable to hijack connection: must use kixelated/quic-go")
+			}
+
+			conn := hijacker.Connection()
+
+			sess, err := s.inner.Upgrade(w, r)
+			if err != nil {
+				http.Error(w, "failed to upgrade session", 500)
+				return
+			}
+
+			err = s.serve(r.Context(), conn, sess)
+			if err != nil {
+				log.Println(err)
+			}
+
+		default:
+			// If the channel is full, return an HTTP error response.
+			http.Error(w, "Slots are full", http.StatusServiceUnavailable)
+		}
+	})
+
 	return s, nil
 }
 

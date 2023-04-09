@@ -11,6 +11,7 @@ require (
 )
 
 require (
+	github.com/bendahl/uinput v1.6.0 // indirect
 	github.com/francoispqt/gojay v1.2.13 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0 // indirect
 	github.com/golang/mock v1.6.0 // indirect
