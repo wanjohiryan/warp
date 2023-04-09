@@ -57,6 +57,9 @@ export WINEARCH=win64
 sudo -u $USER mkdir -p $WINEPREFIX
 sudo chown -R $USER:$USER $WINEPREFIX
 
+#Make win10 the default wine version
+$WINEPREFIX winetricks win10
+
 if [[ -z "${GAME_EXE}" ]]; then
   echo "The GAME_EXE environment variable is not set. Exiting."
   exit 0
