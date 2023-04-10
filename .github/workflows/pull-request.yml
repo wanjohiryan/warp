@@ -10,14 +10,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3      
-      - name: Check changes
+      -
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            src:
+                - '.github/**'
+      -
+        if: steps.changes.outputs.src == 'true'
         run: |
-          if [[ $(git diff --name-only HEAD~0 HEAD) == ".github" ]]; then
-            echo "Only .github folder has changed."
-            exit 0
-          else
-            echo "Other files have been changed."
-          fi
+          exit 0
 
   build-go:
     name: Build go binary
