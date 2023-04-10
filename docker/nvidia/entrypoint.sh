@@ -50,6 +50,15 @@ set -e
 /usr/bin/warp/warp &
 sleep 1 #ensure this has started before moving on
 
+#create a non-root wineprefix
+export WINEPREFIX=/home/$USER/.local/share/wineprefixes/warp
+export WINEARCH=win64
+
+winetricks prefix=warp arch=64 win10
+
+#Make win10 the default wine version
+# $WINEPREFIX winetricks 
+
 if [[ -z "${GAME_EXE}" ]]; then
   echo "The GAME_EXE environment variable is not set. Exiting."
   exit 0
@@ -68,14 +77,14 @@ if [ -n "$(nvidia-smi --query-gpu=uuid --format=csv | sed -n 2p)" ]; then
 
   echo "Nvidia GPU detected..."
   if [[ "${GAME_EXE}" == *".exe" ]]; then
-    vglrun +wm wine "/game/${GAME_EXE}"
+    $WINEPREFIX $WINEARCH vglrun +wm wine64 "/game/${GAME_EXE}"
   else
     vglrun +wm "/game/${GAME_EXE}"
   fi
 else
   echo "No Nvidia GPU detected..."
   if [[ "${GAME_EXE}" == *".exe" ]]; then
-    wine "/game/${GAME_EXE}"
+    $WINEPREFIX $WINEARCH wine64 "/game/${GAME_EXE}"
   else
     "/game/${GAME_EXE}"
   fi
