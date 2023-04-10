@@ -50,37 +50,6 @@ set -e
 /usr/bin/warp/warp &
 sleep 1 #ensure this has started before moving on
 
-if [[ -z "${GAME_EXE}" ]]; then
-  echo "The GAME_EXE environment variable is not set. Exiting."
-  exit 0
-fi
-
-set -e
-#run child image entrypoint
-echo "Running executable..."
-
-# sudo chown $USER:$USER /data
-
-# Use VirtualGL to run wine with OpenGL if the GPU is available, otherwise use barebone wine
-if [ -n "$(nvidia-smi --query-gpu=uuid --format=csv | sed -n 2p)" ]; then
-  export VGL_DISPLAY="${VGL_DISPLAY:-egl}"
-  export VGL_REFRESHRATE="$REFRESH"
-
-  echo "Nvidia GPU detected..."
-  if [[ "${GAME_EXE}" == *".exe" ]]; then
-    vglrun +wm wine "/game/${GAME_EXE}"
-  else
-    vglrun +wm "/game/${GAME_EXE}"
-  fi
-else
-  echo "No Nvidia GPU detected..."
-  if [[ "${GAME_EXE}" == *".exe" ]]; then
-    wine "/game/${GAME_EXE}"
-  else
-    "/game/${GAME_EXE}"
-  fi
-fi
-
 wait -n
 
 jobs -p | xargs --no-run-if-empty kill
