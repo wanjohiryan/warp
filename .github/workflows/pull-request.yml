@@ -1,8 +1,13 @@
 name: Build docker
-#TODO: find a way to log errors from docker container onto github
+
 
 on:
   pull_request:
+  push:
+    paths-ignore:
+      - '.github/**'
+      #much of the time it does not affect docker builds
+      - 'internal/ui/**'
 
 jobs:
   # build-ui:

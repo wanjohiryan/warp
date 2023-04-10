@@ -3,6 +3,8 @@ name: "Push nvenc image to ghcr"
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '.github/**'
     tags:
       - v*.*.*
   release:
