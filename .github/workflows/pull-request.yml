@@ -1,5 +1,4 @@
 name: Create and test docker image
-#TODO: find a way to log errors from docker container onto github
 
 on:
   pull_request:
@@ -13,7 +12,7 @@ jobs:
         uses: actions/checkout@v3      
       - name: Check changes
         run: |
-          if [[ $(git diff --name-only HEAD~1 HEAD) == ".github" ]]; then
+          if [[ $(git diff --name-only HEAD~0 HEAD) == ".github" ]]; then
             echo "Only .github folder has changed."
             exit 0
           else
