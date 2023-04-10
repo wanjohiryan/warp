@@ -62,6 +62,7 @@ if [[ -z "${GAME_EXE}" ]]; then
   exit 0
 fi
 
+#check whether uinput was passed into the container
 if [ ! -e "/dev/uinput" ]; then
   echo "/dev/uinput does not exist. Exiting..."
   exit 1
