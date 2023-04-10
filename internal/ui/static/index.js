@@ -23513,7 +23513,7 @@
     "src/player/mp4box.all.js"(exports) {
       "use strict";
       var Log = function() {
-        var start = new Date();
+        var start = /* @__PURE__ */ new Date();
         var LOG_LEVEL_ERROR = 4;
         var LOG_LEVEL_WARNING = 3;
         var LOG_LEVEL_INFO = 2;
@@ -23537,7 +23537,7 @@
               console.debug = console.log;
             }
             if (LOG_LEVEL_DEBUG >= log_level) {
-              console.debug("[" + Log.getDurationString(new Date() - start, 1e3) + "]", "[" + module2 + "]", msg);
+              console.debug("[" + Log.getDurationString(/* @__PURE__ */ new Date() - start, 1e3) + "]", "[" + module2 + "]", msg);
             }
           },
           log: function(module2, msg) {
@@ -23545,17 +23545,17 @@
           },
           info: function(module2, msg) {
             if (LOG_LEVEL_INFO >= log_level) {
-              console.info("[" + Log.getDurationString(new Date() - start, 1e3) + "]", "[" + module2 + "]", msg);
+              console.info("[" + Log.getDurationString(/* @__PURE__ */ new Date() - start, 1e3) + "]", "[" + module2 + "]", msg);
             }
           },
           warn: function(module2, msg) {
             if (LOG_LEVEL_WARNING >= log_level) {
-              console.warn("[" + Log.getDurationString(new Date() - start, 1e3) + "]", "[" + module2 + "]", msg);
+              console.warn("[" + Log.getDurationString(/* @__PURE__ */ new Date() - start, 1e3) + "]", "[" + module2 + "]", msg);
             }
           },
           error: function(module2, msg) {
             if (LOG_LEVEL_ERROR >= log_level) {
-              console.error("[" + Log.getDurationString(new Date() - start, 1e3) + "]", "[" + module2 + "]", msg);
+              console.error("[" + Log.getDurationString(/* @__PURE__ */ new Date() - start, 1e3) + "]", "[" + module2 + "]", msg);
             }
           }
         };
@@ -28690,7 +28690,7 @@
         var track;
         var ref;
         var sample_desc;
-        var _1904 = new Date("1904-01-01T00:00:00Z").getTime();
+        var _1904 = (/* @__PURE__ */ new Date("1904-01-01T00:00:00Z")).getTime();
         if (this.moov) {
           movie.hasMoov = true;
           movie.duration = this.moov.mvhd.duration;
@@ -28925,7 +28925,7 @@
         var seek_sample_num = 0;
         var timescale;
         if (trak.samples.length === 0) {
-          Log.info("ISOFile", "No sample in track, cannot seek! Using time " + Log.getDurationString(0, 1) + " and offset: " + 0);
+          Log.info("ISOFile", "No sample in track, cannot seek! Using time " + Log.getDurationString(0, 1) + " and offset: 0");
           return { offset: 0, time: 0 };
         }
         for (j = 0; j < trak.samples.length; j++) {
