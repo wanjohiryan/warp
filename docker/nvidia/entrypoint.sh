@@ -62,6 +62,13 @@ if [[ -z "${GAME_EXE}" ]]; then
   exit 0
 fi
 
+if [ ! -e "/dev/uinput" ]; then
+  echo "/dev/uinput does not exist. Exiting..."
+  exit 1
+fi
+
+sudo chown root:input /dev/uinput
+
 wait -n
 
 jobs -p | xargs --no-run-if-empty kill
