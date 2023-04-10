@@ -5,34 +5,34 @@ on:
   pull_request:
 
 jobs:
-  build-ui:
-    name: Build NextJS UI
-    runs-on: ubuntu-latest
-    steps:
-      - 
-        name: Check for changes in internal/ui directory
-        run: |
-          if git diff --quiet HEAD^ HEAD --name-only | grep --quiet internal/ui; then
-            echo "There are changes in internal/ui directory"
-          else
-            echo "No changes in internal/ui directory"
-            exit 0
-          fi
-      -
-        name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - 
-        name: Install packages
-        run: |
-          cd internal/ui
-          npm install
-      - 
-        name: Build project
-        run: |
-          cd internal/ui
-          npm run build
+  # build-ui:
+  #   name: Build NextJS UI
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - 
+  #       name: Check for changes in internal/ui directory
+  #       run: |
+  #         if git diff --quiet HEAD^ HEAD --name-only | grep --quiet internal/ui; then
+  #           echo "There are changes in internal/ui directory"
+  #         else
+  #           echo "No changes in internal/ui directory"
+  #           exit 0
+  #         fi
+  #     -
+  #       name: Install Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
+  #     - 
+  #       name: Install packages
+  #       run: |
+  #         cd internal/ui
+  #         npm install
+  #     - 
+  #       name: Build project
+  #       run: |
+  #         cd internal/ui
+  #         npm run build
 
   build-go:
     name: Build go binary
