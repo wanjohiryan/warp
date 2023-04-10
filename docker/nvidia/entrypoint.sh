@@ -45,10 +45,22 @@ pacmd set-default-source vsink.monitor
 source /etc/warp/ffmpeg.sh 2>&1 | awk '{ print "ffmpeg: " $0 }' &
 sleep 10 #ensure this has started before moving on
 
+#create a non-root wineprefix
+export WINEPREFIX=/home/$USER/.local/share/wineprefixes/warp
+export WINEARCH=win64
+
+winetricks prefix=warp arch=64 win10
+
 set -e
 #Start warp server
 /usr/bin/warp/warp &
 sleep 1 #ensure this has started before moving on
+
+#stop running container if game does not exist [on CI]
+if [[ -z "${GAME_EXE}" ]]; then
+  echo "The GAME_EXE environment variable is not set. Exiting."
+  exit 0
+fi
 
 wait -n
 
