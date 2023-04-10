@@ -51,11 +51,10 @@ set -e
 sleep 1 #ensure this has started before moving on
 
 #create a non-root wineprefix
-export WINEPREFIX=/home/$USER/.wine
+export WINEPREFIX=/home/$USER/.local/share/wineprefixes/warp
 export WINEARCH=win64
 
-sudo -u $USER mkdir -p $WINEPREFIX
-sudo chown -R $USER:$USER $WINEPREFIX
+winetricks prefix=warp arch=64
 
 #Make win10 the default wine version
 $WINEPREFIX winetricks win10
