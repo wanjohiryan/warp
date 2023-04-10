@@ -45,23 +45,18 @@ pacmd set-default-source vsink.monitor
 source /etc/warp/ffmpeg.sh 2>&1 | awk '{ print "ffmpeg: " $0 }' &
 sleep 10 #ensure this has started before moving on
 
-#make the uinput node owned by root user and input group
-sudo chown root:input /dev/uinput
-
-set -e
-#Start warp server
-/usr/bin/warp/warp &
-sleep 1 #ensure this has started before moving on
-
 #create a non-root wineprefix
 export WINEPREFIX=/home/$USER/.local/share/wineprefixes/warp
 export WINEARCH=win64
 
 winetricks prefix=warp arch=64 win10
 
-#Make win10 the default wine version
-# $WINEPREFIX winetricks 
+set -e
+#Start warp server
+/usr/bin/warp/warp &
+sleep 1 #ensure this has started before moving on
 
+#stop running container if game does not exist [on CI]
 if [[ -z "${GAME_EXE}" ]]; then
   echo "The GAME_EXE environment variable is not set. Exiting."
   exit 0
@@ -73,30 +68,6 @@ if [ ! -e "/dev/uinput" ]; then
 fi
 
 sudo chown root:input /dev/uinput
-
-set -e
-#run child image entrypoint
-echo "Running executable..."
-
-# Use VirtualGL to run wine with OpenGL if the GPU is available, otherwise use barebone wine
-if [ -n "$(nvidia-smi --query-gpu=uuid --format=csv | sed -n 2p)" ]; then
-  export VGL_DISPLAY="${VGL_DISPLAY:-egl}"
-  export VGL_REFRESHRATE="$REFRESH"
-
-  echo "Nvidia GPU detected..."
-  if [[ "${GAME_EXE}" == *".exe" ]]; then
-    $WINEPREFIX $WINEARCH vglrun +wm wine64 "/game/${GAME_EXE}"
-  else
-    vglrun +wm "/game/${GAME_EXE}"
-  fi
-else
-  echo "No Nvidia GPU detected..."
-  if [[ "${GAME_EXE}" == *".exe" ]]; then
-    $WINEPREFIX $WINEARCH wine64 "/game/${GAME_EXE}"
-  else
-    "/game/${GAME_EXE}"
-  fi
-fi
 
 wait -n
 

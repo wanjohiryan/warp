@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
 
 	"github.com/wanjohiryan/warp/internal/ui"
@@ -73,6 +74,23 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 	s.media = media
 	//for webtransport
 	mux.HandleFunc("/api", func(w http.ResponseWriter, r *http.Request) {
+
+		gamePath, exists := os.LookupEnv("GAME_EXE")
+		if !exists {
+			fmt.Println("GAME_EXE environment variable not set")
+			return
+		}
+
+		//TODO: Fix game running check, and use go instead of bash
+		cmd := exec.Command("bash", "/etc/warp/run-wine.sh", gamePath)
+
+		output, err := cmd.CombinedOutput()
+		if err != nil {
+			fmt.Println("Error running game:", err)
+			return
+		}
+
+		fmt.Println("Game started successfully:", string(output))
 
 		hijacker, ok := w.(http3.Hijacker)
 		if !ok {
