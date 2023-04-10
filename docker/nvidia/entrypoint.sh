@@ -54,10 +54,10 @@ sleep 1 #ensure this has started before moving on
 export WINEPREFIX=/home/$USER/.local/share/wineprefixes/warp
 export WINEARCH=win64
 
-winetricks prefix=warp arch=64
+winetricks prefix=warp arch=64 win10
 
 #Make win10 the default wine version
-$WINEPREFIX winetricks win10
+# $WINEPREFIX winetricks 
 
 if [[ -z "${GAME_EXE}" ]]; then
   echo "The GAME_EXE environment variable is not set. Exiting."
