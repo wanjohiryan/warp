@@ -45,6 +45,9 @@ pacmd set-default-source vsink.monitor
 source /etc/warp/ffmpeg.sh 2>&1 | awk '{ print "ffmpeg: " $0 }' &
 sleep 10 #ensure this has started before moving on
 
+#make the uinput node owned by root user and input group
+sudo chown root:input /dev/uinput
+
 set -e
 #Start warp server
 /usr/bin/warp/warp &
@@ -64,11 +67,16 @@ if [[ -z "${GAME_EXE}" ]]; then
   exit 0
 fi
 
+if [ ! -e "/dev/uinput" ]; then
+  echo "/dev/uinput does not exist. Exiting..."
+  exit 1
+fi
+
+sudo chown root:input /dev/uinput
+
 set -e
 #run child image entrypoint
 echo "Running executable..."
-
-# sudo chown $USER:$USER /data
 
 # Use VirtualGL to run wine with OpenGL if the GPU is available, otherwise use barebone wine
 if [ -n "$(nvidia-smi --query-gpu=uuid --format=csv | sed -n 2p)" ]; then
