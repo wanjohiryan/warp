@@ -10,6 +10,7 @@ import (
 	"log"
 	"time"
 
+	"github.com/go-vgo/robotgo"
 	"github.com/kixelated/invoker"
 	"github.com/kixelated/quic-go"
 	"github.com/kixelated/webtransport-go"
@@ -117,6 +118,10 @@ func (s *PlayerSession) handleStream(ctx context.Context, stream webtransport.Re
 			s.handleInput(msg.Input)
 		}
 
+		if msg.MouseMove != nil {
+			s.handleMouseMove(msg.Input)
+		}
+
 		//TODO:implement automatic handling of latency issues
 		if msg.Beat != nil {
 			stream.CancelRead(1)
@@ -181,6 +186,11 @@ func (s *PlayerSession) handleInput(msg *MessageInput) {
 
 	s.gpad.LeftAxis(msg.ThumbLX, msg.ThumbLY)
 
+}
+
+func (s *PlayerSession) handleMouseMove(msg *MessageMouseMove) {
+	// robotgo.MouseSleep = 100 // 100 millisecond
+	robotgo.Move(int(msg.x_value), int(msg.y_value))
 }
 
 //FIXME: destroy gamepad on player disconnect

@@ -34,6 +34,7 @@ ARG NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES all
 
 ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+ENV XDG_RUNTIME_DIR /tmp/runtime-user
 
 RUN ffmpeg -version
 #
@@ -66,7 +67,13 @@ RUN dpkg --add-architecture i386 && apt-get update; \
     libvulkan-dev:i386 libxau6 libxau6:i386 libxdmcp6 libxdmcp6:i386 libxcb1 libxcb1:i386 \
     libxext6 libxext6:i386 libx11-6 libx11-6:i386 libxv1 libxv1:i386 libxtst6 libxtst6:i386 \
     xdg-utils dbus-x11 libdbus-c++-1-0v5 xkb-data x11-xkb-utils x11-xserver-utils x11-utils \ 
-    x11-apps xauth xbitmaps xinit libxrandr-dev
+    x11-apps xauth xbitmaps xinit libxrandr-dev \
+    #
+    #For RobotGo
+    #
+    libx11-dev libx11-dev xorg-dev libxtst-dev xsel xclip libpng++-dev xcb libxcb-xkb-dev x11-xkb-utils \
+    libx11-xcb-dev libxkbcommon-x11-dev libxkbcommon-dev
+
 
 #
 #Install and configure Vulkan and EGL manually
