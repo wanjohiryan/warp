@@ -56,17 +56,14 @@ func NewClient() (s *http.ServeMux) {
 		contentType := mime.TypeByExtension(filepath.Ext(path))
 		w.Header().Set("Content-Type", contentType)
 
-		// if strings.HasPrefix(path, "static/") {
 		w.Header().Set("Cache-Control", "public, max-age=31536000")
-		// }
 		stat, err := file.Stat()
 		if err == nil && stat.Size() > 0 {
 			w.Header().Set("Content-Length", fmt.Sprintf("%d", stat.Size()))
 		}
 
-		n, _ := io.Copy(w, file)
+		io.Copy(w, file)
 
-		log.Println("file", path, "copied", n, "bytes")
 	})
 
 	return mux

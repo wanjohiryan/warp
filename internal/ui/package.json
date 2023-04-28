@@ -1,20 +1,21 @@
 {
-  "source": "src/index.html",
   "scripts": {
-    "dev":"esbuild src/index.tsx src/index.css  --bundle --outdir=static --watch",
-    "build":"esbuild src/index.tsx src/index.css  --bundle --outdir=static",
-    "check": "tsc --noEmit"
+    "dev": "esbuild src/index.tsx src/index.css --bundle --loader:.ttf=file --loader:.mp3=file --outdir=static --watch",
+    "build": "esbuild src/index.tsx src/index.css --bundle --outdir=static"
   },
   "devDependencies": {
-    "@parcel/validator-typescript": "^2.6.0",
-    "@types/react": "^18.0.35",
+    "@types/node": "^18.15.13",
+    "@types/react": "^18.0.38",
     "@types/react-dom": "^18.0.11",
-    "esbuild": "^0.17.15",
-    "parcel": "^2.8.3",
-    "typescript": ">=5.0.3"
+    "esbuild": "^0.17.17",
+    "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.12.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.0"
   }
 }

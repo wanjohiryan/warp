@@ -1,3 +1,8 @@
+#node modules 
 node_modules
-.parcel-cache
-dist
+
+#just random ideas i write
+*.txt
+
+#vscode config files
+.vscode

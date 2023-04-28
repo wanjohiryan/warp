@@ -9,11 +9,11 @@
   var __commonJS = (cb, mod) => function __require() {
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
-  var __copyProps = (to, from, except, desc) => {
-    if (from && typeof from === "object" || typeof from === "function") {
-      for (let key of __getOwnPropNames(from))
+  var __copyProps = (to, from2, except, desc) => {
+    if (from2 && typeof from2 === "object" || typeof from2 === "function") {
+      for (let key of __getOwnPropNames(from2))
         if (!__hasOwnProp.call(to, key) && key !== except)
-          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+          __defProp(to, key, { get: () => from2[key], enumerable: !(desc = __getOwnPropDesc(from2, key)) || desc.enumerable });
     }
     return to;
   };
@@ -234,7 +234,7 @@
               warnNoop(publicInstance, "setState");
             }
           };
-          var assign = Object.assign;
+          var assign2 = Object.assign;
           var emptyObject = {};
           {
             Object.freeze(emptyObject);
@@ -285,7 +285,7 @@
           }
           var pureComponentPrototype = PureComponent.prototype = new ComponentDummy();
           pureComponentPrototype.constructor = PureComponent;
-          assign(pureComponentPrototype, Component.prototype);
+          assign2(pureComponentPrototype, Component.prototype);
           pureComponentPrototype.isPureReactComponent = true;
           function createRef() {
             var refObject = {
@@ -297,8 +297,8 @@
             return refObject;
           }
           var isArrayImpl = Array.isArray;
-          function isArray(a) {
-            return isArrayImpl(a);
+          function isArray(a2) {
+            return isArrayImpl(a2);
           }
           function typeName(value) {
             {
@@ -312,7 +312,7 @@
               try {
                 testStringCoercion(value);
                 return false;
-              } catch (e) {
+              } catch (e2) {
                 return true;
               }
             }
@@ -328,7 +328,7 @@
               }
             }
           }
-          function getWrappedName(outerType, innerType, wrapperName) {
+          function getWrappedName2(outerType, innerType, wrapperName) {
             var displayName = outerType.displayName;
             if (displayName) {
               return displayName;
@@ -377,7 +377,7 @@
                   var provider = type;
                   return getContextName(provider._context) + ".Provider";
                 case REACT_FORWARD_REF_TYPE:
-                  return getWrappedName(type, type.render, "ForwardRef");
+                  return getWrappedName2(type, type.render, "ForwardRef");
                 case REACT_MEMO_TYPE:
                   var outerName = type.displayName || null;
                   if (outerName !== null) {
@@ -398,7 +398,7 @@
             }
             return null;
           }
-          var hasOwnProperty = Object.prototype.hasOwnProperty;
+          var hasOwnProperty2 = Object.prototype.hasOwnProperty;
           var RESERVED_PROPS = {
             key: true,
             ref: true,
@@ -411,7 +411,7 @@
           }
           function hasValidRef(config) {
             {
-              if (hasOwnProperty.call(config, "ref")) {
+              if (hasOwnProperty2.call(config, "ref")) {
                 var getter = Object.getOwnPropertyDescriptor(config, "ref").get;
                 if (getter && getter.isReactWarning) {
                   return false;
@@ -422,7 +422,7 @@
           }
           function hasValidKey(config) {
             {
-              if (hasOwnProperty.call(config, "key")) {
+              if (hasOwnProperty2.call(config, "key")) {
                 var getter = Object.getOwnPropertyDescriptor(config, "key").get;
                 if (getter && getter.isReactWarning) {
                   return false;
@@ -511,7 +511,7 @@
             }
             return element;
           };
-          function createElement8(type, config, children) {
+          function createElement12(type, config, children) {
             var propName;
             var props = {};
             var key = null;
@@ -534,7 +534,7 @@
               self = config.__self === void 0 ? null : config.__self;
               source = config.__source === void 0 ? null : config.__source;
               for (propName in config) {
-                if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+                if (hasOwnProperty2.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
                   props[propName] = config[propName];
                 }
               }
@@ -544,8 +544,8 @@
               props.children = children;
             } else if (childrenLength > 1) {
               var childArray = Array(childrenLength);
-              for (var i = 0; i < childrenLength; i++) {
-                childArray[i] = arguments[i + 2];
+              for (var i2 = 0; i2 < childrenLength; i2++) {
+                childArray[i2] = arguments[i2 + 2];
               }
               {
                 if (Object.freeze) {
@@ -579,12 +579,12 @@
             var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
             return newElement;
           }
-          function cloneElement(element, config, children) {
+          function cloneElement2(element, config, children) {
             if (element === null || element === void 0) {
               throw new Error("React.cloneElement(...): The argument must be a React element, but you passed " + element + ".");
             }
             var propName;
-            var props = assign({}, element.props);
+            var props = assign2({}, element.props);
             var key = element.key;
             var ref = element.ref;
             var self = element._self;
@@ -606,7 +606,7 @@
                 defaultProps = element.type.defaultProps;
               }
               for (propName in config) {
-                if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+                if (hasOwnProperty2.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
                   if (config[propName] === void 0 && defaultProps !== void 0) {
                     props[propName] = defaultProps[propName];
                   } else {
@@ -620,8 +620,8 @@
               props.children = children;
             } else if (childrenLength > 1) {
               var childArray = Array(childrenLength);
-              for (var i = 0; i < childrenLength; i++) {
-                childArray[i] = arguments[i + 2];
+              for (var i2 = 0; i2 < childrenLength; i2++) {
+                childArray[i2] = arguments[i2 + 2];
               }
               props.children = childArray;
             }
@@ -638,8 +638,8 @@
               "=": "=0",
               ":": "=2"
             };
-            var escapedString = key.replace(escapeRegex, function(match) {
-              return escaperLookup[match];
+            var escapedString = key.replace(escapeRegex, function(match2) {
+              return escaperLookup[match2];
             });
             return "$" + escapedString;
           }
@@ -688,8 +688,8 @@
                 if (childKey != null) {
                   escapedChildKey = escapeUserProvidedKey(childKey) + "/";
                 }
-                mapIntoArray(mappedChild, array, escapedChildKey, "", function(c) {
-                  return c;
+                mapIntoArray(mappedChild, array, escapedChildKey, "", function(c2) {
+                  return c2;
                 });
               } else if (mappedChild != null) {
                 if (isValidElement(mappedChild)) {
@@ -719,9 +719,9 @@
             var subtreeCount = 0;
             var nextNamePrefix = nameSoFar === "" ? SEPARATOR : nameSoFar + SUBSEPARATOR;
             if (isArray(children)) {
-              for (var i = 0; i < children.length; i++) {
-                child = children[i];
-                nextName = nextNamePrefix + getElementKey(child, i);
+              for (var i2 = 0; i2 < children.length; i2++) {
+                child = children[i2];
+                nextName = nextNamePrefix + getElementKey(child, i2);
                 subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
               }
             } else {
@@ -763,11 +763,11 @@
             return result;
           }
           function countChildren(children) {
-            var n = 0;
+            var n3 = 0;
             mapChildren(children, function() {
-              n++;
+              n3++;
             });
-            return n;
+            return n3;
           }
           function forEachChildren(children, forEachFunc, forEachContext) {
             mapChildren(children, function() {
@@ -785,7 +785,7 @@
             }
             return children;
           }
-          function createContext(defaultValue) {
+          function createContext2(defaultValue) {
             var context = {
               $$typeof: REACT_CONTEXT_TYPE,
               // As a workaround to support multiple concurrent renderers, we categorize
@@ -972,7 +972,7 @@
             }
             return lazyType;
           }
-          function forwardRef(render) {
+          function forwardRef3(render) {
             {
               if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
                 error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -1033,7 +1033,7 @@
             }
             return false;
           }
-          function memo(type, compare) {
+          function memo2(type, compare) {
             {
               if (!isValidElementType(type)) {
                 error("memo: The first argument must be a component. Instead received: %s", type === null ? "null" : typeof type);
@@ -1071,7 +1071,7 @@
             }
             return dispatcher;
           }
-          function useContext(Context) {
+          function useContext5(Context) {
             var dispatcher = resolveDispatcher();
             {
               if (Context._context !== void 0) {
@@ -1085,7 +1085,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState6(initialState) {
+          function useState5(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1093,27 +1093,27 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef4(initialValue) {
+          function useRef11(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect4(create, deps) {
+          function useEffect5(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
-          function useInsertionEffect(create, deps) {
+          function useInsertionEffect3(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useInsertionEffect(create, deps);
           }
-          function useLayoutEffect2(create, deps) {
+          function useLayoutEffect3(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useLayoutEffect(create, deps);
           }
-          function useCallback(callback, deps) {
+          function useCallback6(callback, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useCallback(callback, deps);
           }
-          function useMemo(create, deps) {
+          function useMemo2(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useMemo(create, deps);
           }
@@ -1121,7 +1121,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useImperativeHandle(ref, create, deps);
           }
-          function useDebugValue(value, formatterFn) {
+          function useDebugValue2(value, formatterFn) {
             {
               var dispatcher = resolveDispatcher();
               return dispatcher.useDebugValue(value, formatterFn);
@@ -1193,25 +1193,25 @@
                   writable: true
                 };
                 Object.defineProperties(console, {
-                  log: assign({}, props, {
+                  log: assign2({}, props, {
                     value: prevLog
                   }),
-                  info: assign({}, props, {
+                  info: assign2({}, props, {
                     value: prevInfo
                   }),
-                  warn: assign({}, props, {
+                  warn: assign2({}, props, {
                     value: prevWarn
                   }),
-                  error: assign({}, props, {
+                  error: assign2({}, props, {
                     value: prevError
                   }),
-                  group: assign({}, props, {
+                  group: assign2({}, props, {
                     value: prevGroup
                   }),
-                  groupCollapsed: assign({}, props, {
+                  groupCollapsed: assign2({}, props, {
                     value: prevGroupCollapsed
                   }),
-                  groupEnd: assign({}, props, {
+                  groupEnd: assign2({}, props, {
                     value: prevGroupEnd
                   })
                 });
@@ -1222,18 +1222,18 @@
             }
           }
           var ReactCurrentDispatcher$1 = ReactSharedInternals.ReactCurrentDispatcher;
-          var prefix;
+          var prefix2;
           function describeBuiltInComponentFrame(name, source, ownerFn) {
             {
-              if (prefix === void 0) {
+              if (prefix2 === void 0) {
                 try {
                   throw Error();
                 } catch (x) {
-                  var match = x.stack.trim().match(/\n( *(at )?)/);
-                  prefix = match && match[1] || "";
+                  var match2 = x.stack.trim().match(/\n( *(at )?)/);
+                  prefix2 = match2 && match2[1] || "";
                 }
               }
-              return "\n" + prefix + name;
+              return "\n" + prefix2 + name;
             }
           }
           var reentry = false;
@@ -1299,19 +1299,19 @@
               if (sample && control && typeof sample.stack === "string") {
                 var sampleLines = sample.stack.split("\n");
                 var controlLines = control.stack.split("\n");
-                var s = sampleLines.length - 1;
-                var c = controlLines.length - 1;
-                while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
-                  c--;
+                var s2 = sampleLines.length - 1;
+                var c2 = controlLines.length - 1;
+                while (s2 >= 1 && c2 >= 0 && sampleLines[s2] !== controlLines[c2]) {
+                  c2--;
                 }
-                for (; s >= 1 && c >= 0; s--, c--) {
-                  if (sampleLines[s] !== controlLines[c]) {
-                    if (s !== 1 || c !== 1) {
+                for (; s2 >= 1 && c2 >= 0; s2--, c2--) {
+                  if (sampleLines[s2] !== controlLines[c2]) {
+                    if (s2 !== 1 || c2 !== 1) {
                       do {
-                        s--;
-                        c--;
-                        if (c < 0 || sampleLines[s] !== controlLines[c]) {
-                          var _frame = "\n" + sampleLines[s].replace(" at new ", " at ");
+                        s2--;
+                        c2--;
+                        if (c2 < 0 || sampleLines[s2] !== controlLines[c2]) {
+                          var _frame = "\n" + sampleLines[s2].replace(" at new ", " at ");
                           if (fn.displayName && _frame.includes("<anonymous>")) {
                             _frame = _frame.replace("<anonymous>", fn.displayName);
                           }
@@ -1322,7 +1322,7 @@
                           }
                           return _frame;
                         }
-                      } while (s >= 1 && c >= 0);
+                      } while (s2 >= 1 && c2 >= 0);
                     }
                     break;
                   }
@@ -1404,9 +1404,9 @@
               }
             }
           }
-          function checkPropTypes(typeSpecs, values, location2, componentName, element) {
+          function checkPropTypes(typeSpecs, values2, location2, componentName, element) {
             {
-              var has = Function.call.bind(hasOwnProperty);
+              var has = Function.call.bind(hasOwnProperty2);
               for (var typeSpecName in typeSpecs) {
                 if (has(typeSpecs, typeSpecName)) {
                   var error$1 = void 0;
@@ -1416,7 +1416,7 @@
                       err.name = "Invariant Violation";
                       throw err;
                     }
-                    error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location2, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
+                    error$1 = typeSpecs[typeSpecName](values2, typeSpecName, componentName, location2, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
                   } catch (ex) {
                     error$1 = ex;
                   }
@@ -1504,26 +1504,26 @@
               setCurrentlyValidatingElement$1(null);
             }
           }
-          function validateChildKeys(node, parentType) {
-            if (typeof node !== "object") {
+          function validateChildKeys(node2, parentType) {
+            if (typeof node2 !== "object") {
               return;
             }
-            if (isArray(node)) {
-              for (var i = 0; i < node.length; i++) {
-                var child = node[i];
+            if (isArray(node2)) {
+              for (var i2 = 0; i2 < node2.length; i2++) {
+                var child = node2[i2];
                 if (isValidElement(child)) {
                   validateExplicitKey(child, parentType);
                 }
               }
-            } else if (isValidElement(node)) {
-              if (node._store) {
-                node._store.validated = true;
+            } else if (isValidElement(node2)) {
+              if (node2._store) {
+                node2._store.validated = true;
               }
-            } else if (node) {
-              var iteratorFn = getIteratorFn(node);
+            } else if (node2) {
+              var iteratorFn = getIteratorFn(node2);
               if (typeof iteratorFn === "function") {
-                if (iteratorFn !== node.entries) {
-                  var iterator = iteratorFn.call(node);
+                if (iteratorFn !== node2.entries) {
+                  var iterator = iteratorFn.call(node2);
                   var step;
                   while (!(step = iterator.next()).done) {
                     if (isValidElement(step.value)) {
@@ -1566,8 +1566,8 @@
           function validateFragmentProps(fragment) {
             {
               var keys = Object.keys(fragment.props);
-              for (var i = 0; i < keys.length; i++) {
-                var key = keys[i];
+              for (var i2 = 0; i2 < keys.length; i2++) {
+                var key = keys[i2];
                 if (key !== "children" && key !== "key") {
                   setCurrentlyValidatingElement$1(fragment);
                   error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
@@ -1610,13 +1610,13 @@
                 error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
               }
             }
-            var element = createElement8.apply(this, arguments);
+            var element = createElement12.apply(this, arguments);
             if (element == null) {
               return element;
             }
             if (validType) {
-              for (var i = 2; i < arguments.length; i++) {
-                validateChildKeys(arguments[i], type);
+              for (var i2 = 2; i2 < arguments.length; i2++) {
+                validateChildKeys(arguments[i2], type);
               }
             }
             if (type === REACT_FRAGMENT_TYPE) {
@@ -1649,9 +1649,9 @@
             return validatedFactory;
           }
           function cloneElementWithValidation(element, props, children) {
-            var newElement = cloneElement.apply(this, arguments);
-            for (var i = 2; i < arguments.length; i++) {
-              validateChildKeys(arguments[i], newElement.type);
+            var newElement = cloneElement2.apply(this, arguments);
+            for (var i2 = 2; i2 < arguments.length; i2++) {
+              validateChildKeys(arguments[i2], newElement.type);
             }
             validatePropTypes(newElement);
             return newElement;
@@ -1828,17 +1828,17 @@
             {
               if (!isFlushing) {
                 isFlushing = true;
-                var i = 0;
+                var i2 = 0;
                 try {
-                  for (; i < queue.length; i++) {
-                    var callback = queue[i];
+                  for (; i2 < queue.length; i2++) {
+                    var callback = queue[i2];
                     do {
                       callback = callback(true);
                     } while (callback !== null);
                   }
                   queue.length = 0;
                 } catch (error2) {
-                  queue = queue.slice(i + 1);
+                  queue = queue.slice(i2 + 1);
                   throw error2;
                 } finally {
                   isFlushing = false;
@@ -1865,29 +1865,29 @@
           exports.Suspense = REACT_SUSPENSE_TYPE;
           exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
           exports.cloneElement = cloneElement$1;
-          exports.createContext = createContext;
+          exports.createContext = createContext2;
           exports.createElement = createElement$1;
           exports.createFactory = createFactory;
           exports.createRef = createRef;
-          exports.forwardRef = forwardRef;
+          exports.forwardRef = forwardRef3;
           exports.isValidElement = isValidElement;
           exports.lazy = lazy;
-          exports.memo = memo;
+          exports.memo = memo2;
           exports.startTransition = startTransition;
           exports.unstable_act = act;
-          exports.useCallback = useCallback;
-          exports.useContext = useContext;
-          exports.useDebugValue = useDebugValue;
+          exports.useCallback = useCallback6;
+          exports.useContext = useContext5;
+          exports.useDebugValue = useDebugValue2;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect4;
+          exports.useEffect = useEffect5;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
-          exports.useInsertionEffect = useInsertionEffect;
-          exports.useLayoutEffect = useLayoutEffect2;
-          exports.useMemo = useMemo;
+          exports.useInsertionEffect = useInsertionEffect3;
+          exports.useLayoutEffect = useLayoutEffect3;
+          exports.useMemo = useMemo2;
           exports.useReducer = useReducer;
-          exports.useRef = useRef4;
-          exports.useState = useState6;
+          exports.useRef = useRef11;
+          exports.useState = useState5;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -1924,12 +1924,12 @@
           var enableSchedulerDebugging = false;
           var enableProfiling = false;
           var frameYieldMs = 5;
-          function push(heap, node) {
+          function push(heap, node2) {
             var index = heap.length;
-            heap.push(node);
-            siftUp(heap, node, index);
+            heap.push(node2);
+            siftUp(heap, node2, index);
           }
-          function peek(heap) {
+          function peek2(heap) {
             return heap.length === 0 ? null : heap[0];
           }
           function pop(heap) {
@@ -1944,13 +1944,13 @@
             }
             return first;
           }
-          function siftUp(heap, node, i) {
-            var index = i;
+          function siftUp(heap, node2, i2) {
+            var index = i2;
             while (index > 0) {
               var parentIndex = index - 1 >>> 1;
               var parent = heap[parentIndex];
-              if (compare(parent, node) > 0) {
-                heap[parentIndex] = node;
+              if (compare(parent, node2) > 0) {
+                heap[parentIndex] = node2;
                 heap[index] = parent;
                 index = parentIndex;
               } else {
@@ -1958,37 +1958,37 @@
               }
             }
           }
-          function siftDown(heap, node, i) {
-            var index = i;
-            var length = heap.length;
-            var halfLength = length >>> 1;
+          function siftDown(heap, node2, i2) {
+            var index = i2;
+            var length2 = heap.length;
+            var halfLength = length2 >>> 1;
             while (index < halfLength) {
               var leftIndex = (index + 1) * 2 - 1;
               var left = heap[leftIndex];
               var rightIndex = leftIndex + 1;
               var right = heap[rightIndex];
-              if (compare(left, node) < 0) {
-                if (rightIndex < length && compare(right, left) < 0) {
+              if (compare(left, node2) < 0) {
+                if (rightIndex < length2 && compare(right, left) < 0) {
                   heap[index] = right;
-                  heap[rightIndex] = node;
+                  heap[rightIndex] = node2;
                   index = rightIndex;
                 } else {
                   heap[index] = left;
-                  heap[leftIndex] = node;
+                  heap[leftIndex] = node2;
                   index = leftIndex;
                 }
-              } else if (rightIndex < length && compare(right, node) < 0) {
+              } else if (rightIndex < length2 && compare(right, node2) < 0) {
                 heap[index] = right;
-                heap[rightIndex] = node;
+                heap[rightIndex] = node2;
                 index = rightIndex;
               } else {
                 return;
               }
             }
           }
-          function compare(a, b) {
-            var diff = a.sortIndex - b.sortIndex;
-            return diff !== 0 ? diff : a.id - b.id;
+          function compare(a2, b3) {
+            var diff = a2.sortIndex - b3.sortIndex;
+            return diff !== 0 ? diff : a2.id - b3.id;
           }
           var ImmediatePriority = 1;
           var UserBlockingPriority = 2;
@@ -2029,7 +2029,7 @@
           var localSetImmediate = typeof setImmediate !== "undefined" ? setImmediate : null;
           var isInputPending = typeof navigator !== "undefined" && navigator.scheduling !== void 0 && navigator.scheduling.isInputPending !== void 0 ? navigator.scheduling.isInputPending.bind(navigator.scheduling) : null;
           function advanceTimers(currentTime) {
-            var timer = peek(timerQueue);
+            var timer = peek2(timerQueue);
             while (timer !== null) {
               if (timer.callback === null) {
                 pop(timerQueue);
@@ -2040,18 +2040,18 @@
               } else {
                 return;
               }
-              timer = peek(timerQueue);
+              timer = peek2(timerQueue);
             }
           }
           function handleTimeout(currentTime) {
             isHostTimeoutScheduled = false;
             advanceTimers(currentTime);
             if (!isHostCallbackScheduled) {
-              if (peek(taskQueue) !== null) {
+              if (peek2(taskQueue) !== null) {
                 isHostCallbackScheduled = true;
                 requestHostCallback(flushWork);
               } else {
-                var firstTimer = peek(timerQueue);
+                var firstTimer = peek2(timerQueue);
                 if (firstTimer !== null) {
                   requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
                 }
@@ -2090,7 +2090,7 @@
           function workLoop(hasTimeRemaining, initialTime2) {
             var currentTime = initialTime2;
             advanceTimers(currentTime);
-            currentTask = peek(taskQueue);
+            currentTask = peek2(taskQueue);
             while (currentTask !== null && !enableSchedulerDebugging) {
               if (currentTask.expirationTime > currentTime && (!hasTimeRemaining || shouldYieldToHost())) {
                 break;
@@ -2105,7 +2105,7 @@
                 if (typeof continuationCallback === "function") {
                   currentTask.callback = continuationCallback;
                 } else {
-                  if (currentTask === peek(taskQueue)) {
+                  if (currentTask === peek2(taskQueue)) {
                     pop(taskQueue);
                   }
                 }
@@ -2113,12 +2113,12 @@
               } else {
                 pop(taskQueue);
               }
-              currentTask = peek(taskQueue);
+              currentTask = peek2(taskQueue);
             }
             if (currentTask !== null) {
               return true;
             } else {
-              var firstTimer = peek(timerQueue);
+              var firstTimer = peek2(timerQueue);
               if (firstTimer !== null) {
                 requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
               }
@@ -2220,7 +2220,7 @@
             if (startTime2 > currentTime) {
               newTask.sortIndex = startTime2;
               push(timerQueue, newTask);
-              if (peek(taskQueue) === null && newTask === peek(timerQueue)) {
+              if (peek2(taskQueue) === null && newTask === peek2(timerQueue)) {
                 if (isHostTimeoutScheduled) {
                   cancelHostTimeout();
                 } else {
@@ -2247,7 +2247,7 @@
             }
           }
           function unstable_getFirstCallbackNode() {
-            return peek(taskQueue);
+            return peek2(taskQueue);
           }
           function unstable_cancelCallback(task) {
             task.callback = null;
@@ -2383,9 +2383,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React14 = require_react();
+          var React22 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React14.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React22.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -2434,11 +2434,11 @@
           var HostPortal = 4;
           var HostComponent = 5;
           var HostText = 6;
-          var Fragment = 7;
+          var Fragment7 = 7;
           var Mode = 8;
           var ContextConsumer = 9;
           var ContextProvider = 10;
-          var ForwardRef = 11;
+          var ForwardRef2 = 11;
           var Profiler = 12;
           var SuspenseComponent = 13;
           var MemoComponent = 14;
@@ -2484,12 +2484,12 @@
                 possibleRegistrationNames.ondblclick = registrationName;
               }
             }
-            for (var i = 0; i < dependencies.length; i++) {
-              allNativeEvents.add(dependencies[i]);
+            for (var i2 = 0; i2 < dependencies.length; i2++) {
+              allNativeEvents.add(dependencies[i2]);
             }
           }
           var canUseDOM = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
-          var hasOwnProperty = Object.prototype.hasOwnProperty;
+          var hasOwnProperty2 = Object.prototype.hasOwnProperty;
           function typeName(value) {
             {
               var hasToStringTag = typeof Symbol === "function" && Symbol.toStringTag;
@@ -2502,7 +2502,7 @@
               try {
                 testStringCoercion(value);
                 return false;
-              } catch (e) {
+              } catch (e2) {
                 return true;
               }
             }
@@ -2571,10 +2571,10 @@
           var illegalAttributeNameCache = {};
           var validatedAttributeNameCache = {};
           function isAttributeNameSafe(attributeName) {
-            if (hasOwnProperty.call(validatedAttributeNameCache, attributeName)) {
+            if (hasOwnProperty2.call(validatedAttributeNameCache, attributeName)) {
               return true;
             }
-            if (hasOwnProperty.call(illegalAttributeNameCache, attributeName)) {
+            if (hasOwnProperty2.call(illegalAttributeNameCache, attributeName)) {
               return false;
             }
             if (VALID_ATTRIBUTE_NAME_REGEX.test(attributeName)) {
@@ -2614,8 +2614,8 @@
                 if (propertyInfo !== null) {
                   return !propertyInfo.acceptsBooleans;
                 } else {
-                  var prefix2 = name.toLowerCase().slice(0, 5);
-                  return prefix2 !== "data-" && prefix2 !== "aria-";
+                  var prefix3 = name.toLowerCase().slice(0, 5);
+                  return prefix3 !== "data-" && prefix3 !== "aria-";
                 }
               }
               default:
@@ -2647,7 +2647,7 @@
             return false;
           }
           function getPropertyInfo(name) {
-            return properties.hasOwnProperty(name) ? properties[name] : null;
+            return properties2.hasOwnProperty(name) ? properties2[name] : null;
           }
           function PropertyInfoRecord(name, type, mustUseProperty, attributeName, attributeNamespace, sanitizeURL2, removeEmptyString) {
             this.acceptsBooleans = type === BOOLEANISH_STRING || type === BOOLEAN || type === OVERLOADED_BOOLEAN;
@@ -2659,7 +2659,7 @@
             this.sanitizeURL = sanitizeURL2;
             this.removeEmptyString = removeEmptyString;
           }
-          var properties = {};
+          var properties2 = {};
           var reservedProps = [
             "children",
             "dangerouslySetInnerHTML",
@@ -2674,7 +2674,7 @@
             "style"
           ];
           reservedProps.forEach(function(name) {
-            properties[name] = new PropertyInfoRecord(
+            properties2[name] = new PropertyInfoRecord(
               name,
               RESERVED,
               false,
@@ -2690,7 +2690,7 @@
           });
           [["acceptCharset", "accept-charset"], ["className", "class"], ["htmlFor", "for"], ["httpEquiv", "http-equiv"]].forEach(function(_ref) {
             var name = _ref[0], attributeName = _ref[1];
-            properties[name] = new PropertyInfoRecord(
+            properties2[name] = new PropertyInfoRecord(
               name,
               STRING,
               false,
@@ -2705,7 +2705,7 @@
             );
           });
           ["contentEditable", "draggable", "spellCheck", "value"].forEach(function(name) {
-            properties[name] = new PropertyInfoRecord(
+            properties2[name] = new PropertyInfoRecord(
               name,
               BOOLEANISH_STRING,
               false,
@@ -2720,7 +2720,7 @@
             );
           });
           ["autoReverse", "externalResourcesRequired", "focusable", "preserveAlpha"].forEach(function(name) {
-            properties[name] = new PropertyInfoRecord(
+            properties2[name] = new PropertyInfoRecord(
               name,
               BOOLEANISH_STRING,
               false,
@@ -2762,7 +2762,7 @@
             // Microdata
             "itemScope"
           ].forEach(function(name) {
-            properties[name] = new PropertyInfoRecord(
+            properties2[name] = new PropertyInfoRecord(
               name,
               BOOLEAN,
               false,
@@ -2787,7 +2787,7 @@
             // you'll need to set attributeName to name.toLowerCase()
             // instead in the assignment below.
           ].forEach(function(name) {
-            properties[name] = new PropertyInfoRecord(
+            properties2[name] = new PropertyInfoRecord(
               name,
               BOOLEAN,
               true,
@@ -2808,7 +2808,7 @@
             // you'll need to set attributeName to name.toLowerCase()
             // instead in the assignment below.
           ].forEach(function(name) {
-            properties[name] = new PropertyInfoRecord(
+            properties2[name] = new PropertyInfoRecord(
               name,
               OVERLOADED_BOOLEAN,
               false,
@@ -2831,7 +2831,7 @@
             // you'll need to set attributeName to name.toLowerCase()
             // instead in the assignment below.
           ].forEach(function(name) {
-            properties[name] = new PropertyInfoRecord(
+            properties2[name] = new PropertyInfoRecord(
               name,
               POSITIVE_NUMERIC,
               false,
@@ -2846,7 +2846,7 @@
             );
           });
           ["rowSpan", "start"].forEach(function(name) {
-            properties[name] = new PropertyInfoRecord(
+            properties2[name] = new PropertyInfoRecord(
               name,
               NUMERIC,
               false,
@@ -2861,8 +2861,8 @@
             );
           });
           var CAMELIZE = /[\-\:]([a-z])/g;
-          var capitalize = function(token) {
-            return token[1].toUpperCase();
+          var capitalize2 = function(token2) {
+            return token2[1].toUpperCase();
           };
           [
             "accent-height",
@@ -2942,8 +2942,8 @@
             // you'll need to set attributeName to name.toLowerCase()
             // instead in the assignment below.
           ].forEach(function(attributeName) {
-            var name = attributeName.replace(CAMELIZE, capitalize);
-            properties[name] = new PropertyInfoRecord(
+            var name = attributeName.replace(CAMELIZE, capitalize2);
+            properties2[name] = new PropertyInfoRecord(
               name,
               STRING,
               false,
@@ -2967,8 +2967,8 @@
             // you'll need to set attributeName to name.toLowerCase()
             // instead in the assignment below.
           ].forEach(function(attributeName) {
-            var name = attributeName.replace(CAMELIZE, capitalize);
-            properties[name] = new PropertyInfoRecord(
+            var name = attributeName.replace(CAMELIZE, capitalize2);
+            properties2[name] = new PropertyInfoRecord(
               name,
               STRING,
               false,
@@ -2988,8 +2988,8 @@
             // you'll need to set attributeName to name.toLowerCase()
             // instead in the assignment below.
           ].forEach(function(attributeName) {
-            var name = attributeName.replace(CAMELIZE, capitalize);
-            properties[name] = new PropertyInfoRecord(
+            var name = attributeName.replace(CAMELIZE, capitalize2);
+            properties2[name] = new PropertyInfoRecord(
               name,
               STRING,
               false,
@@ -3002,7 +3002,7 @@
             );
           });
           ["tabIndex", "crossOrigin"].forEach(function(attributeName) {
-            properties[attributeName] = new PropertyInfoRecord(
+            properties2[attributeName] = new PropertyInfoRecord(
               attributeName,
               STRING,
               false,
@@ -3017,7 +3017,7 @@
             );
           });
           var xlinkHref = "xlinkHref";
-          properties[xlinkHref] = new PropertyInfoRecord(
+          properties2[xlinkHref] = new PropertyInfoRecord(
             "xlinkHref",
             STRING,
             false,
@@ -3029,7 +3029,7 @@
             false
           );
           ["src", "href", "action", "formAction"].forEach(function(attributeName) {
-            properties[attributeName] = new PropertyInfoRecord(
+            properties2[attributeName] = new PropertyInfoRecord(
               attributeName,
               STRING,
               false,
@@ -3053,11 +3053,11 @@
               }
             }
           }
-          function getValueForProperty(node, name, expected, propertyInfo) {
+          function getValueForProperty(node2, name, expected, propertyInfo) {
             {
               if (propertyInfo.mustUseProperty) {
                 var propertyName = propertyInfo.propertyName;
-                return node[propertyName];
+                return node2[propertyName];
               } else {
                 {
                   checkAttributeStringCoercion(expected, name);
@@ -3068,8 +3068,8 @@
                 var attributeName = propertyInfo.attributeName;
                 var stringValue = null;
                 if (propertyInfo.type === OVERLOADED_BOOLEAN) {
-                  if (node.hasAttribute(attributeName)) {
-                    var value = node.getAttribute(attributeName);
+                  if (node2.hasAttribute(attributeName)) {
+                    var value = node2.getAttribute(attributeName);
                     if (value === "") {
                       return true;
                     }
@@ -3081,14 +3081,14 @@
                     }
                     return value;
                   }
-                } else if (node.hasAttribute(attributeName)) {
+                } else if (node2.hasAttribute(attributeName)) {
                   if (shouldRemoveAttribute(name, expected, propertyInfo, false)) {
-                    return node.getAttribute(attributeName);
+                    return node2.getAttribute(attributeName);
                   }
                   if (propertyInfo.type === BOOLEAN) {
                     return expected;
                   }
-                  stringValue = node.getAttribute(attributeName);
+                  stringValue = node2.getAttribute(attributeName);
                 }
                 if (shouldRemoveAttribute(name, expected, propertyInfo, false)) {
                   return stringValue === null ? expected : stringValue;
@@ -3100,15 +3100,15 @@
               }
             }
           }
-          function getValueForAttribute(node, name, expected, isCustomComponentTag) {
+          function getValueForAttribute(node2, name, expected, isCustomComponentTag) {
             {
               if (!isAttributeNameSafe(name)) {
                 return;
               }
-              if (!node.hasAttribute(name)) {
+              if (!node2.hasAttribute(name)) {
                 return expected === void 0 ? void 0 : null;
               }
-              var value = node.getAttribute(name);
+              var value = node2.getAttribute(name);
               {
                 checkAttributeStringCoercion(expected, name);
               }
@@ -3118,7 +3118,7 @@
               return value;
             }
           }
-          function setValueForProperty(node, name, value, isCustomComponentTag) {
+          function setValueForProperty(node2, name, value, isCustomComponentTag) {
             var propertyInfo = getPropertyInfo(name);
             if (shouldIgnoreAttribute(name, propertyInfo, isCustomComponentTag)) {
               return;
@@ -3130,12 +3130,12 @@
               if (isAttributeNameSafe(name)) {
                 var _attributeName = name;
                 if (value === null) {
-                  node.removeAttribute(_attributeName);
+                  node2.removeAttribute(_attributeName);
                 } else {
                   {
                     checkAttributeStringCoercion(value, name);
                   }
-                  node.setAttribute(_attributeName, "" + value);
+                  node2.setAttribute(_attributeName, "" + value);
                 }
               }
               return;
@@ -3145,15 +3145,15 @@
               var propertyName = propertyInfo.propertyName;
               if (value === null) {
                 var type = propertyInfo.type;
-                node[propertyName] = type === BOOLEAN ? false : "";
+                node2[propertyName] = type === BOOLEAN ? false : "";
               } else {
-                node[propertyName] = value;
+                node2[propertyName] = value;
               }
               return;
             }
             var attributeName = propertyInfo.attributeName, attributeNamespace = propertyInfo.attributeNamespace;
             if (value === null) {
-              node.removeAttribute(attributeName);
+              node2.removeAttribute(attributeName);
             } else {
               var _type = propertyInfo.type;
               var attributeValue;
@@ -3171,9 +3171,9 @@
                 }
               }
               if (attributeNamespace) {
-                node.setAttributeNS(attributeNamespace, attributeName, attributeValue);
+                node2.setAttributeNS(attributeNamespace, attributeName, attributeValue);
               } else {
-                node.setAttribute(attributeName, attributeValue);
+                node2.setAttribute(attributeName, attributeValue);
               }
             }
           }
@@ -3207,7 +3207,7 @@
             }
             return null;
           }
-          var assign = Object.assign;
+          var assign2 = Object.assign;
           var disabledDepth = 0;
           var prevLog;
           var prevInfo;
@@ -3258,25 +3258,25 @@
                   writable: true
                 };
                 Object.defineProperties(console, {
-                  log: assign({}, props, {
+                  log: assign2({}, props, {
                     value: prevLog
                   }),
-                  info: assign({}, props, {
+                  info: assign2({}, props, {
                     value: prevInfo
                   }),
-                  warn: assign({}, props, {
+                  warn: assign2({}, props, {
                     value: prevWarn
                   }),
-                  error: assign({}, props, {
+                  error: assign2({}, props, {
                     value: prevError
                   }),
-                  group: assign({}, props, {
+                  group: assign2({}, props, {
                     value: prevGroup
                   }),
-                  groupCollapsed: assign({}, props, {
+                  groupCollapsed: assign2({}, props, {
                     value: prevGroupCollapsed
                   }),
-                  groupEnd: assign({}, props, {
+                  groupEnd: assign2({}, props, {
                     value: prevGroupEnd
                   })
                 });
@@ -3287,18 +3287,18 @@
             }
           }
           var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
-          var prefix;
+          var prefix2;
           function describeBuiltInComponentFrame(name, source, ownerFn) {
             {
-              if (prefix === void 0) {
+              if (prefix2 === void 0) {
                 try {
                   throw Error();
                 } catch (x) {
-                  var match = x.stack.trim().match(/\n( *(at )?)/);
-                  prefix = match && match[1] || "";
+                  var match2 = x.stack.trim().match(/\n( *(at )?)/);
+                  prefix2 = match2 && match2[1] || "";
                 }
               }
-              return "\n" + prefix + name;
+              return "\n" + prefix2 + name;
             }
           }
           var reentry = false;
@@ -3364,19 +3364,19 @@
               if (sample && control && typeof sample.stack === "string") {
                 var sampleLines = sample.stack.split("\n");
                 var controlLines = control.stack.split("\n");
-                var s = sampleLines.length - 1;
-                var c = controlLines.length - 1;
-                while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
-                  c--;
+                var s2 = sampleLines.length - 1;
+                var c2 = controlLines.length - 1;
+                while (s2 >= 1 && c2 >= 0 && sampleLines[s2] !== controlLines[c2]) {
+                  c2--;
                 }
-                for (; s >= 1 && c >= 0; s--, c--) {
-                  if (sampleLines[s] !== controlLines[c]) {
-                    if (s !== 1 || c !== 1) {
+                for (; s2 >= 1 && c2 >= 0; s2--, c2--) {
+                  if (sampleLines[s2] !== controlLines[c2]) {
+                    if (s2 !== 1 || c2 !== 1) {
                       do {
-                        s--;
-                        c--;
-                        if (c < 0 || sampleLines[s] !== controlLines[c]) {
-                          var _frame = "\n" + sampleLines[s].replace(" at new ", " at ");
+                        s2--;
+                        c2--;
+                        if (c2 < 0 || sampleLines[s2] !== controlLines[c2]) {
+                          var _frame = "\n" + sampleLines[s2].replace(" at new ", " at ");
                           if (fn.displayName && _frame.includes("<anonymous>")) {
                             _frame = _frame.replace("<anonymous>", fn.displayName);
                           }
@@ -3387,7 +3387,7 @@
                           }
                           return _frame;
                         }
-                      } while (s >= 1 && c >= 0);
+                      } while (s2 >= 1 && c2 >= 0);
                     }
                     break;
                   }
@@ -3477,7 +3477,7 @@
               case IndeterminateComponent:
               case SimpleMemoComponent:
                 return describeFunctionComponentFrame(fiber.type);
-              case ForwardRef:
+              case ForwardRef2:
                 return describeFunctionComponentFrame(fiber.type.render);
               case ClassComponent:
                 return describeClassComponentFrame(fiber.type);
@@ -3488,17 +3488,17 @@
           function getStackByFiberInDevAndProd(workInProgress2) {
             try {
               var info = "";
-              var node = workInProgress2;
+              var node2 = workInProgress2;
               do {
-                info += describeFiber(node);
-                node = node.return;
-              } while (node);
+                info += describeFiber(node2);
+                node2 = node2.return;
+              } while (node2);
               return info;
             } catch (x) {
               return "\nError generating stack: " + x.message + "\n" + x.stack;
             }
           }
-          function getWrappedName(outerType, innerType, wrapperName) {
+          function getWrappedName2(outerType, innerType, wrapperName) {
             var displayName = outerType.displayName;
             if (displayName) {
               return displayName;
@@ -3547,7 +3547,7 @@
                   var provider = type;
                   return getContextName(provider._context) + ".Provider";
                 case REACT_FORWARD_REF_TYPE:
-                  return getWrappedName(type, type.render, "ForwardRef");
+                  return getWrappedName2(type, type.render, "ForwardRef");
                 case REACT_MEMO_TYPE:
                   var outerName = type.displayName || null;
                   if (outerName !== null) {
@@ -3588,9 +3588,9 @@
                 return getContextName$1(provider._context) + ".Provider";
               case DehydratedFragment:
                 return "DehydratedFragment";
-              case ForwardRef:
+              case ForwardRef2:
                 return getWrappedName$1(type, type.render, "ForwardRef");
-              case Fragment:
+              case Fragment7:
                 return "Fragment";
               case HostComponent:
                 return type;
@@ -3725,36 +3725,36 @@
             var nodeName = elem.nodeName;
             return nodeName && nodeName.toLowerCase() === "input" && (type === "checkbox" || type === "radio");
           }
-          function getTracker(node) {
-            return node._valueTracker;
+          function getTracker(node2) {
+            return node2._valueTracker;
           }
-          function detachTracker(node) {
-            node._valueTracker = null;
+          function detachTracker(node2) {
+            node2._valueTracker = null;
           }
-          function getValueFromNode(node) {
+          function getValueFromNode(node2) {
             var value = "";
-            if (!node) {
+            if (!node2) {
               return value;
             }
-            if (isCheckable(node)) {
-              value = node.checked ? "true" : "false";
+            if (isCheckable(node2)) {
+              value = node2.checked ? "true" : "false";
             } else {
-              value = node.value;
+              value = node2.value;
             }
             return value;
           }
-          function trackValueOnNode(node) {
-            var valueField = isCheckable(node) ? "checked" : "value";
-            var descriptor = Object.getOwnPropertyDescriptor(node.constructor.prototype, valueField);
+          function trackValueOnNode(node2) {
+            var valueField = isCheckable(node2) ? "checked" : "value";
+            var descriptor = Object.getOwnPropertyDescriptor(node2.constructor.prototype, valueField);
             {
-              checkFormFieldValueStringCoercion(node[valueField]);
+              checkFormFieldValueStringCoercion(node2[valueField]);
             }
-            var currentValue = "" + node[valueField];
-            if (node.hasOwnProperty(valueField) || typeof descriptor === "undefined" || typeof descriptor.get !== "function" || typeof descriptor.set !== "function") {
+            var currentValue = "" + node2[valueField];
+            if (node2.hasOwnProperty(valueField) || typeof descriptor === "undefined" || typeof descriptor.get !== "function" || typeof descriptor.set !== "function") {
               return;
             }
             var get2 = descriptor.get, set2 = descriptor.set;
-            Object.defineProperty(node, valueField, {
+            Object.defineProperty(node2, valueField, {
               configurable: true,
               get: function() {
                 return get2.call(this);
@@ -3767,7 +3767,7 @@
                 set2.call(this, value);
               }
             });
-            Object.defineProperty(node, valueField, {
+            Object.defineProperty(node2, valueField, {
               enumerable: descriptor.enumerable
             });
             var tracker = {
@@ -3781,28 +3781,28 @@
                 currentValue = "" + value;
               },
               stopTracking: function() {
-                detachTracker(node);
-                delete node[valueField];
+                detachTracker(node2);
+                delete node2[valueField];
               }
             };
             return tracker;
           }
-          function track(node) {
-            if (getTracker(node)) {
+          function track(node2) {
+            if (getTracker(node2)) {
               return;
             }
-            node._valueTracker = trackValueOnNode(node);
+            node2._valueTracker = trackValueOnNode(node2);
           }
-          function updateValueIfChanged(node) {
-            if (!node) {
+          function updateValueIfChanged(node2) {
+            if (!node2) {
               return false;
             }
-            var tracker = getTracker(node);
+            var tracker = getTracker(node2);
             if (!tracker) {
               return true;
             }
             var lastValue = tracker.getValue();
-            var nextValue = getValueFromNode(node);
+            var nextValue = getValueFromNode(node2);
             if (nextValue !== lastValue) {
               tracker.setValue(nextValue);
               return true;
@@ -3816,7 +3816,7 @@
             }
             try {
               return doc.activeElement || doc.body;
-            } catch (e) {
+            } catch (e2) {
               return doc.body;
             }
           }
@@ -3829,13 +3829,13 @@
             return usesChecked ? props.checked != null : props.value != null;
           }
           function getHostProps(element, props) {
-            var node = element;
+            var node2 = element;
             var checked = props.checked;
-            var hostProps = assign({}, props, {
+            var hostProps = assign2({}, props, {
               defaultChecked: void 0,
               defaultValue: void 0,
               value: void 0,
-              checked: checked != null ? checked : node._wrapperState.initialChecked
+              checked: checked != null ? checked : node2._wrapperState.initialChecked
             });
             return hostProps;
           }
@@ -3851,30 +3851,30 @@
                 didWarnValueDefaultValue = true;
               }
             }
-            var node = element;
+            var node2 = element;
             var defaultValue = props.defaultValue == null ? "" : props.defaultValue;
-            node._wrapperState = {
+            node2._wrapperState = {
               initialChecked: props.checked != null ? props.checked : props.defaultChecked,
               initialValue: getToStringValue(props.value != null ? props.value : defaultValue),
               controlled: isControlled(props)
             };
           }
           function updateChecked(element, props) {
-            var node = element;
+            var node2 = element;
             var checked = props.checked;
             if (checked != null) {
-              setValueForProperty(node, "checked", checked, false);
+              setValueForProperty(node2, "checked", checked, false);
             }
           }
           function updateWrapper(element, props) {
-            var node = element;
+            var node2 = element;
             {
               var controlled = isControlled(props);
-              if (!node._wrapperState.controlled && controlled && !didWarnUncontrolledToControlled) {
+              if (!node2._wrapperState.controlled && controlled && !didWarnUncontrolledToControlled) {
                 error("A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components");
                 didWarnUncontrolledToControlled = true;
               }
-              if (node._wrapperState.controlled && !controlled && !didWarnControlledToUncontrolled) {
+              if (node2._wrapperState.controlled && !controlled && !didWarnControlledToUncontrolled) {
                 error("A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components");
                 didWarnControlledToUncontrolled = true;
               }
@@ -3884,67 +3884,67 @@
             var type = props.type;
             if (value != null) {
               if (type === "number") {
-                if (value === 0 && node.value === "" || // We explicitly want to coerce to number here if possible.
+                if (value === 0 && node2.value === "" || // We explicitly want to coerce to number here if possible.
                 // eslint-disable-next-line
-                node.value != value) {
-                  node.value = toString(value);
+                node2.value != value) {
+                  node2.value = toString(value);
                 }
-              } else if (node.value !== toString(value)) {
-                node.value = toString(value);
+              } else if (node2.value !== toString(value)) {
+                node2.value = toString(value);
               }
             } else if (type === "submit" || type === "reset") {
-              node.removeAttribute("value");
+              node2.removeAttribute("value");
               return;
             }
             {
               if (props.hasOwnProperty("value")) {
-                setDefaultValue(node, props.type, value);
+                setDefaultValue(node2, props.type, value);
               } else if (props.hasOwnProperty("defaultValue")) {
-                setDefaultValue(node, props.type, getToStringValue(props.defaultValue));
+                setDefaultValue(node2, props.type, getToStringValue(props.defaultValue));
               }
             }
             {
               if (props.checked == null && props.defaultChecked != null) {
-                node.defaultChecked = !!props.defaultChecked;
+                node2.defaultChecked = !!props.defaultChecked;
               }
             }
           }
           function postMountWrapper(element, props, isHydrating2) {
-            var node = element;
+            var node2 = element;
             if (props.hasOwnProperty("value") || props.hasOwnProperty("defaultValue")) {
               var type = props.type;
               var isButton = type === "submit" || type === "reset";
               if (isButton && (props.value === void 0 || props.value === null)) {
                 return;
               }
-              var initialValue = toString(node._wrapperState.initialValue);
+              var initialValue = toString(node2._wrapperState.initialValue);
               if (!isHydrating2) {
                 {
-                  if (initialValue !== node.value) {
-                    node.value = initialValue;
+                  if (initialValue !== node2.value) {
+                    node2.value = initialValue;
                   }
                 }
               }
               {
-                node.defaultValue = initialValue;
+                node2.defaultValue = initialValue;
               }
             }
-            var name = node.name;
+            var name = node2.name;
             if (name !== "") {
-              node.name = "";
+              node2.name = "";
             }
             {
-              node.defaultChecked = !node.defaultChecked;
-              node.defaultChecked = !!node._wrapperState.initialChecked;
+              node2.defaultChecked = !node2.defaultChecked;
+              node2.defaultChecked = !!node2._wrapperState.initialChecked;
             }
             if (name !== "") {
-              node.name = name;
+              node2.name = name;
             }
           }
           function restoreControlledState(element, props) {
-            var node = element;
-            updateWrapper(node, props);
-            updateNamedCousins(node, props);
+            var node2 = element;
+            updateWrapper(node2, props);
+            updateNamedCousins(node2, props);
           }
           function updateNamedCousins(rootNode, props) {
             var name = props.name;
@@ -3957,8 +3957,8 @@
                 checkAttributeStringCoercion(name, "name");
               }
               var group = queryRoot.querySelectorAll("input[name=" + JSON.stringify("" + name) + '][type="radio"]');
-              for (var i = 0; i < group.length; i++) {
-                var otherNode = group[i];
+              for (var i2 = 0; i2 < group.length; i2++) {
+                var otherNode = group[i2];
                 if (otherNode === rootNode || otherNode.form !== rootNode.form) {
                   continue;
                 }
@@ -3971,15 +3971,15 @@
               }
             }
           }
-          function setDefaultValue(node, type, value) {
+          function setDefaultValue(node2, type, value) {
             if (
               // Focused number inputs synchronize on blur. See ChangeEventPlugin.js
-              type !== "number" || getActiveElement(node.ownerDocument) !== node
+              type !== "number" || getActiveElement(node2.ownerDocument) !== node2
             ) {
               if (value == null) {
-                node.defaultValue = toString(node._wrapperState.initialValue);
-              } else if (node.defaultValue !== toString(value)) {
-                node.defaultValue = toString(value);
+                node2.defaultValue = toString(node2._wrapperState.initialValue);
+              } else if (node2.defaultValue !== toString(value)) {
+                node2.defaultValue = toString(value);
               }
             }
           }
@@ -3990,7 +3990,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React14.Children.forEach(props.children, function(child) {
+                  React22.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -4021,8 +4021,8 @@
             }
           }
           var isArrayImpl = Array.isArray;
-          function isArray(a) {
-            return isArrayImpl(a);
+          function isArray(a2) {
+            return isArrayImpl(a2);
           }
           var didWarnValueDefaultValue$1;
           {
@@ -4039,8 +4039,8 @@
           function checkSelectPropTypes(props) {
             {
               checkControlledValueProps("select", props);
-              for (var i = 0; i < valuePropNames.length; i++) {
-                var propName = valuePropNames[i];
+              for (var i2 = 0; i2 < valuePropNames.length; i2++) {
+                var propName = valuePropNames[i2];
                 if (props[propName] == null) {
                   continue;
                 }
@@ -4053,13 +4053,13 @@
               }
             }
           }
-          function updateOptions(node, multiple, propValue, setDefaultSelected) {
-            var options2 = node.options;
+          function updateOptions(node2, multiple, propValue, setDefaultSelected) {
+            var options2 = node2.options;
             if (multiple) {
               var selectedValues = propValue;
               var selectedValue = {};
-              for (var i = 0; i < selectedValues.length; i++) {
-                selectedValue["$" + selectedValues[i]] = true;
+              for (var i2 = 0; i2 < selectedValues.length; i2++) {
+                selectedValue["$" + selectedValues[i2]] = true;
               }
               for (var _i = 0; _i < options2.length; _i++) {
                 var selected = selectedValue.hasOwnProperty("$" + options2[_i].value);
@@ -4091,16 +4091,16 @@
             }
           }
           function getHostProps$1(element, props) {
-            return assign({}, props, {
+            return assign2({}, props, {
               value: void 0
             });
           }
           function initWrapperState$1(element, props) {
-            var node = element;
+            var node2 = element;
             {
               checkSelectPropTypes(props);
             }
-            node._wrapperState = {
+            node2._wrapperState = {
               wasMultiple: !!props.multiple
             };
             {
@@ -4111,52 +4111,52 @@
             }
           }
           function postMountWrapper$2(element, props) {
-            var node = element;
-            node.multiple = !!props.multiple;
+            var node2 = element;
+            node2.multiple = !!props.multiple;
             var value = props.value;
             if (value != null) {
-              updateOptions(node, !!props.multiple, value, false);
+              updateOptions(node2, !!props.multiple, value, false);
             } else if (props.defaultValue != null) {
-              updateOptions(node, !!props.multiple, props.defaultValue, true);
+              updateOptions(node2, !!props.multiple, props.defaultValue, true);
             }
           }
           function postUpdateWrapper(element, props) {
-            var node = element;
-            var wasMultiple = node._wrapperState.wasMultiple;
-            node._wrapperState.wasMultiple = !!props.multiple;
+            var node2 = element;
+            var wasMultiple = node2._wrapperState.wasMultiple;
+            node2._wrapperState.wasMultiple = !!props.multiple;
             var value = props.value;
             if (value != null) {
-              updateOptions(node, !!props.multiple, value, false);
+              updateOptions(node2, !!props.multiple, value, false);
             } else if (wasMultiple !== !!props.multiple) {
               if (props.defaultValue != null) {
-                updateOptions(node, !!props.multiple, props.defaultValue, true);
+                updateOptions(node2, !!props.multiple, props.defaultValue, true);
               } else {
-                updateOptions(node, !!props.multiple, props.multiple ? [] : "", false);
+                updateOptions(node2, !!props.multiple, props.multiple ? [] : "", false);
               }
             }
           }
           function restoreControlledState$1(element, props) {
-            var node = element;
+            var node2 = element;
             var value = props.value;
             if (value != null) {
-              updateOptions(node, !!props.multiple, value, false);
+              updateOptions(node2, !!props.multiple, value, false);
             }
           }
           var didWarnValDefaultVal = false;
           function getHostProps$2(element, props) {
-            var node = element;
+            var node2 = element;
             if (props.dangerouslySetInnerHTML != null) {
               throw new Error("`dangerouslySetInnerHTML` does not make sense on <textarea>.");
             }
-            var hostProps = assign({}, props, {
+            var hostProps = assign2({}, props, {
               value: void 0,
               defaultValue: void 0,
-              children: toString(node._wrapperState.initialValue)
+              children: toString(node2._wrapperState.initialValue)
             });
             return hostProps;
           }
           function initWrapperState$2(element, props) {
-            var node = element;
+            var node2 = element;
             {
               checkControlledValueProps("textarea", props);
               if (props.value !== void 0 && props.defaultValue !== void 0 && !didWarnValDefaultVal) {
@@ -4189,33 +4189,33 @@
               }
               initialValue = defaultValue;
             }
-            node._wrapperState = {
+            node2._wrapperState = {
               initialValue: getToStringValue(initialValue)
             };
           }
           function updateWrapper$1(element, props) {
-            var node = element;
+            var node2 = element;
             var value = getToStringValue(props.value);
             var defaultValue = getToStringValue(props.defaultValue);
             if (value != null) {
               var newValue = toString(value);
-              if (newValue !== node.value) {
-                node.value = newValue;
+              if (newValue !== node2.value) {
+                node2.value = newValue;
               }
-              if (props.defaultValue == null && node.defaultValue !== newValue) {
-                node.defaultValue = newValue;
+              if (props.defaultValue == null && node2.defaultValue !== newValue) {
+                node2.defaultValue = newValue;
               }
             }
             if (defaultValue != null) {
-              node.defaultValue = toString(defaultValue);
+              node2.defaultValue = toString(defaultValue);
             }
           }
           function postMountWrapper$3(element, props) {
-            var node = element;
-            var textContent = node.textContent;
-            if (textContent === node._wrapperState.initialValue) {
+            var node2 = element;
+            var textContent = node2.textContent;
+            if (textContent === node2._wrapperState.initialValue) {
               if (textContent !== "" && textContent !== null) {
-                node.value = textContent;
+                node2.value = textContent;
               }
             }
           }
@@ -4256,37 +4256,37 @@
             }
           };
           var reusableSVGContainer;
-          var setInnerHTML = createMicrosoftUnsafeLocalFunction(function(node, html) {
-            if (node.namespaceURI === SVG_NAMESPACE) {
-              if (!("innerHTML" in node)) {
+          var setInnerHTML = createMicrosoftUnsafeLocalFunction(function(node2, html) {
+            if (node2.namespaceURI === SVG_NAMESPACE) {
+              if (!("innerHTML" in node2)) {
                 reusableSVGContainer = reusableSVGContainer || document.createElement("div");
                 reusableSVGContainer.innerHTML = "<svg>" + html.valueOf().toString() + "</svg>";
                 var svgNode = reusableSVGContainer.firstChild;
-                while (node.firstChild) {
-                  node.removeChild(node.firstChild);
+                while (node2.firstChild) {
+                  node2.removeChild(node2.firstChild);
                 }
                 while (svgNode.firstChild) {
-                  node.appendChild(svgNode.firstChild);
+                  node2.appendChild(svgNode.firstChild);
                 }
                 return;
               }
             }
-            node.innerHTML = html;
+            node2.innerHTML = html;
           });
           var ELEMENT_NODE = 1;
           var TEXT_NODE = 3;
           var COMMENT_NODE = 8;
           var DOCUMENT_NODE = 9;
           var DOCUMENT_FRAGMENT_NODE = 11;
-          var setTextContent = function(node, text) {
+          var setTextContent = function(node2, text) {
             if (text) {
-              var firstChild = node.firstChild;
-              if (firstChild && firstChild === node.lastChild && firstChild.nodeType === TEXT_NODE) {
+              var firstChild = node2.firstChild;
+              if (firstChild && firstChild === node2.lastChild && firstChild.nodeType === TEXT_NODE) {
                 firstChild.nodeValue = text;
                 return;
               }
             }
-            node.textContent = text;
+            node2.textContent = text;
           };
           var shorthandToLonghand = {
             animation: ["animationDelay", "animationDirection", "animationDuration", "animationFillMode", "animationIterationCount", "animationName", "animationPlayState", "animationTimingFunction"],
@@ -4383,21 +4383,21 @@
             strokeOpacity: true,
             strokeWidth: true
           };
-          function prefixKey(prefix2, key) {
-            return prefix2 + key.charAt(0).toUpperCase() + key.substring(1);
+          function prefixKey(prefix3, key) {
+            return prefix3 + key.charAt(0).toUpperCase() + key.substring(1);
           }
           var prefixes = ["Webkit", "ms", "Moz", "O"];
           Object.keys(isUnitlessNumber).forEach(function(prop) {
-            prefixes.forEach(function(prefix2) {
-              isUnitlessNumber[prefixKey(prefix2, prop)] = isUnitlessNumber[prop];
+            prefixes.forEach(function(prefix3) {
+              isUnitlessNumber[prefixKey(prefix3, prop)] = isUnitlessNumber[prop];
             });
           });
-          function dangerousStyleValue(name, value, isCustomProperty) {
-            var isEmpty = value == null || typeof value === "boolean" || value === "";
-            if (isEmpty) {
+          function dangerousStyleValue(name, value, isCustomProperty3) {
+            var isEmpty3 = value == null || typeof value === "boolean" || value === "";
+            if (isEmpty3) {
               return "";
             }
-            if (!isCustomProperty && typeof value === "number" && value !== 0 && !(isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name])) {
+            if (!isCustomProperty3 && typeof value === "number" && value !== 0 && !(isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name])) {
               return value + "px";
             }
             {
@@ -4422,8 +4422,8 @@
             var warnedForNaNValue = false;
             var warnedForInfinityValue = false;
             var camelize = function(string) {
-              return string.replace(hyphenPattern, function(_, character) {
-                return character.toUpperCase();
+              return string.replace(hyphenPattern, function(_2, character2) {
+                return character2.toUpperCase();
               });
             };
             var warnHyphenatedStyleName = function(name) {
@@ -4489,42 +4489,42 @@
           function createDangerousStringForStyles(styles) {
             {
               var serialized = "";
-              var delimiter = "";
+              var delimiter2 = "";
               for (var styleName in styles) {
                 if (!styles.hasOwnProperty(styleName)) {
                   continue;
                 }
                 var styleValue = styles[styleName];
                 if (styleValue != null) {
-                  var isCustomProperty = styleName.indexOf("--") === 0;
-                  serialized += delimiter + (isCustomProperty ? styleName : hyphenateStyleName(styleName)) + ":";
-                  serialized += dangerousStyleValue(styleName, styleValue, isCustomProperty);
-                  delimiter = ";";
+                  var isCustomProperty3 = styleName.indexOf("--") === 0;
+                  serialized += delimiter2 + (isCustomProperty3 ? styleName : hyphenateStyleName(styleName)) + ":";
+                  serialized += dangerousStyleValue(styleName, styleValue, isCustomProperty3);
+                  delimiter2 = ";";
                 }
               }
               return serialized || null;
             }
           }
-          function setValueForStyles(node, styles) {
-            var style2 = node.style;
+          function setValueForStyles(node2, styles) {
+            var style4 = node2.style;
             for (var styleName in styles) {
               if (!styles.hasOwnProperty(styleName)) {
                 continue;
               }
-              var isCustomProperty = styleName.indexOf("--") === 0;
+              var isCustomProperty3 = styleName.indexOf("--") === 0;
               {
-                if (!isCustomProperty) {
+                if (!isCustomProperty3) {
                   warnValidStyle$1(styleName, styles[styleName]);
                 }
               }
-              var styleValue = dangerousStyleValue(styleName, styles[styleName], isCustomProperty);
+              var styleValue = dangerousStyleValue(styleName, styles[styleName], isCustomProperty3);
               if (styleName === "float") {
                 styleName = "cssFloat";
               }
-              if (isCustomProperty) {
-                style2.setProperty(styleName, styleValue);
+              if (isCustomProperty3) {
+                style4.setProperty(styleName, styleValue);
               } else {
-                style2[styleName] = styleValue;
+                style4[styleName] = styleValue;
               }
             }
           }
@@ -4535,8 +4535,8 @@
             var expanded = {};
             for (var key in styles) {
               var longhands = shorthandToLonghand[key] || [key];
-              for (var i = 0; i < longhands.length; i++) {
-                expanded[longhands[i]] = key;
+              for (var i2 = 0; i2 < longhands.length; i2++) {
+                expanded[longhands[i2]] = key;
               }
             }
             return expanded;
@@ -4581,7 +4581,7 @@
             wbr: true
             // NOTE: menuitem's close tag should be omitted, but that causes problems.
           };
-          var voidElementTags = assign({
+          var voidElementTags = assign2({
             menuitem: true
           }, omittedCloseTags);
           var HTML = "__html";
@@ -5182,7 +5182,7 @@
           var rARIACamel = new RegExp("^(aria)[A-Z][" + ATTRIBUTE_NAME_CHAR + "]*$");
           function validateProperty(tagName, name) {
             {
-              if (hasOwnProperty.call(warnedProperties, name) && warnedProperties[name]) {
+              if (hasOwnProperty2.call(warnedProperties, name) && warnedProperties[name]) {
                 return true;
               }
               if (rARIACamel.test(name)) {
@@ -5265,7 +5265,7 @@
             var rARIA$1 = new RegExp("^(aria)-[" + ATTRIBUTE_NAME_CHAR + "]*$");
             var rARIACamel$1 = new RegExp("^(aria)[A-Z][" + ATTRIBUTE_NAME_CHAR + "]*$");
             validateProperty$1 = function(tagName, name, value, eventRegistry) {
-              if (hasOwnProperty.call(warnedProperties$1, name) && warnedProperties$1[name]) {
+              if (hasOwnProperty2.call(warnedProperties$1, name) && warnedProperties$1[name]) {
                 return true;
               }
               var lowerCasedName = name.toLowerCase();
@@ -5458,8 +5458,8 @@
             restoreQueue = null;
             restoreStateOfTarget(target);
             if (queuedTargets) {
-              for (var i = 0; i < queuedTargets.length; i++) {
-                restoreStateOfTarget(queuedTargets[i]);
+              for (var i2 = 0; i2 < queuedTargets.length; i2++) {
+                restoreStateOfTarget(queuedTargets[i2]);
               }
             }
           }
@@ -5476,13 +5476,13 @@
               restoreStateIfNeeded();
             }
           }
-          function batchedUpdates(fn, a, b) {
+          function batchedUpdates(fn, a2, b3) {
             if (isInsideEventHandler) {
-              return fn(a, b);
+              return fn(a2, b3);
             }
             isInsideEventHandler = true;
             try {
-              return batchedUpdatesImpl(fn, a, b);
+              return batchedUpdatesImpl(fn, a2, b3);
             } finally {
               isInsideEventHandler = false;
               finishEventHandler();
@@ -5542,11 +5542,11 @@
               });
               window.addEventListener("test", options, options);
               window.removeEventListener("test", options, options);
-            } catch (e) {
+            } catch (e2) {
               passiveBrowserEventsSupported = false;
             }
           }
-          function invokeGuardedCallbackProd(name, func, context, a, b, c, d, e, f) {
+          function invokeGuardedCallbackProd(name, func, context, a2, b3, c2, d2, e2, f3) {
             var funcArgs = Array.prototype.slice.call(arguments, 3);
             try {
               func.apply(context, funcArgs);
@@ -5558,7 +5558,7 @@
           {
             if (typeof window !== "undefined" && typeof window.dispatchEvent === "function" && typeof document !== "undefined" && typeof document.createEvent === "function") {
               var fakeNode = document.createElement("react");
-              invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context, a, b, c, d, e, f) {
+              invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context, a2, b3, c2, d2, e2, f3) {
                 if (typeof document === "undefined" || document === null) {
                   throw new Error("The `document` global was defined when React was initialized, but is not defined anymore. This can happen in a test environment if a component schedules an update from an asynchronous callback, but the test has already finished running. To solve this, you can either unmount the component at the end of your test (and ensure that any asynchronous operations get canceled in `componentWillUnmount`), or you can change the test itself to be asynchronous.");
                 }
@@ -5633,12 +5633,12 @@
               caughtError = error2;
             }
           };
-          function invokeGuardedCallback(name, func, context, a, b, c, d, e, f) {
+          function invokeGuardedCallback(name, func, context, a2, b3, c2, d2, e2, f3) {
             hasError = false;
             caughtError = null;
             invokeGuardedCallbackImpl$1.apply(reporter, arguments);
           }
-          function invokeGuardedCallbackAndCatchFirstError(name, func, context, a, b, c, d, e, f) {
+          function invokeGuardedCallbackAndCatchFirstError(name, func, context, a2, b3, c2, d2, e2, f3) {
             invokeGuardedCallback.apply(this, arguments);
             if (hasError) {
               var error2 = clearCaughtError();
@@ -5790,23 +5790,23 @@
           var StaticMask = LayoutStatic | PassiveStatic | RefStatic;
           var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
           function getNearestMountedFiber(fiber) {
-            var node = fiber;
+            var node2 = fiber;
             var nearestMounted = fiber;
             if (!fiber.alternate) {
-              var nextNode = node;
+              var nextNode = node2;
               do {
-                node = nextNode;
-                if ((node.flags & (Placement | Hydrating)) !== NoFlags) {
-                  nearestMounted = node.return;
+                node2 = nextNode;
+                if ((node2.flags & (Placement | Hydrating)) !== NoFlags) {
+                  nearestMounted = node2.return;
                 }
-                nextNode = node.return;
+                nextNode = node2.return;
               } while (nextNode);
             } else {
-              while (node.return) {
-                node = node.return;
+              while (node2.return) {
+                node2 = node2.return;
               }
             }
-            if (node.tag === HostRoot) {
+            if (node2.tag === HostRoot) {
               return nearestMounted;
             }
             return null;
@@ -5867,10 +5867,10 @@
               }
               return fiber;
             }
-            var a = fiber;
-            var b = alternate;
+            var a2 = fiber;
+            var b3 = alternate;
             while (true) {
-              var parentA = a.return;
+              var parentA = a2.return;
               if (parentA === null) {
                 break;
               }
@@ -5878,7 +5878,7 @@
               if (parentB === null) {
                 var nextParent = parentA.return;
                 if (nextParent !== null) {
-                  a = b = nextParent;
+                  a2 = b3 = nextParent;
                   continue;
                 }
                 break;
@@ -5886,11 +5886,11 @@
               if (parentA.child === parentB.child) {
                 var child = parentA.child;
                 while (child) {
-                  if (child === a) {
+                  if (child === a2) {
                     assertIsMounted(parentA);
                     return fiber;
                   }
-                  if (child === b) {
+                  if (child === b3) {
                     assertIsMounted(parentA);
                     return alternate;
                   }
@@ -5898,23 +5898,23 @@
                 }
                 throw new Error("Unable to find node on an unmounted component.");
               }
-              if (a.return !== b.return) {
-                a = parentA;
-                b = parentB;
+              if (a2.return !== b3.return) {
+                a2 = parentA;
+                b3 = parentB;
               } else {
                 var didFindChild = false;
                 var _child = parentA.child;
                 while (_child) {
-                  if (_child === a) {
+                  if (_child === a2) {
                     didFindChild = true;
-                    a = parentA;
-                    b = parentB;
+                    a2 = parentA;
+                    b3 = parentB;
                     break;
                   }
-                  if (_child === b) {
+                  if (_child === b3) {
                     didFindChild = true;
-                    b = parentA;
-                    a = parentB;
+                    b3 = parentA;
+                    a2 = parentB;
                     break;
                   }
                   _child = _child.sibling;
@@ -5922,16 +5922,16 @@
                 if (!didFindChild) {
                   _child = parentB.child;
                   while (_child) {
-                    if (_child === a) {
+                    if (_child === a2) {
                       didFindChild = true;
-                      a = parentB;
-                      b = parentA;
+                      a2 = parentB;
+                      b3 = parentA;
                       break;
                     }
-                    if (_child === b) {
+                    if (_child === b3) {
                       didFindChild = true;
-                      b = parentB;
-                      a = parentA;
+                      b3 = parentB;
+                      a2 = parentA;
                       break;
                     }
                     _child = _child.sibling;
@@ -5941,14 +5941,14 @@
                   }
                 }
               }
-              if (a.alternate !== b) {
+              if (a2.alternate !== b3) {
                 throw new Error("Return fibers should always be each others' alternates. This error is likely caused by a bug in React. Please file an issue.");
               }
             }
-            if (a.tag !== HostRoot) {
+            if (a2.tag !== HostRoot) {
               throw new Error("Unable to find node on an unmounted component.");
             }
-            if (a.stateNode.current === a) {
+            if (a2.stateNode.current === a2) {
               return fiber;
             }
             return alternate;
@@ -5957,15 +5957,15 @@
             var currentParent = findCurrentFiberUsingSlowPath(parent);
             return currentParent !== null ? findCurrentHostFiberImpl(currentParent) : null;
           }
-          function findCurrentHostFiberImpl(node) {
-            if (node.tag === HostComponent || node.tag === HostText) {
-              return node;
+          function findCurrentHostFiberImpl(node2) {
+            if (node2.tag === HostComponent || node2.tag === HostText) {
+              return node2;
             }
-            var child = node.child;
+            var child = node2.child;
             while (child !== null) {
-              var match = findCurrentHostFiberImpl(child);
-              if (match !== null) {
-                return match;
+              var match2 = findCurrentHostFiberImpl(child);
+              if (match2 !== null) {
+                return match2;
               }
               child = child.sibling;
             }
@@ -5975,16 +5975,16 @@
             var currentParent = findCurrentFiberUsingSlowPath(parent);
             return currentParent !== null ? findCurrentHostFiberWithNoPortalsImpl(currentParent) : null;
           }
-          function findCurrentHostFiberWithNoPortalsImpl(node) {
-            if (node.tag === HostComponent || node.tag === HostText) {
-              return node;
+          function findCurrentHostFiberWithNoPortalsImpl(node2) {
+            if (node2.tag === HostComponent || node2.tag === HostText) {
+              return node2;
             }
-            var child = node.child;
+            var child = node2.child;
             while (child !== null) {
               if (child.tag !== HostPortal) {
-                var match = findCurrentHostFiberWithNoPortalsImpl(child);
-                if (match !== null) {
-                  return match;
+                var match2 = findCurrentHostFiberWithNoPortalsImpl(child);
+                if (match2 !== null) {
+                  return match2;
                 }
               }
               child = child.sibling;
@@ -6025,7 +6025,7 @@
             }
             try {
               if (enableSchedulingProfiler) {
-                internals = assign({}, internals, {
+                internals = assign2({}, internals, {
                   getLaneLabelMap,
                   injectProfilingHooks
                 });
@@ -6805,30 +6805,30 @@
           function laneToIndex(lane) {
             return pickArbitraryLaneIndex(lane);
           }
-          function includesSomeLane(a, b) {
-            return (a & b) !== NoLanes;
+          function includesSomeLane(a2, b3) {
+            return (a2 & b3) !== NoLanes;
           }
           function isSubsetOfLanes(set2, subset) {
             return (set2 & subset) === subset;
           }
-          function mergeLanes(a, b) {
-            return a | b;
+          function mergeLanes(a2, b3) {
+            return a2 | b3;
           }
           function removeLanes(set2, subset) {
             return set2 & ~subset;
           }
-          function intersectLanes(a, b) {
-            return a & b;
+          function intersectLanes(a2, b3) {
+            return a2 & b3;
           }
           function laneToLanes(lane) {
             return lane;
           }
-          function higherPriorityLane(a, b) {
-            return a !== NoLane && a < b ? a : b;
+          function higherPriorityLane(a2, b3) {
+            return a2 !== NoLane && a2 < b3 ? a2 : b3;
           }
           function createLaneMap(initial) {
             var laneMap = [];
-            for (var i = 0; i < TotalLanes; i++) {
+            for (var i2 = 0; i2 < TotalLanes; i2++) {
               laneMap.push(initial);
             }
             return laneMap;
@@ -7001,14 +7001,14 @@
               currentUpdatePriority = previousPriority;
             }
           }
-          function higherEventPriority(a, b) {
-            return a !== 0 && a < b ? a : b;
+          function higherEventPriority(a2, b3) {
+            return a2 !== 0 && a2 < b3 ? a2 : b3;
           }
-          function lowerEventPriority(a, b) {
-            return a === 0 || a > b ? a : b;
+          function lowerEventPriority(a2, b3) {
+            return a2 === 0 || a2 > b3 ? a2 : b3;
           }
-          function isHigherEventPriority(a, b) {
-            return a !== 0 && a < b;
+          function isHigherEventPriority(a2, b3) {
+            return a2 !== 0 && a2 < b3;
           }
           function lanesToEventPriority(lanes) {
             var lane = getHighestPriorityLane(lanes);
@@ -7212,14 +7212,14 @@
               target,
               priority: updatePriority
             };
-            var i = 0;
-            for (; i < queuedExplicitHydrationTargets.length; i++) {
-              if (!isHigherEventPriority(updatePriority, queuedExplicitHydrationTargets[i].priority)) {
+            var i2 = 0;
+            for (; i2 < queuedExplicitHydrationTargets.length; i2++) {
+              if (!isHigherEventPriority(updatePriority, queuedExplicitHydrationTargets[i2].priority)) {
                 break;
               }
             }
-            queuedExplicitHydrationTargets.splice(i, 0, queuedTarget);
-            if (i === 0) {
+            queuedExplicitHydrationTargets.splice(i2, 0, queuedTarget);
+            if (i2 === 0) {
               attemptExplicitHydrationTarget(queuedTarget);
             }
           }
@@ -7282,8 +7282,8 @@
           function retryIfBlockedOn(unblocked) {
             if (queuedDiscreteEvents.length > 0) {
               scheduleCallbackIfUnblocked(queuedDiscreteEvents[0], unblocked);
-              for (var i = 1; i < queuedDiscreteEvents.length; i++) {
-                var queuedEvent = queuedDiscreteEvents[i];
+              for (var i2 = 1; i2 < queuedDiscreteEvents.length; i2++) {
+                var queuedEvent = queuedDiscreteEvents[i2];
                 if (queuedEvent.blockedOn === unblocked) {
                   queuedEvent.blockedOn = null;
                 }
@@ -7655,7 +7655,7 @@
               this.isPropagationStopped = functionThatReturnsFalse;
               return this;
             }
-            assign(SyntheticBaseEvent.prototype, {
+            assign2(SyntheticBaseEvent.prototype, {
               preventDefault: function() {
                 this.defaultPrevented = true;
                 var event = this.nativeEvent;
@@ -7708,7 +7708,7 @@
             isTrusted: 0
           };
           var SyntheticEvent = createSyntheticEvent(EventInterface);
-          var UIEventInterface = assign({}, EventInterface, {
+          var UIEventInterface = assign2({}, EventInterface, {
             view: 0,
             detail: 0
           });
@@ -7728,7 +7728,7 @@
               lastMouseEvent = event;
             }
           }
-          var MouseEventInterface = assign({}, UIEventInterface, {
+          var MouseEventInterface = assign2({}, UIEventInterface, {
             screenX: 0,
             screenY: 0,
             clientX: 0,
@@ -7762,27 +7762,27 @@
             }
           });
           var SyntheticMouseEvent = createSyntheticEvent(MouseEventInterface);
-          var DragEventInterface = assign({}, MouseEventInterface, {
+          var DragEventInterface = assign2({}, MouseEventInterface, {
             dataTransfer: 0
           });
           var SyntheticDragEvent = createSyntheticEvent(DragEventInterface);
-          var FocusEventInterface = assign({}, UIEventInterface, {
+          var FocusEventInterface = assign2({}, UIEventInterface, {
             relatedTarget: 0
           });
           var SyntheticFocusEvent = createSyntheticEvent(FocusEventInterface);
-          var AnimationEventInterface = assign({}, EventInterface, {
+          var AnimationEventInterface = assign2({}, EventInterface, {
             animationName: 0,
             elapsedTime: 0,
             pseudoElement: 0
           });
           var SyntheticAnimationEvent = createSyntheticEvent(AnimationEventInterface);
-          var ClipboardEventInterface = assign({}, EventInterface, {
+          var ClipboardEventInterface = assign2({}, EventInterface, {
             clipboardData: function(event) {
               return "clipboardData" in event ? event.clipboardData : window.clipboardData;
             }
           });
           var SyntheticClipboardEvent = createSyntheticEvent(ClipboardEventInterface);
-          var CompositionEventInterface = assign({}, EventInterface, {
+          var CompositionEventInterface = assign2({}, EventInterface, {
             data: 0
           });
           var SyntheticCompositionEvent = createSyntheticEvent(CompositionEventInterface);
@@ -7873,7 +7873,7 @@
           function getEventModifierState(nativeEvent) {
             return modifierStateGetter;
           }
-          var KeyboardEventInterface = assign({}, UIEventInterface, {
+          var KeyboardEventInterface = assign2({}, UIEventInterface, {
             key: getEventKey,
             code: 0,
             location: 0,
@@ -7908,7 +7908,7 @@
             }
           });
           var SyntheticKeyboardEvent = createSyntheticEvent(KeyboardEventInterface);
-          var PointerEventInterface = assign({}, MouseEventInterface, {
+          var PointerEventInterface = assign2({}, MouseEventInterface, {
             pointerId: 0,
             width: 0,
             height: 0,
@@ -7921,7 +7921,7 @@
             isPrimary: 0
           });
           var SyntheticPointerEvent = createSyntheticEvent(PointerEventInterface);
-          var TouchEventInterface = assign({}, UIEventInterface, {
+          var TouchEventInterface = assign2({}, UIEventInterface, {
             touches: 0,
             targetTouches: 0,
             changedTouches: 0,
@@ -7932,13 +7932,13 @@
             getModifierState: getEventModifierState
           });
           var SyntheticTouchEvent = createSyntheticEvent(TouchEventInterface);
-          var TransitionEventInterface = assign({}, EventInterface, {
+          var TransitionEventInterface = assign2({}, EventInterface, {
             propertyName: 0,
             elapsedTime: 0,
             pseudoElement: 0
           });
           var SyntheticTransitionEvent = createSyntheticEvent(TransitionEventInterface);
-          var WheelEventInterface = assign({}, MouseEventInterface, {
+          var WheelEventInterface = assign2({}, MouseEventInterface, {
             deltaX: function(event) {
               return "deltaX" in event ? event.deltaX : (
                 // Fallback to `wheelDeltaX` for Webkit and normalize (right is positive).
@@ -8267,13 +8267,13 @@
               return getInstIfValueChanged(targetInst);
             }
           }
-          function handleControlledInputBlur(node) {
-            var state = node._wrapperState;
-            if (!state || !state.controlled || node.type !== "number") {
+          function handleControlledInputBlur(node2) {
+            var state = node2._wrapperState;
+            if (!state || !state.controlled || node2.type !== "number") {
               return;
             }
             {
-              setDefaultValue(node, "number", node.value);
+              setDefaultValue(node2, "number", node2.value);
             }
           }
           function extractEvents$1(dispatchQueue, domEventName, targetInst, nativeEvent, nativeEventTarget, eventSystemFlags, targetContainer) {
@@ -8336,11 +8336,11 @@
                 win = window;
               }
             }
-            var from;
+            var from2;
             var to;
             if (isOutEvent) {
               var _related = nativeEvent.relatedTarget || nativeEvent.toElement;
-              from = targetInst;
+              from2 = targetInst;
               to = _related ? getClosestInstanceFromNode(_related) : null;
               if (to !== null) {
                 var nearestMounted = getNearestMountedFiber(to);
@@ -8349,10 +8349,10 @@
                 }
               }
             } else {
-              from = null;
+              from2 = null;
               to = targetInst;
             }
-            if (from === to) {
+            if (from2 === to) {
               return;
             }
             var SyntheticEventCtor = SyntheticMouseEvent;
@@ -8365,9 +8365,9 @@
               enterEventType = "onPointerEnter";
               eventTypePrefix = "pointer";
             }
-            var fromNode = from == null ? win : getNodeFromInstance(from);
+            var fromNode = from2 == null ? win : getNodeFromInstance(from2);
             var toNode = to == null ? win : getNodeFromInstance(to);
-            var leave = new SyntheticEventCtor(leaveEventType, eventTypePrefix + "leave", from, nativeEvent, nativeEventTarget);
+            var leave = new SyntheticEventCtor(leaveEventType, eventTypePrefix + "leave", from2, nativeEvent, nativeEventTarget);
             leave.target = fromNode;
             leave.relatedTarget = toNode;
             var enter = null;
@@ -8378,10 +8378,10 @@
               enterEvent.relatedTarget = fromNode;
               enter = enterEvent;
             }
-            accumulateEnterLeaveTwoPhaseListeners(dispatchQueue, leave, enter, from, to);
+            accumulateEnterLeaveTwoPhaseListeners(dispatchQueue, leave, enter, from2, to);
           }
-          function is(x, y) {
-            return x === y && (x !== 0 || 1 / x === 1 / y) || x !== x && y !== y;
+          function is(x, y2) {
+            return x === y2 && (x !== 0 || 1 / x === 1 / y2) || x !== x && y2 !== y2;
           }
           var objectIs = typeof Object.is === "function" ? Object.is : is;
           function shallowEqual(objA, objB) {
@@ -8396,49 +8396,49 @@
             if (keysA.length !== keysB.length) {
               return false;
             }
-            for (var i = 0; i < keysA.length; i++) {
-              var currentKey = keysA[i];
-              if (!hasOwnProperty.call(objB, currentKey) || !objectIs(objA[currentKey], objB[currentKey])) {
+            for (var i2 = 0; i2 < keysA.length; i2++) {
+              var currentKey = keysA[i2];
+              if (!hasOwnProperty2.call(objB, currentKey) || !objectIs(objA[currentKey], objB[currentKey])) {
                 return false;
               }
             }
             return true;
           }
-          function getLeafNode(node) {
-            while (node && node.firstChild) {
-              node = node.firstChild;
+          function getLeafNode(node2) {
+            while (node2 && node2.firstChild) {
+              node2 = node2.firstChild;
             }
-            return node;
+            return node2;
           }
-          function getSiblingNode(node) {
-            while (node) {
-              if (node.nextSibling) {
-                return node.nextSibling;
+          function getSiblingNode(node2) {
+            while (node2) {
+              if (node2.nextSibling) {
+                return node2.nextSibling;
               }
-              node = node.parentNode;
+              node2 = node2.parentNode;
             }
           }
           function getNodeForCharacterOffset(root3, offset) {
-            var node = getLeafNode(root3);
+            var node2 = getLeafNode(root3);
             var nodeStart = 0;
             var nodeEnd = 0;
-            while (node) {
-              if (node.nodeType === TEXT_NODE) {
-                nodeEnd = nodeStart + node.textContent.length;
+            while (node2) {
+              if (node2.nodeType === TEXT_NODE) {
+                nodeEnd = nodeStart + node2.textContent.length;
                 if (nodeStart <= offset && nodeEnd >= offset) {
                   return {
-                    node,
+                    node: node2,
                     offset: offset - nodeStart
                   };
                 }
                 nodeStart = nodeEnd;
               }
-              node = getLeafNode(getSiblingNode(node));
+              node2 = getLeafNode(getSiblingNode(node2));
             }
           }
           function getOffsets(outerNode) {
-            var ownerDocument = outerNode.ownerDocument;
-            var win = ownerDocument && ownerDocument.defaultView || window;
+            var ownerDocument2 = outerNode.ownerDocument;
+            var win = ownerDocument2 && ownerDocument2.defaultView || window;
             var selection = win.getSelection && win.getSelection();
             if (!selection || selection.rangeCount === 0) {
               return null;
@@ -8447,55 +8447,55 @@
             try {
               anchorNode.nodeType;
               focusNode.nodeType;
-            } catch (e) {
+            } catch (e2) {
               return null;
             }
             return getModernOffsetsFromPoints(outerNode, anchorNode, anchorOffset, focusNode, focusOffset);
           }
           function getModernOffsetsFromPoints(outerNode, anchorNode, anchorOffset, focusNode, focusOffset) {
-            var length = 0;
+            var length2 = 0;
             var start = -1;
             var end = -1;
             var indexWithinAnchor = 0;
             var indexWithinFocus = 0;
-            var node = outerNode;
+            var node2 = outerNode;
             var parentNode = null;
             outer:
               while (true) {
-                var next = null;
+                var next2 = null;
                 while (true) {
-                  if (node === anchorNode && (anchorOffset === 0 || node.nodeType === TEXT_NODE)) {
-                    start = length + anchorOffset;
+                  if (node2 === anchorNode && (anchorOffset === 0 || node2.nodeType === TEXT_NODE)) {
+                    start = length2 + anchorOffset;
                   }
-                  if (node === focusNode && (focusOffset === 0 || node.nodeType === TEXT_NODE)) {
-                    end = length + focusOffset;
+                  if (node2 === focusNode && (focusOffset === 0 || node2.nodeType === TEXT_NODE)) {
+                    end = length2 + focusOffset;
                   }
-                  if (node.nodeType === TEXT_NODE) {
-                    length += node.nodeValue.length;
+                  if (node2.nodeType === TEXT_NODE) {
+                    length2 += node2.nodeValue.length;
                   }
-                  if ((next = node.firstChild) === null) {
+                  if ((next2 = node2.firstChild) === null) {
                     break;
                   }
-                  parentNode = node;
-                  node = next;
+                  parentNode = node2;
+                  node2 = next2;
                 }
                 while (true) {
-                  if (node === outerNode) {
+                  if (node2 === outerNode) {
                     break outer;
                   }
                   if (parentNode === anchorNode && ++indexWithinAnchor === anchorOffset) {
-                    start = length;
+                    start = length2;
                   }
                   if (parentNode === focusNode && ++indexWithinFocus === focusOffset) {
-                    end = length;
+                    end = length2;
                   }
-                  if ((next = node.nextSibling) !== null) {
+                  if ((next2 = node2.nextSibling) !== null) {
                     break;
                   }
-                  node = parentNode;
-                  parentNode = node.parentNode;
+                  node2 = parentNode;
+                  parentNode = node2.parentNode;
                 }
-                node = next;
+                node2 = next2;
               }
             if (start === -1 || end === -1) {
               return null;
@@ -8505,23 +8505,23 @@
               end
             };
           }
-          function setOffsets(node, offsets) {
-            var doc = node.ownerDocument || document;
+          function setOffsets(node2, offsets) {
+            var doc = node2.ownerDocument || document;
             var win = doc && doc.defaultView || window;
             if (!win.getSelection) {
               return;
             }
             var selection = win.getSelection();
-            var length = node.textContent.length;
-            var start = Math.min(offsets.start, length);
-            var end = offsets.end === void 0 ? start : Math.min(offsets.end, length);
+            var length2 = node2.textContent.length;
+            var start = Math.min(offsets.start, length2);
+            var end = offsets.end === void 0 ? start : Math.min(offsets.end, length2);
             if (!selection.extend && start > end) {
               var temp = end;
               end = start;
               start = temp;
             }
-            var startMarker = getNodeForCharacterOffset(node, start);
-            var endMarker = getNodeForCharacterOffset(node, end);
+            var startMarker = getNodeForCharacterOffset(node2, start);
+            var endMarker = getNodeForCharacterOffset(node2, end);
             if (startMarker && endMarker) {
               if (selection.rangeCount === 1 && selection.anchorNode === startMarker.node && selection.anchorOffset === startMarker.offset && selection.focusNode === endMarker.node && selection.focusOffset === endMarker.offset) {
                 return;
@@ -8538,8 +8538,8 @@
               }
             }
           }
-          function isTextNode(node) {
-            return node && node.nodeType === TEXT_NODE;
+          function isTextNode(node2) {
+            return node2 && node2.nodeType === TEXT_NODE;
           }
           function containsNode(outerNode, innerNode) {
             if (!outerNode || !innerNode) {
@@ -8558,8 +8558,8 @@
               return false;
             }
           }
-          function isInDocument(node) {
-            return node && node.ownerDocument && containsNode(node.ownerDocument.documentElement, node);
+          function isInDocument(node2) {
+            return node2 && node2.ownerDocument && containsNode(node2.ownerDocument.documentElement, node2);
           }
           function isSameOriginFrame(iframe) {
             try {
@@ -8614,8 +8614,8 @@
               if (typeof priorFocusedElem.focus === "function") {
                 priorFocusedElem.focus();
               }
-              for (var i = 0; i < ancestors.length; i++) {
-                var info = ancestors[i];
+              for (var i2 = 0; i2 < ancestors.length; i2++) {
+                var info = ancestors[i2];
                 info.element.scrollLeft = info.left;
                 info.element.scrollTop = info.top;
               }
@@ -8657,14 +8657,14 @@
           var activeElementInst$1 = null;
           var lastSelection = null;
           var mouseDown = false;
-          function getSelection$1(node) {
-            if ("selectionStart" in node && hasSelectionCapabilities(node)) {
+          function getSelection$1(node2) {
+            if ("selectionStart" in node2 && hasSelectionCapabilities(node2)) {
               return {
-                start: node.selectionStart,
-                end: node.selectionEnd
+                start: node2.selectionStart,
+                end: node2.selectionEnd
               };
             } else {
-              var win = node.ownerDocument && node.ownerDocument.defaultView || window;
+              var win = node2.ownerDocument && node2.ownerDocument.defaultView || window;
               var selection = win.getSelection();
               return {
                 anchorNode: selection.anchorNode,
@@ -8743,9 +8743,9 @@
             transitionend: makePrefixMap("Transition", "TransitionEnd")
           };
           var prefixedEventNames = {};
-          var style = {};
+          var style3 = {};
           if (canUseDOM) {
-            style = document.createElement("div").style;
+            style3 = document.createElement("div").style;
             if (!("AnimationEvent" in window)) {
               delete vendorPrefixes.animationend.animation;
               delete vendorPrefixes.animationiteration.animation;
@@ -8763,7 +8763,7 @@
             }
             var prefixMap = vendorPrefixes[eventName];
             for (var styleProp in prefixMap) {
-              if (prefixMap.hasOwnProperty(styleProp) && styleProp in style) {
+              if (prefixMap.hasOwnProperty(styleProp) && styleProp in style3) {
                 return prefixedEventNames[eventName] = prefixMap[styleProp];
               }
             }
@@ -8780,8 +8780,8 @@
             registerTwoPhaseEvent(reactName, [domEventName]);
           }
           function registerSimpleEvents() {
-            for (var i = 0; i < simpleEventPluginEvents.length; i++) {
-              var eventName = simpleEventPluginEvents[i];
+            for (var i2 = 0; i2 < simpleEventPluginEvents.length; i2++) {
+              var eventName = simpleEventPluginEvents[i2];
               var domEventName = eventName.toLowerCase();
               var capitalizedEvent = eventName[0].toUpperCase() + eventName.slice(1);
               registerSimpleEvent(domEventName, "on" + capitalizedEvent);
@@ -8925,8 +8925,8 @@
           function processDispatchQueueItemsInOrder(event, dispatchListeners, inCapturePhase) {
             var previousInstance;
             if (inCapturePhase) {
-              for (var i = dispatchListeners.length - 1; i >= 0; i--) {
-                var _dispatchListeners$i = dispatchListeners[i], instance = _dispatchListeners$i.instance, currentTarget = _dispatchListeners$i.currentTarget, listener = _dispatchListeners$i.listener;
+              for (var i2 = dispatchListeners.length - 1; i2 >= 0; i2--) {
+                var _dispatchListeners$i = dispatchListeners[i2], instance = _dispatchListeners$i.instance, currentTarget = _dispatchListeners$i.currentTarget, listener = _dispatchListeners$i.listener;
                 if (instance !== previousInstance && event.isPropagationStopped()) {
                   return;
                 }
@@ -8946,8 +8946,8 @@
           }
           function processDispatchQueue(dispatchQueue, eventSystemFlags) {
             var inCapturePhase = (eventSystemFlags & IS_CAPTURE_PHASE) !== 0;
-            for (var i = 0; i < dispatchQueue.length; i++) {
-              var _dispatchQueue$i = dispatchQueue[i], event = _dispatchQueue$i.event, listeners = _dispatchQueue$i.listeners;
+            for (var i2 = 0; i2 < dispatchQueue.length; i2++) {
+              var _dispatchQueue$i = dispatchQueue[i2], event = _dispatchQueue$i.event, listeners = _dispatchQueue$i.listeners;
               processDispatchQueueItemsInOrder(event, listeners, inCapturePhase);
             }
             rethrowCaughtError();
@@ -8996,11 +8996,11 @@
                   listenToNativeEvent(domEventName, true, rootContainerElement);
                 }
               });
-              var ownerDocument = rootContainerElement.nodeType === DOCUMENT_NODE ? rootContainerElement : rootContainerElement.ownerDocument;
-              if (ownerDocument !== null) {
-                if (!ownerDocument[listeningMarker]) {
-                  ownerDocument[listeningMarker] = true;
-                  listenToNativeEvent("selectionchange", false, ownerDocument);
+              var ownerDocument2 = rootContainerElement.nodeType === DOCUMENT_NODE ? rootContainerElement : rootContainerElement.ownerDocument;
+              if (ownerDocument2 !== null) {
+                if (!ownerDocument2[listeningMarker]) {
+                  ownerDocument2[listeningMarker] = true;
+                  listenToNativeEvent("selectionchange", false, ownerDocument2);
                 }
               }
             }
@@ -9037,20 +9037,20 @@
             if ((eventSystemFlags & IS_EVENT_HANDLE_NON_MANAGED_NODE) === 0 && (eventSystemFlags & IS_NON_DELEGATED) === 0) {
               var targetContainerNode = targetContainer;
               if (targetInst !== null) {
-                var node = targetInst;
+                var node2 = targetInst;
                 mainLoop:
                   while (true) {
-                    if (node === null) {
+                    if (node2 === null) {
                       return;
                     }
-                    var nodeTag = node.tag;
+                    var nodeTag = node2.tag;
                     if (nodeTag === HostRoot || nodeTag === HostPortal) {
-                      var container = node.stateNode.containerInfo;
+                      var container = node2.stateNode.containerInfo;
                       if (isMatchingRootContainer(container, targetContainerNode)) {
                         break;
                       }
                       if (nodeTag === HostPortal) {
-                        var grandNode = node.return;
+                        var grandNode = node2.return;
                         while (grandNode !== null) {
                           var grandTag = grandNode.tag;
                           if (grandTag === HostRoot || grandTag === HostPortal) {
@@ -9069,13 +9069,13 @@
                         }
                         var parentTag = parentNode.tag;
                         if (parentTag === HostComponent || parentTag === HostText) {
-                          node = ancestorInst = parentNode;
+                          node2 = ancestorInst = parentNode;
                           continue mainLoop;
                         }
                         container = container.parentNode;
                       }
                     }
-                    node = node.return;
+                    node2 = node2.return;
                   }
               }
             }
@@ -9176,16 +9176,16 @@
             }
             return null;
           }
-          function accumulateEnterLeaveListenersForEvent(dispatchQueue, event, target, common, inCapturePhase) {
+          function accumulateEnterLeaveListenersForEvent(dispatchQueue, event, target, common2, inCapturePhase) {
             var registrationName = event._reactName;
             var listeners = [];
             var instance = target;
             while (instance !== null) {
-              if (instance === common) {
+              if (instance === common2) {
                 break;
               }
               var _instance4 = instance, alternate = _instance4.alternate, stateNode = _instance4.stateNode, tag = _instance4.tag;
-              if (alternate !== null && alternate === common) {
+              if (alternate !== null && alternate === common2) {
                 break;
               }
               if (tag === HostComponent && stateNode !== null) {
@@ -9211,13 +9211,13 @@
               });
             }
           }
-          function accumulateEnterLeaveTwoPhaseListeners(dispatchQueue, leaveEvent, enterEvent, from, to) {
-            var common = from && to ? getLowestCommonAncestor(from, to) : null;
-            if (from !== null) {
-              accumulateEnterLeaveListenersForEvent(dispatchQueue, leaveEvent, from, common, false);
+          function accumulateEnterLeaveTwoPhaseListeners(dispatchQueue, leaveEvent, enterEvent, from2, to) {
+            var common2 = from2 && to ? getLowestCommonAncestor(from2, to) : null;
+            if (from2 !== null) {
+              accumulateEnterLeaveListenersForEvent(dispatchQueue, leaveEvent, from2, common2, false);
             }
             if (to !== null && enterEvent !== null) {
-              accumulateEnterLeaveListenersForEvent(dispatchQueue, enterEvent, to, common, true);
+              accumulateEnterLeaveListenersForEvent(dispatchQueue, enterEvent, to, common2, true);
             }
           }
           function getListenerSetKey(domEventName, capture) {
@@ -9326,8 +9326,8 @@
           }
           function noop() {
           }
-          function trapClickOnNonInteractiveElement(node) {
-            node.onclick = noop;
+          function trapClickOnNonInteractiveElement(node2) {
+            node2.onclick = noop;
           }
           function setInitialDOMProperties(tag, domElement, rootContainerElement, nextProps, isCustomComponentTag) {
             for (var propKey in nextProps) {
@@ -9375,9 +9375,9 @@
             }
           }
           function updateDOMProperties(domElement, updatePayload, wasCustomComponentTag, isCustomComponentTag) {
-            for (var i = 0; i < updatePayload.length; i += 2) {
-              var propKey = updatePayload[i];
-              var propValue = updatePayload[i + 1];
+            for (var i2 = 0; i2 < updatePayload.length; i2 += 2) {
+              var propKey = updatePayload[i2];
+              var propValue = updatePayload[i2 + 1];
               if (propKey === STYLE) {
                 setValueForStyles(domElement, propValue);
               } else if (propKey === DANGEROUSLY_SET_INNER_HTML) {
@@ -9389,9 +9389,9 @@
               }
             }
           }
-          function createElement8(type, props, rootContainerElement, parentNamespace) {
+          function createElement12(type, props, rootContainerElement, parentNamespace) {
             var isCustomComponentTag;
-            var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
+            var ownerDocument2 = getOwnerDocumentFromRootContainer(rootContainerElement);
             var domElement;
             var namespaceURI = parentNamespace;
             if (namespaceURI === HTML_NAMESPACE) {
@@ -9405,31 +9405,31 @@
                 }
               }
               if (type === "script") {
-                var div = ownerDocument.createElement("div");
+                var div = ownerDocument2.createElement("div");
                 div.innerHTML = "<script><\/script>";
                 var firstChild = div.firstChild;
                 domElement = div.removeChild(firstChild);
               } else if (typeof props.is === "string") {
-                domElement = ownerDocument.createElement(type, {
+                domElement = ownerDocument2.createElement(type, {
                   is: props.is
                 });
               } else {
-                domElement = ownerDocument.createElement(type);
+                domElement = ownerDocument2.createElement(type);
                 if (type === "select") {
-                  var node = domElement;
+                  var node2 = domElement;
                   if (props.multiple) {
-                    node.multiple = true;
+                    node2.multiple = true;
                   } else if (props.size) {
-                    node.size = props.size;
+                    node2.size = props.size;
                   }
                 }
               }
             } else {
-              domElement = ownerDocument.createElementNS(namespaceURI, type);
+              domElement = ownerDocument2.createElementNS(namespaceURI, type);
             }
             {
               if (namespaceURI === HTML_NAMESPACE) {
-                if (!isCustomComponentTag && Object.prototype.toString.call(domElement) === "[object HTMLUnknownElement]" && !hasOwnProperty.call(warnedUnknownTags, type)) {
+                if (!isCustomComponentTag && Object.prototype.toString.call(domElement) === "[object HTMLUnknownElement]" && !hasOwnProperty2.call(warnedUnknownTags, type)) {
                   warnedUnknownTags[type] = true;
                   error("The tag <%s> is unrecognized in this browser. If you meant to render a React component, start its name with an uppercase letter.", type);
                 }
@@ -9460,8 +9460,8 @@
                 break;
               case "video":
               case "audio":
-                for (var i = 0; i < mediaEventTypes.length; i++) {
-                  listenToNonDelegatedEvent(mediaEventTypes[i], domElement);
+                for (var i2 = 0; i2 < mediaEventTypes.length; i2++) {
+                  listenToNonDelegatedEvent(mediaEventTypes[i2], domElement);
                 }
                 props = rawProps;
                 break;
@@ -9712,8 +9712,8 @@
                 break;
               case "video":
               case "audio":
-                for (var i = 0; i < mediaEventTypes.length; i++) {
-                  listenToNonDelegatedEvent(mediaEventTypes[i], domElement);
+                for (var i2 = 0; i2 < mediaEventTypes.length; i2++) {
+                  listenToNonDelegatedEvent(mediaEventTypes[i2], domElement);
                 }
                 break;
               case "source":
@@ -9978,7 +9978,7 @@
               dlItemTagAutoclosing: null
             };
             updatedAncestorInfo = function(oldInfo, tag) {
-              var ancestorInfo = assign({}, oldInfo || emptyAncestorInfo);
+              var ancestorInfo = assign2({}, oldInfo || emptyAncestorInfo);
               var info = {
                 tag
               };
@@ -10250,7 +10250,7 @@
               }
               parentNamespace = hostContextDev.namespace;
             }
-            var domElement = createElement8(type, props, rootContainerInstance, parentNamespace);
+            var domElement = createElement12(type, props, rootContainerInstance, parentNamespace);
             precacheFiberNode(internalInstanceHandle, domElement);
             updateFiberProps(domElement, props);
             return domElement;
@@ -10380,11 +10380,11 @@
             }
           }
           function clearSuspenseBoundary(parentInstance, suspenseInstance) {
-            var node = suspenseInstance;
+            var node2 = suspenseInstance;
             var depth = 0;
             do {
-              var nextNode = node.nextSibling;
-              parentInstance.removeChild(node);
+              var nextNode = node2.nextSibling;
+              parentInstance.removeChild(node2);
               if (nextNode && nextNode.nodeType === COMMENT_NODE) {
                 var data = nextNode.data;
                 if (data === SUSPENSE_END_DATA) {
@@ -10399,8 +10399,8 @@
                   depth++;
                 }
               }
-              node = nextNode;
-            } while (node);
+              node2 = nextNode;
+            } while (node2);
             retryIfBlockedOn(suspenseInstance);
           }
           function clearSuspenseBoundaryFromContainer(container, suspenseInstance) {
@@ -10413,11 +10413,11 @@
           }
           function hideInstance(instance) {
             instance = instance;
-            var style2 = instance.style;
-            if (typeof style2.setProperty === "function") {
-              style2.setProperty("display", "none", "important");
+            var style4 = instance.style;
+            if (typeof style4.setProperty === "function") {
+              style4.setProperty("display", "none", "important");
             } else {
-              style2.display = "none";
+              style4.display = "none";
             }
           }
           function hideTextInstance(textInstance) {
@@ -10486,14 +10486,14 @@
           function registerSuspenseInstanceRetry(instance, callback) {
             instance._reactRetry = callback;
           }
-          function getNextHydratable(node) {
-            for (; node != null; node = node.nextSibling) {
-              var nodeType = node.nodeType;
+          function getNextHydratable(node2) {
+            for (; node2 != null; node2 = node2.nextSibling) {
+              var nodeType = node2.nodeType;
               if (nodeType === ELEMENT_NODE || nodeType === TEXT_NODE) {
                 break;
               }
               if (nodeType === COMMENT_NODE) {
-                var nodeData = node.data;
+                var nodeData = node2.data;
                 if (nodeData === SUSPENSE_START_DATA || nodeData === SUSPENSE_FALLBACK_START_DATA || nodeData === SUSPENSE_PENDING_START_DATA) {
                   break;
                 }
@@ -10502,7 +10502,7 @@
                 }
               }
             }
-            return node;
+            return node2;
           }
           function getNextHydratableSibling(instance) {
             return getNextHydratable(instance.nextSibling);
@@ -10536,14 +10536,14 @@
             precacheFiberNode(internalInstanceHandle, suspenseInstance);
           }
           function getNextHydratableInstanceAfterSuspenseInstance(suspenseInstance) {
-            var node = suspenseInstance.nextSibling;
+            var node2 = suspenseInstance.nextSibling;
             var depth = 0;
-            while (node) {
-              if (node.nodeType === COMMENT_NODE) {
-                var data = node.data;
+            while (node2) {
+              if (node2.nodeType === COMMENT_NODE) {
+                var data = node2.data;
                 if (data === SUSPENSE_END_DATA) {
                   if (depth === 0) {
-                    return getNextHydratableSibling(node);
+                    return getNextHydratableSibling(node2);
                   } else {
                     depth--;
                   }
@@ -10551,19 +10551,19 @@
                   depth++;
                 }
               }
-              node = node.nextSibling;
+              node2 = node2.nextSibling;
             }
             return null;
           }
           function getParentSuspenseInstance(targetInstance) {
-            var node = targetInstance.previousSibling;
+            var node2 = targetInstance.previousSibling;
             var depth = 0;
-            while (node) {
-              if (node.nodeType === COMMENT_NODE) {
-                var data = node.data;
+            while (node2) {
+              if (node2.nodeType === COMMENT_NODE) {
+                var data = node2.data;
                 if (data === SUSPENSE_START_DATA || data === SUSPENSE_FALLBACK_START_DATA || data === SUSPENSE_PENDING_START_DATA) {
                   if (depth === 0) {
-                    return node;
+                    return node2;
                   } else {
                     depth--;
                   }
@@ -10571,7 +10571,7 @@
                   depth++;
                 }
               }
-              node = node.previousSibling;
+              node2 = node2.previousSibling;
             }
             return null;
           }
@@ -10685,24 +10685,24 @@
           var internalEventHandlersKey = "__reactEvents$" + randomKey;
           var internalEventHandlerListenersKey = "__reactListeners$" + randomKey;
           var internalEventHandlesSetKey = "__reactHandles$" + randomKey;
-          function detachDeletedInstance(node) {
-            delete node[internalInstanceKey];
-            delete node[internalPropsKey];
-            delete node[internalEventHandlersKey];
-            delete node[internalEventHandlerListenersKey];
-            delete node[internalEventHandlesSetKey];
+          function detachDeletedInstance(node2) {
+            delete node2[internalInstanceKey];
+            delete node2[internalPropsKey];
+            delete node2[internalEventHandlersKey];
+            delete node2[internalEventHandlerListenersKey];
+            delete node2[internalEventHandlesSetKey];
           }
-          function precacheFiberNode(hostInst, node) {
-            node[internalInstanceKey] = hostInst;
+          function precacheFiberNode(hostInst, node2) {
+            node2[internalInstanceKey] = hostInst;
           }
-          function markContainerAsRoot(hostRoot, node) {
-            node[internalContainerInstanceKey] = hostRoot;
+          function markContainerAsRoot(hostRoot, node2) {
+            node2[internalContainerInstanceKey] = hostRoot;
           }
-          function unmarkContainerAsRoot(node) {
-            node[internalContainerInstanceKey] = null;
+          function unmarkContainerAsRoot(node2) {
+            node2[internalContainerInstanceKey] = null;
           }
-          function isContainerMarkedAsRoot(node) {
-            return !!node[internalContainerInstanceKey];
+          function isContainerMarkedAsRoot(node2) {
+            return !!node2[internalContainerInstanceKey];
           }
           function getClosestInstanceFromNode(targetNode) {
             var targetInst = targetNode[internalInstanceKey];
@@ -10731,8 +10731,8 @@
             }
             return null;
           }
-          function getInstanceFromNode(node) {
-            var inst = node[internalInstanceKey] || node[internalContainerInstanceKey];
+          function getInstanceFromNode(node2) {
+            var inst = node2[internalInstanceKey] || node2[internalContainerInstanceKey];
             if (inst) {
               if (inst.tag === HostComponent || inst.tag === HostText || inst.tag === SuspenseComponent || inst.tag === HostRoot) {
                 return inst;
@@ -10748,16 +10748,16 @@
             }
             throw new Error("getNodeFromInstance: Invalid argument.");
           }
-          function getFiberCurrentPropsFromNode(node) {
-            return node[internalPropsKey] || null;
+          function getFiberCurrentPropsFromNode(node2) {
+            return node2[internalPropsKey] || null;
           }
-          function updateFiberProps(node, props) {
-            node[internalPropsKey] = props;
+          function updateFiberProps(node2, props) {
+            node2[internalPropsKey] = props;
           }
-          function getEventListenerSet(node) {
-            var elementListenerSet = node[internalEventHandlersKey];
+          function getEventListenerSet(node2) {
+            var elementListenerSet = node2[internalEventHandlersKey];
             if (elementListenerSet === void 0) {
-              elementListenerSet = node[internalEventHandlersKey] = /* @__PURE__ */ new Set();
+              elementListenerSet = node2[internalEventHandlersKey] = /* @__PURE__ */ new Set();
             }
             return elementListenerSet;
           }
@@ -10774,9 +10774,9 @@
               }
             }
           }
-          function checkPropTypes(typeSpecs, values, location2, componentName, element) {
+          function checkPropTypes(typeSpecs, values2, location2, componentName, element) {
             {
-              var has2 = Function.call.bind(hasOwnProperty);
+              var has2 = Function.call.bind(hasOwnProperty2);
               for (var typeSpecName in typeSpecs) {
                 if (has2(typeSpecs, typeSpecName)) {
                   var error$1 = void 0;
@@ -10786,7 +10786,7 @@
                       err.name = "Invariant Violation";
                       throw err;
                     }
-                    error$1 = typeSpecs[typeSpecName](values, typeSpecName, componentName, location2, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
+                    error$1 = typeSpecs[typeSpecName](values2, typeSpecName, componentName, location2, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
                   } catch (ex) {
                     error$1 = ex;
                   }
@@ -10816,7 +10816,7 @@
               current: defaultValue
             };
           }
-          function pop(cursor, fiber) {
+          function pop(cursor2, fiber) {
             if (index < 0) {
               {
                 error("Unexpected pop.");
@@ -10828,20 +10828,20 @@
                 error("Unexpected Fiber popped.");
               }
             }
-            cursor.current = valueStack[index];
+            cursor2.current = valueStack[index];
             valueStack[index] = null;
             {
               fiberStack[index] = null;
             }
             index--;
           }
-          function push(cursor, value, fiber) {
+          function push(cursor2, value, fiber) {
             index++;
-            valueStack[index] = cursor.current;
+            valueStack[index] = cursor2.current;
             {
               fiberStack[index] = fiber;
             }
-            cursor.current = value;
+            cursor2.current = value;
           }
           var warnedAboutMissingGetChildContext;
           {
@@ -10950,7 +10950,7 @@
                 var name = getComponentNameFromFiber(fiber) || "Unknown";
                 checkPropTypes(childContextTypes, childContext, "child context", name);
               }
-              return assign({}, parentContext, childContext);
+              return assign2({}, parentContext, childContext);
             }
           }
           function pushContextProvider(workInProgress2) {
@@ -10987,21 +10987,21 @@
               if (!isFiberMounted(fiber) || fiber.tag !== ClassComponent) {
                 throw new Error("Expected subtree parent to be a mounted class component. This error is likely caused by a bug in React. Please file an issue.");
               }
-              var node = fiber;
+              var node2 = fiber;
               do {
-                switch (node.tag) {
+                switch (node2.tag) {
                   case HostRoot:
-                    return node.stateNode.context;
+                    return node2.stateNode.context;
                   case ClassComponent: {
-                    var Component = node.type;
+                    var Component = node2.type;
                     if (isContextProvider(Component)) {
-                      return node.stateNode.__reactInternalMemoizedMergedChildContext;
+                      return node2.stateNode.__reactInternalMemoizedMergedChildContext;
                     }
                     break;
                   }
                 }
-                node = node.return;
-              } while (node !== null);
+                node2 = node2.return;
+              } while (node2 !== null);
               throw new Error("Found unexpected detached subtree parent. This error is likely caused by a bug in React. Please file an issue.");
             }
           }
@@ -11029,14 +11029,14 @@
           function flushSyncCallbacks() {
             if (!isFlushingSyncQueue && syncQueue !== null) {
               isFlushingSyncQueue = true;
-              var i = 0;
+              var i2 = 0;
               var previousUpdatePriority = getCurrentUpdatePriority();
               try {
                 var isSync = true;
                 var queue = syncQueue;
                 setCurrentUpdatePriority(DiscreteEventPriority);
-                for (; i < queue.length; i++) {
-                  var callback = queue[i];
+                for (; i2 < queue.length; i2++) {
+                  var callback = queue[i2];
                   do {
                     callback = callback(isSync);
                   } while (callback !== null);
@@ -11045,7 +11045,7 @@
                 includesLegacySyncCallbacks = false;
               } catch (error2) {
                 if (syncQueue !== null) {
-                  syncQueue = syncQueue.slice(i + 1);
+                  syncQueue = syncQueue.slice(i2 + 1);
                 }
                 scheduleCallback(ImmediatePriority, flushSyncCallbacks);
                 throw error2;
@@ -11097,8 +11097,8 @@
             var baseLength = getBitLength(baseIdWithLeadingBit) - 1;
             var baseId = baseIdWithLeadingBit & ~(1 << baseLength);
             var slot = index2 + 1;
-            var length = getBitLength(totalChildren) + baseLength;
-            if (length > 30) {
+            var length2 = getBitLength(totalChildren) + baseLength;
+            if (length2 > 30) {
               var numberOfOverflowBits = baseLength - baseLength % 5;
               var newOverflowBits = (1 << numberOfOverflowBits) - 1;
               var newOverflow = (baseId & newOverflowBits).toString(32);
@@ -11114,7 +11114,7 @@
               var newBits = slot << baseLength;
               var _id = newBits | baseId;
               var _overflow = baseOverflow;
-              treeContextId = 1 << length | _id;
+              treeContextId = 1 << length2 | _id;
               treeContextOverflow = _overflow;
             }
           }
@@ -11585,12 +11585,12 @@
           {
             var findStrictRoot = function(fiber) {
               var maybeStrictRoot = null;
-              var node = fiber;
-              while (node !== null) {
-                if (node.mode & StrictLegacyMode) {
-                  maybeStrictRoot = node;
+              var node2 = fiber;
+              while (node2 !== null) {
+                if (node2.mode & StrictLegacyMode) {
+                  maybeStrictRoot = node2;
                 }
-                node = node.return;
+                node2 = node2.return;
               }
               return maybeStrictRoot;
             };
@@ -11758,7 +11758,7 @@
           }
           function resolveDefaultProps(Component, baseProps) {
             if (Component && Component.defaultProps) {
-              var props = assign({}, baseProps);
+              var props = assign2({}, baseProps);
               var defaultProps = Component.defaultProps;
               for (var propName in defaultProps) {
                 if (props[propName] === void 0) {
@@ -11818,24 +11818,24 @@
             }
           }
           function scheduleContextWorkOnParentPath(parent, renderLanes2, propagationRoot) {
-            var node = parent;
-            while (node !== null) {
-              var alternate = node.alternate;
-              if (!isSubsetOfLanes(node.childLanes, renderLanes2)) {
-                node.childLanes = mergeLanes(node.childLanes, renderLanes2);
+            var node2 = parent;
+            while (node2 !== null) {
+              var alternate = node2.alternate;
+              if (!isSubsetOfLanes(node2.childLanes, renderLanes2)) {
+                node2.childLanes = mergeLanes(node2.childLanes, renderLanes2);
                 if (alternate !== null) {
                   alternate.childLanes = mergeLanes(alternate.childLanes, renderLanes2);
                 }
               } else if (alternate !== null && !isSubsetOfLanes(alternate.childLanes, renderLanes2)) {
                 alternate.childLanes = mergeLanes(alternate.childLanes, renderLanes2);
               }
-              if (node === propagationRoot) {
+              if (node2 === propagationRoot) {
                 break;
               }
-              node = node.return;
+              node2 = node2.return;
             }
             {
-              if (node !== propagationRoot) {
+              if (node2 !== propagationRoot) {
                 error("Expected to find the propagation root when scheduling context work. This error is likely caused by a bug in React. Please file an issue.");
               }
             }
@@ -11983,8 +11983,8 @@
           }
           function finishQueueingConcurrentUpdates() {
             if (concurrentQueues !== null) {
-              for (var i = 0; i < concurrentQueues.length; i++) {
-                var queue = concurrentQueues[i];
+              for (var i2 = 0; i2 < concurrentQueues.length; i2++) {
+                var queue = concurrentQueues[i2];
                 var lastInterleavedUpdate = queue.interleaved;
                 if (lastInterleavedUpdate !== null) {
                   queue.interleaved = null;
@@ -12051,7 +12051,7 @@
                 warnAboutUpdateOnNotYetMountedFiberInDEV(sourceFiber);
               }
             }
-            var node = sourceFiber;
+            var node2 = sourceFiber;
             var parent = sourceFiber.return;
             while (parent !== null) {
               parent.childLanes = mergeLanes(parent.childLanes, lane);
@@ -12065,11 +12065,11 @@
                   }
                 }
               }
-              node = parent;
+              node2 = parent;
               parent = parent.return;
             }
-            if (node.tag === HostRoot) {
-              var root3 = node.stateNode;
+            if (node2.tag === HostRoot) {
+              var root3 = node2.stateNode;
               return root3;
             } else {
               return null;
@@ -12273,7 +12273,7 @@
                 if (partialState === null || partialState === void 0) {
                   return prevState;
                 }
-                return assign({}, prevState, partialState);
+                return assign2({}, prevState, partialState);
               }
               case ForceUpdate: {
                 hasForceUpdate = true;
@@ -12426,8 +12426,8 @@
             var effects = finishedQueue.effects;
             finishedQueue.effects = null;
             if (effects !== null) {
-              for (var i = 0; i < effects.length; i++) {
-                var effect = effects[i];
+              for (var i2 = 0; i2 < effects.length; i2++) {
+                var effect = effects[i2];
                 var callback = effect.callback;
                 if (callback !== null) {
                   effect.callback = null;
@@ -12437,7 +12437,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React14.Component().refs;
+          var emptyRefsObject = new React22.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -12499,7 +12499,7 @@
               }
               warnOnUndefinedDerivedState(ctor, partialState);
             }
-            var memoizedState = partialState === null || partialState === void 0 ? prevState : assign({}, prevState, partialState);
+            var memoizedState = partialState === null || partialState === void 0 ? prevState : assign2({}, prevState, partialState);
             workInProgress2.memoizedState = memoizedState;
             if (workInProgress2.lanes === NoLanes) {
               var updateQueue = workInProgress2.updateQueue;
@@ -13261,7 +13261,7 @@
               }
             }
             function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-              if (current2 === null || current2.tag !== Fragment) {
+              if (current2 === null || current2.tag !== Fragment7) {
                 var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
                 created.return = returnFiber;
                 return created;
@@ -13424,8 +13424,8 @@
             function reconcileChildrenArray(returnFiber, currentFirstChild, newChildren, lanes) {
               {
                 var knownKeys = null;
-                for (var i = 0; i < newChildren.length; i++) {
-                  var child = newChildren[i];
+                for (var i2 = 0; i2 < newChildren.length; i2++) {
+                  var child = newChildren[i2];
                   knownKeys = warnOnInvalidKey(child, knownKeys, returnFiber);
                 }
               }
@@ -13664,7 +13664,7 @@
                 if (child.key === key) {
                   var elementType = element.type;
                   if (elementType === REACT_FRAGMENT_TYPE) {
-                    if (child.tag === Fragment) {
+                    if (child.tag === Fragment7) {
                       deleteRemainingChildren(returnFiber, child.sibling);
                       var existing = useFiber(child, element.props.children);
                       existing.return = returnFiber;
@@ -13800,11 +13800,11 @@
           var contextStackCursor$1 = createCursor(NO_CONTEXT);
           var contextFiberStackCursor = createCursor(NO_CONTEXT);
           var rootInstanceStackCursor = createCursor(NO_CONTEXT);
-          function requiredContext(c) {
-            if (c === NO_CONTEXT) {
+          function requiredContext(c2) {
+            if (c2 === NO_CONTEXT) {
               throw new Error("Expected host context to exist. This error is likely caused by a bug in React. Please file an issue.");
             }
-            return c;
+            return c2;
           }
           function getRootHostContainer() {
             var rootInstance = requiredContext(rootInstanceStackCursor.current);
@@ -13881,39 +13881,39 @@
             }
           }
           function findFirstSuspended(row) {
-            var node = row;
-            while (node !== null) {
-              if (node.tag === SuspenseComponent) {
-                var state = node.memoizedState;
+            var node2 = row;
+            while (node2 !== null) {
+              if (node2.tag === SuspenseComponent) {
+                var state = node2.memoizedState;
                 if (state !== null) {
                   var dehydrated = state.dehydrated;
                   if (dehydrated === null || isSuspenseInstancePending(dehydrated) || isSuspenseInstanceFallback(dehydrated)) {
-                    return node;
+                    return node2;
                   }
                 }
-              } else if (node.tag === SuspenseListComponent && // revealOrder undefined can't be trusted because it don't
+              } else if (node2.tag === SuspenseListComponent && // revealOrder undefined can't be trusted because it don't
               // keep track of whether it suspended or not.
-              node.memoizedProps.revealOrder !== void 0) {
-                var didSuspend = (node.flags & DidCapture) !== NoFlags;
+              node2.memoizedProps.revealOrder !== void 0) {
+                var didSuspend = (node2.flags & DidCapture) !== NoFlags;
                 if (didSuspend) {
-                  return node;
+                  return node2;
                 }
-              } else if (node.child !== null) {
-                node.child.return = node;
-                node = node.child;
+              } else if (node2.child !== null) {
+                node2.child.return = node2;
+                node2 = node2.child;
                 continue;
               }
-              if (node === row) {
+              if (node2 === row) {
                 return null;
               }
-              while (node.sibling === null) {
-                if (node.return === null || node.return === row) {
+              while (node2.sibling === null) {
+                if (node2.return === null || node2.return === row) {
                   return null;
                 }
-                node = node.return;
+                node2 = node2.return;
               }
-              node.sibling.return = node.return;
-              node = node.sibling;
+              node2.sibling.return = node2.return;
+              node2 = node2.sibling;
             }
             return null;
           }
@@ -13925,7 +13925,7 @@
             /* */
             1
           );
-          var Insertion = (
+          var Insertion7 = (
             /*  */
             2
           );
@@ -13939,8 +13939,8 @@
           );
           var workInProgressSources = [];
           function resetWorkInProgressVersions() {
-            for (var i = 0; i < workInProgressSources.length; i++) {
-              var mutableSource = workInProgressSources[i];
+            for (var i2 = 0; i2 < workInProgressSources.length; i2++) {
+              var mutableSource = workInProgressSources[i2];
               {
                 mutableSource._workInProgressVersionPrimary = null;
               }
@@ -14011,10 +14011,10 @@
                 if (hookTypesDev !== null) {
                   var table = "";
                   var secondColumnStart = 30;
-                  for (var i = 0; i <= hookTypesUpdateIndexDev; i++) {
-                    var oldHookName = hookTypesDev[i];
-                    var newHookName = i === hookTypesUpdateIndexDev ? currentHookName : oldHookName;
-                    var row = i + 1 + ". " + oldHookName;
+                  for (var i2 = 0; i2 <= hookTypesUpdateIndexDev; i2++) {
+                    var oldHookName = hookTypesDev[i2];
+                    var newHookName = i2 === hookTypesUpdateIndexDev ? currentHookName : oldHookName;
+                    var row = i2 + 1 + ". " + oldHookName;
                     while (row.length < secondColumnStart) {
                       row += " ";
                     }
@@ -14046,8 +14046,8 @@
                 error("The final argument passed to %s changed size between renders. The order and size of this array must remain constant.\n\nPrevious: %s\nIncoming: %s", currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + nextDeps.join(", ") + "]");
               }
             }
-            for (var i = 0; i < prevDeps.length && i < nextDeps.length; i++) {
-              if (objectIs(nextDeps[i], prevDeps[i])) {
+            for (var i2 = 0; i2 < prevDeps.length && i2 < nextDeps.length; i2++) {
+              if (objectIs(nextDeps[i2], prevDeps[i2])) {
                 continue;
               }
               return false;
@@ -14628,10 +14628,10 @@
             return updateEffectImpl(Passive, Passive$1, create, deps);
           }
           function mountInsertionEffect(create, deps) {
-            return mountEffectImpl(Update, Insertion, create, deps);
+            return mountEffectImpl(Update, Insertion7, create, deps);
           }
           function updateInsertionEffect(create, deps) {
-            return updateEffectImpl(Update, Insertion, create, deps);
+            return updateEffectImpl(Update, Insertion7, create, deps);
           }
           function mountLayoutEffect(create, deps) {
             var fiberFlags = Update;
@@ -15943,9 +15943,9 @@
               } else {
                 console["error"](error2);
               }
-            } catch (e) {
+            } catch (e2) {
               setTimeout(function() {
-                throw e;
+                throw e2;
               });
             }
           }
@@ -16042,7 +16042,7 @@
           }
           function resetSuspendedComponent(sourceFiber, rootRenderLanes) {
             var tag = sourceFiber.tag;
-            if ((sourceFiber.mode & ConcurrentMode) === NoMode && (tag === FunctionComponent || tag === ForwardRef || tag === SimpleMemoComponent)) {
+            if ((sourceFiber.mode & ConcurrentMode) === NoMode && (tag === FunctionComponent || tag === ForwardRef2 || tag === SimpleMemoComponent)) {
               var currentSource = sourceFiber.alternate;
               if (currentSource) {
                 sourceFiber.updateQueue = currentSource.updateQueue;
@@ -16055,13 +16055,13 @@
             }
           }
           function getNearestSuspenseBoundaryToCapture(returnFiber) {
-            var node = returnFiber;
+            var node2 = returnFiber;
             do {
-              if (node.tag === SuspenseComponent && shouldCaptureSuspense(node)) {
-                return node;
+              if (node2.tag === SuspenseComponent && shouldCaptureSuspense(node2)) {
+                return node2;
               }
-              node = node.return;
-            } while (node !== null);
+              node2 = node2.return;
+            } while (node2 !== null);
             return null;
           }
           function markSuspenseBoundaryShouldCapture(suspenseBoundary, returnFiber, sourceFiber, root3, rootRenderLanes) {
@@ -16667,10 +16667,10 @@
                 enterHydrationState(workInProgress2);
                 var child = mountChildFibers(workInProgress2, null, nextChildren, renderLanes2);
                 workInProgress2.child = child;
-                var node = child;
-                while (node) {
-                  node.flags = node.flags & ~Placement | Hydrating;
-                  node = node.sibling;
+                var node2 = child;
+                while (node2) {
+                  node2.flags = node2.flags & ~Placement | Hydrating;
+                  node2 = node2.sibling;
                 }
               }
             } else {
@@ -16741,7 +16741,7 @@
                 child = updateClassComponent(null, workInProgress2, Component, resolvedProps, renderLanes2);
                 return child;
               }
-              case ForwardRef: {
+              case ForwardRef2: {
                 {
                   workInProgress2.type = Component = resolveForwardRefForHotReloading(Component);
                 }
@@ -17280,31 +17280,31 @@
             scheduleContextWorkOnParentPath(fiber.return, renderLanes2, propagationRoot);
           }
           function propagateSuspenseContextChange(workInProgress2, firstChild, renderLanes2) {
-            var node = firstChild;
-            while (node !== null) {
-              if (node.tag === SuspenseComponent) {
-                var state = node.memoizedState;
+            var node2 = firstChild;
+            while (node2 !== null) {
+              if (node2.tag === SuspenseComponent) {
+                var state = node2.memoizedState;
                 if (state !== null) {
-                  scheduleSuspenseWorkOnFiber(node, renderLanes2, workInProgress2);
+                  scheduleSuspenseWorkOnFiber(node2, renderLanes2, workInProgress2);
                 }
-              } else if (node.tag === SuspenseListComponent) {
-                scheduleSuspenseWorkOnFiber(node, renderLanes2, workInProgress2);
-              } else if (node.child !== null) {
-                node.child.return = node;
-                node = node.child;
+              } else if (node2.tag === SuspenseListComponent) {
+                scheduleSuspenseWorkOnFiber(node2, renderLanes2, workInProgress2);
+              } else if (node2.child !== null) {
+                node2.child.return = node2;
+                node2 = node2.child;
                 continue;
               }
-              if (node === workInProgress2) {
+              if (node2 === workInProgress2) {
                 return;
               }
-              while (node.sibling === null) {
-                if (node.return === null || node.return === workInProgress2) {
+              while (node2.sibling === null) {
+                if (node2.return === null || node2.return === workInProgress2) {
                   return;
                 }
-                node = node.return;
+                node2 = node2.return;
               }
-              node.sibling.return = node.return;
-              node = node.sibling;
+              node2.sibling.return = node2.return;
+              node2 = node2.sibling;
             }
           }
           function findLastContentRow(firstChild) {
@@ -17375,8 +17375,8 @@
             {
               if ((revealOrder === "forwards" || revealOrder === "backwards") && children !== void 0 && children !== null && children !== false) {
                 if (isArray(children)) {
-                  for (var i = 0; i < children.length; i++) {
-                    if (!validateSuspenseListNestedChild(children[i], i)) {
+                  for (var i2 = 0; i2 < children.length; i2++) {
+                    if (!validateSuspenseListNestedChild(children[i2], i2)) {
                       return;
                     }
                   }
@@ -17833,13 +17833,13 @@
                 return updateSuspenseComponent(current2, workInProgress2, renderLanes2);
               case HostPortal:
                 return updatePortalComponent(current2, workInProgress2, renderLanes2);
-              case ForwardRef: {
+              case ForwardRef2: {
                 var type = workInProgress2.type;
                 var _unresolvedProps2 = workInProgress2.pendingProps;
                 var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
                 return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
               }
-              case Fragment:
+              case Fragment7:
                 return updateFragment(current2, workInProgress2, renderLanes2);
               case Mode:
                 return updateMode(current2, workInProgress2, renderLanes2);
@@ -17906,28 +17906,28 @@
           var updateHostText$1;
           {
             appendAllChildren = function(parent, workInProgress2, needsVisibilityToggle, isHidden) {
-              var node = workInProgress2.child;
-              while (node !== null) {
-                if (node.tag === HostComponent || node.tag === HostText) {
-                  appendInitialChild(parent, node.stateNode);
-                } else if (node.tag === HostPortal)
+              var node2 = workInProgress2.child;
+              while (node2 !== null) {
+                if (node2.tag === HostComponent || node2.tag === HostText) {
+                  appendInitialChild(parent, node2.stateNode);
+                } else if (node2.tag === HostPortal)
                   ;
-                else if (node.child !== null) {
-                  node.child.return = node;
-                  node = node.child;
+                else if (node2.child !== null) {
+                  node2.child.return = node2;
+                  node2 = node2.child;
                   continue;
                 }
-                if (node === workInProgress2) {
+                if (node2 === workInProgress2) {
                   return;
                 }
-                while (node.sibling === null) {
-                  if (node.return === null || node.return === workInProgress2) {
+                while (node2.sibling === null) {
+                  if (node2.return === null || node2.return === workInProgress2) {
                     return;
                   }
-                  node = node.return;
+                  node2 = node2.return;
                 }
-                node.sibling.return = node.return;
-                node = node.sibling;
+                node2.sibling.return = node2.return;
+                node2 = node2.sibling;
               }
             };
             updateHostContainer = function(current2, workInProgress2) {
@@ -18111,8 +18111,8 @@
               case LazyComponent:
               case SimpleMemoComponent:
               case FunctionComponent:
-              case ForwardRef:
-              case Fragment:
+              case ForwardRef2:
+              case Fragment7:
               case Mode:
               case Profiler:
               case ContextConsumer:
@@ -18379,11 +18379,11 @@
                   }
                 }
                 if (renderState.tail !== null) {
-                  var next = renderState.tail;
-                  renderState.rendering = next;
-                  renderState.tail = next.sibling;
+                  var next2 = renderState.tail;
+                  renderState.rendering = next2;
+                  renderState.tail = next2.sibling;
                   renderState.renderingStartTime = now();
-                  next.sibling = null;
+                  next2.sibling = null;
                   var suspenseContext = suspenseStackCursor.current;
                   if (didSuspendAlready) {
                     suspenseContext = setShallowSuspenseContext(suspenseContext, ForceSuspenseFallback);
@@ -18391,7 +18391,7 @@
                     suspenseContext = setDefaultShallowSuspenseContext(suspenseContext);
                   }
                   pushSuspenseContext(workInProgress2, suspenseContext);
-                  return next;
+                  return next2;
                 }
                 bubbleProperties(workInProgress2);
                 return null;
@@ -18694,7 +18694,7 @@
               setCurrentFiber(finishedWork);
               switch (finishedWork.tag) {
                 case FunctionComponent:
-                case ForwardRef:
+                case ForwardRef2:
                 case SimpleMemoComponent: {
                   break;
                 }
@@ -18763,13 +18763,13 @@
                       }
                     }
                     {
-                      if ((flags & Insertion) !== NoFlags$1) {
+                      if ((flags & Insertion7) !== NoFlags$1) {
                         setIsRunningInsertionEffect(true);
                       }
                     }
                     safelyCallDestroy(finishedWork, nearestMountedAncestor, destroy);
                     {
-                      if ((flags & Insertion) !== NoFlags$1) {
+                      if ((flags & Insertion7) !== NoFlags$1) {
                         setIsRunningInsertionEffect(false);
                       }
                     }
@@ -18803,13 +18803,13 @@
                   }
                   var create = effect.create;
                   {
-                    if ((flags & Insertion) !== NoFlags$1) {
+                    if ((flags & Insertion7) !== NoFlags$1) {
                       setIsRunningInsertionEffect(true);
                     }
                   }
                   effect.destroy = create();
                   {
-                    if ((flags & Insertion) !== NoFlags$1) {
+                    if ((flags & Insertion7) !== NoFlags$1) {
                       setIsRunningInsertionEffect(false);
                     }
                   }
@@ -18826,7 +18826,7 @@
                       var hookName = void 0;
                       if ((effect.tag & Layout) !== NoFlags) {
                         hookName = "useLayoutEffect";
-                      } else if ((effect.tag & Insertion) !== NoFlags) {
+                      } else if ((effect.tag & Insertion7) !== NoFlags) {
                         hookName = "useInsertionEffect";
                       } else {
                         hookName = "useEffect";
@@ -18889,7 +18889,7 @@
             if ((finishedWork.flags & LayoutMask) !== NoFlags) {
               switch (finishedWork.tag) {
                 case FunctionComponent:
-                case ForwardRef:
+                case ForwardRef2:
                 case SimpleMemoComponent: {
                   if (!offscreenSubtreeWasHidden) {
                     if (finishedWork.mode & ProfileMode) {
@@ -19067,33 +19067,33 @@
               }
             }
           }
-          function reappearLayoutEffectsOnFiber(node) {
-            switch (node.tag) {
+          function reappearLayoutEffectsOnFiber(node2) {
+            switch (node2.tag) {
               case FunctionComponent:
-              case ForwardRef:
+              case ForwardRef2:
               case SimpleMemoComponent: {
-                if (node.mode & ProfileMode) {
+                if (node2.mode & ProfileMode) {
                   try {
                     startLayoutEffectTimer();
-                    safelyCallCommitHookLayoutEffectListMount(node, node.return);
+                    safelyCallCommitHookLayoutEffectListMount(node2, node2.return);
                   } finally {
-                    recordLayoutEffectDuration(node);
+                    recordLayoutEffectDuration(node2);
                   }
                 } else {
-                  safelyCallCommitHookLayoutEffectListMount(node, node.return);
+                  safelyCallCommitHookLayoutEffectListMount(node2, node2.return);
                 }
                 break;
               }
               case ClassComponent: {
-                var instance = node.stateNode;
+                var instance = node2.stateNode;
                 if (typeof instance.componentDidMount === "function") {
-                  safelyCallComponentDidMount(node, node.return, instance);
+                  safelyCallComponentDidMount(node2, node2.return, instance);
                 }
-                safelyAttachRef(node, node.return);
+                safelyAttachRef(node2, node2.return);
                 break;
               }
               case HostComponent: {
-                safelyAttachRef(node, node.return);
+                safelyAttachRef(node2, node2.return);
                 break;
               }
             }
@@ -19101,59 +19101,59 @@
           function hideOrUnhideAllChildren(finishedWork, isHidden) {
             var hostSubtreeRoot = null;
             {
-              var node = finishedWork;
+              var node2 = finishedWork;
               while (true) {
-                if (node.tag === HostComponent) {
+                if (node2.tag === HostComponent) {
                   if (hostSubtreeRoot === null) {
-                    hostSubtreeRoot = node;
+                    hostSubtreeRoot = node2;
                     try {
-                      var instance = node.stateNode;
+                      var instance = node2.stateNode;
                       if (isHidden) {
                         hideInstance(instance);
                       } else {
-                        unhideInstance(node.stateNode, node.memoizedProps);
+                        unhideInstance(node2.stateNode, node2.memoizedProps);
                       }
                     } catch (error2) {
                       captureCommitPhaseError(finishedWork, finishedWork.return, error2);
                     }
                   }
-                } else if (node.tag === HostText) {
+                } else if (node2.tag === HostText) {
                   if (hostSubtreeRoot === null) {
                     try {
-                      var _instance3 = node.stateNode;
+                      var _instance3 = node2.stateNode;
                       if (isHidden) {
                         hideTextInstance(_instance3);
                       } else {
-                        unhideTextInstance(_instance3, node.memoizedProps);
+                        unhideTextInstance(_instance3, node2.memoizedProps);
                       }
                     } catch (error2) {
                       captureCommitPhaseError(finishedWork, finishedWork.return, error2);
                     }
                   }
-                } else if ((node.tag === OffscreenComponent || node.tag === LegacyHiddenComponent) && node.memoizedState !== null && node !== finishedWork)
+                } else if ((node2.tag === OffscreenComponent || node2.tag === LegacyHiddenComponent) && node2.memoizedState !== null && node2 !== finishedWork)
                   ;
-                else if (node.child !== null) {
-                  node.child.return = node;
-                  node = node.child;
+                else if (node2.child !== null) {
+                  node2.child.return = node2;
+                  node2 = node2.child;
                   continue;
                 }
-                if (node === finishedWork) {
+                if (node2 === finishedWork) {
                   return;
                 }
-                while (node.sibling === null) {
-                  if (node.return === null || node.return === finishedWork) {
+                while (node2.sibling === null) {
+                  if (node2.return === null || node2.return === finishedWork) {
                     return;
                   }
-                  if (hostSubtreeRoot === node) {
+                  if (hostSubtreeRoot === node2) {
                     hostSubtreeRoot = null;
                   }
-                  node = node.return;
+                  node2 = node2.return;
                 }
-                if (hostSubtreeRoot === node) {
+                if (hostSubtreeRoot === node2) {
                   hostSubtreeRoot = null;
                 }
-                node.sibling.return = node.return;
-                node = node.sibling;
+                node2.sibling.return = node2.return;
+                node2 = node2.sibling;
               }
             }
           }
@@ -19248,30 +19248,30 @@
             return fiber.tag === HostComponent || fiber.tag === HostRoot || fiber.tag === HostPortal;
           }
           function getHostSibling(fiber) {
-            var node = fiber;
+            var node2 = fiber;
             siblings:
               while (true) {
-                while (node.sibling === null) {
-                  if (node.return === null || isHostParent(node.return)) {
+                while (node2.sibling === null) {
+                  if (node2.return === null || isHostParent(node2.return)) {
                     return null;
                   }
-                  node = node.return;
+                  node2 = node2.return;
                 }
-                node.sibling.return = node.return;
-                node = node.sibling;
-                while (node.tag !== HostComponent && node.tag !== HostText && node.tag !== DehydratedFragment) {
-                  if (node.flags & Placement) {
+                node2.sibling.return = node2.return;
+                node2 = node2.sibling;
+                while (node2.tag !== HostComponent && node2.tag !== HostText && node2.tag !== DehydratedFragment) {
+                  if (node2.flags & Placement) {
                     continue siblings;
                   }
-                  if (node.child === null || node.tag === HostPortal) {
+                  if (node2.child === null || node2.tag === HostPortal) {
                     continue siblings;
                   } else {
-                    node.child.return = node;
-                    node = node.child;
+                    node2.child.return = node2;
+                    node2 = node2.child;
                   }
                 }
-                if (!(node.flags & Placement)) {
-                  return node.stateNode;
+                if (!(node2.flags & Placement)) {
+                  return node2.stateNode;
                 }
               }
           }
@@ -19299,11 +19299,11 @@
                 throw new Error("Invalid host parent fiber. This error is likely caused by a bug in React. Please file an issue.");
             }
           }
-          function insertOrAppendPlacementNodeIntoContainer(node, before, parent) {
-            var tag = node.tag;
+          function insertOrAppendPlacementNodeIntoContainer(node2, before, parent) {
+            var tag = node2.tag;
             var isHost = tag === HostComponent || tag === HostText;
             if (isHost) {
-              var stateNode = node.stateNode;
+              var stateNode = node2.stateNode;
               if (before) {
                 insertInContainerBefore(parent, stateNode, before);
               } else {
@@ -19312,7 +19312,7 @@
             } else if (tag === HostPortal)
               ;
             else {
-              var child = node.child;
+              var child = node2.child;
               if (child !== null) {
                 insertOrAppendPlacementNodeIntoContainer(child, before, parent);
                 var sibling = child.sibling;
@@ -19323,11 +19323,11 @@
               }
             }
           }
-          function insertOrAppendPlacementNode(node, before, parent) {
-            var tag = node.tag;
+          function insertOrAppendPlacementNode(node2, before, parent) {
+            var tag = node2.tag;
             var isHost = tag === HostComponent || tag === HostText;
             if (isHost) {
-              var stateNode = node.stateNode;
+              var stateNode = node2.stateNode;
               if (before) {
                 insertBefore(parent, stateNode, before);
               } else {
@@ -19336,7 +19336,7 @@
             } else if (tag === HostPortal)
               ;
             else {
-              var child = node.child;
+              var child = node2.child;
               if (child !== null) {
                 insertOrAppendPlacementNode(child, before, parent);
                 var sibling = child.sibling;
@@ -19440,7 +19440,7 @@
                 return;
               }
               case FunctionComponent:
-              case ForwardRef:
+              case ForwardRef2:
               case MemoComponent:
               case SimpleMemoComponent: {
                 if (!offscreenSubtreeWasHidden) {
@@ -19453,7 +19453,7 @@
                       do {
                         var _effect = effect, destroy = _effect.destroy, tag = _effect.tag;
                         if (destroy !== void 0) {
-                          if ((tag & Insertion) !== NoFlags$1) {
+                          if ((tag & Insertion7) !== NoFlags$1) {
                             safelyCallDestroy(deletedFiber, nearestMountedAncestor, destroy);
                           } else if ((tag & Layout) !== NoFlags$1) {
                             {
@@ -19570,8 +19570,8 @@
           function recursivelyTraverseMutationEffects(root3, parentFiber, lanes) {
             var deletions = parentFiber.deletions;
             if (deletions !== null) {
-              for (var i = 0; i < deletions.length; i++) {
-                var childToDelete = deletions[i];
+              for (var i2 = 0; i2 < deletions.length; i2++) {
+                var childToDelete = deletions[i2];
                 try {
                   commitDeletionEffects(root3, parentFiber, childToDelete);
                 } catch (error2) {
@@ -19595,15 +19595,15 @@
             var flags = finishedWork.flags;
             switch (finishedWork.tag) {
               case FunctionComponent:
-              case ForwardRef:
+              case ForwardRef2:
               case MemoComponent:
               case SimpleMemoComponent: {
                 recursivelyTraverseMutationEffects(root3, finishedWork);
                 commitReconciliationEffects(finishedWork);
                 if (flags & Update) {
                   try {
-                    commitHookEffectListUnmount(Insertion | HasEffect, finishedWork, finishedWork.return);
-                    commitHookEffectListMount(Insertion | HasEffect, finishedWork);
+                    commitHookEffectListUnmount(Insertion7 | HasEffect, finishedWork, finishedWork.return);
+                    commitHookEffectListMount(Insertion7 | HasEffect, finishedWork);
                   } catch (error2) {
                     captureCommitPhaseError(finishedWork, finishedWork.return, error2);
                   }
@@ -19904,7 +19904,7 @@
               var firstChild = fiber.child;
               switch (fiber.tag) {
                 case FunctionComponent:
-                case ForwardRef:
+                case ForwardRef2:
                 case MemoComponent:
                 case SimpleMemoComponent: {
                   if (fiber.mode & ProfileMode) {
@@ -20050,7 +20050,7 @@
           function commitPassiveMountOnFiber(finishedRoot, finishedWork, committedLanes, committedTransitions) {
             switch (finishedWork.tag) {
               case FunctionComponent:
-              case ForwardRef:
+              case ForwardRef2:
               case SimpleMemoComponent: {
                 if (finishedWork.mode & ProfileMode) {
                   startPassiveEffectTimer();
@@ -20077,8 +20077,8 @@
               if ((nextEffect.flags & ChildDeletion) !== NoFlags) {
                 var deletions = fiber.deletions;
                 if (deletions !== null) {
-                  for (var i = 0; i < deletions.length; i++) {
-                    var fiberToDelete = deletions[i];
+                  for (var i2 = 0; i2 < deletions.length; i2++) {
+                    var fiberToDelete = deletions[i2];
                     nextEffect = fiberToDelete;
                     commitPassiveUnmountEffectsInsideOfDeletedTree_begin(fiberToDelete, fiber);
                   }
@@ -20127,7 +20127,7 @@
           function commitPassiveUnmountOnFiber(finishedWork) {
             switch (finishedWork.tag) {
               case FunctionComponent:
-              case ForwardRef:
+              case ForwardRef2:
               case SimpleMemoComponent: {
                 if (finishedWork.mode & ProfileMode) {
                   startPassiveEffectTimer();
@@ -20178,7 +20178,7 @@
           function commitPassiveUnmountInsideDeletedTreeOnFiber(current2, nearestMountedAncestor) {
             switch (current2.tag) {
               case FunctionComponent:
-              case ForwardRef:
+              case ForwardRef2:
               case SimpleMemoComponent: {
                 if (current2.mode & ProfileMode) {
                   startPassiveEffectTimer();
@@ -20195,7 +20195,7 @@
             {
               switch (fiber.tag) {
                 case FunctionComponent:
-                case ForwardRef:
+                case ForwardRef2:
                 case SimpleMemoComponent: {
                   try {
                     commitHookEffectListMount(Layout | HasEffect, fiber);
@@ -20220,7 +20220,7 @@
             {
               switch (fiber.tag) {
                 case FunctionComponent:
-                case ForwardRef:
+                case ForwardRef2:
                 case SimpleMemoComponent: {
                   try {
                     commitHookEffectListMount(Passive$1 | HasEffect, fiber);
@@ -20236,7 +20236,7 @@
             {
               switch (fiber.tag) {
                 case FunctionComponent:
-                case ForwardRef:
+                case ForwardRef2:
                 case SimpleMemoComponent: {
                   try {
                     commitHookEffectListUnmount(Layout | HasEffect, fiber, fiber.return);
@@ -20259,7 +20259,7 @@
             {
               switch (fiber.tag) {
                 case FunctionComponent:
-                case ForwardRef:
+                case ForwardRef2:
                 case SimpleMemoComponent: {
                   try {
                     commitHookEffectListUnmount(Passive$1 | HasEffect, fiber, fiber.return);
@@ -20713,15 +20713,15 @@
             }
           }
           function isRenderConsistentWithExternalStores(finishedWork) {
-            var node = finishedWork;
+            var node2 = finishedWork;
             while (true) {
-              if (node.flags & StoreConsistency) {
-                var updateQueue = node.updateQueue;
+              if (node2.flags & StoreConsistency) {
+                var updateQueue = node2.updateQueue;
                 if (updateQueue !== null) {
                   var checks = updateQueue.stores;
                   if (checks !== null) {
-                    for (var i = 0; i < checks.length; i++) {
-                      var check = checks[i];
+                    for (var i2 = 0; i2 < checks.length; i2++) {
+                      var check = checks[i2];
                       var getSnapshot = check.getSnapshot;
                       var renderedValue = check.value;
                       try {
@@ -20735,23 +20735,23 @@
                   }
                 }
               }
-              var child = node.child;
-              if (node.subtreeFlags & StoreConsistency && child !== null) {
-                child.return = node;
-                node = child;
+              var child = node2.child;
+              if (node2.subtreeFlags & StoreConsistency && child !== null) {
+                child.return = node2;
+                node2 = child;
                 continue;
               }
-              if (node === finishedWork) {
+              if (node2 === finishedWork) {
                 return true;
               }
-              while (node.sibling === null) {
-                if (node.return === null || node.return === finishedWork) {
+              while (node2.sibling === null) {
+                if (node2.return === null || node2.return === finishedWork) {
                   return true;
                 }
-                node = node.return;
+                node2 = node2.return;
               }
-              node.sibling.return = node.return;
-              node = node.sibling;
+              node2.sibling.return = node2.return;
+              node2 = node2.sibling;
             }
             return true;
           }
@@ -20808,11 +20808,11 @@
               }
             }
           }
-          function batchedUpdates$1(fn, a) {
+          function batchedUpdates$1(fn, a2) {
             var prevExecutionContext = executionContext;
             executionContext |= BatchedContext;
             try {
-              return fn(a);
+              return fn(a2);
             } finally {
               executionContext = prevExecutionContext;
               if (executionContext === NoContext && // Treat `act` as if it's inside `batchedUpdates`, even in legacy mode.
@@ -20822,13 +20822,13 @@
               }
             }
           }
-          function discreteUpdates(fn, a, b, c, d) {
+          function discreteUpdates(fn, a2, b3, c2, d2) {
             var previousPriority = getCurrentUpdatePriority();
             var prevTransition = ReactCurrentBatchConfig$3.transition;
             try {
               ReactCurrentBatchConfig$3.transition = null;
               setCurrentUpdatePriority(DiscreteEventPriority);
-              return fn(a, b, c, d);
+              return fn(a2, b3, c2, d2);
             } finally {
               setCurrentUpdatePriority(previousPriority);
               ReactCurrentBatchConfig$3.transition = prevTransition;
@@ -21094,20 +21094,20 @@
           function performUnitOfWork(unitOfWork) {
             var current2 = unitOfWork.alternate;
             setCurrentFiber(unitOfWork);
-            var next;
+            var next2;
             if ((unitOfWork.mode & ProfileMode) !== NoMode) {
               startProfilerTimer(unitOfWork);
-              next = beginWork$1(current2, unitOfWork, subtreeRenderLanes);
+              next2 = beginWork$1(current2, unitOfWork, subtreeRenderLanes);
               stopProfilerTimerIfRunningAndRecordDelta(unitOfWork, true);
             } else {
-              next = beginWork$1(current2, unitOfWork, subtreeRenderLanes);
+              next2 = beginWork$1(current2, unitOfWork, subtreeRenderLanes);
             }
             resetCurrentFiber();
             unitOfWork.memoizedProps = unitOfWork.pendingProps;
-            if (next === null) {
+            if (next2 === null) {
               completeUnitOfWork(unitOfWork);
             } else {
-              workInProgress = next;
+              workInProgress = next2;
             }
             ReactCurrentOwner$2.current = null;
           }
@@ -21118,17 +21118,17 @@
               var returnFiber = completedWork.return;
               if ((completedWork.flags & Incomplete) === NoFlags) {
                 setCurrentFiber(completedWork);
-                var next = void 0;
+                var next2 = void 0;
                 if ((completedWork.mode & ProfileMode) === NoMode) {
-                  next = completeWork(current2, completedWork, subtreeRenderLanes);
+                  next2 = completeWork(current2, completedWork, subtreeRenderLanes);
                 } else {
                   startProfilerTimer(completedWork);
-                  next = completeWork(current2, completedWork, subtreeRenderLanes);
+                  next2 = completeWork(current2, completedWork, subtreeRenderLanes);
                   stopProfilerTimerIfRunningAndRecordDelta(completedWork, false);
                 }
                 resetCurrentFiber();
-                if (next !== null) {
-                  workInProgress = next;
+                if (next2 !== null) {
+                  workInProgress = next2;
                   return;
                 }
               } else {
@@ -21298,8 +21298,8 @@
             ensureRootIsScheduled(root3, now());
             if (recoverableErrors !== null) {
               var onRecoverableError = root3.onRecoverableError;
-              for (var i = 0; i < recoverableErrors.length; i++) {
-                var recoverableError = recoverableErrors[i];
+              for (var i2 = 0; i2 < recoverableErrors.length; i2++) {
+                var recoverableError = recoverableErrors[i2];
                 var componentStack = recoverableError.stack;
                 var digest = recoverableError.digest;
                 onRecoverableError(recoverableError.value, {
@@ -21393,8 +21393,8 @@
             {
               var profilerEffects = pendingPassiveProfilerEffects;
               pendingPassiveProfilerEffects = [];
-              for (var i = 0; i < profilerEffects.length; i++) {
-                var _fiber = profilerEffects[i];
+              for (var i2 = 0; i2 < profilerEffects.length; i2++) {
+                var _fiber = profilerEffects[i2];
                 commitPassiveEffectDurations(root3, _fiber);
               }
             }
@@ -21621,7 +21621,7 @@
                 return;
               }
               var tag = fiber.tag;
-              if (tag !== IndeterminateComponent && tag !== HostRoot && tag !== ClassComponent && tag !== FunctionComponent && tag !== ForwardRef && tag !== MemoComponent && tag !== SimpleMemoComponent) {
+              if (tag !== IndeterminateComponent && tag !== HostRoot && tag !== ClassComponent && tag !== FunctionComponent && tag !== ForwardRef2 && tag !== MemoComponent && tag !== SimpleMemoComponent) {
                 return;
               }
               var componentName = getComponentNameFromFiber(fiber) || "ReactComponent";
@@ -21685,7 +21685,7 @@
               if (isRendering && !getIsUpdatingOpaqueValueInRenderPhaseInDEV()) {
                 switch (fiber.tag) {
                   case FunctionComponent:
-                  case ForwardRef:
+                  case ForwardRef2:
                   case SimpleMemoComponent: {
                     var renderingComponentName = workInProgress && getComponentNameFromFiber(workInProgress) || "Unknown";
                     var dedupeKey = renderingComponentName;
@@ -21751,7 +21751,7 @@
                 if (executionContext !== NoContext) {
                   return;
                 }
-                if (fiber.tag !== FunctionComponent && fiber.tag !== ForwardRef && fiber.tag !== SimpleMemoComponent) {
+                if (fiber.tag !== FunctionComponent && fiber.tag !== ForwardRef2 && fiber.tag !== SimpleMemoComponent) {
                   return;
                 }
               }
@@ -21853,7 +21853,7 @@
                   }
                   break;
                 }
-                case ForwardRef: {
+                case ForwardRef2: {
                   if ($$typeofNextType === REACT_FORWARD_REF_TYPE) {
                     needsCompareFamilies = true;
                   } else if ($$typeofNextType === REACT_LAZY_TYPE) {
@@ -21929,7 +21929,7 @@
                 case ClassComponent:
                   candidateType = type;
                   break;
-                case ForwardRef:
+                case ForwardRef2:
                   candidateType = type.render;
                   break;
               }
@@ -21994,7 +21994,7 @@
                 case ClassComponent:
                   candidateType = type;
                   break;
-                case ForwardRef:
+                case ForwardRef2:
                   candidateType = type.render;
                   break;
               }
@@ -22022,50 +22022,50 @@
               if (foundHostInstances) {
                 return;
               }
-              var node = fiber;
+              var node2 = fiber;
               while (true) {
-                switch (node.tag) {
+                switch (node2.tag) {
                   case HostComponent:
-                    hostInstances.add(node.stateNode);
+                    hostInstances.add(node2.stateNode);
                     return;
                   case HostPortal:
-                    hostInstances.add(node.stateNode.containerInfo);
+                    hostInstances.add(node2.stateNode.containerInfo);
                     return;
                   case HostRoot:
-                    hostInstances.add(node.stateNode.containerInfo);
+                    hostInstances.add(node2.stateNode.containerInfo);
                     return;
                 }
-                if (node.return === null) {
+                if (node2.return === null) {
                   throw new Error("Expected to reach root first.");
                 }
-                node = node.return;
+                node2 = node2.return;
               }
             }
           }
           function findChildHostInstancesForFiberShallowly(fiber, hostInstances) {
             {
-              var node = fiber;
+              var node2 = fiber;
               var foundHostInstances = false;
               while (true) {
-                if (node.tag === HostComponent) {
+                if (node2.tag === HostComponent) {
                   foundHostInstances = true;
-                  hostInstances.add(node.stateNode);
-                } else if (node.child !== null) {
-                  node.child.return = node;
-                  node = node.child;
+                  hostInstances.add(node2.stateNode);
+                } else if (node2.child !== null) {
+                  node2.child.return = node2;
+                  node2 = node2.child;
                   continue;
                 }
-                if (node === fiber) {
+                if (node2 === fiber) {
                   return foundHostInstances;
                 }
-                while (node.sibling === null) {
-                  if (node.return === null || node.return === fiber) {
+                while (node2.sibling === null) {
+                  if (node2.return === null || node2.return === fiber) {
                     return foundHostInstances;
                   }
-                  node = node.return;
+                  node2 = node2.return;
                 }
-                node.sibling.return = node.return;
-                node = node.sibling;
+                node2.sibling.return = node2.return;
+                node2 = node2.sibling;
               }
             }
             return false;
@@ -22077,7 +22077,7 @@
               var nonExtensibleObject = Object.preventExtensions({});
               /* @__PURE__ */ new Map([[nonExtensibleObject, null]]);
               /* @__PURE__ */ new Set([nonExtensibleObject]);
-            } catch (e) {
+            } catch (e2) {
               hasBadMapPolyfill = true;
             }
           }
@@ -22140,7 +22140,7 @@
             } else if (Component !== void 0 && Component !== null) {
               var $$typeof = Component.$$typeof;
               if ($$typeof === REACT_FORWARD_REF_TYPE) {
-                return ForwardRef;
+                return ForwardRef2;
               }
               if ($$typeof === REACT_MEMO_TYPE) {
                 return MemoComponent;
@@ -22203,7 +22203,7 @@
                 case ClassComponent:
                   workInProgress2.type = resolveClassForHotReloading(current2.type);
                   break;
-                case ForwardRef:
+                case ForwardRef2:
                   workInProgress2.type = resolveForwardRefForHotReloading(current2.type);
                   break;
               }
@@ -22318,7 +22318,7 @@
                           fiberTag = ContextConsumer;
                           break getTag;
                         case REACT_FORWARD_REF_TYPE:
-                          fiberTag = ForwardRef;
+                          fiberTag = ForwardRef2;
                           {
                             resolvedType = resolveForwardRefForHotReloading(resolvedType);
                           }
@@ -22371,7 +22371,7 @@
             return fiber;
           }
           function createFiberFromFragment(elements, mode, lanes, key) {
-            var fiber = createFiber(Fragment, elements, key, mode);
+            var fiber = createFiber(Fragment7, elements, key, mode);
             fiber.lanes = lanes;
             return fiber;
           }
@@ -22785,7 +22785,7 @@
           {
             var copyWithDeleteImpl = function(obj, path, index2) {
               var key = path[index2];
-              var updated = isArray(obj) ? obj.slice() : assign({}, obj);
+              var updated = isArray(obj) ? obj.slice() : assign2({}, obj);
               if (index2 + 1 === path.length) {
                 if (isArray(updated)) {
                   updated.splice(key, 1);
@@ -22802,7 +22802,7 @@
             };
             var copyWithRenameImpl = function(obj, oldPath, newPath, index2) {
               var oldKey = oldPath[index2];
-              var updated = isArray(obj) ? obj.slice() : assign({}, obj);
+              var updated = isArray(obj) ? obj.slice() : assign2({}, obj);
               if (index2 + 1 === oldPath.length) {
                 var newKey = newPath[index2];
                 updated[newKey] = updated[oldKey];
@@ -22827,8 +22827,8 @@
                 warn("copyWithRename() expects paths of the same length");
                 return;
               } else {
-                for (var i = 0; i < newPath.length - 1; i++) {
-                  if (oldPath[i] !== newPath[i]) {
+                for (var i2 = 0; i2 < newPath.length - 1; i2++) {
+                  if (oldPath[i2] !== newPath[i2]) {
                     warn("copyWithRename() expects paths to be the same except for the deepest key");
                     return;
                   }
@@ -22841,7 +22841,7 @@
                 return value;
               }
               var key = path[index2];
-              var updated = isArray(obj) ? obj.slice() : assign({}, obj);
+              var updated = isArray(obj) ? obj.slice() : assign2({}, obj);
               updated[key] = copyWithSetImpl(obj[key], path, index2 + 1, value);
               return updated;
             };
@@ -22862,7 +22862,7 @@
                 var newState = copyWithSet(hook.memoizedState, path, value);
                 hook.memoizedState = newState;
                 hook.baseState = newState;
-                fiber.memoizedProps = assign({}, fiber.memoizedProps);
+                fiber.memoizedProps = assign2({}, fiber.memoizedProps);
                 var root3 = enqueueConcurrentRenderForLane(fiber, SyncLane);
                 if (root3 !== null) {
                   scheduleUpdateOnFiber(root3, fiber, SyncLane, NoTimestamp);
@@ -22875,7 +22875,7 @@
                 var newState = copyWithDelete(hook.memoizedState, path);
                 hook.memoizedState = newState;
                 hook.baseState = newState;
-                fiber.memoizedProps = assign({}, fiber.memoizedProps);
+                fiber.memoizedProps = assign2({}, fiber.memoizedProps);
                 var root3 = enqueueConcurrentRenderForLane(fiber, SyncLane);
                 if (root3 !== null) {
                   scheduleUpdateOnFiber(root3, fiber, SyncLane, NoTimestamp);
@@ -22888,7 +22888,7 @@
                 var newState = copyWithRename(hook.memoizedState, oldPath, newPath);
                 hook.memoizedState = newState;
                 hook.baseState = newState;
-                fiber.memoizedProps = assign({}, fiber.memoizedProps);
+                fiber.memoizedProps = assign2({}, fiber.memoizedProps);
                 var root3 = enqueueConcurrentRenderForLane(fiber, SyncLane);
                 if (root3 !== null) {
                   scheduleUpdateOnFiber(root3, fiber, SyncLane, NoTimestamp);
@@ -23118,18 +23118,18 @@
             markContainerAsRoot(root3.current, container);
             listenToAllSupportedEvents(container);
             if (mutableSources) {
-              for (var i = 0; i < mutableSources.length; i++) {
-                var mutableSource = mutableSources[i];
+              for (var i2 = 0; i2 < mutableSources.length; i2++) {
+                var mutableSource = mutableSources[i2];
                 registerMutableSourceForHydration(root3, mutableSource);
               }
             }
             return new ReactDOMHydrationRoot(root3);
           }
-          function isValidContainer(node) {
-            return !!(node && (node.nodeType === ELEMENT_NODE || node.nodeType === DOCUMENT_NODE || node.nodeType === DOCUMENT_FRAGMENT_NODE || !disableCommentsAsDOMContainers));
+          function isValidContainer(node2) {
+            return !!(node2 && (node2.nodeType === ELEMENT_NODE || node2.nodeType === DOCUMENT_NODE || node2.nodeType === DOCUMENT_FRAGMENT_NODE || !disableCommentsAsDOMContainers));
           }
-          function isValidContainerLegacy(node) {
-            return !!(node && (node.nodeType === ELEMENT_NODE || node.nodeType === DOCUMENT_NODE || node.nodeType === DOCUMENT_FRAGMENT_NODE || node.nodeType === COMMENT_NODE && node.nodeValue === " react-mount-point-unstable "));
+          function isValidContainerLegacy(node2) {
+            return !!(node2 && (node2.nodeType === ELEMENT_NODE || node2.nodeType === DOCUMENT_NODE || node2.nodeType === DOCUMENT_FRAGMENT_NODE || node2.nodeType === COMMENT_NODE && node2.nodeValue === " react-mount-point-unstable "));
           }
           function warnIfReactDOMContainerInDEV(container) {
             {
@@ -23481,36 +23481,2152 @@
   var require_client = __commonJS({
     "node_modules/react-dom/client.js"(exports) {
       "use strict";
-      var m = require_react_dom();
+      var m2 = require_react_dom();
       if (false) {
-        exports.createRoot = m.createRoot;
-        exports.hydrateRoot = m.hydrateRoot;
+        exports.createRoot = m2.createRoot;
+        exports.hydrateRoot = m2.hydrateRoot;
       } else {
-        i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-        exports.createRoot = function(c, o) {
-          i.usingClientEntryPoint = true;
+        i2 = m2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        exports.createRoot = function(c2, o2) {
+          i2.usingClientEntryPoint = true;
           try {
-            return m.createRoot(c, o);
+            return m2.createRoot(c2, o2);
           } finally {
-            i.usingClientEntryPoint = false;
+            i2.usingClientEntryPoint = false;
           }
         };
-        exports.hydrateRoot = function(c, h, o) {
-          i.usingClientEntryPoint = true;
+        exports.hydrateRoot = function(c2, h3, o2) {
+          i2.usingClientEntryPoint = true;
           try {
-            return m.hydrateRoot(c, h, o);
+            return m2.hydrateRoot(c2, h3, o2);
           } finally {
-            i.usingClientEntryPoint = false;
+            i2.usingClientEntryPoint = false;
           }
         };
       }
-      var i;
+      var i2;
     }
   });
 
-  // src/player/mp4box.all.js
+  // node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js
+  var require_react_is_development = __commonJS({
+    "node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js"(exports) {
+      "use strict";
+      if (true) {
+        (function() {
+          "use strict";
+          var hasSymbol = typeof Symbol === "function" && Symbol.for;
+          var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for("react.element") : 60103;
+          var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for("react.portal") : 60106;
+          var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for("react.fragment") : 60107;
+          var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for("react.strict_mode") : 60108;
+          var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for("react.profiler") : 60114;
+          var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for("react.provider") : 60109;
+          var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for("react.context") : 60110;
+          var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for("react.async_mode") : 60111;
+          var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for("react.concurrent_mode") : 60111;
+          var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for("react.forward_ref") : 60112;
+          var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for("react.suspense") : 60113;
+          var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for("react.suspense_list") : 60120;
+          var REACT_MEMO_TYPE = hasSymbol ? Symbol.for("react.memo") : 60115;
+          var REACT_LAZY_TYPE = hasSymbol ? Symbol.for("react.lazy") : 60116;
+          var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for("react.block") : 60121;
+          var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for("react.fundamental") : 60117;
+          var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for("react.responder") : 60118;
+          var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for("react.scope") : 60119;
+          function isValidElementType(type) {
+            return typeof type === "string" || typeof type === "function" || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+            type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === "object" && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+          }
+          function typeOf(object) {
+            if (typeof object === "object" && object !== null) {
+              var $$typeof = object.$$typeof;
+              switch ($$typeof) {
+                case REACT_ELEMENT_TYPE:
+                  var type = object.type;
+                  switch (type) {
+                    case REACT_ASYNC_MODE_TYPE:
+                    case REACT_CONCURRENT_MODE_TYPE:
+                    case REACT_FRAGMENT_TYPE:
+                    case REACT_PROFILER_TYPE:
+                    case REACT_STRICT_MODE_TYPE:
+                    case REACT_SUSPENSE_TYPE:
+                      return type;
+                    default:
+                      var $$typeofType = type && type.$$typeof;
+                      switch ($$typeofType) {
+                        case REACT_CONTEXT_TYPE:
+                        case REACT_FORWARD_REF_TYPE:
+                        case REACT_LAZY_TYPE:
+                        case REACT_MEMO_TYPE:
+                        case REACT_PROVIDER_TYPE:
+                          return $$typeofType;
+                        default:
+                          return $$typeof;
+                      }
+                  }
+                case REACT_PORTAL_TYPE:
+                  return $$typeof;
+              }
+            }
+            return void 0;
+          }
+          var AsyncMode = REACT_ASYNC_MODE_TYPE;
+          var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+          var ContextConsumer = REACT_CONTEXT_TYPE;
+          var ContextProvider = REACT_PROVIDER_TYPE;
+          var Element = REACT_ELEMENT_TYPE;
+          var ForwardRef2 = REACT_FORWARD_REF_TYPE;
+          var Fragment7 = REACT_FRAGMENT_TYPE;
+          var Lazy = REACT_LAZY_TYPE;
+          var Memo2 = REACT_MEMO_TYPE;
+          var Portal = REACT_PORTAL_TYPE;
+          var Profiler = REACT_PROFILER_TYPE;
+          var StrictMode = REACT_STRICT_MODE_TYPE;
+          var Suspense = REACT_SUSPENSE_TYPE;
+          var hasWarnedAboutDeprecatedIsAsyncMode = false;
+          function isAsyncMode(object) {
+            {
+              if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+                hasWarnedAboutDeprecatedIsAsyncMode = true;
+                console["warn"]("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.");
+              }
+            }
+            return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+          }
+          function isConcurrentMode(object) {
+            return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+          }
+          function isContextConsumer(object) {
+            return typeOf(object) === REACT_CONTEXT_TYPE;
+          }
+          function isContextProvider(object) {
+            return typeOf(object) === REACT_PROVIDER_TYPE;
+          }
+          function isElement(object) {
+            return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+          }
+          function isForwardRef(object) {
+            return typeOf(object) === REACT_FORWARD_REF_TYPE;
+          }
+          function isFragment(object) {
+            return typeOf(object) === REACT_FRAGMENT_TYPE;
+          }
+          function isLazy(object) {
+            return typeOf(object) === REACT_LAZY_TYPE;
+          }
+          function isMemo(object) {
+            return typeOf(object) === REACT_MEMO_TYPE;
+          }
+          function isPortal(object) {
+            return typeOf(object) === REACT_PORTAL_TYPE;
+          }
+          function isProfiler(object) {
+            return typeOf(object) === REACT_PROFILER_TYPE;
+          }
+          function isStrictMode(object) {
+            return typeOf(object) === REACT_STRICT_MODE_TYPE;
+          }
+          function isSuspense(object) {
+            return typeOf(object) === REACT_SUSPENSE_TYPE;
+          }
+          exports.AsyncMode = AsyncMode;
+          exports.ConcurrentMode = ConcurrentMode;
+          exports.ContextConsumer = ContextConsumer;
+          exports.ContextProvider = ContextProvider;
+          exports.Element = Element;
+          exports.ForwardRef = ForwardRef2;
+          exports.Fragment = Fragment7;
+          exports.Lazy = Lazy;
+          exports.Memo = Memo2;
+          exports.Portal = Portal;
+          exports.Profiler = Profiler;
+          exports.StrictMode = StrictMode;
+          exports.Suspense = Suspense;
+          exports.isAsyncMode = isAsyncMode;
+          exports.isConcurrentMode = isConcurrentMode;
+          exports.isContextConsumer = isContextConsumer;
+          exports.isContextProvider = isContextProvider;
+          exports.isElement = isElement;
+          exports.isForwardRef = isForwardRef;
+          exports.isFragment = isFragment;
+          exports.isLazy = isLazy;
+          exports.isMemo = isMemo;
+          exports.isPortal = isPortal;
+          exports.isProfiler = isProfiler;
+          exports.isStrictMode = isStrictMode;
+          exports.isSuspense = isSuspense;
+          exports.isValidElementType = isValidElementType;
+          exports.typeOf = typeOf;
+        })();
+      }
+    }
+  });
+
+  // node_modules/prop-types/node_modules/react-is/index.js
+  var require_react_is = __commonJS({
+    "node_modules/prop-types/node_modules/react-is/index.js"(exports, module) {
+      "use strict";
+      if (false) {
+        module.exports = null;
+      } else {
+        module.exports = require_react_is_development();
+      }
+    }
+  });
+
+  // node_modules/object-assign/index.js
+  var require_object_assign = __commonJS({
+    "node_modules/object-assign/index.js"(exports, module) {
+      "use strict";
+      var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+      var hasOwnProperty2 = Object.prototype.hasOwnProperty;
+      var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+      function toObject(val) {
+        if (val === null || val === void 0) {
+          throw new TypeError("Object.assign cannot be called with null or undefined");
+        }
+        return Object(val);
+      }
+      function shouldUseNative() {
+        try {
+          if (!Object.assign) {
+            return false;
+          }
+          var test1 = new String("abc");
+          test1[5] = "de";
+          if (Object.getOwnPropertyNames(test1)[0] === "5") {
+            return false;
+          }
+          var test2 = {};
+          for (var i2 = 0; i2 < 10; i2++) {
+            test2["_" + String.fromCharCode(i2)] = i2;
+          }
+          var order2 = Object.getOwnPropertyNames(test2).map(function(n3) {
+            return test2[n3];
+          });
+          if (order2.join("") !== "0123456789") {
+            return false;
+          }
+          var test3 = {};
+          "abcdefghijklmnopqrst".split("").forEach(function(letter) {
+            test3[letter] = letter;
+          });
+          if (Object.keys(Object.assign({}, test3)).join("") !== "abcdefghijklmnopqrst") {
+            return false;
+          }
+          return true;
+        } catch (err) {
+          return false;
+        }
+      }
+      module.exports = shouldUseNative() ? Object.assign : function(target, source) {
+        var from2;
+        var to = toObject(target);
+        var symbols;
+        for (var s2 = 1; s2 < arguments.length; s2++) {
+          from2 = Object(arguments[s2]);
+          for (var key in from2) {
+            if (hasOwnProperty2.call(from2, key)) {
+              to[key] = from2[key];
+            }
+          }
+          if (getOwnPropertySymbols) {
+            symbols = getOwnPropertySymbols(from2);
+            for (var i2 = 0; i2 < symbols.length; i2++) {
+              if (propIsEnumerable.call(from2, symbols[i2])) {
+                to[symbols[i2]] = from2[symbols[i2]];
+              }
+            }
+          }
+        }
+        return to;
+      };
+    }
+  });
+
+  // node_modules/prop-types/lib/ReactPropTypesSecret.js
+  var require_ReactPropTypesSecret = __commonJS({
+    "node_modules/prop-types/lib/ReactPropTypesSecret.js"(exports, module) {
+      "use strict";
+      var ReactPropTypesSecret = "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED";
+      module.exports = ReactPropTypesSecret;
+    }
+  });
+
+  // node_modules/prop-types/lib/has.js
+  var require_has = __commonJS({
+    "node_modules/prop-types/lib/has.js"(exports, module) {
+      module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
+    }
+  });
+
+  // node_modules/prop-types/checkPropTypes.js
+  var require_checkPropTypes = __commonJS({
+    "node_modules/prop-types/checkPropTypes.js"(exports, module) {
+      "use strict";
+      var printWarning = function() {
+      };
+      if (true) {
+        ReactPropTypesSecret = require_ReactPropTypesSecret();
+        loggedTypeFailures = {};
+        has = require_has();
+        printWarning = function(text) {
+          var message = "Warning: " + text;
+          if (typeof console !== "undefined") {
+            console.error(message);
+          }
+          try {
+            throw new Error(message);
+          } catch (x) {
+          }
+        };
+      }
+      var ReactPropTypesSecret;
+      var loggedTypeFailures;
+      var has;
+      function checkPropTypes(typeSpecs, values2, location2, componentName, getStack) {
+        if (true) {
+          for (var typeSpecName in typeSpecs) {
+            if (has(typeSpecs, typeSpecName)) {
+              var error;
+              try {
+                if (typeof typeSpecs[typeSpecName] !== "function") {
+                  var err = Error(
+                    (componentName || "React class") + ": " + location2 + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`."
+                  );
+                  err.name = "Invariant Violation";
+                  throw err;
+                }
+                error = typeSpecs[typeSpecName](values2, typeSpecName, componentName, location2, null, ReactPropTypesSecret);
+              } catch (ex) {
+                error = ex;
+              }
+              if (error && !(error instanceof Error)) {
+                printWarning(
+                  (componentName || "React class") + ": type specification of " + location2 + " `" + typeSpecName + "` is invalid; the type checker function must return `null` or an `Error` but returned a " + typeof error + ". You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument)."
+                );
+              }
+              if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+                loggedTypeFailures[error.message] = true;
+                var stack = getStack ? getStack() : "";
+                printWarning(
+                  "Failed " + location2 + " type: " + error.message + (stack != null ? stack : "")
+                );
+              }
+            }
+          }
+        }
+      }
+      checkPropTypes.resetWarningCache = function() {
+        if (true) {
+          loggedTypeFailures = {};
+        }
+      };
+      module.exports = checkPropTypes;
+    }
+  });
+
+  // node_modules/prop-types/factoryWithTypeCheckers.js
+  var require_factoryWithTypeCheckers = __commonJS({
+    "node_modules/prop-types/factoryWithTypeCheckers.js"(exports, module) {
+      "use strict";
+      var ReactIs = require_react_is();
+      var assign2 = require_object_assign();
+      var ReactPropTypesSecret = require_ReactPropTypesSecret();
+      var has = require_has();
+      var checkPropTypes = require_checkPropTypes();
+      var printWarning = function() {
+      };
+      if (true) {
+        printWarning = function(text) {
+          var message = "Warning: " + text;
+          if (typeof console !== "undefined") {
+            console.error(message);
+          }
+          try {
+            throw new Error(message);
+          } catch (x) {
+          }
+        };
+      }
+      function emptyFunctionThatReturnsNull() {
+        return null;
+      }
+      module.exports = function(isValidElement, throwOnDirectAccess) {
+        var ITERATOR_SYMBOL = typeof Symbol === "function" && Symbol.iterator;
+        var FAUX_ITERATOR_SYMBOL = "@@iterator";
+        function getIteratorFn(maybeIterable) {
+          var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+          if (typeof iteratorFn === "function") {
+            return iteratorFn;
+          }
+        }
+        var ANONYMOUS = "<<anonymous>>";
+        var ReactPropTypes = {
+          array: createPrimitiveTypeChecker("array"),
+          bigint: createPrimitiveTypeChecker("bigint"),
+          bool: createPrimitiveTypeChecker("boolean"),
+          func: createPrimitiveTypeChecker("function"),
+          number: createPrimitiveTypeChecker("number"),
+          object: createPrimitiveTypeChecker("object"),
+          string: createPrimitiveTypeChecker("string"),
+          symbol: createPrimitiveTypeChecker("symbol"),
+          any: createAnyTypeChecker(),
+          arrayOf: createArrayOfTypeChecker,
+          element: createElementTypeChecker(),
+          elementType: createElementTypeTypeChecker(),
+          instanceOf: createInstanceTypeChecker,
+          node: createNodeChecker(),
+          objectOf: createObjectOfTypeChecker,
+          oneOf: createEnumTypeChecker,
+          oneOfType: createUnionTypeChecker,
+          shape: createShapeTypeChecker,
+          exact: createStrictShapeTypeChecker
+        };
+        function is(x, y2) {
+          if (x === y2) {
+            return x !== 0 || 1 / x === 1 / y2;
+          } else {
+            return x !== x && y2 !== y2;
+          }
+        }
+        function PropTypeError(message, data) {
+          this.message = message;
+          this.data = data && typeof data === "object" ? data : {};
+          this.stack = "";
+        }
+        PropTypeError.prototype = Error.prototype;
+        function createChainableTypeChecker(validate) {
+          if (true) {
+            var manualPropTypeCallCache = {};
+            var manualPropTypeWarningCount = 0;
+          }
+          function checkType(isRequired, props, propName, componentName, location2, propFullName, secret) {
+            componentName = componentName || ANONYMOUS;
+            propFullName = propFullName || propName;
+            if (secret !== ReactPropTypesSecret) {
+              if (throwOnDirectAccess) {
+                var err = new Error(
+                  "Calling PropTypes validators directly is not supported by the `prop-types` package. Use `PropTypes.checkPropTypes()` to call them. Read more at http://fb.me/use-check-prop-types"
+                );
+                err.name = "Invariant Violation";
+                throw err;
+              } else if (typeof console !== "undefined") {
+                var cacheKey = componentName + ":" + propName;
+                if (!manualPropTypeCallCache[cacheKey] && // Avoid spamming the console because they are often not actionable except for lib authors
+                manualPropTypeWarningCount < 3) {
+                  printWarning(
+                    "You are manually calling a React.PropTypes validation function for the `" + propFullName + "` prop on `" + componentName + "`. This is deprecated and will throw in the standalone `prop-types` package. You may be seeing this warning due to a third-party PropTypes library. See https://fb.me/react-warning-dont-call-proptypes for details."
+                  );
+                  manualPropTypeCallCache[cacheKey] = true;
+                  manualPropTypeWarningCount++;
+                }
+              }
+            }
+            if (props[propName] == null) {
+              if (isRequired) {
+                if (props[propName] === null) {
+                  return new PropTypeError("The " + location2 + " `" + propFullName + "` is marked as required " + ("in `" + componentName + "`, but its value is `null`."));
+                }
+                return new PropTypeError("The " + location2 + " `" + propFullName + "` is marked as required in " + ("`" + componentName + "`, but its value is `undefined`."));
+              }
+              return null;
+            } else {
+              return validate(props, propName, componentName, location2, propFullName);
+            }
+          }
+          var chainedCheckType = checkType.bind(null, false);
+          chainedCheckType.isRequired = checkType.bind(null, true);
+          return chainedCheckType;
+        }
+        function createPrimitiveTypeChecker(expectedType) {
+          function validate(props, propName, componentName, location2, propFullName, secret) {
+            var propValue = props[propName];
+            var propType = getPropType(propValue);
+            if (propType !== expectedType) {
+              var preciseType = getPreciseType(propValue);
+              return new PropTypeError(
+                "Invalid " + location2 + " `" + propFullName + "` of type " + ("`" + preciseType + "` supplied to `" + componentName + "`, expected ") + ("`" + expectedType + "`."),
+                { expectedType }
+              );
+            }
+            return null;
+          }
+          return createChainableTypeChecker(validate);
+        }
+        function createAnyTypeChecker() {
+          return createChainableTypeChecker(emptyFunctionThatReturnsNull);
+        }
+        function createArrayOfTypeChecker(typeChecker) {
+          function validate(props, propName, componentName, location2, propFullName) {
+            if (typeof typeChecker !== "function") {
+              return new PropTypeError("Property `" + propFullName + "` of component `" + componentName + "` has invalid PropType notation inside arrayOf.");
+            }
+            var propValue = props[propName];
+            if (!Array.isArray(propValue)) {
+              var propType = getPropType(propValue);
+              return new PropTypeError("Invalid " + location2 + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected an array."));
+            }
+            for (var i2 = 0; i2 < propValue.length; i2++) {
+              var error = typeChecker(propValue, i2, componentName, location2, propFullName + "[" + i2 + "]", ReactPropTypesSecret);
+              if (error instanceof Error) {
+                return error;
+              }
+            }
+            return null;
+          }
+          return createChainableTypeChecker(validate);
+        }
+        function createElementTypeChecker() {
+          function validate(props, propName, componentName, location2, propFullName) {
+            var propValue = props[propName];
+            if (!isValidElement(propValue)) {
+              var propType = getPropType(propValue);
+              return new PropTypeError("Invalid " + location2 + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected a single ReactElement."));
+            }
+            return null;
+          }
+          return createChainableTypeChecker(validate);
+        }
+        function createElementTypeTypeChecker() {
+          function validate(props, propName, componentName, location2, propFullName) {
+            var propValue = props[propName];
+            if (!ReactIs.isValidElementType(propValue)) {
+              var propType = getPropType(propValue);
+              return new PropTypeError("Invalid " + location2 + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected a single ReactElement type."));
+            }
+            return null;
+          }
+          return createChainableTypeChecker(validate);
+        }
+        function createInstanceTypeChecker(expectedClass) {
+          function validate(props, propName, componentName, location2, propFullName) {
+            if (!(props[propName] instanceof expectedClass)) {
+              var expectedClassName = expectedClass.name || ANONYMOUS;
+              var actualClassName = getClassName(props[propName]);
+              return new PropTypeError("Invalid " + location2 + " `" + propFullName + "` of type " + ("`" + actualClassName + "` supplied to `" + componentName + "`, expected ") + ("instance of `" + expectedClassName + "`."));
+            }
+            return null;
+          }
+          return createChainableTypeChecker(validate);
+        }
+        function createEnumTypeChecker(expectedValues) {
+          if (!Array.isArray(expectedValues)) {
+            if (true) {
+              if (arguments.length > 1) {
+                printWarning(
+                  "Invalid arguments supplied to oneOf, expected an array, got " + arguments.length + " arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z])."
+                );
+              } else {
+                printWarning("Invalid argument supplied to oneOf, expected an array.");
+              }
+            }
+            return emptyFunctionThatReturnsNull;
+          }
+          function validate(props, propName, componentName, location2, propFullName) {
+            var propValue = props[propName];
+            for (var i2 = 0; i2 < expectedValues.length; i2++) {
+              if (is(propValue, expectedValues[i2])) {
+                return null;
+              }
+            }
+            var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
+              var type = getPreciseType(value);
+              if (type === "symbol") {
+                return String(value);
+              }
+              return value;
+            });
+            return new PropTypeError("Invalid " + location2 + " `" + propFullName + "` of value `" + String(propValue) + "` " + ("supplied to `" + componentName + "`, expected one of " + valuesString + "."));
+          }
+          return createChainableTypeChecker(validate);
+        }
+        function createObjectOfTypeChecker(typeChecker) {
+          function validate(props, propName, componentName, location2, propFullName) {
+            if (typeof typeChecker !== "function") {
+              return new PropTypeError("Property `" + propFullName + "` of component `" + componentName + "` has invalid PropType notation inside objectOf.");
+            }
+            var propValue = props[propName];
+            var propType = getPropType(propValue);
+            if (propType !== "object") {
+              return new PropTypeError("Invalid " + location2 + " `" + propFullName + "` of type " + ("`" + propType + "` supplied to `" + componentName + "`, expected an object."));
+            }
+            for (var key in propValue) {
+              if (has(propValue, key)) {
+                var error = typeChecker(propValue, key, componentName, location2, propFullName + "." + key, ReactPropTypesSecret);
+                if (error instanceof Error) {
+                  return error;
+                }
+              }
+            }
+            return null;
+          }
+          return createChainableTypeChecker(validate);
+        }
+        function createUnionTypeChecker(arrayOfTypeCheckers) {
+          if (!Array.isArray(arrayOfTypeCheckers)) {
+            true ? printWarning("Invalid argument supplied to oneOfType, expected an instance of array.") : void 0;
+            return emptyFunctionThatReturnsNull;
+          }
+          for (var i2 = 0; i2 < arrayOfTypeCheckers.length; i2++) {
+            var checker = arrayOfTypeCheckers[i2];
+            if (typeof checker !== "function") {
+              printWarning(
+                "Invalid argument supplied to oneOfType. Expected an array of check functions, but received " + getPostfixForTypeWarning(checker) + " at index " + i2 + "."
+              );
+              return emptyFunctionThatReturnsNull;
+            }
+          }
+          function validate(props, propName, componentName, location2, propFullName) {
+            var expectedTypes = [];
+            for (var i3 = 0; i3 < arrayOfTypeCheckers.length; i3++) {
+              var checker2 = arrayOfTypeCheckers[i3];
+              var checkerResult = checker2(props, propName, componentName, location2, propFullName, ReactPropTypesSecret);
+              if (checkerResult == null) {
+                return null;
+              }
+              if (checkerResult.data && has(checkerResult.data, "expectedType")) {
+                expectedTypes.push(checkerResult.data.expectedType);
+              }
+            }
+            var expectedTypesMessage = expectedTypes.length > 0 ? ", expected one of type [" + expectedTypes.join(", ") + "]" : "";
+            return new PropTypeError("Invalid " + location2 + " `" + propFullName + "` supplied to " + ("`" + componentName + "`" + expectedTypesMessage + "."));
+          }
+          return createChainableTypeChecker(validate);
+        }
+        function createNodeChecker() {
+          function validate(props, propName, componentName, location2, propFullName) {
+            if (!isNode(props[propName])) {
+              return new PropTypeError("Invalid " + location2 + " `" + propFullName + "` supplied to " + ("`" + componentName + "`, expected a ReactNode."));
+            }
+            return null;
+          }
+          return createChainableTypeChecker(validate);
+        }
+        function invalidValidatorError(componentName, location2, propFullName, key, type) {
+          return new PropTypeError(
+            (componentName || "React class") + ": " + location2 + " type `" + propFullName + "." + key + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + type + "`."
+          );
+        }
+        function createShapeTypeChecker(shapeTypes) {
+          function validate(props, propName, componentName, location2, propFullName) {
+            var propValue = props[propName];
+            var propType = getPropType(propValue);
+            if (propType !== "object") {
+              return new PropTypeError("Invalid " + location2 + " `" + propFullName + "` of type `" + propType + "` " + ("supplied to `" + componentName + "`, expected `object`."));
+            }
+            for (var key in shapeTypes) {
+              var checker = shapeTypes[key];
+              if (typeof checker !== "function") {
+                return invalidValidatorError(componentName, location2, propFullName, key, getPreciseType(checker));
+              }
+              var error = checker(propValue, key, componentName, location2, propFullName + "." + key, ReactPropTypesSecret);
+              if (error) {
+                return error;
+              }
+            }
+            return null;
+          }
+          return createChainableTypeChecker(validate);
+        }
+        function createStrictShapeTypeChecker(shapeTypes) {
+          function validate(props, propName, componentName, location2, propFullName) {
+            var propValue = props[propName];
+            var propType = getPropType(propValue);
+            if (propType !== "object") {
+              return new PropTypeError("Invalid " + location2 + " `" + propFullName + "` of type `" + propType + "` " + ("supplied to `" + componentName + "`, expected `object`."));
+            }
+            var allKeys = assign2({}, props[propName], shapeTypes);
+            for (var key in allKeys) {
+              var checker = shapeTypes[key];
+              if (has(shapeTypes, key) && typeof checker !== "function") {
+                return invalidValidatorError(componentName, location2, propFullName, key, getPreciseType(checker));
+              }
+              if (!checker) {
+                return new PropTypeError(
+                  "Invalid " + location2 + " `" + propFullName + "` key `" + key + "` supplied to `" + componentName + "`.\nBad object: " + JSON.stringify(props[propName], null, "  ") + "\nValid keys: " + JSON.stringify(Object.keys(shapeTypes), null, "  ")
+                );
+              }
+              var error = checker(propValue, key, componentName, location2, propFullName + "." + key, ReactPropTypesSecret);
+              if (error) {
+                return error;
+              }
+            }
+            return null;
+          }
+          return createChainableTypeChecker(validate);
+        }
+        function isNode(propValue) {
+          switch (typeof propValue) {
+            case "number":
+            case "string":
+            case "undefined":
+              return true;
+            case "boolean":
+              return !propValue;
+            case "object":
+              if (Array.isArray(propValue)) {
+                return propValue.every(isNode);
+              }
+              if (propValue === null || isValidElement(propValue)) {
+                return true;
+              }
+              var iteratorFn = getIteratorFn(propValue);
+              if (iteratorFn) {
+                var iterator = iteratorFn.call(propValue);
+                var step;
+                if (iteratorFn !== propValue.entries) {
+                  while (!(step = iterator.next()).done) {
+                    if (!isNode(step.value)) {
+                      return false;
+                    }
+                  }
+                } else {
+                  while (!(step = iterator.next()).done) {
+                    var entry = step.value;
+                    if (entry) {
+                      if (!isNode(entry[1])) {
+                        return false;
+                      }
+                    }
+                  }
+                }
+              } else {
+                return false;
+              }
+              return true;
+            default:
+              return false;
+          }
+        }
+        function isSymbol(propType, propValue) {
+          if (propType === "symbol") {
+            return true;
+          }
+          if (!propValue) {
+            return false;
+          }
+          if (propValue["@@toStringTag"] === "Symbol") {
+            return true;
+          }
+          if (typeof Symbol === "function" && propValue instanceof Symbol) {
+            return true;
+          }
+          return false;
+        }
+        function getPropType(propValue) {
+          var propType = typeof propValue;
+          if (Array.isArray(propValue)) {
+            return "array";
+          }
+          if (propValue instanceof RegExp) {
+            return "object";
+          }
+          if (isSymbol(propType, propValue)) {
+            return "symbol";
+          }
+          return propType;
+        }
+        function getPreciseType(propValue) {
+          if (typeof propValue === "undefined" || propValue === null) {
+            return "" + propValue;
+          }
+          var propType = getPropType(propValue);
+          if (propType === "object") {
+            if (propValue instanceof Date) {
+              return "date";
+            } else if (propValue instanceof RegExp) {
+              return "regexp";
+            }
+          }
+          return propType;
+        }
+        function getPostfixForTypeWarning(value) {
+          var type = getPreciseType(value);
+          switch (type) {
+            case "array":
+            case "object":
+              return "an " + type;
+            case "boolean":
+            case "date":
+            case "regexp":
+              return "a " + type;
+            default:
+              return type;
+          }
+        }
+        function getClassName(propValue) {
+          if (!propValue.constructor || !propValue.constructor.name) {
+            return ANONYMOUS;
+          }
+          return propValue.constructor.name;
+        }
+        ReactPropTypes.checkPropTypes = checkPropTypes;
+        ReactPropTypes.resetWarningCache = checkPropTypes.resetWarningCache;
+        ReactPropTypes.PropTypes = ReactPropTypes;
+        return ReactPropTypes;
+      };
+    }
+  });
+
+  // node_modules/prop-types/index.js
+  var require_prop_types = __commonJS({
+    "node_modules/prop-types/index.js"(exports, module) {
+      if (true) {
+        ReactIs = require_react_is();
+        throwOnDirectAccess = true;
+        module.exports = require_factoryWithTypeCheckers()(ReactIs.isElement, throwOnDirectAccess);
+      } else {
+        module.exports = null();
+      }
+      var ReactIs;
+      var throwOnDirectAccess;
+    }
+  });
+
+  // node_modules/react-is/cjs/react-is.development.js
+  var require_react_is_development2 = __commonJS({
+    "node_modules/react-is/cjs/react-is.development.js"(exports) {
+      "use strict";
+      if (true) {
+        (function() {
+          "use strict";
+          var REACT_ELEMENT_TYPE = Symbol.for("react.element");
+          var REACT_PORTAL_TYPE = Symbol.for("react.portal");
+          var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
+          var REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode");
+          var REACT_PROFILER_TYPE = Symbol.for("react.profiler");
+          var REACT_PROVIDER_TYPE = Symbol.for("react.provider");
+          var REACT_CONTEXT_TYPE = Symbol.for("react.context");
+          var REACT_SERVER_CONTEXT_TYPE = Symbol.for("react.server_context");
+          var REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref");
+          var REACT_SUSPENSE_TYPE = Symbol.for("react.suspense");
+          var REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list");
+          var REACT_MEMO_TYPE = Symbol.for("react.memo");
+          var REACT_LAZY_TYPE = Symbol.for("react.lazy");
+          var REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen");
+          var enableScopeAPI = false;
+          var enableCacheElement = false;
+          var enableTransitionTracing = false;
+          var enableLegacyHidden = false;
+          var enableDebugTracing = false;
+          var REACT_MODULE_REFERENCE;
+          {
+            REACT_MODULE_REFERENCE = Symbol.for("react.module.reference");
+          }
+          function isValidElementType(type) {
+            if (typeof type === "string" || typeof type === "function") {
+              return true;
+            }
+            if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden || type === REACT_OFFSCREEN_TYPE || enableScopeAPI || enableCacheElement || enableTransitionTracing) {
+              return true;
+            }
+            if (typeof type === "object" && type !== null) {
+              if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+              // types supported by any Flight configuration anywhere since
+              // we don't know which Flight build this will end up being used
+              // with.
+              type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== void 0) {
+                return true;
+              }
+            }
+            return false;
+          }
+          function typeOf(object) {
+            if (typeof object === "object" && object !== null) {
+              var $$typeof = object.$$typeof;
+              switch ($$typeof) {
+                case REACT_ELEMENT_TYPE:
+                  var type = object.type;
+                  switch (type) {
+                    case REACT_FRAGMENT_TYPE:
+                    case REACT_PROFILER_TYPE:
+                    case REACT_STRICT_MODE_TYPE:
+                    case REACT_SUSPENSE_TYPE:
+                    case REACT_SUSPENSE_LIST_TYPE:
+                      return type;
+                    default:
+                      var $$typeofType = type && type.$$typeof;
+                      switch ($$typeofType) {
+                        case REACT_SERVER_CONTEXT_TYPE:
+                        case REACT_CONTEXT_TYPE:
+                        case REACT_FORWARD_REF_TYPE:
+                        case REACT_LAZY_TYPE:
+                        case REACT_MEMO_TYPE:
+                        case REACT_PROVIDER_TYPE:
+                          return $$typeofType;
+                        default:
+                          return $$typeof;
+                      }
+                  }
+                case REACT_PORTAL_TYPE:
+                  return $$typeof;
+              }
+            }
+            return void 0;
+          }
+          var ContextConsumer = REACT_CONTEXT_TYPE;
+          var ContextProvider = REACT_PROVIDER_TYPE;
+          var Element = REACT_ELEMENT_TYPE;
+          var ForwardRef2 = REACT_FORWARD_REF_TYPE;
+          var Fragment7 = REACT_FRAGMENT_TYPE;
+          var Lazy = REACT_LAZY_TYPE;
+          var Memo2 = REACT_MEMO_TYPE;
+          var Portal = REACT_PORTAL_TYPE;
+          var Profiler = REACT_PROFILER_TYPE;
+          var StrictMode = REACT_STRICT_MODE_TYPE;
+          var Suspense = REACT_SUSPENSE_TYPE;
+          var SuspenseList = REACT_SUSPENSE_LIST_TYPE;
+          var hasWarnedAboutDeprecatedIsAsyncMode = false;
+          var hasWarnedAboutDeprecatedIsConcurrentMode = false;
+          function isAsyncMode(object) {
+            {
+              if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+                hasWarnedAboutDeprecatedIsAsyncMode = true;
+                console["warn"]("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 18+.");
+              }
+            }
+            return false;
+          }
+          function isConcurrentMode(object) {
+            {
+              if (!hasWarnedAboutDeprecatedIsConcurrentMode) {
+                hasWarnedAboutDeprecatedIsConcurrentMode = true;
+                console["warn"]("The ReactIs.isConcurrentMode() alias has been deprecated, and will be removed in React 18+.");
+              }
+            }
+            return false;
+          }
+          function isContextConsumer(object) {
+            return typeOf(object) === REACT_CONTEXT_TYPE;
+          }
+          function isContextProvider(object) {
+            return typeOf(object) === REACT_PROVIDER_TYPE;
+          }
+          function isElement(object) {
+            return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+          }
+          function isForwardRef(object) {
+            return typeOf(object) === REACT_FORWARD_REF_TYPE;
+          }
+          function isFragment(object) {
+            return typeOf(object) === REACT_FRAGMENT_TYPE;
+          }
+          function isLazy(object) {
+            return typeOf(object) === REACT_LAZY_TYPE;
+          }
+          function isMemo(object) {
+            return typeOf(object) === REACT_MEMO_TYPE;
+          }
+          function isPortal(object) {
+            return typeOf(object) === REACT_PORTAL_TYPE;
+          }
+          function isProfiler(object) {
+            return typeOf(object) === REACT_PROFILER_TYPE;
+          }
+          function isStrictMode(object) {
+            return typeOf(object) === REACT_STRICT_MODE_TYPE;
+          }
+          function isSuspense(object) {
+            return typeOf(object) === REACT_SUSPENSE_TYPE;
+          }
+          function isSuspenseList(object) {
+            return typeOf(object) === REACT_SUSPENSE_LIST_TYPE;
+          }
+          exports.ContextConsumer = ContextConsumer;
+          exports.ContextProvider = ContextProvider;
+          exports.Element = Element;
+          exports.ForwardRef = ForwardRef2;
+          exports.Fragment = Fragment7;
+          exports.Lazy = Lazy;
+          exports.Memo = Memo2;
+          exports.Portal = Portal;
+          exports.Profiler = Profiler;
+          exports.StrictMode = StrictMode;
+          exports.Suspense = Suspense;
+          exports.SuspenseList = SuspenseList;
+          exports.isAsyncMode = isAsyncMode;
+          exports.isConcurrentMode = isConcurrentMode;
+          exports.isContextConsumer = isContextConsumer;
+          exports.isContextProvider = isContextProvider;
+          exports.isElement = isElement;
+          exports.isForwardRef = isForwardRef;
+          exports.isFragment = isFragment;
+          exports.isLazy = isLazy;
+          exports.isMemo = isMemo;
+          exports.isPortal = isPortal;
+          exports.isProfiler = isProfiler;
+          exports.isStrictMode = isStrictMode;
+          exports.isSuspense = isSuspense;
+          exports.isSuspenseList = isSuspenseList;
+          exports.isValidElementType = isValidElementType;
+          exports.typeOf = typeOf;
+        })();
+      }
+    }
+  });
+
+  // node_modules/react-is/index.js
+  var require_react_is2 = __commonJS({
+    "node_modules/react-is/index.js"(exports, module) {
+      "use strict";
+      if (false) {
+        module.exports = null;
+      } else {
+        module.exports = require_react_is_development2();
+      }
+    }
+  });
+
+  // node_modules/hoist-non-react-statics/node_modules/react-is/cjs/react-is.development.js
+  var require_react_is_development3 = __commonJS({
+    "node_modules/hoist-non-react-statics/node_modules/react-is/cjs/react-is.development.js"(exports) {
+      "use strict";
+      if (true) {
+        (function() {
+          "use strict";
+          var hasSymbol = typeof Symbol === "function" && Symbol.for;
+          var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for("react.element") : 60103;
+          var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for("react.portal") : 60106;
+          var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for("react.fragment") : 60107;
+          var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for("react.strict_mode") : 60108;
+          var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for("react.profiler") : 60114;
+          var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for("react.provider") : 60109;
+          var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for("react.context") : 60110;
+          var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for("react.async_mode") : 60111;
+          var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for("react.concurrent_mode") : 60111;
+          var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for("react.forward_ref") : 60112;
+          var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for("react.suspense") : 60113;
+          var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for("react.suspense_list") : 60120;
+          var REACT_MEMO_TYPE = hasSymbol ? Symbol.for("react.memo") : 60115;
+          var REACT_LAZY_TYPE = hasSymbol ? Symbol.for("react.lazy") : 60116;
+          var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for("react.block") : 60121;
+          var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for("react.fundamental") : 60117;
+          var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for("react.responder") : 60118;
+          var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for("react.scope") : 60119;
+          function isValidElementType(type) {
+            return typeof type === "string" || typeof type === "function" || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+            type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === "object" && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+          }
+          function typeOf(object) {
+            if (typeof object === "object" && object !== null) {
+              var $$typeof = object.$$typeof;
+              switch ($$typeof) {
+                case REACT_ELEMENT_TYPE:
+                  var type = object.type;
+                  switch (type) {
+                    case REACT_ASYNC_MODE_TYPE:
+                    case REACT_CONCURRENT_MODE_TYPE:
+                    case REACT_FRAGMENT_TYPE:
+                    case REACT_PROFILER_TYPE:
+                    case REACT_STRICT_MODE_TYPE:
+                    case REACT_SUSPENSE_TYPE:
+                      return type;
+                    default:
+                      var $$typeofType = type && type.$$typeof;
+                      switch ($$typeofType) {
+                        case REACT_CONTEXT_TYPE:
+                        case REACT_FORWARD_REF_TYPE:
+                        case REACT_LAZY_TYPE:
+                        case REACT_MEMO_TYPE:
+                        case REACT_PROVIDER_TYPE:
+                          return $$typeofType;
+                        default:
+                          return $$typeof;
+                      }
+                  }
+                case REACT_PORTAL_TYPE:
+                  return $$typeof;
+              }
+            }
+            return void 0;
+          }
+          var AsyncMode = REACT_ASYNC_MODE_TYPE;
+          var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+          var ContextConsumer = REACT_CONTEXT_TYPE;
+          var ContextProvider = REACT_PROVIDER_TYPE;
+          var Element = REACT_ELEMENT_TYPE;
+          var ForwardRef2 = REACT_FORWARD_REF_TYPE;
+          var Fragment7 = REACT_FRAGMENT_TYPE;
+          var Lazy = REACT_LAZY_TYPE;
+          var Memo2 = REACT_MEMO_TYPE;
+          var Portal = REACT_PORTAL_TYPE;
+          var Profiler = REACT_PROFILER_TYPE;
+          var StrictMode = REACT_STRICT_MODE_TYPE;
+          var Suspense = REACT_SUSPENSE_TYPE;
+          var hasWarnedAboutDeprecatedIsAsyncMode = false;
+          function isAsyncMode(object) {
+            {
+              if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+                hasWarnedAboutDeprecatedIsAsyncMode = true;
+                console["warn"]("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.");
+              }
+            }
+            return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+          }
+          function isConcurrentMode(object) {
+            return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+          }
+          function isContextConsumer(object) {
+            return typeOf(object) === REACT_CONTEXT_TYPE;
+          }
+          function isContextProvider(object) {
+            return typeOf(object) === REACT_PROVIDER_TYPE;
+          }
+          function isElement(object) {
+            return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+          }
+          function isForwardRef(object) {
+            return typeOf(object) === REACT_FORWARD_REF_TYPE;
+          }
+          function isFragment(object) {
+            return typeOf(object) === REACT_FRAGMENT_TYPE;
+          }
+          function isLazy(object) {
+            return typeOf(object) === REACT_LAZY_TYPE;
+          }
+          function isMemo(object) {
+            return typeOf(object) === REACT_MEMO_TYPE;
+          }
+          function isPortal(object) {
+            return typeOf(object) === REACT_PORTAL_TYPE;
+          }
+          function isProfiler(object) {
+            return typeOf(object) === REACT_PROFILER_TYPE;
+          }
+          function isStrictMode(object) {
+            return typeOf(object) === REACT_STRICT_MODE_TYPE;
+          }
+          function isSuspense(object) {
+            return typeOf(object) === REACT_SUSPENSE_TYPE;
+          }
+          exports.AsyncMode = AsyncMode;
+          exports.ConcurrentMode = ConcurrentMode;
+          exports.ContextConsumer = ContextConsumer;
+          exports.ContextProvider = ContextProvider;
+          exports.Element = Element;
+          exports.ForwardRef = ForwardRef2;
+          exports.Fragment = Fragment7;
+          exports.Lazy = Lazy;
+          exports.Memo = Memo2;
+          exports.Portal = Portal;
+          exports.Profiler = Profiler;
+          exports.StrictMode = StrictMode;
+          exports.Suspense = Suspense;
+          exports.isAsyncMode = isAsyncMode;
+          exports.isConcurrentMode = isConcurrentMode;
+          exports.isContextConsumer = isContextConsumer;
+          exports.isContextProvider = isContextProvider;
+          exports.isElement = isElement;
+          exports.isForwardRef = isForwardRef;
+          exports.isFragment = isFragment;
+          exports.isLazy = isLazy;
+          exports.isMemo = isMemo;
+          exports.isPortal = isPortal;
+          exports.isProfiler = isProfiler;
+          exports.isStrictMode = isStrictMode;
+          exports.isSuspense = isSuspense;
+          exports.isValidElementType = isValidElementType;
+          exports.typeOf = typeOf;
+        })();
+      }
+    }
+  });
+
+  // node_modules/hoist-non-react-statics/node_modules/react-is/index.js
+  var require_react_is3 = __commonJS({
+    "node_modules/hoist-non-react-statics/node_modules/react-is/index.js"(exports, module) {
+      "use strict";
+      if (false) {
+        module.exports = null;
+      } else {
+        module.exports = require_react_is_development3();
+      }
+    }
+  });
+
+  // node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
+  var require_hoist_non_react_statics_cjs = __commonJS({
+    "node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js"(exports, module) {
+      "use strict";
+      var reactIs = require_react_is3();
+      var REACT_STATICS = {
+        childContextTypes: true,
+        contextType: true,
+        contextTypes: true,
+        defaultProps: true,
+        displayName: true,
+        getDefaultProps: true,
+        getDerivedStateFromError: true,
+        getDerivedStateFromProps: true,
+        mixins: true,
+        propTypes: true,
+        type: true
+      };
+      var KNOWN_STATICS = {
+        name: true,
+        length: true,
+        prototype: true,
+        caller: true,
+        callee: true,
+        arguments: true,
+        arity: true
+      };
+      var FORWARD_REF_STATICS = {
+        "$$typeof": true,
+        render: true,
+        defaultProps: true,
+        displayName: true,
+        propTypes: true
+      };
+      var MEMO_STATICS = {
+        "$$typeof": true,
+        compare: true,
+        defaultProps: true,
+        displayName: true,
+        propTypes: true,
+        type: true
+      };
+      var TYPE_STATICS = {};
+      TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
+      TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
+      function getStatics(component) {
+        if (reactIs.isMemo(component)) {
+          return MEMO_STATICS;
+        }
+        return TYPE_STATICS[component["$$typeof"]] || REACT_STATICS;
+      }
+      var defineProperty = Object.defineProperty;
+      var getOwnPropertyNames = Object.getOwnPropertyNames;
+      var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+      var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+      var getPrototypeOf = Object.getPrototypeOf;
+      var objectPrototype = Object.prototype;
+      function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
+        if (typeof sourceComponent !== "string") {
+          if (objectPrototype) {
+            var inheritedComponent = getPrototypeOf(sourceComponent);
+            if (inheritedComponent && inheritedComponent !== objectPrototype) {
+              hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+            }
+          }
+          var keys = getOwnPropertyNames(sourceComponent);
+          if (getOwnPropertySymbols) {
+            keys = keys.concat(getOwnPropertySymbols(sourceComponent));
+          }
+          var targetStatics = getStatics(targetComponent);
+          var sourceStatics = getStatics(sourceComponent);
+          for (var i2 = 0; i2 < keys.length; ++i2) {
+            var key = keys[i2];
+            if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
+              var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+              try {
+                defineProperty(targetComponent, key, descriptor);
+              } catch (e2) {
+              }
+            }
+          }
+        }
+        return targetComponent;
+      }
+      module.exports = hoistNonReactStatics;
+    }
+  });
+
+  // node_modules/react/cjs/react-jsx-runtime.development.js
+  var require_react_jsx_runtime_development = __commonJS({
+    "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
+      "use strict";
+      if (true) {
+        (function() {
+          "use strict";
+          var React22 = require_react();
+          var REACT_ELEMENT_TYPE = Symbol.for("react.element");
+          var REACT_PORTAL_TYPE = Symbol.for("react.portal");
+          var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
+          var REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode");
+          var REACT_PROFILER_TYPE = Symbol.for("react.profiler");
+          var REACT_PROVIDER_TYPE = Symbol.for("react.provider");
+          var REACT_CONTEXT_TYPE = Symbol.for("react.context");
+          var REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref");
+          var REACT_SUSPENSE_TYPE = Symbol.for("react.suspense");
+          var REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list");
+          var REACT_MEMO_TYPE = Symbol.for("react.memo");
+          var REACT_LAZY_TYPE = Symbol.for("react.lazy");
+          var REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen");
+          var MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
+          var FAUX_ITERATOR_SYMBOL = "@@iterator";
+          function getIteratorFn(maybeIterable) {
+            if (maybeIterable === null || typeof maybeIterable !== "object") {
+              return null;
+            }
+            var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
+            if (typeof maybeIterator === "function") {
+              return maybeIterator;
+            }
+            return null;
+          }
+          var ReactSharedInternals = React22.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          function error(format) {
+            {
+              {
+                for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+                  args[_key2 - 1] = arguments[_key2];
+                }
+                printWarning("error", format, args);
+              }
+            }
+          }
+          function printWarning(level, format, args) {
+            {
+              var ReactDebugCurrentFrame2 = ReactSharedInternals.ReactDebugCurrentFrame;
+              var stack = ReactDebugCurrentFrame2.getStackAddendum();
+              if (stack !== "") {
+                format += "%s";
+                args = args.concat([stack]);
+              }
+              var argsWithFormat = args.map(function(item) {
+                return String(item);
+              });
+              argsWithFormat.unshift("Warning: " + format);
+              Function.prototype.apply.call(console[level], console, argsWithFormat);
+            }
+          }
+          var enableScopeAPI = false;
+          var enableCacheElement = false;
+          var enableTransitionTracing = false;
+          var enableLegacyHidden = false;
+          var enableDebugTracing = false;
+          var REACT_MODULE_REFERENCE;
+          {
+            REACT_MODULE_REFERENCE = Symbol.for("react.module.reference");
+          }
+          function isValidElementType(type) {
+            if (typeof type === "string" || typeof type === "function") {
+              return true;
+            }
+            if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden || type === REACT_OFFSCREEN_TYPE || enableScopeAPI || enableCacheElement || enableTransitionTracing) {
+              return true;
+            }
+            if (typeof type === "object" && type !== null) {
+              if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+              // types supported by any Flight configuration anywhere since
+              // we don't know which Flight build this will end up being used
+              // with.
+              type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== void 0) {
+                return true;
+              }
+            }
+            return false;
+          }
+          function getWrappedName2(outerType, innerType, wrapperName) {
+            var displayName = outerType.displayName;
+            if (displayName) {
+              return displayName;
+            }
+            var functionName = innerType.displayName || innerType.name || "";
+            return functionName !== "" ? wrapperName + "(" + functionName + ")" : wrapperName;
+          }
+          function getContextName(type) {
+            return type.displayName || "Context";
+          }
+          function getComponentNameFromType(type) {
+            if (type == null) {
+              return null;
+            }
+            {
+              if (typeof type.tag === "number") {
+                error("Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.");
+              }
+            }
+            if (typeof type === "function") {
+              return type.displayName || type.name || null;
+            }
+            if (typeof type === "string") {
+              return type;
+            }
+            switch (type) {
+              case REACT_FRAGMENT_TYPE:
+                return "Fragment";
+              case REACT_PORTAL_TYPE:
+                return "Portal";
+              case REACT_PROFILER_TYPE:
+                return "Profiler";
+              case REACT_STRICT_MODE_TYPE:
+                return "StrictMode";
+              case REACT_SUSPENSE_TYPE:
+                return "Suspense";
+              case REACT_SUSPENSE_LIST_TYPE:
+                return "SuspenseList";
+            }
+            if (typeof type === "object") {
+              switch (type.$$typeof) {
+                case REACT_CONTEXT_TYPE:
+                  var context = type;
+                  return getContextName(context) + ".Consumer";
+                case REACT_PROVIDER_TYPE:
+                  var provider = type;
+                  return getContextName(provider._context) + ".Provider";
+                case REACT_FORWARD_REF_TYPE:
+                  return getWrappedName2(type, type.render, "ForwardRef");
+                case REACT_MEMO_TYPE:
+                  var outerName = type.displayName || null;
+                  if (outerName !== null) {
+                    return outerName;
+                  }
+                  return getComponentNameFromType(type.type) || "Memo";
+                case REACT_LAZY_TYPE: {
+                  var lazyComponent = type;
+                  var payload = lazyComponent._payload;
+                  var init = lazyComponent._init;
+                  try {
+                    return getComponentNameFromType(init(payload));
+                  } catch (x) {
+                    return null;
+                  }
+                }
+              }
+            }
+            return null;
+          }
+          var assign2 = Object.assign;
+          var disabledDepth = 0;
+          var prevLog;
+          var prevInfo;
+          var prevWarn;
+          var prevError;
+          var prevGroup;
+          var prevGroupCollapsed;
+          var prevGroupEnd;
+          function disabledLog() {
+          }
+          disabledLog.__reactDisabledLog = true;
+          function disableLogs() {
+            {
+              if (disabledDepth === 0) {
+                prevLog = console.log;
+                prevInfo = console.info;
+                prevWarn = console.warn;
+                prevError = console.error;
+                prevGroup = console.group;
+                prevGroupCollapsed = console.groupCollapsed;
+                prevGroupEnd = console.groupEnd;
+                var props = {
+                  configurable: true,
+                  enumerable: true,
+                  value: disabledLog,
+                  writable: true
+                };
+                Object.defineProperties(console, {
+                  info: props,
+                  log: props,
+                  warn: props,
+                  error: props,
+                  group: props,
+                  groupCollapsed: props,
+                  groupEnd: props
+                });
+              }
+              disabledDepth++;
+            }
+          }
+          function reenableLogs() {
+            {
+              disabledDepth--;
+              if (disabledDepth === 0) {
+                var props = {
+                  configurable: true,
+                  enumerable: true,
+                  writable: true
+                };
+                Object.defineProperties(console, {
+                  log: assign2({}, props, {
+                    value: prevLog
+                  }),
+                  info: assign2({}, props, {
+                    value: prevInfo
+                  }),
+                  warn: assign2({}, props, {
+                    value: prevWarn
+                  }),
+                  error: assign2({}, props, {
+                    value: prevError
+                  }),
+                  group: assign2({}, props, {
+                    value: prevGroup
+                  }),
+                  groupCollapsed: assign2({}, props, {
+                    value: prevGroupCollapsed
+                  }),
+                  groupEnd: assign2({}, props, {
+                    value: prevGroupEnd
+                  })
+                });
+              }
+              if (disabledDepth < 0) {
+                error("disabledDepth fell below zero. This is a bug in React. Please file an issue.");
+              }
+            }
+          }
+          var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
+          var prefix2;
+          function describeBuiltInComponentFrame(name, source, ownerFn) {
+            {
+              if (prefix2 === void 0) {
+                try {
+                  throw Error();
+                } catch (x) {
+                  var match2 = x.stack.trim().match(/\n( *(at )?)/);
+                  prefix2 = match2 && match2[1] || "";
+                }
+              }
+              return "\n" + prefix2 + name;
+            }
+          }
+          var reentry = false;
+          var componentFrameCache;
+          {
+            var PossiblyWeakMap = typeof WeakMap === "function" ? WeakMap : Map;
+            componentFrameCache = new PossiblyWeakMap();
+          }
+          function describeNativeComponentFrame(fn, construct) {
+            if (!fn || reentry) {
+              return "";
+            }
+            {
+              var frame = componentFrameCache.get(fn);
+              if (frame !== void 0) {
+                return frame;
+              }
+            }
+            var control;
+            reentry = true;
+            var previousPrepareStackTrace = Error.prepareStackTrace;
+            Error.prepareStackTrace = void 0;
+            var previousDispatcher;
+            {
+              previousDispatcher = ReactCurrentDispatcher.current;
+              ReactCurrentDispatcher.current = null;
+              disableLogs();
+            }
+            try {
+              if (construct) {
+                var Fake = function() {
+                  throw Error();
+                };
+                Object.defineProperty(Fake.prototype, "props", {
+                  set: function() {
+                    throw Error();
+                  }
+                });
+                if (typeof Reflect === "object" && Reflect.construct) {
+                  try {
+                    Reflect.construct(Fake, []);
+                  } catch (x) {
+                    control = x;
+                  }
+                  Reflect.construct(fn, [], Fake);
+                } else {
+                  try {
+                    Fake.call();
+                  } catch (x) {
+                    control = x;
+                  }
+                  fn.call(Fake.prototype);
+                }
+              } else {
+                try {
+                  throw Error();
+                } catch (x) {
+                  control = x;
+                }
+                fn();
+              }
+            } catch (sample) {
+              if (sample && control && typeof sample.stack === "string") {
+                var sampleLines = sample.stack.split("\n");
+                var controlLines = control.stack.split("\n");
+                var s2 = sampleLines.length - 1;
+                var c2 = controlLines.length - 1;
+                while (s2 >= 1 && c2 >= 0 && sampleLines[s2] !== controlLines[c2]) {
+                  c2--;
+                }
+                for (; s2 >= 1 && c2 >= 0; s2--, c2--) {
+                  if (sampleLines[s2] !== controlLines[c2]) {
+                    if (s2 !== 1 || c2 !== 1) {
+                      do {
+                        s2--;
+                        c2--;
+                        if (c2 < 0 || sampleLines[s2] !== controlLines[c2]) {
+                          var _frame = "\n" + sampleLines[s2].replace(" at new ", " at ");
+                          if (fn.displayName && _frame.includes("<anonymous>")) {
+                            _frame = _frame.replace("<anonymous>", fn.displayName);
+                          }
+                          {
+                            if (typeof fn === "function") {
+                              componentFrameCache.set(fn, _frame);
+                            }
+                          }
+                          return _frame;
+                        }
+                      } while (s2 >= 1 && c2 >= 0);
+                    }
+                    break;
+                  }
+                }
+              }
+            } finally {
+              reentry = false;
+              {
+                ReactCurrentDispatcher.current = previousDispatcher;
+                reenableLogs();
+              }
+              Error.prepareStackTrace = previousPrepareStackTrace;
+            }
+            var name = fn ? fn.displayName || fn.name : "";
+            var syntheticFrame = name ? describeBuiltInComponentFrame(name) : "";
+            {
+              if (typeof fn === "function") {
+                componentFrameCache.set(fn, syntheticFrame);
+              }
+            }
+            return syntheticFrame;
+          }
+          function describeFunctionComponentFrame(fn, source, ownerFn) {
+            {
+              return describeNativeComponentFrame(fn, false);
+            }
+          }
+          function shouldConstruct(Component) {
+            var prototype = Component.prototype;
+            return !!(prototype && prototype.isReactComponent);
+          }
+          function describeUnknownElementTypeFrameInDEV(type, source, ownerFn) {
+            if (type == null) {
+              return "";
+            }
+            if (typeof type === "function") {
+              {
+                return describeNativeComponentFrame(type, shouldConstruct(type));
+              }
+            }
+            if (typeof type === "string") {
+              return describeBuiltInComponentFrame(type);
+            }
+            switch (type) {
+              case REACT_SUSPENSE_TYPE:
+                return describeBuiltInComponentFrame("Suspense");
+              case REACT_SUSPENSE_LIST_TYPE:
+                return describeBuiltInComponentFrame("SuspenseList");
+            }
+            if (typeof type === "object") {
+              switch (type.$$typeof) {
+                case REACT_FORWARD_REF_TYPE:
+                  return describeFunctionComponentFrame(type.render);
+                case REACT_MEMO_TYPE:
+                  return describeUnknownElementTypeFrameInDEV(type.type, source, ownerFn);
+                case REACT_LAZY_TYPE: {
+                  var lazyComponent = type;
+                  var payload = lazyComponent._payload;
+                  var init = lazyComponent._init;
+                  try {
+                    return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
+                  } catch (x) {
+                  }
+                }
+              }
+            }
+            return "";
+          }
+          var hasOwnProperty2 = Object.prototype.hasOwnProperty;
+          var loggedTypeFailures = {};
+          var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+          function setCurrentlyValidatingElement(element) {
+            {
+              if (element) {
+                var owner = element._owner;
+                var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+                ReactDebugCurrentFrame.setExtraStackFrame(stack);
+              } else {
+                ReactDebugCurrentFrame.setExtraStackFrame(null);
+              }
+            }
+          }
+          function checkPropTypes(typeSpecs, values2, location2, componentName, element) {
+            {
+              var has = Function.call.bind(hasOwnProperty2);
+              for (var typeSpecName in typeSpecs) {
+                if (has(typeSpecs, typeSpecName)) {
+                  var error$1 = void 0;
+                  try {
+                    if (typeof typeSpecs[typeSpecName] !== "function") {
+                      var err = Error((componentName || "React class") + ": " + location2 + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
+                      err.name = "Invariant Violation";
+                      throw err;
+                    }
+                    error$1 = typeSpecs[typeSpecName](values2, typeSpecName, componentName, location2, null, "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED");
+                  } catch (ex) {
+                    error$1 = ex;
+                  }
+                  if (error$1 && !(error$1 instanceof Error)) {
+                    setCurrentlyValidatingElement(element);
+                    error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location2, typeSpecName, typeof error$1);
+                    setCurrentlyValidatingElement(null);
+                  }
+                  if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
+                    loggedTypeFailures[error$1.message] = true;
+                    setCurrentlyValidatingElement(element);
+                    error("Failed %s type: %s", location2, error$1.message);
+                    setCurrentlyValidatingElement(null);
+                  }
+                }
+              }
+            }
+          }
+          var isArrayImpl = Array.isArray;
+          function isArray(a2) {
+            return isArrayImpl(a2);
+          }
+          function typeName(value) {
+            {
+              var hasToStringTag = typeof Symbol === "function" && Symbol.toStringTag;
+              var type = hasToStringTag && value[Symbol.toStringTag] || value.constructor.name || "Object";
+              return type;
+            }
+          }
+          function willCoercionThrow(value) {
+            {
+              try {
+                testStringCoercion(value);
+                return false;
+              } catch (e2) {
+                return true;
+              }
+            }
+          }
+          function testStringCoercion(value) {
+            return "" + value;
+          }
+          function checkKeyStringCoercion(value) {
+            {
+              if (willCoercionThrow(value)) {
+                error("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value));
+                return testStringCoercion(value);
+              }
+            }
+          }
+          var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
+          var RESERVED_PROPS = {
+            key: true,
+            ref: true,
+            __self: true,
+            __source: true
+          };
+          var specialPropKeyWarningShown;
+          var specialPropRefWarningShown;
+          var didWarnAboutStringRefs;
+          {
+            didWarnAboutStringRefs = {};
+          }
+          function hasValidRef(config) {
+            {
+              if (hasOwnProperty2.call(config, "ref")) {
+                var getter = Object.getOwnPropertyDescriptor(config, "ref").get;
+                if (getter && getter.isReactWarning) {
+                  return false;
+                }
+              }
+            }
+            return config.ref !== void 0;
+          }
+          function hasValidKey(config) {
+            {
+              if (hasOwnProperty2.call(config, "key")) {
+                var getter = Object.getOwnPropertyDescriptor(config, "key").get;
+                if (getter && getter.isReactWarning) {
+                  return false;
+                }
+              }
+            }
+            return config.key !== void 0;
+          }
+          function warnIfStringRefCannotBeAutoConverted(config, self) {
+            {
+              if (typeof config.ref === "string" && ReactCurrentOwner.current && self && ReactCurrentOwner.current.stateNode !== self) {
+                var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
+                if (!didWarnAboutStringRefs[componentName]) {
+                  error('Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', getComponentNameFromType(ReactCurrentOwner.current.type), config.ref);
+                  didWarnAboutStringRefs[componentName] = true;
+                }
+              }
+            }
+          }
+          function defineKeyPropWarningGetter(props, displayName) {
+            {
+              var warnAboutAccessingKey = function() {
+                if (!specialPropKeyWarningShown) {
+                  specialPropKeyWarningShown = true;
+                  error("%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
+                }
+              };
+              warnAboutAccessingKey.isReactWarning = true;
+              Object.defineProperty(props, "key", {
+                get: warnAboutAccessingKey,
+                configurable: true
+              });
+            }
+          }
+          function defineRefPropWarningGetter(props, displayName) {
+            {
+              var warnAboutAccessingRef = function() {
+                if (!specialPropRefWarningShown) {
+                  specialPropRefWarningShown = true;
+                  error("%s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
+                }
+              };
+              warnAboutAccessingRef.isReactWarning = true;
+              Object.defineProperty(props, "ref", {
+                get: warnAboutAccessingRef,
+                configurable: true
+              });
+            }
+          }
+          var ReactElement = function(type, key, ref, self, source, owner, props) {
+            var element = {
+              // This tag allows us to uniquely identify this as a React Element
+              $$typeof: REACT_ELEMENT_TYPE,
+              // Built-in properties that belong on the element
+              type,
+              key,
+              ref,
+              props,
+              // Record the component responsible for creating this element.
+              _owner: owner
+            };
+            {
+              element._store = {};
+              Object.defineProperty(element._store, "validated", {
+                configurable: false,
+                enumerable: false,
+                writable: true,
+                value: false
+              });
+              Object.defineProperty(element, "_self", {
+                configurable: false,
+                enumerable: false,
+                writable: false,
+                value: self
+              });
+              Object.defineProperty(element, "_source", {
+                configurable: false,
+                enumerable: false,
+                writable: false,
+                value: source
+              });
+              if (Object.freeze) {
+                Object.freeze(element.props);
+                Object.freeze(element);
+              }
+            }
+            return element;
+          };
+          function jsxDEV(type, config, maybeKey, source, self) {
+            {
+              var propName;
+              var props = {};
+              var key = null;
+              var ref = null;
+              if (maybeKey !== void 0) {
+                {
+                  checkKeyStringCoercion(maybeKey);
+                }
+                key = "" + maybeKey;
+              }
+              if (hasValidKey(config)) {
+                {
+                  checkKeyStringCoercion(config.key);
+                }
+                key = "" + config.key;
+              }
+              if (hasValidRef(config)) {
+                ref = config.ref;
+                warnIfStringRefCannotBeAutoConverted(config, self);
+              }
+              for (propName in config) {
+                if (hasOwnProperty2.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+                  props[propName] = config[propName];
+                }
+              }
+              if (type && type.defaultProps) {
+                var defaultProps = type.defaultProps;
+                for (propName in defaultProps) {
+                  if (props[propName] === void 0) {
+                    props[propName] = defaultProps[propName];
+                  }
+                }
+              }
+              if (key || ref) {
+                var displayName = typeof type === "function" ? type.displayName || type.name || "Unknown" : type;
+                if (key) {
+                  defineKeyPropWarningGetter(props, displayName);
+                }
+                if (ref) {
+                  defineRefPropWarningGetter(props, displayName);
+                }
+              }
+              return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
+            }
+          }
+          var ReactCurrentOwner$1 = ReactSharedInternals.ReactCurrentOwner;
+          var ReactDebugCurrentFrame$1 = ReactSharedInternals.ReactDebugCurrentFrame;
+          function setCurrentlyValidatingElement$1(element) {
+            {
+              if (element) {
+                var owner = element._owner;
+                var stack = describeUnknownElementTypeFrameInDEV(element.type, element._source, owner ? owner.type : null);
+                ReactDebugCurrentFrame$1.setExtraStackFrame(stack);
+              } else {
+                ReactDebugCurrentFrame$1.setExtraStackFrame(null);
+              }
+            }
+          }
+          var propTypesMisspellWarningShown;
+          {
+            propTypesMisspellWarningShown = false;
+          }
+          function isValidElement(object) {
+            {
+              return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+            }
+          }
+          function getDeclarationErrorAddendum() {
+            {
+              if (ReactCurrentOwner$1.current) {
+                var name = getComponentNameFromType(ReactCurrentOwner$1.current.type);
+                if (name) {
+                  return "\n\nCheck the render method of `" + name + "`.";
+                }
+              }
+              return "";
+            }
+          }
+          function getSourceInfoErrorAddendum(source) {
+            {
+              if (source !== void 0) {
+                var fileName = source.fileName.replace(/^.*[\\\/]/, "");
+                var lineNumber = source.lineNumber;
+                return "\n\nCheck your code at " + fileName + ":" + lineNumber + ".";
+              }
+              return "";
+            }
+          }
+          var ownerHasKeyUseWarning = {};
+          function getCurrentComponentErrorInfo(parentType) {
+            {
+              var info = getDeclarationErrorAddendum();
+              if (!info) {
+                var parentName = typeof parentType === "string" ? parentType : parentType.displayName || parentType.name;
+                if (parentName) {
+                  info = "\n\nCheck the top-level render call using <" + parentName + ">.";
+                }
+              }
+              return info;
+            }
+          }
+          function validateExplicitKey(element, parentType) {
+            {
+              if (!element._store || element._store.validated || element.key != null) {
+                return;
+              }
+              element._store.validated = true;
+              var currentComponentErrorInfo = getCurrentComponentErrorInfo(parentType);
+              if (ownerHasKeyUseWarning[currentComponentErrorInfo]) {
+                return;
+              }
+              ownerHasKeyUseWarning[currentComponentErrorInfo] = true;
+              var childOwner = "";
+              if (element && element._owner && element._owner !== ReactCurrentOwner$1.current) {
+                childOwner = " It was passed a child from " + getComponentNameFromType(element._owner.type) + ".";
+              }
+              setCurrentlyValidatingElement$1(element);
+              error('Each child in a list should have a unique "key" prop.%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
+              setCurrentlyValidatingElement$1(null);
+            }
+          }
+          function validateChildKeys(node2, parentType) {
+            {
+              if (typeof node2 !== "object") {
+                return;
+              }
+              if (isArray(node2)) {
+                for (var i2 = 0; i2 < node2.length; i2++) {
+                  var child = node2[i2];
+                  if (isValidElement(child)) {
+                    validateExplicitKey(child, parentType);
+                  }
+                }
+              } else if (isValidElement(node2)) {
+                if (node2._store) {
+                  node2._store.validated = true;
+                }
+              } else if (node2) {
+                var iteratorFn = getIteratorFn(node2);
+                if (typeof iteratorFn === "function") {
+                  if (iteratorFn !== node2.entries) {
+                    var iterator = iteratorFn.call(node2);
+                    var step;
+                    while (!(step = iterator.next()).done) {
+                      if (isValidElement(step.value)) {
+                        validateExplicitKey(step.value, parentType);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          function validatePropTypes(element) {
+            {
+              var type = element.type;
+              if (type === null || type === void 0 || typeof type === "string") {
+                return;
+              }
+              var propTypes;
+              if (typeof type === "function") {
+                propTypes = type.propTypes;
+              } else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
+              // Inner props are checked in the reconciler.
+              type.$$typeof === REACT_MEMO_TYPE)) {
+                propTypes = type.propTypes;
+              } else {
+                return;
+              }
+              if (propTypes) {
+                var name = getComponentNameFromType(type);
+                checkPropTypes(propTypes, element.props, "prop", name, element);
+              } else if (type.PropTypes !== void 0 && !propTypesMisspellWarningShown) {
+                propTypesMisspellWarningShown = true;
+                var _name = getComponentNameFromType(type);
+                error("Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?", _name || "Unknown");
+              }
+              if (typeof type.getDefaultProps === "function" && !type.getDefaultProps.isReactClassApproved) {
+                error("getDefaultProps is only used on classic React.createClass definitions. Use a static property named `defaultProps` instead.");
+              }
+            }
+          }
+          function validateFragmentProps(fragment) {
+            {
+              var keys = Object.keys(fragment.props);
+              for (var i2 = 0; i2 < keys.length; i2++) {
+                var key = keys[i2];
+                if (key !== "children" && key !== "key") {
+                  setCurrentlyValidatingElement$1(fragment);
+                  error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
+                  setCurrentlyValidatingElement$1(null);
+                  break;
+                }
+              }
+              if (fragment.ref !== null) {
+                setCurrentlyValidatingElement$1(fragment);
+                error("Invalid attribute `ref` supplied to `React.Fragment`.");
+                setCurrentlyValidatingElement$1(null);
+              }
+            }
+          }
+          function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
+            {
+              var validType = isValidElementType(type);
+              if (!validType) {
+                var info = "";
+                if (type === void 0 || typeof type === "object" && type !== null && Object.keys(type).length === 0) {
+                  info += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.";
+                }
+                var sourceInfo = getSourceInfoErrorAddendum(source);
+                if (sourceInfo) {
+                  info += sourceInfo;
+                } else {
+                  info += getDeclarationErrorAddendum();
+                }
+                var typeString;
+                if (type === null) {
+                  typeString = "null";
+                } else if (isArray(type)) {
+                  typeString = "array";
+                } else if (type !== void 0 && type.$$typeof === REACT_ELEMENT_TYPE) {
+                  typeString = "<" + (getComponentNameFromType(type.type) || "Unknown") + " />";
+                  info = " Did you accidentally export a JSX literal instead of a component?";
+                } else {
+                  typeString = typeof type;
+                }
+                error("React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
+              }
+              var element = jsxDEV(type, props, key, source, self);
+              if (element == null) {
+                return element;
+              }
+              if (validType) {
+                var children = props.children;
+                if (children !== void 0) {
+                  if (isStaticChildren) {
+                    if (isArray(children)) {
+                      for (var i2 = 0; i2 < children.length; i2++) {
+                        validateChildKeys(children[i2], type);
+                      }
+                      if (Object.freeze) {
+                        Object.freeze(children);
+                      }
+                    } else {
+                      error("React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead.");
+                    }
+                  } else {
+                    validateChildKeys(children, type);
+                  }
+                }
+              }
+              if (type === REACT_FRAGMENT_TYPE) {
+                validateFragmentProps(element);
+              } else {
+                validatePropTypes(element);
+              }
+              return element;
+            }
+          }
+          function jsxWithValidationStatic(type, props, key) {
+            {
+              return jsxWithValidation(type, props, key, true);
+            }
+          }
+          function jsxWithValidationDynamic(type, props, key) {
+            {
+              return jsxWithValidation(type, props, key, false);
+            }
+          }
+          var jsx = jsxWithValidationDynamic;
+          var jsxs = jsxWithValidationStatic;
+          exports.Fragment = REACT_FRAGMENT_TYPE;
+          exports.jsx = jsx;
+          exports.jsxs = jsxs;
+        })();
+      }
+    }
+  });
+
+  // node_modules/react/jsx-runtime.js
+  var require_jsx_runtime = __commonJS({
+    "node_modules/react/jsx-runtime.js"(exports, module) {
+      "use strict";
+      if (false) {
+        module.exports = null;
+      } else {
+        module.exports = require_react_jsx_runtime_development();
+      }
+    }
+  });
+
+  // src/api/player/mp4box.all.js
   var require_mp4box_all = __commonJS({
-    "src/player/mp4box.all.js"(exports) {
+    "src/api/player/mp4box.all.js"(exports) {
       "use strict";
       var Log = function() {
         var start = /* @__PURE__ */ new Date();
@@ -23561,24 +25677,24 @@
         };
         return logObject;
       }();
-      Log.getDurationString = function(duration, _timescale) {
+      Log.getDurationString = function(duration2, _timescale) {
         var neg;
-        function pad(number, length) {
+        function pad(number, length2) {
           var str = "" + number;
-          var a = str.split(".");
-          while (a[0].length < length) {
-            a[0] = "0" + a[0];
+          var a2 = str.split(".");
+          while (a2[0].length < length2) {
+            a2[0] = "0" + a2[0];
           }
-          return a.join(".");
+          return a2.join(".");
         }
-        if (duration < 0) {
+        if (duration2 < 0) {
           neg = true;
-          duration = -duration;
+          duration2 = -duration2;
         } else {
           neg = false;
         }
         var timescale = _timescale || 1;
-        var duration_sec = duration / timescale;
+        var duration_sec = duration2 / timescale;
         var hours = Math.floor(duration_sec / 3600);
         duration_sec -= hours * 3600;
         var minutes = Math.floor(duration_sec / 60);
@@ -23590,13 +25706,13 @@
         return (neg ? "-" : "") + hours + ":" + pad(minutes, 2) + ":" + pad(duration_sec, 2) + "." + pad(msec, 3);
       };
       Log.printRanges = function(ranges) {
-        var length = ranges.length;
-        if (length > 0) {
+        var length2 = ranges.length;
+        if (length2 > 0) {
           var str = "";
-          for (var i = 0; i < length; i++) {
-            if (i > 0)
+          for (var i2 = 0; i2 < length2; i2++) {
+            if (i2 > 0)
               str += ",";
-            str += "[" + Log.getDurationString(ranges.start(i)) + "," + Log.getDurationString(ranges.end(i)) + "]";
+            str += "[" + Log.getDurationString(ranges.start(i2)) + "," + Log.getDurationString(ranges.end(i2)) + "]";
           }
           return str;
         } else {
@@ -23698,13 +25814,13 @@
       MP4BoxStream.prototype.readUint64 = function() {
         return this.readAnyInt(8, false);
       };
-      MP4BoxStream.prototype.readString = function(length) {
-        if (this.position + length <= this.buffer.byteLength) {
-          var s = "";
-          for (var i = 0; i < length; i++) {
-            s += String.fromCharCode(this.readUint8());
+      MP4BoxStream.prototype.readString = function(length2) {
+        if (this.position + length2 <= this.buffer.byteLength) {
+          var s2 = "";
+          for (var i2 = 0; i2 < length2; i2++) {
+            s2 += String.fromCharCode(this.readUint8());
           }
-          return s;
+          return s2;
         } else {
           throw "Not enough bytes in buffer";
         }
@@ -23712,9 +25828,9 @@
       MP4BoxStream.prototype.readCString = function() {
         var arr = [];
         while (true) {
-          var b = this.readUint8();
-          if (b !== 0) {
-            arr.push(b);
+          var b3 = this.readUint8();
+          if (b3 !== 0) {
+            arr.push(b3);
           } else {
             break;
           }
@@ -23733,38 +25849,38 @@
       MP4BoxStream.prototype.readInt64 = function() {
         return this.readAnyInt(8, false);
       };
-      MP4BoxStream.prototype.readUint8Array = function(length) {
-        var arr = new Uint8Array(length);
-        for (var i = 0; i < length; i++) {
-          arr[i] = this.readUint8();
+      MP4BoxStream.prototype.readUint8Array = function(length2) {
+        var arr = new Uint8Array(length2);
+        for (var i2 = 0; i2 < length2; i2++) {
+          arr[i2] = this.readUint8();
         }
         return arr;
       };
-      MP4BoxStream.prototype.readInt16Array = function(length) {
-        var arr = new Int16Array(length);
-        for (var i = 0; i < length; i++) {
-          arr[i] = this.readInt16();
+      MP4BoxStream.prototype.readInt16Array = function(length2) {
+        var arr = new Int16Array(length2);
+        for (var i2 = 0; i2 < length2; i2++) {
+          arr[i2] = this.readInt16();
         }
         return arr;
       };
-      MP4BoxStream.prototype.readUint16Array = function(length) {
-        var arr = new Int16Array(length);
-        for (var i = 0; i < length; i++) {
-          arr[i] = this.readUint16();
+      MP4BoxStream.prototype.readUint16Array = function(length2) {
+        var arr = new Int16Array(length2);
+        for (var i2 = 0; i2 < length2; i2++) {
+          arr[i2] = this.readUint16();
         }
         return arr;
       };
-      MP4BoxStream.prototype.readUint32Array = function(length) {
-        var arr = new Uint32Array(length);
-        for (var i = 0; i < length; i++) {
-          arr[i] = this.readUint32();
+      MP4BoxStream.prototype.readUint32Array = function(length2) {
+        var arr = new Uint32Array(length2);
+        for (var i2 = 0; i2 < length2; i2++) {
+          arr[i2] = this.readUint32();
         }
         return arr;
       };
-      MP4BoxStream.prototype.readInt32Array = function(length) {
-        var arr = new Int32Array(length);
-        for (var i = 0; i < length; i++) {
-          arr[i] = this.readInt32();
+      MP4BoxStream.prototype.readInt32Array = function(length2) {
+        var arr = new Int32Array(length2);
+        for (var i2 = 0; i2 < length2; i2++) {
+          arr[i2] = this.readInt32();
         }
         return arr;
       };
@@ -23843,8 +25959,8 @@
             this._trimAlloc();
             return this._buffer;
           },
-          set: function(v) {
-            this._buffer = v;
+          set: function(v2) {
+            this._buffer = v2;
             this._dataView = new DataView(this._buffer, this._byteOffset);
             this._byteLength = this._buffer.byteLength;
           }
@@ -23857,8 +25973,8 @@
           get: function() {
             return this._byteOffset;
           },
-          set: function(v) {
-            this._byteOffset = v;
+          set: function(v2) {
+            this._byteOffset = v2;
             this._dataView = new DataView(this._buffer, this._byteOffset);
             this._byteLength = this._buffer.byteLength;
           }
@@ -23871,11 +25987,11 @@
           get: function() {
             return this._dataView;
           },
-          set: function(v) {
-            this._byteOffset = v.byteOffset;
-            this._buffer = v.buffer;
+          set: function(v2) {
+            this._byteOffset = v2.byteOffset;
+            this._buffer = v2.buffer;
             this._dataView = new DataView(this._buffer, this._byteOffset);
-            this._byteLength = this._byteOffset + v.byteLength;
+            this._byteLength = this._byteOffset + v2.byteLength;
           }
         }
       );
@@ -23886,161 +26002,161 @@
       DataStream2.prototype.isEof = function() {
         return this.position >= this._byteLength;
       };
-      DataStream2.prototype.mapUint8Array = function(length) {
-        this._realloc(length * 1);
-        var arr = new Uint8Array(this._buffer, this.byteOffset + this.position, length);
-        this.position += length * 1;
+      DataStream2.prototype.mapUint8Array = function(length2) {
+        this._realloc(length2 * 1);
+        var arr = new Uint8Array(this._buffer, this.byteOffset + this.position, length2);
+        this.position += length2 * 1;
         return arr;
       };
-      DataStream2.prototype.readInt32Array = function(length, e) {
-        length = length == null ? this.byteLength - this.position / 4 : length;
-        var arr = new Int32Array(length);
+      DataStream2.prototype.readInt32Array = function(length2, e2) {
+        length2 = length2 == null ? this.byteLength - this.position / 4 : length2;
+        var arr = new Int32Array(length2);
         DataStream2.memcpy(
           arr.buffer,
           0,
           this.buffer,
           this.byteOffset + this.position,
-          length * arr.BYTES_PER_ELEMENT
+          length2 * arr.BYTES_PER_ELEMENT
         );
-        DataStream2.arrayToNative(arr, e == null ? this.endianness : e);
+        DataStream2.arrayToNative(arr, e2 == null ? this.endianness : e2);
         this.position += arr.byteLength;
         return arr;
       };
-      DataStream2.prototype.readInt16Array = function(length, e) {
-        length = length == null ? this.byteLength - this.position / 2 : length;
-        var arr = new Int16Array(length);
+      DataStream2.prototype.readInt16Array = function(length2, e2) {
+        length2 = length2 == null ? this.byteLength - this.position / 2 : length2;
+        var arr = new Int16Array(length2);
         DataStream2.memcpy(
           arr.buffer,
           0,
           this.buffer,
           this.byteOffset + this.position,
-          length * arr.BYTES_PER_ELEMENT
+          length2 * arr.BYTES_PER_ELEMENT
         );
-        DataStream2.arrayToNative(arr, e == null ? this.endianness : e);
+        DataStream2.arrayToNative(arr, e2 == null ? this.endianness : e2);
         this.position += arr.byteLength;
         return arr;
       };
-      DataStream2.prototype.readInt8Array = function(length) {
-        length = length == null ? this.byteLength - this.position : length;
-        var arr = new Int8Array(length);
+      DataStream2.prototype.readInt8Array = function(length2) {
+        length2 = length2 == null ? this.byteLength - this.position : length2;
+        var arr = new Int8Array(length2);
         DataStream2.memcpy(
           arr.buffer,
           0,
           this.buffer,
           this.byteOffset + this.position,
-          length * arr.BYTES_PER_ELEMENT
+          length2 * arr.BYTES_PER_ELEMENT
         );
         this.position += arr.byteLength;
         return arr;
       };
-      DataStream2.prototype.readUint32Array = function(length, e) {
-        length = length == null ? this.byteLength - this.position / 4 : length;
-        var arr = new Uint32Array(length);
+      DataStream2.prototype.readUint32Array = function(length2, e2) {
+        length2 = length2 == null ? this.byteLength - this.position / 4 : length2;
+        var arr = new Uint32Array(length2);
         DataStream2.memcpy(
           arr.buffer,
           0,
           this.buffer,
           this.byteOffset + this.position,
-          length * arr.BYTES_PER_ELEMENT
+          length2 * arr.BYTES_PER_ELEMENT
         );
-        DataStream2.arrayToNative(arr, e == null ? this.endianness : e);
+        DataStream2.arrayToNative(arr, e2 == null ? this.endianness : e2);
         this.position += arr.byteLength;
         return arr;
       };
-      DataStream2.prototype.readUint16Array = function(length, e) {
-        length = length == null ? this.byteLength - this.position / 2 : length;
-        var arr = new Uint16Array(length);
+      DataStream2.prototype.readUint16Array = function(length2, e2) {
+        length2 = length2 == null ? this.byteLength - this.position / 2 : length2;
+        var arr = new Uint16Array(length2);
         DataStream2.memcpy(
           arr.buffer,
           0,
           this.buffer,
           this.byteOffset + this.position,
-          length * arr.BYTES_PER_ELEMENT
+          length2 * arr.BYTES_PER_ELEMENT
         );
-        DataStream2.arrayToNative(arr, e == null ? this.endianness : e);
+        DataStream2.arrayToNative(arr, e2 == null ? this.endianness : e2);
         this.position += arr.byteLength;
         return arr;
       };
-      DataStream2.prototype.readUint8Array = function(length) {
-        length = length == null ? this.byteLength - this.position : length;
-        var arr = new Uint8Array(length);
+      DataStream2.prototype.readUint8Array = function(length2) {
+        length2 = length2 == null ? this.byteLength - this.position : length2;
+        var arr = new Uint8Array(length2);
         DataStream2.memcpy(
           arr.buffer,
           0,
           this.buffer,
           this.byteOffset + this.position,
-          length * arr.BYTES_PER_ELEMENT
+          length2 * arr.BYTES_PER_ELEMENT
         );
         this.position += arr.byteLength;
         return arr;
       };
-      DataStream2.prototype.readFloat64Array = function(length, e) {
-        length = length == null ? this.byteLength - this.position / 8 : length;
-        var arr = new Float64Array(length);
+      DataStream2.prototype.readFloat64Array = function(length2, e2) {
+        length2 = length2 == null ? this.byteLength - this.position / 8 : length2;
+        var arr = new Float64Array(length2);
         DataStream2.memcpy(
           arr.buffer,
           0,
           this.buffer,
           this.byteOffset + this.position,
-          length * arr.BYTES_PER_ELEMENT
+          length2 * arr.BYTES_PER_ELEMENT
         );
-        DataStream2.arrayToNative(arr, e == null ? this.endianness : e);
+        DataStream2.arrayToNative(arr, e2 == null ? this.endianness : e2);
         this.position += arr.byteLength;
         return arr;
       };
-      DataStream2.prototype.readFloat32Array = function(length, e) {
-        length = length == null ? this.byteLength - this.position / 4 : length;
-        var arr = new Float32Array(length);
+      DataStream2.prototype.readFloat32Array = function(length2, e2) {
+        length2 = length2 == null ? this.byteLength - this.position / 4 : length2;
+        var arr = new Float32Array(length2);
         DataStream2.memcpy(
           arr.buffer,
           0,
           this.buffer,
           this.byteOffset + this.position,
-          length * arr.BYTES_PER_ELEMENT
+          length2 * arr.BYTES_PER_ELEMENT
         );
-        DataStream2.arrayToNative(arr, e == null ? this.endianness : e);
+        DataStream2.arrayToNative(arr, e2 == null ? this.endianness : e2);
         this.position += arr.byteLength;
         return arr;
       };
-      DataStream2.prototype.readInt32 = function(e) {
-        var v = this._dataView.getInt32(this.position, e == null ? this.endianness : e);
+      DataStream2.prototype.readInt32 = function(e2) {
+        var v2 = this._dataView.getInt32(this.position, e2 == null ? this.endianness : e2);
         this.position += 4;
-        return v;
+        return v2;
       };
-      DataStream2.prototype.readInt16 = function(e) {
-        var v = this._dataView.getInt16(this.position, e == null ? this.endianness : e);
+      DataStream2.prototype.readInt16 = function(e2) {
+        var v2 = this._dataView.getInt16(this.position, e2 == null ? this.endianness : e2);
         this.position += 2;
-        return v;
+        return v2;
       };
       DataStream2.prototype.readInt8 = function() {
-        var v = this._dataView.getInt8(this.position);
+        var v2 = this._dataView.getInt8(this.position);
         this.position += 1;
-        return v;
+        return v2;
       };
-      DataStream2.prototype.readUint32 = function(e) {
-        var v = this._dataView.getUint32(this.position, e == null ? this.endianness : e);
+      DataStream2.prototype.readUint32 = function(e2) {
+        var v2 = this._dataView.getUint32(this.position, e2 == null ? this.endianness : e2);
         this.position += 4;
-        return v;
+        return v2;
       };
-      DataStream2.prototype.readUint16 = function(e) {
-        var v = this._dataView.getUint16(this.position, e == null ? this.endianness : e);
+      DataStream2.prototype.readUint16 = function(e2) {
+        var v2 = this._dataView.getUint16(this.position, e2 == null ? this.endianness : e2);
         this.position += 2;
-        return v;
+        return v2;
       };
       DataStream2.prototype.readUint8 = function() {
-        var v = this._dataView.getUint8(this.position);
+        var v2 = this._dataView.getUint8(this.position);
         this.position += 1;
-        return v;
+        return v2;
       };
-      DataStream2.prototype.readFloat32 = function(e) {
-        var v = this._dataView.getFloat32(this.position, e == null ? this.endianness : e);
+      DataStream2.prototype.readFloat32 = function(e2) {
+        var v2 = this._dataView.getFloat32(this.position, e2 == null ? this.endianness : e2);
         this.position += 4;
-        return v;
+        return v2;
       };
-      DataStream2.prototype.readFloat64 = function(e) {
-        var v = this._dataView.getFloat64(this.position, e == null ? this.endianness : e);
+      DataStream2.prototype.readFloat64 = function(e2) {
+        var v2 = this._dataView.getFloat64(this.position, e2 == null ? this.endianness : e2);
         this.position += 8;
-        return v;
+        return v2;
       };
       DataStream2.endianness = new Int8Array(new Int16Array([1]).buffer)[0] > 0;
       DataStream2.memcpy = function(dst, dstOffset, src, srcOffset, byteLength) {
@@ -24064,11 +26180,11 @@
       };
       DataStream2.flipArrayEndianness = function(array) {
         var u8 = new Uint8Array(array.buffer, array.byteOffset, array.byteLength);
-        for (var i = 0; i < array.byteLength; i += array.BYTES_PER_ELEMENT) {
-          for (var j = i + array.BYTES_PER_ELEMENT - 1, k = i; j > k; j--, k++) {
+        for (var i2 = 0; i2 < array.byteLength; i2 += array.BYTES_PER_ELEMENT) {
+          for (var j3 = i2 + array.BYTES_PER_ELEMENT - 1, k = i2; j3 > k; j3--, k++) {
             var tmp = u8[k];
-            u8[k] = u8[j];
-            u8[j] = tmp;
+            u8[k] = u8[j3];
+            u8[j3] = tmp;
           }
         }
         return array;
@@ -24076,34 +26192,34 @@
       DataStream2.prototype.failurePosition = 0;
       String.fromCharCodeUint8 = function(uint8arr) {
         var arr = [];
-        for (var i = 0; i < uint8arr.length; i++) {
-          arr[i] = uint8arr[i];
+        for (var i2 = 0; i2 < uint8arr.length; i2++) {
+          arr[i2] = uint8arr[i2];
         }
         return String.fromCharCode.apply(null, arr);
       };
-      DataStream2.prototype.readString = function(length, encoding) {
+      DataStream2.prototype.readString = function(length2, encoding) {
         if (encoding == null || encoding == "ASCII") {
-          return String.fromCharCodeUint8.apply(null, [this.mapUint8Array(length == null ? this.byteLength - this.position : length)]);
+          return String.fromCharCodeUint8.apply(null, [this.mapUint8Array(length2 == null ? this.byteLength - this.position : length2)]);
         } else {
-          return new TextDecoder(encoding).decode(this.mapUint8Array(length));
+          return new TextDecoder(encoding).decode(this.mapUint8Array(length2));
         }
       };
-      DataStream2.prototype.readCString = function(length) {
+      DataStream2.prototype.readCString = function(length2) {
         var blen = this.byteLength - this.position;
         var u8 = new Uint8Array(this._buffer, this._byteOffset + this.position);
         var len = blen;
-        if (length != null) {
-          len = Math.min(length, blen);
+        if (length2 != null) {
+          len = Math.min(length2, blen);
         }
-        for (var i = 0; i < len && u8[i] !== 0; i++)
+        for (var i2 = 0; i2 < len && u8[i2] !== 0; i2++)
           ;
-        var s = String.fromCharCodeUint8.apply(null, [this.mapUint8Array(i)]);
-        if (length != null) {
-          this.position += len - i;
-        } else if (i != blen) {
+        var s2 = String.fromCharCodeUint8.apply(null, [this.mapUint8Array(i2)]);
+        if (length2 != null) {
+          this.position += len - i2;
+        } else if (i2 != blen) {
           this.position += 1;
         }
-        return s;
+        return s2;
       };
       var MAX_SIZE = Math.pow(2, 32);
       DataStream2.prototype.readInt64 = function() {
@@ -24125,12 +26241,12 @@
         var blob = new Blob([this.buffer]);
         if (window.URL && URL.createObjectURL) {
           var url = window.URL.createObjectURL(blob);
-          var a = document.createElement("a");
-          document.body.appendChild(a);
-          a.setAttribute("href", url);
-          a.setAttribute("download", filename);
-          a.setAttribute("target", "_self");
-          a.click();
+          var a2 = document.createElement("a");
+          document.body.appendChild(a2);
+          a2.setAttribute("href", url);
+          a2.setAttribute("download", filename);
+          a2.setAttribute("target", "_self");
+          a2.click();
           window.URL.revokeObjectURL(url);
         } else {
           throw "DataStream.save: Can't create object URL.";
@@ -24144,11 +26260,11 @@
           get: function() {
             return this._dynamicSize;
           },
-          set: function(v) {
-            if (!v) {
+          set: function(v2) {
+            if (!v2) {
               this._trimAlloc();
             }
-            this._dynamicSize = v;
+            this._dynamicSize = v2;
           }
         }
       );
@@ -24160,7 +26276,7 @@
         this.buffer = buf;
         this.position -= offset;
       };
-      DataStream2.prototype.writeInt32Array = function(arr, e) {
+      DataStream2.prototype.writeInt32Array = function(arr, e2) {
         this._realloc(arr.length * 4);
         if (arr instanceof Int32Array && this.byteOffset + this.position % arr.BYTES_PER_ELEMENT === 0) {
           DataStream2.memcpy(
@@ -24170,14 +26286,14 @@
             0,
             arr.byteLength
           );
-          this.mapInt32Array(arr.length, e);
+          this.mapInt32Array(arr.length, e2);
         } else {
-          for (var i = 0; i < arr.length; i++) {
-            this.writeInt32(arr[i], e);
+          for (var i2 = 0; i2 < arr.length; i2++) {
+            this.writeInt32(arr[i2], e2);
           }
         }
       };
-      DataStream2.prototype.writeInt16Array = function(arr, e) {
+      DataStream2.prototype.writeInt16Array = function(arr, e2) {
         this._realloc(arr.length * 2);
         if (arr instanceof Int16Array && this.byteOffset + this.position % arr.BYTES_PER_ELEMENT === 0) {
           DataStream2.memcpy(
@@ -24187,10 +26303,10 @@
             0,
             arr.byteLength
           );
-          this.mapInt16Array(arr.length, e);
+          this.mapInt16Array(arr.length, e2);
         } else {
-          for (var i = 0; i < arr.length; i++) {
-            this.writeInt16(arr[i], e);
+          for (var i2 = 0; i2 < arr.length; i2++) {
+            this.writeInt16(arr[i2], e2);
           }
         }
       };
@@ -24206,12 +26322,12 @@
           );
           this.mapInt8Array(arr.length);
         } else {
-          for (var i = 0; i < arr.length; i++) {
-            this.writeInt8(arr[i]);
+          for (var i2 = 0; i2 < arr.length; i2++) {
+            this.writeInt8(arr[i2]);
           }
         }
       };
-      DataStream2.prototype.writeUint32Array = function(arr, e) {
+      DataStream2.prototype.writeUint32Array = function(arr, e2) {
         this._realloc(arr.length * 4);
         if (arr instanceof Uint32Array && this.byteOffset + this.position % arr.BYTES_PER_ELEMENT === 0) {
           DataStream2.memcpy(
@@ -24221,14 +26337,14 @@
             0,
             arr.byteLength
           );
-          this.mapUint32Array(arr.length, e);
+          this.mapUint32Array(arr.length, e2);
         } else {
-          for (var i = 0; i < arr.length; i++) {
-            this.writeUint32(arr[i], e);
+          for (var i2 = 0; i2 < arr.length; i2++) {
+            this.writeUint32(arr[i2], e2);
           }
         }
       };
-      DataStream2.prototype.writeUint16Array = function(arr, e) {
+      DataStream2.prototype.writeUint16Array = function(arr, e2) {
         this._realloc(arr.length * 2);
         if (arr instanceof Uint16Array && this.byteOffset + this.position % arr.BYTES_PER_ELEMENT === 0) {
           DataStream2.memcpy(
@@ -24238,10 +26354,10 @@
             0,
             arr.byteLength
           );
-          this.mapUint16Array(arr.length, e);
+          this.mapUint16Array(arr.length, e2);
         } else {
-          for (var i = 0; i < arr.length; i++) {
-            this.writeUint16(arr[i], e);
+          for (var i2 = 0; i2 < arr.length; i2++) {
+            this.writeUint16(arr[i2], e2);
           }
         }
       };
@@ -24257,12 +26373,12 @@
           );
           this.mapUint8Array(arr.length);
         } else {
-          for (var i = 0; i < arr.length; i++) {
-            this.writeUint8(arr[i]);
+          for (var i2 = 0; i2 < arr.length; i2++) {
+            this.writeUint8(arr[i2]);
           }
         }
       };
-      DataStream2.prototype.writeFloat64Array = function(arr, e) {
+      DataStream2.prototype.writeFloat64Array = function(arr, e2) {
         this._realloc(arr.length * 8);
         if (arr instanceof Float64Array && this.byteOffset + this.position % arr.BYTES_PER_ELEMENT === 0) {
           DataStream2.memcpy(
@@ -24272,14 +26388,14 @@
             0,
             arr.byteLength
           );
-          this.mapFloat64Array(arr.length, e);
+          this.mapFloat64Array(arr.length, e2);
         } else {
-          for (var i = 0; i < arr.length; i++) {
-            this.writeFloat64(arr[i], e);
+          for (var i2 = 0; i2 < arr.length; i2++) {
+            this.writeFloat64(arr[i2], e2);
           }
         }
       };
-      DataStream2.prototype.writeFloat32Array = function(arr, e) {
+      DataStream2.prototype.writeFloat32Array = function(arr, e2) {
         this._realloc(arr.length * 4);
         if (arr instanceof Float32Array && this.byteOffset + this.position % arr.BYTES_PER_ELEMENT === 0) {
           DataStream2.memcpy(
@@ -24289,212 +26405,212 @@
             0,
             arr.byteLength
           );
-          this.mapFloat32Array(arr.length, e);
+          this.mapFloat32Array(arr.length, e2);
         } else {
-          for (var i = 0; i < arr.length; i++) {
-            this.writeFloat32(arr[i], e);
+          for (var i2 = 0; i2 < arr.length; i2++) {
+            this.writeFloat32(arr[i2], e2);
           }
         }
       };
-      DataStream2.prototype.writeInt32 = function(v, e) {
+      DataStream2.prototype.writeInt32 = function(v2, e2) {
         this._realloc(4);
-        this._dataView.setInt32(this.position, v, e == null ? this.endianness : e);
+        this._dataView.setInt32(this.position, v2, e2 == null ? this.endianness : e2);
         this.position += 4;
       };
-      DataStream2.prototype.writeInt16 = function(v, e) {
+      DataStream2.prototype.writeInt16 = function(v2, e2) {
         this._realloc(2);
-        this._dataView.setInt16(this.position, v, e == null ? this.endianness : e);
+        this._dataView.setInt16(this.position, v2, e2 == null ? this.endianness : e2);
         this.position += 2;
       };
-      DataStream2.prototype.writeInt8 = function(v) {
+      DataStream2.prototype.writeInt8 = function(v2) {
         this._realloc(1);
-        this._dataView.setInt8(this.position, v);
+        this._dataView.setInt8(this.position, v2);
         this.position += 1;
       };
-      DataStream2.prototype.writeUint32 = function(v, e) {
+      DataStream2.prototype.writeUint32 = function(v2, e2) {
         this._realloc(4);
-        this._dataView.setUint32(this.position, v, e == null ? this.endianness : e);
+        this._dataView.setUint32(this.position, v2, e2 == null ? this.endianness : e2);
         this.position += 4;
       };
-      DataStream2.prototype.writeUint16 = function(v, e) {
+      DataStream2.prototype.writeUint16 = function(v2, e2) {
         this._realloc(2);
-        this._dataView.setUint16(this.position, v, e == null ? this.endianness : e);
+        this._dataView.setUint16(this.position, v2, e2 == null ? this.endianness : e2);
         this.position += 2;
       };
-      DataStream2.prototype.writeUint8 = function(v) {
+      DataStream2.prototype.writeUint8 = function(v2) {
         this._realloc(1);
-        this._dataView.setUint8(this.position, v);
+        this._dataView.setUint8(this.position, v2);
         this.position += 1;
       };
-      DataStream2.prototype.writeFloat32 = function(v, e) {
+      DataStream2.prototype.writeFloat32 = function(v2, e2) {
         this._realloc(4);
-        this._dataView.setFloat32(this.position, v, e == null ? this.endianness : e);
+        this._dataView.setFloat32(this.position, v2, e2 == null ? this.endianness : e2);
         this.position += 4;
       };
-      DataStream2.prototype.writeFloat64 = function(v, e) {
+      DataStream2.prototype.writeFloat64 = function(v2, e2) {
         this._realloc(8);
-        this._dataView.setFloat64(this.position, v, e == null ? this.endianness : e);
+        this._dataView.setFloat64(this.position, v2, e2 == null ? this.endianness : e2);
         this.position += 8;
       };
       DataStream2.prototype.writeUCS2String = function(str, endianness, lengthOverride) {
         if (lengthOverride == null) {
           lengthOverride = str.length;
         }
-        for (var i = 0; i < str.length && i < lengthOverride; i++) {
-          this.writeUint16(str.charCodeAt(i), endianness);
+        for (var i2 = 0; i2 < str.length && i2 < lengthOverride; i2++) {
+          this.writeUint16(str.charCodeAt(i2), endianness);
         }
-        for (; i < lengthOverride; i++) {
+        for (; i2 < lengthOverride; i2++) {
           this.writeUint16(0);
         }
       };
-      DataStream2.prototype.writeString = function(s, encoding, length) {
-        var i = 0;
+      DataStream2.prototype.writeString = function(s2, encoding, length2) {
+        var i2 = 0;
         if (encoding == null || encoding == "ASCII") {
-          if (length != null) {
-            var len = Math.min(s.length, length);
-            for (i = 0; i < len; i++) {
-              this.writeUint8(s.charCodeAt(i));
+          if (length2 != null) {
+            var len = Math.min(s2.length, length2);
+            for (i2 = 0; i2 < len; i2++) {
+              this.writeUint8(s2.charCodeAt(i2));
             }
-            for (; i < length; i++) {
+            for (; i2 < length2; i2++) {
               this.writeUint8(0);
             }
           } else {
-            for (i = 0; i < s.length; i++) {
-              this.writeUint8(s.charCodeAt(i));
+            for (i2 = 0; i2 < s2.length; i2++) {
+              this.writeUint8(s2.charCodeAt(i2));
             }
           }
         } else {
-          this.writeUint8Array(new TextEncoder(encoding).encode(s.substring(0, length)));
+          this.writeUint8Array(new TextEncoder(encoding).encode(s2.substring(0, length2)));
         }
       };
-      DataStream2.prototype.writeCString = function(s, length) {
-        var i = 0;
-        if (length != null) {
-          var len = Math.min(s.length, length);
-          for (i = 0; i < len; i++) {
-            this.writeUint8(s.charCodeAt(i));
+      DataStream2.prototype.writeCString = function(s2, length2) {
+        var i2 = 0;
+        if (length2 != null) {
+          var len = Math.min(s2.length, length2);
+          for (i2 = 0; i2 < len; i2++) {
+            this.writeUint8(s2.charCodeAt(i2));
           }
-          for (; i < length; i++) {
+          for (; i2 < length2; i2++) {
             this.writeUint8(0);
           }
         } else {
-          for (i = 0; i < s.length; i++) {
-            this.writeUint8(s.charCodeAt(i));
+          for (i2 = 0; i2 < s2.length; i2++) {
+            this.writeUint8(s2.charCodeAt(i2));
           }
           this.writeUint8(0);
         }
       };
       DataStream2.prototype.writeStruct = function(structDefinition, struct) {
-        for (var i = 0; i < structDefinition.length; i += 2) {
-          var t = structDefinition[i + 1];
-          this.writeType(t, struct[structDefinition[i]], struct);
+        for (var i2 = 0; i2 < structDefinition.length; i2 += 2) {
+          var t2 = structDefinition[i2 + 1];
+          this.writeType(t2, struct[structDefinition[i2]], struct);
         }
       };
-      DataStream2.prototype.writeType = function(t, v, struct) {
+      DataStream2.prototype.writeType = function(t2, v2, struct) {
         var tp;
-        if (typeof t == "function") {
-          return t(this, v);
-        } else if (typeof t == "object" && !(t instanceof Array)) {
-          return t.set(this, v, struct);
+        if (typeof t2 == "function") {
+          return t2(this, v2);
+        } else if (typeof t2 == "object" && !(t2 instanceof Array)) {
+          return t2.set(this, v2, struct);
         }
         var lengthOverride = null;
         var charset = "ASCII";
         var pos = this.position;
-        if (typeof t == "string" && /:/.test(t)) {
-          tp = t.split(":");
-          t = tp[0];
+        if (typeof t2 == "string" && /:/.test(t2)) {
+          tp = t2.split(":");
+          t2 = tp[0];
           lengthOverride = parseInt(tp[1]);
         }
-        if (typeof t == "string" && /,/.test(t)) {
-          tp = t.split(",");
-          t = tp[0];
+        if (typeof t2 == "string" && /,/.test(t2)) {
+          tp = t2.split(",");
+          t2 = tp[0];
           charset = parseInt(tp[1]);
         }
-        switch (t) {
+        switch (t2) {
           case "uint8":
-            this.writeUint8(v);
+            this.writeUint8(v2);
             break;
           case "int8":
-            this.writeInt8(v);
+            this.writeInt8(v2);
             break;
           case "uint16":
-            this.writeUint16(v, this.endianness);
+            this.writeUint16(v2, this.endianness);
             break;
           case "int16":
-            this.writeInt16(v, this.endianness);
+            this.writeInt16(v2, this.endianness);
             break;
           case "uint32":
-            this.writeUint32(v, this.endianness);
+            this.writeUint32(v2, this.endianness);
             break;
           case "int32":
-            this.writeInt32(v, this.endianness);
+            this.writeInt32(v2, this.endianness);
             break;
           case "float32":
-            this.writeFloat32(v, this.endianness);
+            this.writeFloat32(v2, this.endianness);
             break;
           case "float64":
-            this.writeFloat64(v, this.endianness);
+            this.writeFloat64(v2, this.endianness);
             break;
           case "uint16be":
-            this.writeUint16(v, DataStream2.BIG_ENDIAN);
+            this.writeUint16(v2, DataStream2.BIG_ENDIAN);
             break;
           case "int16be":
-            this.writeInt16(v, DataStream2.BIG_ENDIAN);
+            this.writeInt16(v2, DataStream2.BIG_ENDIAN);
             break;
           case "uint32be":
-            this.writeUint32(v, DataStream2.BIG_ENDIAN);
+            this.writeUint32(v2, DataStream2.BIG_ENDIAN);
             break;
           case "int32be":
-            this.writeInt32(v, DataStream2.BIG_ENDIAN);
+            this.writeInt32(v2, DataStream2.BIG_ENDIAN);
             break;
           case "float32be":
-            this.writeFloat32(v, DataStream2.BIG_ENDIAN);
+            this.writeFloat32(v2, DataStream2.BIG_ENDIAN);
             break;
           case "float64be":
-            this.writeFloat64(v, DataStream2.BIG_ENDIAN);
+            this.writeFloat64(v2, DataStream2.BIG_ENDIAN);
             break;
           case "uint16le":
-            this.writeUint16(v, DataStream2.LITTLE_ENDIAN);
+            this.writeUint16(v2, DataStream2.LITTLE_ENDIAN);
             break;
           case "int16le":
-            this.writeInt16(v, DataStream2.LITTLE_ENDIAN);
+            this.writeInt16(v2, DataStream2.LITTLE_ENDIAN);
             break;
           case "uint32le":
-            this.writeUint32(v, DataStream2.LITTLE_ENDIAN);
+            this.writeUint32(v2, DataStream2.LITTLE_ENDIAN);
             break;
           case "int32le":
-            this.writeInt32(v, DataStream2.LITTLE_ENDIAN);
+            this.writeInt32(v2, DataStream2.LITTLE_ENDIAN);
             break;
           case "float32le":
-            this.writeFloat32(v, DataStream2.LITTLE_ENDIAN);
+            this.writeFloat32(v2, DataStream2.LITTLE_ENDIAN);
             break;
           case "float64le":
-            this.writeFloat64(v, DataStream2.LITTLE_ENDIAN);
+            this.writeFloat64(v2, DataStream2.LITTLE_ENDIAN);
             break;
           case "cstring":
-            this.writeCString(v, lengthOverride);
+            this.writeCString(v2, lengthOverride);
             break;
           case "string":
-            this.writeString(v, charset, lengthOverride);
+            this.writeString(v2, charset, lengthOverride);
             break;
           case "u16string":
-            this.writeUCS2String(v, this.endianness, lengthOverride);
+            this.writeUCS2String(v2, this.endianness, lengthOverride);
             break;
           case "u16stringle":
-            this.writeUCS2String(v, DataStream2.LITTLE_ENDIAN, lengthOverride);
+            this.writeUCS2String(v2, DataStream2.LITTLE_ENDIAN, lengthOverride);
             break;
           case "u16stringbe":
-            this.writeUCS2String(v, DataStream2.BIG_ENDIAN, lengthOverride);
+            this.writeUCS2String(v2, DataStream2.BIG_ENDIAN, lengthOverride);
             break;
           default:
-            if (t.length == 3) {
-              var ta = t[1];
-              for (var i = 0; i < v.length; i++) {
-                this.writeType(ta, v[i]);
+            if (t2.length == 3) {
+              var ta = t2[1];
+              for (var i2 = 0; i2 < v2.length; i2++) {
+                this.writeType(ta, v2[i2]);
               }
               break;
             } else {
-              this.writeStruct(t, v);
+              this.writeStruct(t2, v2);
               break;
             }
         }
@@ -24504,68 +26620,68 @@
           this.position = pos + lengthOverride;
         }
       };
-      DataStream2.prototype.writeUint64 = function(v) {
-        var h = Math.floor(v / MAX_SIZE);
-        this.writeUint32(h);
-        this.writeUint32(v & 4294967295);
+      DataStream2.prototype.writeUint64 = function(v2) {
+        var h3 = Math.floor(v2 / MAX_SIZE);
+        this.writeUint32(h3);
+        this.writeUint32(v2 & 4294967295);
       };
-      DataStream2.prototype.writeUint24 = function(v) {
-        this.writeUint8((v & 16711680) >> 16);
-        this.writeUint8((v & 65280) >> 8);
-        this.writeUint8(v & 255);
+      DataStream2.prototype.writeUint24 = function(v2) {
+        this.writeUint8((v2 & 16711680) >> 16);
+        this.writeUint8((v2 & 65280) >> 8);
+        this.writeUint8(v2 & 255);
       };
-      DataStream2.prototype.adjustUint32 = function(position, value) {
+      DataStream2.prototype.adjustUint32 = function(position2, value) {
         var pos = this.position;
-        this.seek(position);
+        this.seek(position2);
         this.writeUint32(value);
         this.seek(pos);
       };
-      DataStream2.prototype.mapInt32Array = function(length, e) {
-        this._realloc(length * 4);
-        var arr = new Int32Array(this._buffer, this.byteOffset + this.position, length);
-        DataStream2.arrayToNative(arr, e == null ? this.endianness : e);
-        this.position += length * 4;
+      DataStream2.prototype.mapInt32Array = function(length2, e2) {
+        this._realloc(length2 * 4);
+        var arr = new Int32Array(this._buffer, this.byteOffset + this.position, length2);
+        DataStream2.arrayToNative(arr, e2 == null ? this.endianness : e2);
+        this.position += length2 * 4;
         return arr;
       };
-      DataStream2.prototype.mapInt16Array = function(length, e) {
-        this._realloc(length * 2);
-        var arr = new Int16Array(this._buffer, this.byteOffset + this.position, length);
-        DataStream2.arrayToNative(arr, e == null ? this.endianness : e);
-        this.position += length * 2;
+      DataStream2.prototype.mapInt16Array = function(length2, e2) {
+        this._realloc(length2 * 2);
+        var arr = new Int16Array(this._buffer, this.byteOffset + this.position, length2);
+        DataStream2.arrayToNative(arr, e2 == null ? this.endianness : e2);
+        this.position += length2 * 2;
         return arr;
       };
-      DataStream2.prototype.mapInt8Array = function(length) {
-        this._realloc(length * 1);
-        var arr = new Int8Array(this._buffer, this.byteOffset + this.position, length);
-        this.position += length * 1;
+      DataStream2.prototype.mapInt8Array = function(length2) {
+        this._realloc(length2 * 1);
+        var arr = new Int8Array(this._buffer, this.byteOffset + this.position, length2);
+        this.position += length2 * 1;
         return arr;
       };
-      DataStream2.prototype.mapUint32Array = function(length, e) {
-        this._realloc(length * 4);
-        var arr = new Uint32Array(this._buffer, this.byteOffset + this.position, length);
-        DataStream2.arrayToNative(arr, e == null ? this.endianness : e);
-        this.position += length * 4;
+      DataStream2.prototype.mapUint32Array = function(length2, e2) {
+        this._realloc(length2 * 4);
+        var arr = new Uint32Array(this._buffer, this.byteOffset + this.position, length2);
+        DataStream2.arrayToNative(arr, e2 == null ? this.endianness : e2);
+        this.position += length2 * 4;
         return arr;
       };
-      DataStream2.prototype.mapUint16Array = function(length, e) {
-        this._realloc(length * 2);
-        var arr = new Uint16Array(this._buffer, this.byteOffset + this.position, length);
-        DataStream2.arrayToNative(arr, e == null ? this.endianness : e);
-        this.position += length * 2;
+      DataStream2.prototype.mapUint16Array = function(length2, e2) {
+        this._realloc(length2 * 2);
+        var arr = new Uint16Array(this._buffer, this.byteOffset + this.position, length2);
+        DataStream2.arrayToNative(arr, e2 == null ? this.endianness : e2);
+        this.position += length2 * 2;
         return arr;
       };
-      DataStream2.prototype.mapFloat64Array = function(length, e) {
-        this._realloc(length * 8);
-        var arr = new Float64Array(this._buffer, this.byteOffset + this.position, length);
-        DataStream2.arrayToNative(arr, e == null ? this.endianness : e);
-        this.position += length * 8;
+      DataStream2.prototype.mapFloat64Array = function(length2, e2) {
+        this._realloc(length2 * 8);
+        var arr = new Float64Array(this._buffer, this.byteOffset + this.position, length2);
+        DataStream2.arrayToNative(arr, e2 == null ? this.endianness : e2);
+        this.position += length2 * 8;
         return arr;
       };
-      DataStream2.prototype.mapFloat32Array = function(length, e) {
-        this._realloc(length * 4);
-        var arr = new Float32Array(this._buffer, this.byteOffset + this.position, length);
-        DataStream2.arrayToNative(arr, e == null ? this.endianness : e);
-        this.position += length * 4;
+      DataStream2.prototype.mapFloat32Array = function(length2, e2) {
+        this._realloc(length2 * 4);
+        var arr = new Float32Array(this._buffer, this.byteOffset + this.position, length2);
+        DataStream2.arrayToNative(arr, e2 == null ? this.endianness : e2);
+        this.position += length2 * 4;
         return arr;
       };
       var MultiBufferStream = function(buffer) {
@@ -24616,32 +26732,32 @@
       };
       MultiBufferStream.prototype.insertBuffer = function(ab) {
         var to_add = true;
-        for (var i = 0; i < this.buffers.length; i++) {
-          var b = this.buffers[i];
-          if (ab.fileStart <= b.fileStart) {
-            if (ab.fileStart === b.fileStart) {
-              if (ab.byteLength > b.byteLength) {
-                this.buffers.splice(i, 1);
-                i--;
+        for (var i2 = 0; i2 < this.buffers.length; i2++) {
+          var b3 = this.buffers[i2];
+          if (ab.fileStart <= b3.fileStart) {
+            if (ab.fileStart === b3.fileStart) {
+              if (ab.byteLength > b3.byteLength) {
+                this.buffers.splice(i2, 1);
+                i2--;
                 continue;
               } else {
                 Log.warn("MultiBufferStream", "Buffer (fileStart: " + ab.fileStart + " - Length: " + ab.byteLength + ") already appended, ignoring");
               }
             } else {
-              if (ab.fileStart + ab.byteLength <= b.fileStart) {
+              if (ab.fileStart + ab.byteLength <= b3.fileStart) {
               } else {
-                ab = this.reduceBuffer(ab, 0, b.fileStart - ab.fileStart);
+                ab = this.reduceBuffer(ab, 0, b3.fileStart - ab.fileStart);
               }
               Log.debug("MultiBufferStream", "Appending new buffer (fileStart: " + ab.fileStart + " - Length: " + ab.byteLength + ")");
-              this.buffers.splice(i, 0, ab);
-              if (i === 0) {
+              this.buffers.splice(i2, 0, ab);
+              if (i2 === 0) {
                 this.buffer = ab;
               }
             }
             to_add = false;
             break;
-          } else if (ab.fileStart < b.fileStart + b.byteLength) {
-            var offset = b.fileStart + b.byteLength - ab.fileStart;
+          } else if (ab.fileStart < b3.fileStart + b3.byteLength) {
+            var offset = b3.fileStart + b3.byteLength - ab.fileStart;
             var newLength = ab.byteLength - offset;
             if (newLength > 0) {
               ab = this.reduceBuffer(ab, offset, newLength);
@@ -24654,13 +26770,13 @@
         if (to_add) {
           Log.debug("MultiBufferStream", "Appending new buffer (fileStart: " + ab.fileStart + " - Length: " + ab.byteLength + ")");
           this.buffers.push(ab);
-          if (i === 0) {
+          if (i2 === 0) {
             this.buffer = ab;
           }
         }
       };
       MultiBufferStream.prototype.logBufferLevel = function(info) {
-        var i;
+        var i2;
         var buffer;
         var used, total;
         var ranges = [];
@@ -24668,9 +26784,9 @@
         var bufferedString = "";
         used = 0;
         total = 0;
-        for (i = 0; i < this.buffers.length; i++) {
-          buffer = this.buffers[i];
-          if (i === 0) {
+        for (i2 = 0; i2 < this.buffers.length; i2++) {
+          buffer = this.buffers[i2];
+          if (i2 === 0) {
             range = {};
             ranges.push(range);
             range.start = buffer.fileStart;
@@ -24699,14 +26815,14 @@
         }
       };
       MultiBufferStream.prototype.cleanBuffers = function() {
-        var i;
+        var i2;
         var buffer;
-        for (i = 0; i < this.buffers.length; i++) {
-          buffer = this.buffers[i];
+        for (i2 = 0; i2 < this.buffers.length; i2++) {
+          buffer = this.buffers[i2];
           if (buffer.usedBytes === buffer.byteLength) {
-            Log.debug("MultiBufferStream", "Removing buffer #" + i);
-            this.buffers.splice(i, 1);
-            i--;
+            Log.debug("MultiBufferStream", "Removing buffer #" + i2);
+            this.buffers.splice(i2, 1);
+            i2--;
           }
         }
       };
@@ -24733,18 +26849,18 @@
         }
       };
       MultiBufferStream.prototype.findPosition = function(fromStart, filePosition, markAsUsed) {
-        var i;
+        var i2;
         var abuffer = null;
         var index = -1;
         if (fromStart === true) {
-          i = 0;
+          i2 = 0;
         } else {
-          i = this.bufferIndex;
+          i2 = this.bufferIndex;
         }
-        while (i < this.buffers.length) {
-          abuffer = this.buffers[i];
+        while (i2 < this.buffers.length) {
+          abuffer = this.buffers[i2];
           if (abuffer.fileStart <= filePosition) {
-            index = i;
+            index = i2;
             if (markAsUsed) {
               if (abuffer.fileStart + abuffer.byteLength <= filePosition) {
                 abuffer.usedBytes = abuffer.byteLength;
@@ -24756,7 +26872,7 @@
           } else {
             break;
           }
-          i++;
+          i2++;
         }
         if (index !== -1) {
           abuffer = this.buffers[index];
@@ -24771,14 +26887,14 @@
         }
       };
       MultiBufferStream.prototype.findEndContiguousBuf = function(inputindex) {
-        var i;
+        var i2;
         var currentBuf;
         var nextBuf;
         var index = inputindex !== void 0 ? inputindex : this.bufferIndex;
         currentBuf = this.buffers[index];
         if (this.buffers.length > index + 1) {
-          for (i = index + 1; i < this.buffers.length; i++) {
-            nextBuf = this.buffers[i];
+          for (i2 = index + 1; i2 < this.buffers.length; i2++) {
+            nextBuf = this.buffers[i2];
             if (nextBuf.fileStart === currentBuf.fileStart + currentBuf.byteLength) {
               currentBuf = nextBuf;
             } else {
@@ -24885,9 +27001,9 @@
           this.data = stream.readUint8Array(this.size);
         };
         classes.Descriptor.prototype.findDescriptor = function(tag) {
-          for (var i = 0; i < this.descs.length; i++) {
-            if (this.descs[i].tag == tag) {
-              return this.descs[i];
+          for (var i2 = 0; i2 < this.descs.length; i2++) {
+            if (this.descs[i2].tag == tag) {
+              return this.descs[i2];
             }
           }
           return null;
@@ -24914,9 +27030,9 @@
             this.dependsOn_ES_ID = 0;
           }
           if (this.flags & 64) {
-            var l = stream.readUint8();
-            this.URL = stream.readString(l);
-            this.size -= l + 1;
+            var l3 = stream.readUint8();
+            this.URL = stream.readString(l3);
+            this.size -= l3 + 1;
           } else {
             this.URL = "";
           }
@@ -25216,7 +27332,7 @@
       };
       BoxParser2.parseHex16 = function(stream) {
         var hex16 = "";
-        for (var i = 0; i < 16; i++) {
+        for (var i2 = 0; i2 < 16; i2++) {
           var hex = stream.readUint8().toString(16);
           hex16 += hex.length === 1 ? "0" + hex : hex;
         }
@@ -25472,11 +27588,11 @@
         var large_size = stream.readUint8() & 1;
         var FieldLength = ((large_size & 1) + 1) * 16;
         this.layer_size = [];
-        for (var i = 0; i < 3; i++) {
+        for (var i2 = 0; i2 < 3; i2++) {
           if (FieldLength == 16) {
-            this.layer_size[i] = stream.readUint16();
+            this.layer_size[i2] = stream.readUint16();
           } else {
-            this.layer_size[i] = stream.readUint32();
+            this.layer_size[i2] = stream.readUint32();
           }
         }
       });
@@ -25489,7 +27605,7 @@
         this.aux_subtype = stream.readUint8Array(aux_subtype_length);
       });
       BoxParser2.createBoxCtor("av1C", function(stream) {
-        var i;
+        var i2;
         var toparse;
         var tmp = stream.readUint8();
         if (tmp >> 7 & false) {
@@ -25532,7 +27648,7 @@
         this.configOBUs = stream.readUint8Array(configOBUs_length);
       });
       BoxParser2.createBoxCtor("avcC", function(stream) {
-        var i;
+        var i2;
         var toparse;
         this.configurationVersion = stream.readUint8();
         this.AVCProfileIndication = stream.readUint8();
@@ -25542,20 +27658,20 @@
         this.nb_SPS_nalus = stream.readUint8() & 31;
         toparse = this.size - this.hdr_size - 6;
         this.SPS = [];
-        for (i = 0; i < this.nb_SPS_nalus; i++) {
-          this.SPS[i] = {};
-          this.SPS[i].length = stream.readUint16();
-          this.SPS[i].nalu = stream.readUint8Array(this.SPS[i].length);
-          toparse -= 2 + this.SPS[i].length;
+        for (i2 = 0; i2 < this.nb_SPS_nalus; i2++) {
+          this.SPS[i2] = {};
+          this.SPS[i2].length = stream.readUint16();
+          this.SPS[i2].nalu = stream.readUint8Array(this.SPS[i2].length);
+          toparse -= 2 + this.SPS[i2].length;
         }
         this.nb_PPS_nalus = stream.readUint8();
         toparse--;
         this.PPS = [];
-        for (i = 0; i < this.nb_PPS_nalus; i++) {
-          this.PPS[i] = {};
-          this.PPS[i].length = stream.readUint16();
-          this.PPS[i].nalu = stream.readUint8Array(this.PPS[i].length);
-          toparse -= 2 + this.PPS[i].length;
+        for (i2 = 0; i2 < this.nb_PPS_nalus; i2++) {
+          this.PPS[i2] = {};
+          this.PPS[i2].length = stream.readUint16();
+          this.PPS[i2].nalu = stream.readUint8Array(this.PPS[i2].length);
+          toparse -= 2 + this.PPS[i2].length;
         }
         if (toparse > 0) {
           this.ext = stream.readUint8Array(toparse);
@@ -25582,11 +27698,11 @@
       });
       BoxParser2.createFullBoxCtor("co64", function(stream) {
         var entry_count2;
-        var i;
+        var i2;
         entry_count2 = stream.readUint32();
         this.chunk_offsets = [];
         if (this.version === 0) {
-          for (i = 0; i < entry_count2; i++) {
+          for (i2 = 0; i2 < entry_count2; i2++) {
             this.chunk_offsets.push(stream.readUint64());
           }
         }
@@ -25625,12 +27741,12 @@
       });
       BoxParser2.createFullBoxCtor("ctts", function(stream) {
         var entry_count2;
-        var i;
+        var i2;
         entry_count2 = stream.readUint32();
         this.sample_counts = [];
         this.sample_offsets = [];
         if (this.version === 0) {
-          for (i = 0; i < entry_count2; i++) {
+          for (i2 = 0; i2 < entry_count2; i2++) {
             this.sample_counts.push(stream.readUint32());
             var value = stream.readInt32();
             if (value < 0) {
@@ -25639,7 +27755,7 @@
             this.sample_offsets.push(value);
           }
         } else if (this.version == 1) {
-          for (i = 0; i < entry_count2; i++) {
+          for (i2 = 0; i2 < entry_count2; i2++) {
             this.sample_counts.push(stream.readUint32());
             this.sample_offsets.push(stream.readInt32());
           }
@@ -25661,7 +27777,7 @@
         this.data_rate = tmp_16 >> 3;
         this.num_ind_sub = tmp_16 & 7;
         this.ind_subs = [];
-        for (var i = 0; i < this.num_ind_sub + 1; i++) {
+        for (var i2 = 0; i2 < this.num_ind_sub + 1; i2++) {
           var ind_sub = {};
           this.ind_subs.push(ind_sub);
           var tmp_byte1 = stream.readUint8();
@@ -25733,8 +27849,8 @@
           this.StreamCount = stream.readUint8();
           this.CoupledCount = stream.readUint8();
           this.ChannelMapping = [];
-          for (var i = 0; i < this.OutputChannelCount; i++) {
-            this.ChannelMapping[i] = stream.readUint8();
+          for (var i2 = 0; i2 < this.OutputChannelCount; i2++) {
+            this.ChannelMapping[i2] = stream.readUint8();
           }
         }
       });
@@ -25743,7 +27859,7 @@
         var box2;
         this.entries = [];
         var entry_count2 = stream.readUint32();
-        for (var i = 0; i < entry_count2; i++) {
+        for (var i2 = 0; i2 < entry_count2; i2++) {
           ret2 = BoxParser2.parseOneBox(stream, false, this.size - (stream.getPosition() - this.start));
           if (ret2.code === BoxParser2.OK) {
             box2 = ret2.box;
@@ -25762,7 +27878,7 @@
       BoxParser2.createFullBoxCtor("elst", function(stream) {
         this.entries = [];
         var entry_count2 = stream.readUint32();
-        for (var i = 0; i < entry_count2; i++) {
+        for (var i2 = 0; i2 < entry_count2; i2++) {
           var entry = {};
           this.entries.push(entry);
           if (this.version === 1) {
@@ -25818,11 +27934,11 @@
         this.minor_version = stream.readUint32();
         toparse -= 8;
         this.compatible_brands = [];
-        var i = 0;
+        var i2 = 0;
         while (toparse >= 4) {
-          this.compatible_brands[i] = stream.readString(4);
+          this.compatible_brands[i2] = stream.readString(4);
           toparse -= 4;
-          i++;
+          i2++;
         }
       });
       BoxParser2.createFullBoxCtor("hdlr", function(stream) {
@@ -25837,9 +27953,9 @@
         }
       });
       BoxParser2.createBoxCtor("hvcC", function(stream) {
-        var i, j;
+        var i2, j3;
         var nb_nalus;
-        var length;
+        var length2;
         var tmp_byte;
         this.configurationVersion = stream.readUint8();
         tmp_byte = stream.readUint8();
@@ -25862,18 +27978,18 @@
         this.lengthSizeMinusOne = tmp_byte & 3;
         this.nalu_arrays = [];
         var numOfArrays = stream.readUint8();
-        for (i = 0; i < numOfArrays; i++) {
+        for (i2 = 0; i2 < numOfArrays; i2++) {
           var nalu_array = [];
           this.nalu_arrays.push(nalu_array);
           tmp_byte = stream.readUint8();
           nalu_array.completeness = (tmp_byte & 128) >> 7;
           nalu_array.nalu_type = tmp_byte & 63;
           var numNalus = stream.readUint16();
-          for (j = 0; j < numNalus; j++) {
+          for (j3 = 0; j3 < numNalus; j3++) {
             var nalu = {};
             nalu_array.push(nalu);
-            length = stream.readUint16();
-            nalu.data = stream.readUint8Array(length);
+            length2 = stream.readUint16();
+            nalu.data = stream.readUint8Array(length2);
           }
         }
       });
@@ -25885,13 +28001,13 @@
           this.entry_count = stream.readUint32();
         }
         this.item_infos = [];
-        for (var i = 0; i < this.entry_count; i++) {
+        for (var i2 = 0; i2 < this.entry_count; i2++) {
           ret2 = BoxParser2.parseOneBox(stream, false, this.size - (stream.getPosition() - this.start));
           if (ret2.code === BoxParser2.OK) {
             if (ret2.box.type !== "infe") {
               Log.error("BoxParser", "Expected 'infe' box, got " + ret2.box.type);
             }
-            this.item_infos[i] = ret2.box;
+            this.item_infos[i2] = ret2.box;
           } else {
             return;
           }
@@ -25918,7 +28034,7 @@
         } else {
           throw "version of iloc box not supported";
         }
-        for (var i = 0; i < item_count; i++) {
+        for (var i2 = 0; i2 < item_count; i2++) {
           var item = {};
           this.items.push(item);
           if (this.version < 2) {
@@ -25949,7 +28065,7 @@
           }
           var extent_count = stream.readUint16();
           item.extents = [];
-          for (var j = 0; j < extent_count; j++) {
+          for (var j3 = 0; j3 < extent_count; j3++) {
             var extent = {};
             item.extents.push(extent);
             if (this.version === 1 || this.version === 2) {
@@ -26033,10 +28149,10 @@
         }
       });
       BoxParser2.createFullBoxCtor("ipma", function(stream) {
-        var i, j;
+        var i2, j3;
         entry_count = stream.readUint32();
         this.associations = [];
-        for (i = 0; i < entry_count; i++) {
+        for (i2 = 0; i2 < entry_count; i2++) {
           var item_assoc = {};
           this.associations.push(item_assoc);
           if (this.version < 1) {
@@ -26046,15 +28162,15 @@
           }
           var association_count = stream.readUint8();
           item_assoc.props = [];
-          for (j = 0; j < association_count; j++) {
+          for (j3 = 0; j3 < association_count; j3++) {
             var tmp = stream.readUint8();
-            var p = {};
-            item_assoc.props.push(p);
-            p.essential = (tmp & 128) >> 7 === 1;
+            var p2 = {};
+            item_assoc.props.push(p2);
+            p2.essential = (tmp & 128) >> 7 === 1;
             if (this.flags & 1) {
-              p.property_index = (tmp & 127) << 8 | stream.readUint8();
+              p2.property_index = (tmp & 127) << 8 | stream.readUint8();
             } else {
-              p.property_index = tmp & 127;
+              p2.property_index = tmp & 127;
             }
           }
         }
@@ -26097,9 +28213,9 @@
       BoxParser2.createFullBoxCtor("leva", function(stream) {
         var count = stream.readUint8();
         this.levels = [];
-        for (var i = 0; i < count; i++) {
+        for (var i2 = 0; i2 < count; i2++) {
           var level = {};
-          this.levels[i] = level;
+          this.levels[i2] = level;
           level.track_ID = stream.readUint32();
           var tmp_byte = stream.readUint8();
           level.padding_flag = tmp_byte >> 7;
@@ -26213,7 +28329,7 @@
       BoxParser2.createFullBoxCtor("padb", function(stream) {
         var sample_count = stream.readUint32();
         this.padbits = [];
-        for (var i = 0; i < Math.floor((sample_count + 1) / 2); i++) {
+        for (var i2 = 0; i2 < Math.floor((sample_count + 1) / 2); i2++) {
           this.padbits = stream.readUint8();
         }
       });
@@ -26233,9 +28349,9 @@
         var count = (this.size - this.hdr_size) / 8;
         this.rate = [];
         this.initial_delay = [];
-        for (var i = 0; i < count; i++) {
-          this.rate[i] = stream.readUint32();
-          this.initial_delay[i] = stream.readUint32();
+        for (var i2 = 0; i2 < count; i2++) {
+          this.rate[i2] = stream.readUint32();
+          this.initial_delay[i2] = stream.readUint32();
         }
       });
       BoxParser2.createFullBoxCtor("pitm", function(stream) {
@@ -26246,11 +28362,11 @@
         }
       });
       BoxParser2.createFullBoxCtor("pixi", function(stream) {
-        var i;
+        var i2;
         this.num_channels = stream.readUint8();
         this.bits_per_channels = [];
-        for (i = 0; i < this.num_channels; i++) {
-          this.bits_per_channels[i] = stream.readUint8();
+        for (i2 = 0; i2 < this.num_channels; i2++) {
+          this.bits_per_channels[i2] = stream.readUint8();
         }
       });
       BoxParser2.createBoxCtor("pmax", function(stream) {
@@ -26270,8 +28386,8 @@
         if (this.version > 0) {
           var count = stream.readUint32();
           this.kid = [];
-          for (var i = 0; i < count; i++) {
-            this.kid[i] = BoxParser2.parseHex16(stream);
+          for (var i2 = 0; i2 < count; i2++) {
+            this.kid[i2] = BoxParser2.parseHex16(stream);
           }
         }
         var datasize = stream.readUint32();
@@ -26303,11 +28419,11 @@
         }
         var count = stream.readUint32();
         this.offset = [];
-        for (var i = 0; i < count; i++) {
+        for (var i2 = 0; i2 < count; i2++) {
           if (this.version === 0) {
-            this.offset[i] = stream.readUint32();
+            this.offset[i2] = stream.readUint32();
           } else {
-            this.offset[i] = stream.readUint64();
+            this.offset[i2] = stream.readUint64();
           }
         }
       });
@@ -26320,8 +28436,8 @@
         var count = stream.readUint32();
         this.sample_info_size = [];
         if (this.default_sample_info_size === 0) {
-          for (var i = 0; i < count; i++) {
-            this.sample_info_size[i] = stream.readUint8();
+          for (var i2 = 0; i2 < count; i2++) {
+            this.sample_info_size[i2] = stream.readUint8();
           }
         }
       });
@@ -26372,19 +28488,19 @@
         this.parseFooter(stream);
       });
       BoxParser2.createSampleGroupCtor("alst", function(stream) {
-        var i;
+        var i2;
         var roll_count = stream.readUint16();
         this.first_output_sample = stream.readUint16();
         this.sample_offset = [];
-        for (i = 0; i < roll_count; i++) {
-          this.sample_offset[i] = stream.readUint32();
+        for (i2 = 0; i2 < roll_count; i2++) {
+          this.sample_offset[i2] = stream.readUint32();
         }
         var remaining = this.description_length - 4 - 4 * roll_count;
         this.num_output_samples = [];
         this.num_total_samples = [];
-        for (i = 0; i < remaining / 4; i++) {
-          this.num_output_samples[i] = stream.readUint16();
-          this.num_total_samples[i] = stream.readUint16();
+        for (i2 = 0; i2 < remaining / 4; i2++) {
+          this.num_output_samples[i2] = stream.readUint16();
+          this.num_total_samples[i2] = stream.readUint16();
         }
       });
       BoxParser2.createSampleGroupCtor("avll", function(stream) {
@@ -26409,7 +28525,7 @@
         }
         this.dependency = [];
         var numReferences = stream.readUint8();
-        for (var i = 0; i < numReferences; i++) {
+        for (var i2 = 0; i2 < numReferences; i2++) {
           var dependencyInfo = {};
           this.dependency.push(dependencyInfo);
           dependencyInfo.subSeqDirectionFlag = stream.readUint8();
@@ -26442,9 +28558,9 @@
           } else {
             this.target_rate_share = [];
             this.available_bitrate = [];
-            for (var i = 0; i < this.operation_point_count; i++) {
-              this.available_bitrate[i] = stream.readUint32();
-              this.target_rate_share[i] = stream.readUint16();
+            for (var i2 = 0; i2 < this.operation_point_count; i2++) {
+              this.available_bitrate[i2] = stream.readUint32();
+              this.target_rate_share[i2] = stream.readUint16();
             }
           }
           this.maximum_bitrate = stream.readUint32();
@@ -26509,7 +28625,7 @@
         }
         this.entries = [];
         var entry_count2 = stream.readUint32();
-        for (var i = 0; i < entry_count2; i++) {
+        for (var i2 = 0; i2 < entry_count2; i2++) {
           var entry = {};
           this.entries.push(entry);
           entry.sample_count = stream.readInt32();
@@ -26533,12 +28649,12 @@
         this.sample_depends_on = [];
         this.sample_is_depended_on = [];
         this.sample_has_redundancy = [];
-        for (var i = 0; i < count; i++) {
+        for (var i2 = 0; i2 < count; i2++) {
           tmp_byte = stream.readUint8();
-          this.is_leading[i] = tmp_byte >> 6;
-          this.sample_depends_on[i] = tmp_byte >> 4 & 3;
-          this.sample_is_depended_on[i] = tmp_byte >> 2 & 3;
-          this.sample_has_redundancy[i] = tmp_byte & 3;
+          this.is_leading[i2] = tmp_byte >> 6;
+          this.sample_depends_on[i2] = tmp_byte >> 4 & 3;
+          this.sample_is_depended_on[i2] = tmp_byte >> 2 & 3;
+          this.sample_has_redundancy[i2] = tmp_byte & 3;
         }
       });
       BoxParser2.createFullBoxCtor(
@@ -26579,7 +28695,7 @@
         }
         this.entries = [];
         var entry_count2 = stream.readUint32();
-        for (var i = 0; i < entry_count2; i++) {
+        for (var i2 = 0; i2 < entry_count2; i2++) {
           var entry;
           if (BoxParser2[this.grouping_type + "SampleGroupEntry"]) {
             entry = new BoxParser2[this.grouping_type + "SampleGroupEntry"](this.grouping_type);
@@ -26617,7 +28733,7 @@
         stream.readUint16();
         this.references = [];
         var count = stream.readUint16();
-        for (var i = 0; i < count; i++) {
+        for (var i2 = 0; i2 < count; i2++) {
           var ref = {};
           this.references.push(ref);
           var tmp_32 = stream.readUint32();
@@ -26640,8 +28756,8 @@
         this.from_item_ID = stream.readUint16();
         var count = stream.readUint16();
         this.references = [];
-        for (var i = 0; i < count; i++) {
-          this.references[i] = stream.readUint16();
+        for (var i2 = 0; i2 < count; i2++) {
+          this.references[i2] = stream.readUint16();
         }
       };
       BoxParser2.SingleItemTypeReferenceBoxLarge = function(type, size, hdr_size, start) {
@@ -26654,8 +28770,8 @@
         this.from_item_ID = stream.readUint32();
         var count = stream.readUint16();
         this.references = [];
-        for (var i = 0; i < count; i++) {
-          this.references[i] = stream.readUint32();
+        for (var i2 = 0; i2 < count; i2++) {
+          this.references[i2] = stream.readUint32();
         }
       };
       BoxParser2.createFullBoxCtor("SmDm", function(stream) {
@@ -26677,12 +28793,12 @@
       BoxParser2.createFullBoxCtor("ssix", function(stream) {
         this.subsegments = [];
         var subsegment_count = stream.readUint32();
-        for (var i = 0; i < subsegment_count; i++) {
+        for (var i2 = 0; i2 < subsegment_count; i2++) {
           var subsegment = {};
           this.subsegments.push(subsegment);
           subsegment.ranges = [];
           var range_count = stream.readUint32();
-          for (var j = 0; j < range_count; j++) {
+          for (var j3 = 0; j3 < range_count; j3++) {
             var range = {};
             subsegment.ranges.push(range);
             range.level = stream.readUint8();
@@ -26695,7 +28811,7 @@
         entry_count2 = stream.readUint32();
         this.chunk_offsets = [];
         if (this.version === 0) {
-          for (var i = 0; i < entry_count2; i++) {
+          for (var i2 = 0; i2 < entry_count2; i2++) {
             this.chunk_offsets.push(stream.readUint32());
           }
         }
@@ -26703,8 +28819,8 @@
       BoxParser2.createFullBoxCtor("stdp", function(stream) {
         var count = (this.size - this.hdr_size) / 2;
         this.priority = [];
-        for (var i = 0; i < count; i++) {
-          this.priority[i] = stream.readUint16();
+        for (var i2 = 0; i2 < count; i2++) {
+          this.priority[i2] = stream.readUint16();
         }
       });
       BoxParser2.createFullBoxCtor("sthd");
@@ -26714,19 +28830,19 @@
         this.sub_track_id = stream.readUint32();
         var count = (this.size - this.hdr_size - 8) / 4;
         this.attribute_list = [];
-        for (var i = 0; i < count; i++) {
-          this.attribute_list[i] = stream.readUint32();
+        for (var i2 = 0; i2 < count; i2++) {
+          this.attribute_list[i2] = stream.readUint32();
         }
       });
       BoxParser2.createFullBoxCtor("stsc", function(stream) {
         var entry_count2;
-        var i;
+        var i2;
         entry_count2 = stream.readUint32();
         this.first_chunk = [];
         this.samples_per_chunk = [];
         this.sample_description_index = [];
         if (this.version === 0) {
-          for (i = 0; i < entry_count2; i++) {
+          for (i2 = 0; i2 < entry_count2; i2++) {
             this.first_chunk.push(stream.readUint32());
             this.samples_per_chunk.push(stream.readUint32());
             this.sample_description_index.push(stream.readUint32());
@@ -26734,13 +28850,13 @@
         }
       });
       BoxParser2.createFullBoxCtor("stsd", function(stream) {
-        var i;
+        var i2;
         var ret2;
         var entryCount;
         var box2;
         this.entries = [];
         entryCount = stream.readUint32();
-        for (i = 1; i <= entryCount; i++) {
+        for (i2 = 1; i2 <= entryCount; i2++) {
           ret2 = BoxParser2.parseOneBox(stream, true, this.size - (stream.getPosition() - this.start));
           if (ret2.code === BoxParser2.OK) {
             if (BoxParser2[ret2.type + "SampleEntry"]) {
@@ -26766,58 +28882,58 @@
         this.grouping_type = stream.readUint32();
         var count = stream.readUint16();
         this.group_description_index = [];
-        for (var i = 0; i < count; i++) {
-          this.group_description_index[i] = stream.readUint32();
+        for (var i2 = 0; i2 < count; i2++) {
+          this.group_description_index[i2] = stream.readUint32();
         }
       });
       BoxParser2.createFullBoxCtor("stsh", function(stream) {
         var entry_count2;
-        var i;
+        var i2;
         entry_count2 = stream.readUint32();
         this.shadowed_sample_numbers = [];
         this.sync_sample_numbers = [];
         if (this.version === 0) {
-          for (i = 0; i < entry_count2; i++) {
+          for (i2 = 0; i2 < entry_count2; i2++) {
             this.shadowed_sample_numbers.push(stream.readUint32());
             this.sync_sample_numbers.push(stream.readUint32());
           }
         }
       });
       BoxParser2.createFullBoxCtor("stss", function(stream) {
-        var i;
+        var i2;
         var entry_count2;
         entry_count2 = stream.readUint32();
         if (this.version === 0) {
           this.sample_numbers = [];
-          for (i = 0; i < entry_count2; i++) {
+          for (i2 = 0; i2 < entry_count2; i2++) {
             this.sample_numbers.push(stream.readUint32());
           }
         }
       });
       BoxParser2.createFullBoxCtor("stsz", function(stream) {
-        var i;
+        var i2;
         this.sample_sizes = [];
         if (this.version === 0) {
           this.sample_size = stream.readUint32();
           this.sample_count = stream.readUint32();
-          for (i = 0; i < this.sample_count; i++) {
+          for (i2 = 0; i2 < this.sample_count; i2++) {
             if (this.sample_size === 0) {
               this.sample_sizes.push(stream.readUint32());
             } else {
-              this.sample_sizes[i] = this.sample_size;
+              this.sample_sizes[i2] = this.sample_size;
             }
           }
         }
       });
       BoxParser2.createFullBoxCtor("stts", function(stream) {
         var entry_count2;
-        var i;
+        var i2;
         var delta;
         entry_count2 = stream.readUint32();
         this.sample_counts = [];
         this.sample_deltas = [];
         if (this.version === 0) {
-          for (i = 0; i < entry_count2; i++) {
+          for (i2 = 0; i2 < entry_count2; i2++) {
             this.sample_counts.push(stream.readUint32());
             delta = stream.readInt32();
             if (delta < 0) {
@@ -26832,8 +28948,8 @@
         var tmp32 = stream.readUint32();
         this.single_view_allowed = tmp32 & 3;
         this.stereo_scheme = stream.readUint32();
-        var length = stream.readUint32();
-        this.stereo_indication_type = stream.readString(length);
+        var length2 = stream.readUint32();
+        this.stereo_indication_type = stream.readString(length2);
         var ret2;
         var box2;
         this.boxes = [];
@@ -26852,7 +28968,7 @@
         BoxParser2.ftypBox.prototype.parse.call(this, stream);
       });
       BoxParser2.createFullBoxCtor("stz2", function(stream) {
-        var i;
+        var i2;
         var sample_size;
         var sample_count;
         this.sample_sizes = [];
@@ -26861,18 +28977,18 @@
           this.field_size = stream.readUint8();
           sample_count = stream.readUint32();
           if (this.field_size === 4) {
-            for (i = 0; i < sample_count; i += 2) {
+            for (i2 = 0; i2 < sample_count; i2 += 2) {
               var tmp = stream.readUint8();
-              this.sample_sizes[i] = tmp >> 4 & 15;
-              this.sample_sizes[i + 1] = tmp & 15;
+              this.sample_sizes[i2] = tmp >> 4 & 15;
+              this.sample_sizes[i2 + 1] = tmp & 15;
             }
           } else if (this.field_size === 8) {
-            for (i = 0; i < sample_count; i++) {
-              this.sample_sizes[i] = stream.readUint8();
+            for (i2 = 0; i2 < sample_count; i2++) {
+              this.sample_sizes[i2] = stream.readUint8();
             }
           } else if (this.field_size === 16) {
-            for (i = 0; i < sample_count; i++) {
-              this.sample_sizes[i] = stream.readUint16();
+            for (i2 = 0; i2 < sample_count; i2++) {
+              this.sample_sizes[i2] = stream.readUint16();
             }
           } else {
             Log.error("BoxParser", "Error in length field in stz2 box");
@@ -26880,19 +28996,19 @@
         }
       });
       BoxParser2.createFullBoxCtor("subs", function(stream) {
-        var i, j;
+        var i2, j3;
         var entry_count2;
         var subsample_count;
         entry_count2 = stream.readUint32();
         this.entries = [];
-        for (i = 0; i < entry_count2; i++) {
+        for (i2 = 0; i2 < entry_count2; i2++) {
           var sampleInfo = {};
-          this.entries[i] = sampleInfo;
+          this.entries[i2] = sampleInfo;
           sampleInfo.sample_delta = stream.readUint32();
           sampleInfo.subsamples = [];
           subsample_count = stream.readUint16();
           if (subsample_count > 0) {
-            for (j = 0; j < subsample_count; j++) {
+            for (j3 = 0; j3 < subsample_count; j3++) {
               var subsample = {};
               sampleInfo.subsamples.push(subsample);
               if (this.version == 1) {
@@ -26974,7 +29090,7 @@
         this.length_size_of_sample_num = tmp_byte & 3;
         this.entries = [];
         var number_of_entries = stream.readUint32();
-        for (var i = 0; i < number_of_entries; i++) {
+        for (var i2 = 0; i2 < number_of_entries; i2++) {
           if (this.version === 1) {
             this.time = stream.readUint64();
             this.moof_offset = stream.readUint64();
@@ -27101,21 +29217,21 @@
         this.sample_flags = [];
         this.sample_composition_time_offset = [];
         if (this.size - this.hdr_size > readBytes) {
-          for (var i = 0; i < this.sample_count; i++) {
+          for (var i2 = 0; i2 < this.sample_count; i2++) {
             if (this.flags & BoxParser2.TRUN_FLAGS_DURATION) {
-              this.sample_duration[i] = stream.readUint32();
+              this.sample_duration[i2] = stream.readUint32();
             }
             if (this.flags & BoxParser2.TRUN_FLAGS_SIZE) {
-              this.sample_size[i] = stream.readUint32();
+              this.sample_size[i2] = stream.readUint32();
             }
             if (this.flags & BoxParser2.TRUN_FLAGS_FLAGS) {
-              this.sample_flags[i] = stream.readUint32();
+              this.sample_flags[i2] = stream.readUint32();
             }
             if (this.flags & BoxParser2.TRUN_FLAGS_CTS_OFFSET) {
               if (this.version === 0) {
-                this.sample_composition_time_offset[i] = stream.readUint32();
+                this.sample_composition_time_offset[i2] = stream.readUint32();
               } else {
-                this.sample_composition_time_offset[i] = stream.readInt32();
+                this.sample_composition_time_offset[i2] = stream.readInt32();
               }
             }
           }
@@ -27125,8 +29241,8 @@
         this.switch_group = stream.readUint32();
         var count = (this.size - this.hdr_size - 4) / 4;
         this.attribute_list = [];
-        for (var i = 0; i < count; i++) {
-          this.attribute_list[i] = stream.readUint32();
+        for (var i2 = 0; i2 < count; i2++) {
+          this.attribute_list[i2] = stream.readUint32();
         }
       });
       BoxParser2.createFullBoxCtor("txtC", function(stream) {
@@ -27190,7 +29306,7 @@
       BoxParser2.createUUIDBox("d4807ef2ca3946958e5426cb9e46a79f", true, false, function(stream) {
         this.fragment_count = stream.readUint8();
         this.entries = [];
-        for (var i = 0; i < this.fragment_count; i++) {
+        for (var i2 = 0; i2 < this.fragment_count; i2++) {
           var entry = {};
           var absolute_time = 0;
           var absolute_duration = 0;
@@ -27251,7 +29367,7 @@
         this.text = stream.readString(this.size - this.hdr_size);
       });
       BoxParser2.createFullBoxCtor("vvcC", function(stream) {
-        var i, j;
+        var i2, j3;
         var bitReader = {
           held_bits: void 0,
           num_held_bits: 0,
@@ -27294,11 +29410,11 @@
             this.ptl_multilayer_enabled_flag = bitReader.extract_bits(1);
             this.general_constraint_info = new Uint8Array(this.num_bytes_constraint_info);
             if (this.num_bytes_constraint_info) {
-              for (i = 0; i < this.num_bytes_constraint_info - 1; i++) {
+              for (i2 = 0; i2 < this.num_bytes_constraint_info - 1; i2++) {
                 var cnstr1 = bitReader.extract_bits(6);
                 bitReader.stream_read_1_bytes(stream);
                 var cnstr2 = bitReader.extract_bits(2);
-                this.general_constraint_info[i] = cnstr1 << 2 | cnstr2;
+                this.general_constraint_info[i2] = cnstr1 << 2 | cnstr2;
               }
               this.general_constraint_info[this.num_bytes_constraint_info - 1] = bitReader.extract_bits(6);
             } else {
@@ -27306,22 +29422,22 @@
             }
             bitReader.stream_read_1_bytes(stream);
             this.ptl_sublayer_present_mask = 0;
-            for (j = this.num_sublayers - 2; j >= 0; --j) {
+            for (j3 = this.num_sublayers - 2; j3 >= 0; --j3) {
               var val = bitReader.extract_bits(1);
-              this.ptl_sublayer_present_mask |= val << j;
+              this.ptl_sublayer_present_mask |= val << j3;
             }
-            for (j = this.num_sublayers; j <= 8 && this.num_sublayers > 1; ++j) {
+            for (j3 = this.num_sublayers; j3 <= 8 && this.num_sublayers > 1; ++j3) {
               bitReader.extract_bits(1);
             }
-            for (j = this.num_sublayers - 2; j >= 0; --j) {
-              if (this.ptl_sublayer_present_mask & 1 << j) {
-                this.sublayer_level_idc[j] = stream.readUint8();
+            for (j3 = this.num_sublayers - 2; j3 >= 0; --j3) {
+              if (this.ptl_sublayer_present_mask & 1 << j3) {
+                this.sublayer_level_idc[j3] = stream.readUint8();
               }
             }
             this.ptl_num_sub_profiles = stream.readUint8();
             this.general_sub_profile_idc = [];
             if (this.ptl_num_sub_profiles) {
-              for (i = 0; i < this.ptl_num_sub_profiles; i++) {
+              for (i2 = 0; i2 < this.ptl_num_sub_profiles; i2++) {
                 this.general_sub_profile_idc.push(stream.readUint32());
               }
             }
@@ -27334,7 +29450,7 @@
         var VVC_NALU_DEC_PARAM = 13;
         this.nalu_arrays = [];
         var num_of_arrays = stream.readUint8();
-        for (i = 0; i < num_of_arrays; i++) {
+        for (i2 = 0; i2 < num_of_arrays; i2++) {
           var nalu_array = [];
           this.nalu_arrays.push(nalu_array);
           bitReader.stream_read_1_bytes(stream);
@@ -27345,7 +29461,7 @@
           if (nalu_array.nalu_type != VVC_NALU_DEC_PARAM && nalu_array.nalu_type != VVC_NALU_OPI) {
             numNalus = stream.readUint16();
           }
-          for (j = 0; j < numNalus; j++) {
+          for (j3 = 0; j3 < numNalus; j3++) {
             var len = stream.readUint16();
             nalu_array.push({
               data: stream.readUint8Array(len),
@@ -27418,10 +29534,10 @@
       BoxParser2.MetadataSampleEntry.prototype.isMetadata = function() {
         return true;
       };
-      BoxParser2.decimalToHex = function(d, padding) {
-        var hex = Number(d).toString(16);
-        padding = typeof padding === "undefined" || padding === null ? padding = 2 : padding;
-        while (hex.length < padding) {
+      BoxParser2.decimalToHex = function(d2, padding2) {
+        var hex = Number(d2).toString(16);
+        padding2 = typeof padding2 === "undefined" || padding2 === null ? padding2 = 2 : padding2;
+        while (hex.length < padding2) {
           hex = "0" + hex;
         }
         return hex;
@@ -27435,7 +29551,7 @@
         }
       };
       BoxParser2.hev1SampleEntry.prototype.getCodec = BoxParser2.hvc1SampleEntry.prototype.getCodec = function() {
-        var i;
+        var i2;
         var baseCodec = BoxParser2.SampleEntry.prototype.getCodec.call(this);
         if (this.hvcC) {
           baseCodec += ".";
@@ -27457,9 +29573,9 @@
           baseCodec += ".";
           var val = this.hvcC.general_profile_compatibility;
           var reversed = 0;
-          for (i = 0; i < 32; i++) {
+          for (i2 = 0; i2 < 32; i2++) {
             reversed |= val & 1;
-            if (i == 31)
+            if (i2 == 31)
               break;
             reversed <<= 1;
             val >>= 1;
@@ -27474,9 +29590,9 @@
           baseCodec += this.hvcC.general_level_idc;
           var hasByte = false;
           var constraint_string = "";
-          for (i = 5; i >= 0; i--) {
-            if (this.hvcC.general_constraint_indicator[i] || hasByte) {
-              constraint_string = "." + BoxParser2.decimalToHex(this.hvcC.general_constraint_indicator[i], 0) + constraint_string;
+          for (i2 = 5; i2 >= 0; i2--) {
+            if (this.hvcC.general_constraint_indicator[i2] || hasByte) {
+              constraint_string = "." + BoxParser2.decimalToHex(this.hvcC.general_constraint_indicator[i2], 0) + constraint_string;
               hasByte = true;
             }
           }
@@ -27485,7 +29601,7 @@
         return baseCodec;
       };
       BoxParser2.vvc1SampleEntry.prototype.getCodec = BoxParser2.vvi1SampleEntry.prototype.getCodec = function() {
-        var i;
+        var i2;
         var baseCodec = BoxParser2.SampleEntry.prototype.getCodec.call(this);
         if (this.vvcC) {
           baseCodec += "." + this.vvcC.general_profile_idc;
@@ -27502,13 +29618,13 @@
             byte |= this.vvcC.ptl_frame_only_constraint << 7;
             byte |= this.vvcC.ptl_multilayer_enabled << 6;
             var last_nonzero;
-            for (i = 0; i < this.vvcC.general_constraint_info.length; ++i) {
-              byte |= this.vvcC.general_constraint_info[i] >> 2 & 63;
+            for (i2 = 0; i2 < this.vvcC.general_constraint_info.length; ++i2) {
+              byte |= this.vvcC.general_constraint_info[i2] >> 2 & 63;
               bytes.push(byte);
               if (byte) {
-                last_nonzero = i;
+                last_nonzero = i2;
               }
-              byte = this.vvcC.general_constraint_info[i] >> 2 & 3;
+              byte = this.vvcC.general_constraint_info[i2] >> 2 & 3;
             }
             if (last_nonzero === void 0) {
               constraint_string = ".CA";
@@ -27517,8 +29633,8 @@
               var base32_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
               var held_bits = 0;
               var num_held_bits = 0;
-              for (i = 0; i <= last_nonzero; ++i) {
-                held_bits = held_bits << 8 | bytes[i];
+              for (i2 = 0; i2 <= last_nonzero; ++i2) {
+                held_bits = held_bits << 8 | bytes[i2];
                 num_held_bits += 8;
                 while (num_held_bits >= 5) {
                   var val = held_bits >> num_held_bits - 5 & 31;
@@ -27628,10 +29744,10 @@
       BoxParser2.ContainerBox.prototype.write = function(stream) {
         this.size = 0;
         this.writeHeader(stream);
-        for (var i = 0; i < this.boxes.length; i++) {
-          if (this.boxes[i]) {
-            this.boxes[i].write(stream);
-            this.size += this.boxes[i].size;
+        for (var i2 = 0; i2 < this.boxes.length; i2++) {
+          if (this.boxes[i2]) {
+            this.boxes[i2].write(stream);
+            this.size += this.boxes[i2].size;
           }
         }
         Log.debug("BoxWriter", "Adjusting box " + this.type + " with new size " + this.size);
@@ -27643,13 +29759,13 @@
         stream.writeUint32Array(this.track_ids);
       };
       BoxParser2.avcCBox.prototype.write = function(stream) {
-        var i;
+        var i2;
         this.size = 7;
-        for (i = 0; i < this.SPS.length; i++) {
-          this.size += 2 + this.SPS[i].length;
+        for (i2 = 0; i2 < this.SPS.length; i2++) {
+          this.size += 2 + this.SPS[i2].length;
         }
-        for (i = 0; i < this.PPS.length; i++) {
-          this.size += 2 + this.PPS[i].length;
+        for (i2 = 0; i2 < this.PPS.length; i2++) {
+          this.size += 2 + this.PPS[i2].length;
         }
         if (this.ext) {
           this.size += this.ext.length;
@@ -27661,32 +29777,32 @@
         stream.writeUint8(this.AVCLevelIndication);
         stream.writeUint8(this.lengthSizeMinusOne + (63 << 2));
         stream.writeUint8(this.SPS.length + (7 << 5));
-        for (i = 0; i < this.SPS.length; i++) {
-          stream.writeUint16(this.SPS[i].length);
-          stream.writeUint8Array(this.SPS[i].nalu);
+        for (i2 = 0; i2 < this.SPS.length; i2++) {
+          stream.writeUint16(this.SPS[i2].length);
+          stream.writeUint8Array(this.SPS[i2].nalu);
         }
         stream.writeUint8(this.PPS.length);
-        for (i = 0; i < this.PPS.length; i++) {
-          stream.writeUint16(this.PPS[i].length);
-          stream.writeUint8Array(this.PPS[i].nalu);
+        for (i2 = 0; i2 < this.PPS.length; i2++) {
+          stream.writeUint16(this.PPS[i2].length);
+          stream.writeUint8Array(this.PPS[i2].nalu);
         }
         if (this.ext) {
           stream.writeUint8Array(this.ext);
         }
       };
       BoxParser2.co64Box.prototype.write = function(stream) {
-        var i;
+        var i2;
         this.version = 0;
         this.flags = 0;
         this.size = 4 + 8 * this.chunk_offsets.length;
         this.writeHeader(stream);
         stream.writeUint32(this.chunk_offsets.length);
-        for (i = 0; i < this.chunk_offsets.length; i++) {
-          stream.writeUint64(this.chunk_offsets[i]);
+        for (i2 = 0; i2 < this.chunk_offsets.length; i2++) {
+          stream.writeUint64(this.chunk_offsets[i2]);
         }
       };
       BoxParser2.cslgBox.prototype.write = function(stream) {
-        var i;
+        var i2;
         this.version = 0;
         this.flags = 0;
         this.size = 4 * 5;
@@ -27698,18 +29814,18 @@
         stream.writeInt32(this.compositionEndTime);
       };
       BoxParser2.cttsBox.prototype.write = function(stream) {
-        var i;
+        var i2;
         this.version = 0;
         this.flags = 0;
         this.size = 4 + 8 * this.sample_counts.length;
         this.writeHeader(stream);
         stream.writeUint32(this.sample_counts.length);
-        for (i = 0; i < this.sample_counts.length; i++) {
-          stream.writeUint32(this.sample_counts[i]);
+        for (i2 = 0; i2 < this.sample_counts.length; i2++) {
+          stream.writeUint32(this.sample_counts[i2]);
           if (this.version === 1) {
-            stream.writeInt32(this.sample_offsets[i]);
+            stream.writeInt32(this.sample_offsets[i2]);
           } else {
-            stream.writeUint32(this.sample_offsets[i]);
+            stream.writeUint32(this.sample_offsets[i2]);
           }
         }
       };
@@ -27719,9 +29835,9 @@
         this.size = 4;
         this.writeHeader(stream);
         stream.writeUint32(this.entries.length);
-        for (var i = 0; i < this.entries.length; i++) {
-          this.entries[i].write(stream);
-          this.size += this.entries[i].size;
+        for (var i2 = 0; i2 < this.entries.length; i2++) {
+          this.entries[i2].write(stream);
+          this.size += this.entries[i2].size;
         }
         Log.debug("BoxWriter", "Adjusting box " + this.type + " with new size " + this.size);
         stream.adjustUint32(this.sizePosition, this.size);
@@ -27739,8 +29855,8 @@
         this.size = 4 + 12 * this.entries.length;
         this.writeHeader(stream);
         stream.writeUint32(this.entries.length);
-        for (var i = 0; i < this.entries.length; i++) {
-          var entry = this.entries[i];
+        for (var i2 = 0; i2 < this.entries.length; i2++) {
+          var entry = this.entries[i2];
           stream.writeUint32(entry.segment_duration);
           stream.writeInt32(entry.media_time);
           stream.writeInt16(entry.media_rate_integer);
@@ -27765,8 +29881,8 @@
         this.writeHeader(stream);
         stream.writeString(this.major_brand, null, 4);
         stream.writeUint32(this.minor_version);
-        for (var i = 0; i < this.compatible_brands.length; i++) {
-          stream.writeString(this.compatible_brands[i], null, 4);
+        for (var i2 = 0; i2 < this.compatible_brands.length; i2++) {
+          stream.writeString(this.compatible_brands[i2], null, 4);
         }
       };
       BoxParser2.hdlrBox.prototype.write = function(stream) {
@@ -27850,9 +29966,9 @@
         stream.writeUint16(this.data_reference_index);
       };
       BoxParser2.SampleEntry.prototype.writeFooter = function(stream) {
-        for (var i = 0; i < this.boxes.length; i++) {
-          this.boxes[i].write(stream);
-          this.size += this.boxes[i].size;
+        for (var i2 = 0; i2 < this.boxes.length; i2++) {
+          this.boxes[i2].write(stream);
+          this.size += this.boxes[i2].size;
         }
         Log.debug("BoxWriter", "Adjusting box " + this.type + " with new size " + this.size);
         stream.adjustUint32(this.sizePosition, this.size);
@@ -27915,19 +30031,19 @@
         stream.writeString(this.grouping_type, null, 4);
         stream.writeUint32(this.grouping_type_parameter);
         stream.writeUint32(this.entries.length);
-        for (var i = 0; i < this.entries.length; i++) {
-          var entry = this.entries[i];
+        for (var i2 = 0; i2 < this.entries.length; i2++) {
+          var entry = this.entries[i2];
           stream.writeInt32(entry.sample_count);
           stream.writeInt32(entry.group_description_index);
         }
       };
       BoxParser2.sgpdBox.prototype.write = function(stream) {
-        var i;
+        var i2;
         var entry;
         this.flags = 0;
         this.size = 12;
-        for (i = 0; i < this.entries.length; i++) {
-          entry = this.entries[i];
+        for (i2 = 0; i2 < this.entries.length; i2++) {
+          entry = this.entries[i2];
           if (this.version === 1) {
             if (this.default_length === 0) {
               this.size += 4;
@@ -27944,8 +30060,8 @@
           stream.writeUint32(this.default_sample_description_index);
         }
         stream.writeUint32(this.entries.length);
-        for (i = 0; i < this.entries.length; i++) {
-          entry = this.entries[i];
+        for (i2 = 0; i2 < this.entries.length; i2++) {
+          entry = this.entries[i2];
           if (this.version === 1) {
             if (this.default_length === 0) {
               stream.writeUint32(entry.description_length);
@@ -27965,15 +30081,15 @@
         stream.writeUint32(this.first_offset);
         stream.writeUint16(0);
         stream.writeUint16(this.references.length);
-        for (var i = 0; i < this.references.length; i++) {
-          var ref = this.references[i];
+        for (var i2 = 0; i2 < this.references.length; i2++) {
+          var ref = this.references[i2];
           stream.writeUint32(ref.reference_type << 31 | ref.referenced_size);
           stream.writeUint32(ref.subsegment_duration);
           stream.writeUint32(ref.starts_with_SAP << 31 | ref.SAP_type << 28 | ref.SAP_delta_time);
         }
       };
       BoxParser2.smhdBox.prototype.write = function(stream) {
-        var i;
+        var i2;
         this.version = 0;
         this.flags = 1;
         this.size = 4;
@@ -27990,43 +30106,43 @@
         stream.writeUint32Array(this.chunk_offsets);
       };
       BoxParser2.stscBox.prototype.write = function(stream) {
-        var i;
+        var i2;
         this.version = 0;
         this.flags = 0;
         this.size = 4 + 12 * this.first_chunk.length;
         this.writeHeader(stream);
         stream.writeUint32(this.first_chunk.length);
-        for (i = 0; i < this.first_chunk.length; i++) {
-          stream.writeUint32(this.first_chunk[i]);
-          stream.writeUint32(this.samples_per_chunk[i]);
-          stream.writeUint32(this.sample_description_index[i]);
+        for (i2 = 0; i2 < this.first_chunk.length; i2++) {
+          stream.writeUint32(this.first_chunk[i2]);
+          stream.writeUint32(this.samples_per_chunk[i2]);
+          stream.writeUint32(this.sample_description_index[i2]);
         }
       };
       BoxParser2.stsdBox.prototype.write = function(stream) {
-        var i;
+        var i2;
         this.version = 0;
         this.flags = 0;
         this.size = 0;
         this.writeHeader(stream);
         stream.writeUint32(this.entries.length);
         this.size += 4;
-        for (i = 0; i < this.entries.length; i++) {
-          this.entries[i].write(stream);
-          this.size += this.entries[i].size;
+        for (i2 = 0; i2 < this.entries.length; i2++) {
+          this.entries[i2].write(stream);
+          this.size += this.entries[i2].size;
         }
         Log.debug("BoxWriter", "Adjusting box " + this.type + " with new size " + this.size);
         stream.adjustUint32(this.sizePosition, this.size);
       };
       BoxParser2.stshBox.prototype.write = function(stream) {
-        var i;
+        var i2;
         this.version = 0;
         this.flags = 0;
         this.size = 4 + 8 * this.shadowed_sample_numbers.length;
         this.writeHeader(stream);
         stream.writeUint32(this.shadowed_sample_numbers.length);
-        for (i = 0; i < this.shadowed_sample_numbers.length; i++) {
-          stream.writeUint32(this.shadowed_sample_numbers[i]);
-          stream.writeUint32(this.sync_sample_numbers[i]);
+        for (i2 = 0; i2 < this.shadowed_sample_numbers.length; i2++) {
+          stream.writeUint32(this.shadowed_sample_numbers[i2]);
+          stream.writeUint32(this.sync_sample_numbers[i2]);
         }
       };
       BoxParser2.stssBox.prototype.write = function(stream) {
@@ -28038,18 +30154,18 @@
         stream.writeUint32Array(this.sample_numbers);
       };
       BoxParser2.stszBox.prototype.write = function(stream) {
-        var i;
+        var i2;
         var constant = true;
         this.version = 0;
         this.flags = 0;
         if (this.sample_sizes.length > 0) {
-          i = 0;
-          while (i + 1 < this.sample_sizes.length) {
-            if (this.sample_sizes[i + 1] !== this.sample_sizes[0]) {
+          i2 = 0;
+          while (i2 + 1 < this.sample_sizes.length) {
+            if (this.sample_sizes[i2 + 1] !== this.sample_sizes[0]) {
               constant = false;
               break;
             } else {
-              i++;
+              i2++;
             }
           }
         } else {
@@ -28071,15 +30187,15 @@
         }
       };
       BoxParser2.sttsBox.prototype.write = function(stream) {
-        var i;
+        var i2;
         this.version = 0;
         this.flags = 0;
         this.size = 4 + 8 * this.sample_counts.length;
         this.writeHeader(stream);
         stream.writeUint32(this.sample_counts.length);
-        for (i = 0; i < this.sample_counts.length; i++) {
-          stream.writeUint32(this.sample_counts[i]);
-          stream.writeUint32(this.sample_deltas[i]);
+        for (i2 = 0; i2 < this.sample_counts.length; i2++) {
+          stream.writeUint32(this.sample_counts[i2]);
+          stream.writeUint32(this.sample_deltas[i2]);
         }
       };
       BoxParser2.tfdtBox.prototype.write = function(stream) {
@@ -28193,21 +30309,21 @@
         if (this.flags & BoxParser2.TRUN_FLAGS_FIRST_FLAG) {
           stream.writeUint32(this.first_sample_flags);
         }
-        for (var i = 0; i < this.sample_count; i++) {
+        for (var i2 = 0; i2 < this.sample_count; i2++) {
           if (this.flags & BoxParser2.TRUN_FLAGS_DURATION) {
-            stream.writeUint32(this.sample_duration[i]);
+            stream.writeUint32(this.sample_duration[i2]);
           }
           if (this.flags & BoxParser2.TRUN_FLAGS_SIZE) {
-            stream.writeUint32(this.sample_size[i]);
+            stream.writeUint32(this.sample_size[i2]);
           }
           if (this.flags & BoxParser2.TRUN_FLAGS_FLAGS) {
-            stream.writeUint32(this.sample_flags[i]);
+            stream.writeUint32(this.sample_flags[i2]);
           }
           if (this.flags & BoxParser2.TRUN_FLAGS_CTS_OFFSET) {
             if (this.version === 0) {
-              stream.writeUint32(this.sample_composition_time_offset[i]);
+              stream.writeUint32(this.sample_composition_time_offset[i2]);
             } else {
-              stream.writeInt32(this.sample_composition_time_offset[i]);
+              stream.writeInt32(this.sample_composition_time_offset[i2]);
             }
           }
         }
@@ -28237,7 +30353,7 @@
         }
       };
       BoxParser2.vmhdBox.prototype.write = function(stream) {
-        var i;
+        var i2;
         this.version = 0;
         this.flags = 1;
         this.size = 8;
@@ -28246,58 +30362,58 @@
         stream.writeUint16Array(this.opcolor);
       };
       BoxParser2.cttsBox.prototype.unpack = function(samples) {
-        var i, j, k;
+        var i2, j3, k;
         k = 0;
-        for (i = 0; i < this.sample_counts.length; i++) {
-          for (j = 0; j < this.sample_counts[i]; j++) {
-            samples[k].pts = samples[k].dts + this.sample_offsets[i];
+        for (i2 = 0; i2 < this.sample_counts.length; i2++) {
+          for (j3 = 0; j3 < this.sample_counts[i2]; j3++) {
+            samples[k].pts = samples[k].dts + this.sample_offsets[i2];
             k++;
           }
         }
       };
       BoxParser2.sttsBox.prototype.unpack = function(samples) {
-        var i, j, k;
+        var i2, j3, k;
         k = 0;
-        for (i = 0; i < this.sample_counts.length; i++) {
-          for (j = 0; j < this.sample_counts[i]; j++) {
+        for (i2 = 0; i2 < this.sample_counts.length; i2++) {
+          for (j3 = 0; j3 < this.sample_counts[i2]; j3++) {
             if (k === 0) {
               samples[k].dts = 0;
             } else {
-              samples[k].dts = samples[k - 1].dts + this.sample_deltas[i];
+              samples[k].dts = samples[k - 1].dts + this.sample_deltas[i2];
             }
             k++;
           }
         }
       };
       BoxParser2.stcoBox.prototype.unpack = function(samples) {
-        var i;
-        for (i = 0; i < this.chunk_offsets.length; i++) {
-          samples[i].offset = this.chunk_offsets[i];
+        var i2;
+        for (i2 = 0; i2 < this.chunk_offsets.length; i2++) {
+          samples[i2].offset = this.chunk_offsets[i2];
         }
       };
       BoxParser2.stscBox.prototype.unpack = function(samples) {
-        var i, j, k, l, m;
-        l = 0;
-        m = 0;
-        for (i = 0; i < this.first_chunk.length; i++) {
-          for (j = 0; j < (i + 1 < this.first_chunk.length ? this.first_chunk[i + 1] : Infinity); j++) {
-            m++;
-            for (k = 0; k < this.samples_per_chunk[i]; k++) {
-              if (samples[l]) {
-                samples[l].description_index = this.sample_description_index[i];
-                samples[l].chunk_index = m;
+        var i2, j3, k, l3, m2;
+        l3 = 0;
+        m2 = 0;
+        for (i2 = 0; i2 < this.first_chunk.length; i2++) {
+          for (j3 = 0; j3 < (i2 + 1 < this.first_chunk.length ? this.first_chunk[i2 + 1] : Infinity); j3++) {
+            m2++;
+            for (k = 0; k < this.samples_per_chunk[i2]; k++) {
+              if (samples[l3]) {
+                samples[l3].description_index = this.sample_description_index[i2];
+                samples[l3].chunk_index = m2;
               } else {
                 return;
               }
-              l++;
+              l3++;
             }
           }
         }
       };
       BoxParser2.stszBox.prototype.unpack = function(samples) {
-        var i;
-        for (i = 0; i < this.sample_sizes.length; i++) {
-          samples[i].size = this.sample_sizes[i];
+        var i2;
+        for (i2 = 0; i2 < this.sample_sizes.length; i2++) {
+          samples[i2].size = this.sample_sizes[i2];
         }
       };
       BoxParser2.DIFF_BOXES_PROP_NAMES = [
@@ -28364,8 +30480,8 @@
         if (!BoxParser2.boxEqualFields(box_a, box_b)) {
           return false;
         }
-        for (var j = 0; j < BoxParser2.DIFF_BOXES_PROP_NAMES.length; j++) {
-          var name = BoxParser2.DIFF_BOXES_PROP_NAMES[j];
+        for (var j3 = 0; j3 < BoxParser2.DIFF_BOXES_PROP_NAMES.length; j3++) {
+          var name = BoxParser2.DIFF_BOXES_PROP_NAMES[j3];
           if (box_a[name] && box_b[name]) {
             if (!BoxParser2.boxEqual(box_a[name], box_b[name])) {
               return false;
@@ -28389,22 +30505,22 @@
         return cues;
       };
       VTTin4Parser.prototype.getText = function(startTime, endTime, data) {
-        function pad(n, width, z) {
+        function pad(n3, width2, z) {
           z = z || "0";
-          n = n + "";
-          return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+          n3 = n3 + "";
+          return n3.length >= width2 ? n3 : new Array(width2 - n3.length + 1).join(z) + n3;
         }
         function secToTimestamp(insec) {
-          var h = Math.floor(insec / 3600);
-          var m = Math.floor((insec - h * 3600) / 60);
-          var s = Math.floor(insec - h * 3600 - m * 60);
-          var ms = Math.floor((insec - h * 3600 - m * 60 - s) * 1e3);
-          return "" + pad(h, 2) + ":" + pad(m, 2) + ":" + pad(s, 2) + "." + pad(ms, 3);
+          var h3 = Math.floor(insec / 3600);
+          var m2 = Math.floor((insec - h3 * 3600) / 60);
+          var s2 = Math.floor(insec - h3 * 3600 - m2 * 60);
+          var ms = Math.floor((insec - h3 * 3600 - m2 * 60 - s2) * 1e3);
+          return "" + pad(h3, 2) + ":" + pad(m2, 2) + ":" + pad(s2, 2) + "." + pad(ms, 3);
         }
         var cues = this.parseSample(data);
         var string = "";
-        for (var i = 0; i < cues.length; i++) {
-          var cueIn4 = cues[i];
+        for (var i2 = 0; i2 < cues.length; i2++) {
+          var cueIn4 = cues[i2];
           string += secToTimestamp(startTime) + " --> " + secToTimestamp(endTime) + "\r\n";
           string += cueIn4.payl.text;
         }
@@ -28414,7 +30530,7 @@
       };
       XMLSubtitlein4Parser.prototype.parseSample = function(sample) {
         var res = {};
-        var i;
+        var i2;
         res.resources = [];
         var stream = new MP4BoxStream(sample.data.buffer);
         if (!sample.subsamples || sample.subsamples.length === 0) {
@@ -28422,8 +30538,8 @@
         } else {
           res.documentString = stream.readString(sample.subsamples[0].size);
           if (sample.subsamples.length > 1) {
-            for (i = 1; i < sample.subsamples.length; i++) {
-              res.resources[i] = stream.readUint8Array(sample.subsamples[i].size);
+            for (i2 = 1; i2 < sample.subsamples.length; i2++) {
+              res.resources[i2] = stream.readUint8Array(sample.subsamples[i2].size);
             }
           }
         }
@@ -28497,10 +30613,10 @@
       };
       ISOFile2.prototype.unsetSegmentOptions = function(id) {
         var index = -1;
-        for (var i = 0; i < this.fragmentedTracks.length; i++) {
-          var fragTrack = this.fragmentedTracks[i];
+        for (var i2 = 0; i2 < this.fragmentedTracks.length; i2++) {
+          var fragTrack = this.fragmentedTracks[i2];
           if (fragTrack.id == id) {
-            index = i;
+            index = i2;
           }
         }
         if (index > -1) {
@@ -28526,10 +30642,10 @@
       };
       ISOFile2.prototype.unsetExtractionOptions = function(id) {
         var index = -1;
-        for (var i = 0; i < this.extractedTracks.length; i++) {
-          var extractTrack = this.extractedTracks[i];
+        for (var i2 = 0; i2 < this.extractedTracks.length; i2++) {
+          var extractTrack = this.extractedTracks[i2];
           if (extractTrack.id == id) {
-            index = i;
+            index = i2;
           }
         }
         if (index > -1) {
@@ -28684,7 +30800,7 @@
         return nextFileStart;
       };
       ISOFile2.prototype.getInfo = function() {
-        var i, j;
+        var i2, j3;
         var movie = {};
         var trak;
         var track;
@@ -28713,8 +30829,8 @@
           movie.metadataTracks = [];
           movie.hintTracks = [];
           movie.otherTracks = [];
-          for (i = 0; i < this.moov.traks.length; i++) {
-            trak = this.moov.traks[i];
+          for (i2 = 0; i2 < this.moov.traks.length; i2++) {
+            trak = this.moov.traks[i2];
             sample_desc = trak.mdia.minf.stbl.stsd.entries[0];
             track = {};
             movie.tracks.push(track);
@@ -28722,11 +30838,11 @@
             track.name = trak.mdia.hdlr.name;
             track.references = [];
             if (trak.tref) {
-              for (j = 0; j < trak.tref.boxes.length; j++) {
+              for (j3 = 0; j3 < trak.tref.boxes.length; j3++) {
                 ref = {};
                 track.references.push(ref);
-                ref.type = trak.tref.boxes[j].type;
-                ref.track_ids = trak.tref.boxes[j].track_ids;
+                ref.type = trak.tref.boxes[j3].type;
+                ref.track_ids = trak.tref.boxes[j3].track_ids;
               }
             }
             if (trak.edts) {
@@ -28791,10 +30907,10 @@
           } else {
             movie.mime += 'application/mp4; codecs="';
           }
-          for (i = 0; i < movie.tracks.length; i++) {
-            if (i !== 0)
+          for (i2 = 0; i2 < movie.tracks.length; i2++) {
+            if (i2 !== 0)
               movie.mime += ",";
-            movie.mime += movie.tracks[i].codec;
+            movie.mime += movie.tracks[i2].codec;
           }
           movie.mime += '"; profiles="';
           movie.mime += this.ftyp.compatible_brands.join();
@@ -28803,13 +30919,13 @@
         return movie;
       };
       ISOFile2.prototype.processSamples = function(last) {
-        var i;
+        var i2;
         var trak;
         if (!this.sampleProcessingStarted)
           return;
         if (this.isFragmentationInitialized && this.onSegment !== null) {
-          for (i = 0; i < this.fragmentedTracks.length; i++) {
-            var fragTrak = this.fragmentedTracks[i];
+          for (i2 = 0; i2 < this.fragmentedTracks.length; i2++) {
+            var fragTrak = this.fragmentedTracks[i2];
             trak = fragTrak.trak;
             while (trak.nextSample < trak.samples.length && this.sampleProcessingStarted) {
               Log.debug("ISOFile", "Creating media fragment on track #" + fragTrak.id + " for sample " + trak.nextSample);
@@ -28827,7 +30943,7 @@
                   this.onSegment(fragTrak.id, fragTrak.user, fragTrak.segmentStream.buffer, trak.nextSample, last || trak.nextSample >= trak.samples.length);
                 }
                 fragTrak.segmentStream = null;
-                if (fragTrak !== this.fragmentedTracks[i]) {
+                if (fragTrak !== this.fragmentedTracks[i2]) {
                   break;
                 }
               }
@@ -28835,8 +30951,8 @@
           }
         }
         if (this.onSamples !== null) {
-          for (i = 0; i < this.extractedTracks.length; i++) {
-            var extractTrak = this.extractedTracks[i];
+          for (i2 = 0; i2 < this.extractedTracks.length; i2++) {
+            var extractTrak = this.extractedTracks[i2];
             trak = extractTrak.trak;
             while (trak.nextSample < trak.samples.length && this.sampleProcessingStarted) {
               Log.debug("ISOFile", "Exporting on track #" + extractTrak.id + " sample #" + trak.nextSample);
@@ -28853,7 +30969,7 @@
                   this.onSamples(extractTrak.id, extractTrak.user, extractTrak.samples);
                 }
                 extractTrak.samples = [];
-                if (extractTrak !== this.extractedTracks[i]) {
+                if (extractTrak !== this.extractedTracks[i2]) {
                   break;
                 }
               }
@@ -28897,8 +31013,8 @@
         var trak = this.getTrackById(id);
         if (!trak.lastValidSample)
           trak.lastValidSample = 0;
-        for (var i = trak.lastValidSample; i < sampleNum; i++) {
-          size += this.releaseSample(trak, i);
+        for (var i2 = trak.lastValidSample; i2 < sampleNum; i2++) {
+          size += this.releaseSample(trak, i2);
         }
         Log.info("ISOFile", "Track #" + id + " released samples up to " + sampleNum + " (released size: " + size + ", remaining: " + this.samplesDataSize + ")");
         trak.lastValidSample = sampleNum;
@@ -28918,7 +31034,7 @@
         this.stream.logBufferLevel(true);
       };
       ISOFile2.prototype.seekTrack = function(time, useRap, trak) {
-        var j;
+        var j3;
         var sample;
         var seek_offset = Infinity;
         var rap_seek_sample_num = 0;
@@ -28928,17 +31044,17 @@
           Log.info("ISOFile", "No sample in track, cannot seek! Using time " + Log.getDurationString(0, 1) + " and offset: 0");
           return { offset: 0, time: 0 };
         }
-        for (j = 0; j < trak.samples.length; j++) {
-          sample = trak.samples[j];
-          if (j === 0) {
+        for (j3 = 0; j3 < trak.samples.length; j3++) {
+          sample = trak.samples[j3];
+          if (j3 === 0) {
             seek_sample_num = 0;
             timescale = sample.timescale;
           } else if (sample.cts > time * sample.timescale) {
-            seek_sample_num = j - 1;
+            seek_sample_num = j3 - 1;
             break;
           }
           if (useRap && sample.is_sync) {
-            rap_seek_sample_num = j;
+            rap_seek_sample_num = j3;
           }
         }
         if (useRap) {
@@ -28960,13 +31076,13 @@
         var moov = this.moov;
         var trak;
         var trak_seek_info;
-        var i;
+        var i2;
         var seek_info = { offset: Infinity, time: Infinity };
         if (!this.moov) {
           throw "Cannot seek: moov not received!";
         } else {
-          for (i = 0; i < moov.traks.length; i++) {
-            trak = moov.traks[i];
+          for (i2 = 0; i2 < moov.traks.length; i2++) {
+            trak = moov.traks[i2];
             trak_seek_info = this.seekTrack(time, useRap, trak);
             if (trak_seek_info.offset < seek_info.offset) {
               seek_info.offset = trak_seek_info.offset;
@@ -28985,11 +31101,11 @@
           return seek_info;
         }
       };
-      ISOFile2.prototype.equal = function(b) {
+      ISOFile2.prototype.equal = function(b3) {
         var box_index = 0;
-        while (box_index < this.boxes.length && box_index < b.boxes.length) {
+        while (box_index < this.boxes.length && box_index < b3.boxes.length) {
           var a_box = this.boxes[box_index];
-          var b_box = b.boxes[box_index];
+          var b_box = b3.boxes[box_index];
           if (!BoxParser2.boxEqual(a_box, b_box)) {
             return false;
           }
@@ -29123,7 +31239,7 @@
         var media_type = "";
         for (var mediaType in BoxParser2.sampleEntryCodes) {
           var codes = BoxParser2.sampleEntryCodes[mediaType];
-          for (var i = 0; i < codes.length; i++) {
+          for (var i2 = 0; i2 < codes.length; i2++) {
             if (codes.indexOf(options.type) > -1) {
               media_type = mediaType;
               break;
@@ -29170,8 +31286,8 @@
           sample_description_entry.addBox(options.description);
         }
         if (options.description_boxes) {
-          options.description_boxes.forEach(function(b) {
-            sample_description_entry.addBox(b);
+          options.description_boxes.forEach(function(b3) {
+            sample_description_entry.addBox(b3);
           });
         }
         minf.add("dinf").add("dref").addEntry(new BoxParser2["url Box"]().set("flags", 1));
@@ -29248,12 +31364,12 @@
       ISOFile2.prototype.lastMoofIndex = 0;
       ISOFile2.prototype.samplesDataSize = 0;
       ISOFile2.prototype.resetTables = function() {
-        var i;
+        var i2;
         var trak, stco, stsc, stsz, stts, ctts, stss;
         this.initial_duration = this.moov.mvhd.duration;
         this.moov.mvhd.duration = 0;
-        for (i = 0; i < this.moov.traks.length; i++) {
-          trak = this.moov.traks[i];
+        for (i2 = 0; i2 < this.moov.traks.length; i2++) {
+          trak = this.moov.traks[i2];
           trak.tkhd.duration = 0;
           trak.mdia.mdhd.duration = 0;
           stco = trak.mdia.minf.stbl.stco || trak.mdia.minf.stbl.co64;
@@ -29279,7 +31395,7 @@
         }
       };
       ISOFile2.initSampleGroups = function(trak, traf, sbgps, trak_sgpds, traf_sgpds) {
-        var l;
+        var l3;
         var k;
         var sample_groups_info;
         var sample_group_info;
@@ -29306,16 +31422,16 @@
           if (!trak.sample_groups_info[sample_group_key]) {
             trak.sample_groups_info[sample_group_key] = sample_group_info;
           }
-          for (l = 0; l < trak_sgpds.length; l++) {
-            if (trak_sgpds[l].grouping_type === sbgps[k].grouping_type) {
-              sample_group_info.description = trak_sgpds[l];
+          for (l3 = 0; l3 < trak_sgpds.length; l3++) {
+            if (trak_sgpds[l3].grouping_type === sbgps[k].grouping_type) {
+              sample_group_info.description = trak_sgpds[l3];
               sample_group_info.description.used = true;
             }
           }
           if (traf_sgpds) {
-            for (l = 0; l < traf_sgpds.length; l++) {
-              if (traf_sgpds[l].grouping_type === sbgps[k].grouping_type) {
-                sample_group_info.fragment_description = traf_sgpds[l];
+            for (l3 = 0; l3 < traf_sgpds.length; l3++) {
+              if (traf_sgpds[l3].grouping_type === sbgps[k].grouping_type) {
+                sample_group_info.fragment_description = traf_sgpds[l3];
                 sample_group_info.fragment_description.used = true;
                 sample_group_info.is_fragment = true;
               }
@@ -29412,15 +31528,15 @@
         }
       };
       ISOFile2.prototype.buildSampleLists = function() {
-        var i;
+        var i2;
         var trak;
-        for (i = 0; i < this.moov.traks.length; i++) {
-          trak = this.moov.traks[i];
+        for (i2 = 0; i2 < this.moov.traks.length; i2++) {
+          trak = this.moov.traks[i2];
           this.buildTrakSampleLists(trak);
         }
       };
       ISOFile2.prototype.buildTrakSampleLists = function(trak) {
-        var j, k;
+        var j3, k;
         var stco, stsc, stsz, stts, ctts, stss, stsd, subs, sbgps, sgpds, stdp;
         var chunk_run_index, chunk_index, last_chunk_in_run, offset_in_chunk, last_sample_in_chunk;
         var last_sample_in_stts_run, stts_run_index, last_sample_in_ctts_run, ctts_run_index, last_stss_index, last_subs_index, subs_entry_index, last_subs_sample_index;
@@ -29449,16 +31565,16 @@
         if (typeof stsz === "undefined") {
           return;
         }
-        for (j = 0; j < stsz.sample_sizes.length; j++) {
+        for (j3 = 0; j3 < stsz.sample_sizes.length; j3++) {
           var sample = {};
-          sample.number = j;
+          sample.number = j3;
           sample.track_id = trak.tkhd.track_id;
           sample.timescale = trak.mdia.mdhd.timescale;
           sample.alreadyRead = 0;
-          trak.samples[j] = sample;
-          sample.size = stsz.sample_sizes[j];
+          trak.samples[j3] = sample;
+          sample.size = stsz.sample_sizes[j3];
           trak.samples_size += sample.size;
-          if (j === 0) {
+          if (j3 === 0) {
             chunk_index = 1;
             chunk_run_index = 0;
             sample.chunk_index = chunk_index;
@@ -29471,7 +31587,7 @@
               last_chunk_in_run = Infinity;
             }
           } else {
-            if (j < last_sample_in_chunk) {
+            if (j3 < last_sample_in_chunk) {
               sample.chunk_index = chunk_index;
               sample.chunk_run_index = chunk_run_index;
             } else {
@@ -29495,34 +31611,34 @@
           sample.description = stsd.entries[sample.description_index];
           sample.offset = stco.chunk_offsets[sample.chunk_index - 1] + offset_in_chunk;
           offset_in_chunk += sample.size;
-          if (j > last_sample_in_stts_run) {
+          if (j3 > last_sample_in_stts_run) {
             stts_run_index++;
             if (last_sample_in_stts_run < 0) {
               last_sample_in_stts_run = 0;
             }
             last_sample_in_stts_run += stts.sample_counts[stts_run_index];
           }
-          if (j > 0) {
-            trak.samples[j - 1].duration = stts.sample_deltas[stts_run_index];
-            trak.samples_duration += trak.samples[j - 1].duration;
-            sample.dts = trak.samples[j - 1].dts + trak.samples[j - 1].duration;
+          if (j3 > 0) {
+            trak.samples[j3 - 1].duration = stts.sample_deltas[stts_run_index];
+            trak.samples_duration += trak.samples[j3 - 1].duration;
+            sample.dts = trak.samples[j3 - 1].dts + trak.samples[j3 - 1].duration;
           } else {
             sample.dts = 0;
           }
           if (ctts) {
-            if (j >= last_sample_in_ctts_run) {
+            if (j3 >= last_sample_in_ctts_run) {
               ctts_run_index++;
               if (last_sample_in_ctts_run < 0) {
                 last_sample_in_ctts_run = 0;
               }
               last_sample_in_ctts_run += ctts.sample_counts[ctts_run_index];
             }
-            sample.cts = trak.samples[j].dts + ctts.sample_offsets[ctts_run_index];
+            sample.cts = trak.samples[j3].dts + ctts.sample_offsets[ctts_run_index];
           } else {
             sample.cts = sample.dts;
           }
           if (stss) {
-            if (j == stss.sample_numbers[last_stss_index] - 1) {
+            if (j3 == stss.sample_numbers[last_stss_index] - 1) {
               sample.is_sync = true;
               last_stss_index++;
             } else {
@@ -29530,7 +31646,7 @@
               sample.degradation_priority = 0;
             }
             if (subs) {
-              if (subs.entries[subs_entry_index].sample_delta + last_subs_sample_index == j + 1) {
+              if (subs.entries[subs_entry_index].sample_delta + last_subs_sample_index == j3 + 1) {
                 sample.subsamples = subs.entries[subs_entry_index].subsamples;
                 last_subs_sample_index += subs.entries[subs_entry_index].sample_delta;
                 subs_entry_index++;
@@ -29541,27 +31657,27 @@
           }
           ISOFile2.process_sdtp(trak.mdia.minf.stbl.sdtp, sample, sample.number);
           if (stdp) {
-            sample.degradation_priority = stdp.priority[j];
+            sample.degradation_priority = stdp.priority[j3];
           } else {
             sample.degradation_priority = 0;
           }
           if (subs) {
-            if (subs.entries[subs_entry_index].sample_delta + last_subs_sample_index == j) {
+            if (subs.entries[subs_entry_index].sample_delta + last_subs_sample_index == j3) {
               sample.subsamples = subs.entries[subs_entry_index].subsamples;
               last_subs_sample_index += subs.entries[subs_entry_index].sample_delta;
             }
           }
           if (sbgps.length > 0 || sgpds.length > 0) {
-            ISOFile2.setSampleGroupProperties(trak, sample, j, trak.sample_groups_info);
+            ISOFile2.setSampleGroupProperties(trak, sample, j3, trak.sample_groups_info);
           }
         }
-        if (j > 0) {
-          trak.samples[j - 1].duration = Math.max(trak.mdia.mdhd.duration - trak.samples[j - 1].dts, 0);
-          trak.samples_duration += trak.samples[j - 1].duration;
+        if (j3 > 0) {
+          trak.samples[j3 - 1].duration = Math.max(trak.mdia.mdhd.duration - trak.samples[j3 - 1].dts, 0);
+          trak.samples_duration += trak.samples[j3 - 1].duration;
         }
       };
       ISOFile2.prototype.updateSampleLists = function() {
-        var i, j, k;
+        var i2, j3, k;
         var default_sample_description_index, default_sample_duration, default_sample_size, default_sample_flags;
         var last_run_position;
         var box2, moof, traf, trak, trex;
@@ -29575,8 +31691,8 @@
           this.lastMoofIndex++;
           if (box2.type == "moof") {
             moof = box2;
-            for (i = 0; i < moof.trafs.length; i++) {
-              traf = moof.trafs[i];
+            for (i2 = 0; i2 < moof.trafs.length; i2++) {
+              traf = moof.trafs[i2];
               trak = this.getTrackById(traf.tfhd.track_id);
               trex = this.getTrexById(traf.tfhd.track_id);
               if (traf.tfhd.flags & BoxParser2.TFHD_FLAG_SAMPLE_DESC) {
@@ -29603,8 +31719,8 @@
               if (traf.sbgps.length > 0) {
                 ISOFile2.initSampleGroups(trak, traf, traf.sbgps, trak.mdia.minf.stbl.sgpds, traf.sgpds);
               }
-              for (j = 0; j < traf.truns.length; j++) {
-                var trun = traf.truns[j];
+              for (j3 = 0; j3 < traf.truns.length; j3++) {
+                var trun = traf.truns[j3];
                 for (k = 0; k < trun.sample_count; k++) {
                   sample = {};
                   sample.moof_number = this.lastMoofIndex;
@@ -29659,7 +31775,7 @@
                   var bdo = 0;
                   if (!bdop) {
                     if (!dbim) {
-                      if (j === 0) {
+                      if (j3 === 0) {
                         bdo = moof.start;
                       } else {
                         bdo = last_run_position;
@@ -29670,7 +31786,7 @@
                   } else {
                     bdo = traf.tfhd.base_data_offset;
                   }
-                  if (j === 0 && k === 0) {
+                  if (j3 === 0 && k === 0) {
                     if (dop) {
                       sample.offset = bdo + trun.data_offset;
                     } else {
@@ -29688,10 +31804,10 @@
               if (traf.subs) {
                 trak.has_fragment_subsamples = true;
                 var sample_index = traf.first_sample_index;
-                for (j = 0; j < traf.subs.entries.length; j++) {
-                  sample_index += traf.subs.entries[j].sample_delta;
+                for (j3 = 0; j3 < traf.subs.entries.length; j3++) {
+                  sample_index += traf.subs.entries[j3].sample_delta;
                   sample = trak.samples[sample_index - 1];
-                  sample.subsamples = traf.subs.entries[j].subsamples;
+                  sample.subsamples = traf.subs.entries[j3].subsamples;
                 }
               }
             }
@@ -29765,11 +31881,11 @@
         return this.samplesDataSize;
       };
       ISOFile2.prototype.getCodecs = function() {
-        var i;
+        var i2;
         var codecs = "";
-        for (i = 0; i < this.moov.traks.length; i++) {
-          var trak = this.moov.traks[i];
-          if (i > 0) {
+        for (i2 = 0; i2 < this.moov.traks.length; i2++) {
+          var trak = this.moov.traks[i2];
+          if (i2 > 0) {
             codecs += ",";
           }
           codecs += trak.mdia.minf.stbl.stsd.entries[0].getCodec();
@@ -29777,11 +31893,11 @@
         return codecs;
       };
       ISOFile2.prototype.getTrexById = function(id) {
-        var i;
+        var i2;
         if (!this.moov || !this.moov.mvex)
           return null;
-        for (i = 0; i < this.moov.mvex.trexs.length; i++) {
-          var trex = this.moov.mvex.trexs[i];
+        for (i2 = 0; i2 < this.moov.mvex.trexs.length; i2++) {
+          var trex = this.moov.mvex.trexs[i2];
           if (trex.track_id == id)
             return trex;
         }
@@ -29791,8 +31907,8 @@
         if (this.moov === void 0) {
           return null;
         }
-        for (var j = 0; j < this.moov.traks.length; j++) {
-          var trak = this.moov.traks[j];
+        for (var j3 = 0; j3 < this.moov.traks.length; j3++) {
+          var trak = this.moov.traks[j3];
           if (trak.tkhd.track_id == id)
             return trak;
         }
@@ -29802,7 +31918,7 @@
       ISOFile2.prototype.itemsDataSize = 0;
       ISOFile2.prototype.flattenItemInfo = function() {
         var items = this.items;
-        var i, j;
+        var i2, j3;
         var item;
         var meta = this.meta;
         if (meta === null || meta === void 0)
@@ -29811,27 +31927,27 @@
           return;
         if (meta.iinf === void 0)
           return;
-        for (i = 0; i < meta.iinf.item_infos.length; i++) {
+        for (i2 = 0; i2 < meta.iinf.item_infos.length; i2++) {
           item = {};
-          item.id = meta.iinf.item_infos[i].item_ID;
+          item.id = meta.iinf.item_infos[i2].item_ID;
           items[item.id] = item;
           item.ref_to = [];
-          item.name = meta.iinf.item_infos[i].item_name;
-          if (meta.iinf.item_infos[i].protection_index > 0) {
-            item.protection = meta.ipro.protections[meta.iinf.item_infos[i].protection_index - 1];
+          item.name = meta.iinf.item_infos[i2].item_name;
+          if (meta.iinf.item_infos[i2].protection_index > 0) {
+            item.protection = meta.ipro.protections[meta.iinf.item_infos[i2].protection_index - 1];
           }
-          if (meta.iinf.item_infos[i].item_type) {
-            item.type = meta.iinf.item_infos[i].item_type;
+          if (meta.iinf.item_infos[i2].item_type) {
+            item.type = meta.iinf.item_infos[i2].item_type;
           } else {
             item.type = "mime";
           }
-          item.content_type = meta.iinf.item_infos[i].content_type;
-          item.content_encoding = meta.iinf.item_infos[i].content_encoding;
+          item.content_type = meta.iinf.item_infos[i2].content_type;
+          item.content_encoding = meta.iinf.item_infos[i2].content_encoding;
         }
         if (meta.iloc) {
-          for (i = 0; i < meta.iloc.items.length; i++) {
+          for (i2 = 0; i2 < meta.iloc.items.length; i2++) {
             var offset;
-            var itemloc = meta.iloc.items[i];
+            var itemloc = meta.iloc.items[i2];
             item = items[itemloc.item_ID];
             if (itemloc.data_reference_index !== 0) {
               Log.warn("Item storage with reference to other files: not supported");
@@ -29849,12 +31965,12 @@
             }
             item.extents = [];
             item.size = 0;
-            for (j = 0; j < itemloc.extents.length; j++) {
-              item.extents[j] = {};
-              item.extents[j].offset = itemloc.extents[j].extent_offset + itemloc.base_offset;
-              item.extents[j].length = itemloc.extents[j].extent_length;
-              item.extents[j].alreadyRead = 0;
-              item.size += item.extents[j].length;
+            for (j3 = 0; j3 < itemloc.extents.length; j3++) {
+              item.extents[j3] = {};
+              item.extents[j3].offset = itemloc.extents[j3].extent_offset + itemloc.base_offset;
+              item.extents[j3].length = itemloc.extents[j3].extent_length;
+              item.extents[j3].alreadyRead = 0;
+              item.size += item.extents[j3].length;
             }
           }
         }
@@ -29862,25 +31978,25 @@
           items[meta.pitm.item_id].primary = true;
         }
         if (meta.iref) {
-          for (i = 0; i < meta.iref.references.length; i++) {
-            var ref = meta.iref.references[i];
-            for (j = 0; j < ref.references.length; j++) {
-              items[ref.from_item_ID].ref_to.push({ type: ref.type, id: ref.references[j] });
+          for (i2 = 0; i2 < meta.iref.references.length; i2++) {
+            var ref = meta.iref.references[i2];
+            for (j3 = 0; j3 < ref.references.length; j3++) {
+              items[ref.from_item_ID].ref_to.push({ type: ref.type, id: ref.references[j3] });
             }
           }
         }
         if (meta.iprp) {
           for (var k = 0; k < meta.iprp.ipmas.length; k++) {
             var ipma = meta.iprp.ipmas[k];
-            for (i = 0; i < ipma.associations.length; i++) {
-              var association = ipma.associations[i];
+            for (i2 = 0; i2 < ipma.associations.length; i2++) {
+              var association = ipma.associations[i2];
               item = items[association.id];
               if (item.properties === void 0) {
                 item.properties = {};
                 item.properties.boxes = [];
               }
-              for (j = 0; j < association.props.length; j++) {
-                var propEntry = association.props[j];
+              for (j3 = 0; j3 < association.props.length; j3++) {
+                var propEntry = association.props[j3];
                 if (propEntry.property_index > 0 && propEntry.property_index - 1 < meta.iprp.ipco.boxes.length) {
                   var propbox = meta.iprp.ipco.boxes[propEntry.property_index - 1];
                   item.properties[propbox.type] = propbox;
@@ -29906,8 +32022,8 @@
         } else if (item.alreadyRead === item.size) {
           return item;
         }
-        for (var i = 0; i < item.extents.length; i++) {
-          var extent = item.extents[i];
+        for (var i2 = 0; i2 < item.extents.length; i2++) {
+          var extent = item.extents[i2];
           if (extent.alreadyRead === extent.length) {
             continue;
           } else {
@@ -29916,7 +32032,7 @@
               buffer = this.stream.buffers[index];
               var lengthAfterStart = buffer.byteLength - (extent.offset + extent.alreadyRead - buffer.fileStart);
               if (extent.length - extent.alreadyRead <= lengthAfterStart) {
-                Log.debug("ISOFile", "Getting item #" + item_id + " extent #" + i + " data (alreadyRead: " + extent.alreadyRead + " offset: " + (extent.offset + extent.alreadyRead - buffer.fileStart) + " read size: " + (extent.length - extent.alreadyRead) + " full extent size: " + extent.length + " full item size: " + item.size + ")");
+                Log.debug("ISOFile", "Getting item #" + item_id + " extent #" + i2 + " data (alreadyRead: " + extent.alreadyRead + " offset: " + (extent.offset + extent.alreadyRead - buffer.fileStart) + " read size: " + (extent.length - extent.alreadyRead) + " full extent size: " + extent.length + " full item size: " + item.size + ")");
                 DataStream2.memcpy(
                   item.data.buffer,
                   item.alreadyRead,
@@ -29929,7 +32045,7 @@
                 item.alreadyRead += extent.length - extent.alreadyRead;
                 extent.alreadyRead = extent.length;
               } else {
-                Log.debug("ISOFile", "Getting item #" + item_id + " extent #" + i + " partial data (alreadyRead: " + extent.alreadyRead + " offset: " + (extent.offset + extent.alreadyRead - buffer.fileStart) + " read size: " + lengthAfterStart + " full extent size: " + extent.length + " full item size: " + item.size + ")");
+                Log.debug("ISOFile", "Getting item #" + item_id + " extent #" + i2 + " partial data (alreadyRead: " + extent.alreadyRead + " offset: " + (extent.offset + extent.alreadyRead - buffer.fileStart) + " read size: " + lengthAfterStart + " full extent size: " + extent.length + " full item size: " + item.size + ")");
                 DataStream2.memcpy(
                   item.data.buffer,
                   item.alreadyRead,
@@ -29960,8 +32076,8 @@
           this.itemsDataSize -= item.size;
           item.data = null;
           item.alreadyRead = 0;
-          for (var i = 0; i < item.extents.length; i++) {
-            var extent = item.extents[i];
+          for (var i2 = 0; i2 < item.extents.length; i2++) {
+            var extent = item.extents[i2];
             extent.alreadyRead = 0;
           }
           return item.size;
@@ -29970,8 +32086,8 @@
         }
       };
       ISOFile2.prototype.processItems = function(callback) {
-        for (var i in this.items) {
-          var item = this.items[i];
+        for (var i2 in this.items) {
+          var item = this.items[i2];
           this.getItem(item.id);
           if (callback && !item.sent) {
             callback(item);
@@ -29981,8 +32097,8 @@
         }
       };
       ISOFile2.prototype.hasItem = function(name) {
-        for (var i in this.items) {
-          var item = this.items[i];
+        for (var i2 in this.items) {
+          var item = this.items[i2];
           if (item.name === name) {
             return item.id;
           }
@@ -30029,8 +32145,8 @@
         }
       };
       ISOFile2.prototype.write = function(outstream) {
-        for (var i = 0; i < this.boxes.length; i++) {
-          this.boxes[i].write(outstream);
+        for (var i2 = 0; i2 < this.boxes.length; i2++) {
+          this.boxes[i2].write(outstream);
         }
       };
       ISOFile2.prototype.createFragment = function(track_id, sampleNumber, stream_) {
@@ -30058,7 +32174,7 @@
         return stream;
       };
       ISOFile2.writeInitializationSegment = function(ftyp, moov, total_duration, sample_duration) {
-        var i;
+        var i2;
         var index;
         var mehd;
         var trex;
@@ -30071,8 +32187,8 @@
         if (total_duration) {
           mvex.add("mehd").set("fragment_duration", total_duration);
         }
-        for (i = 0; i < moov.traks.length; i++) {
-          mvex.add("trex").set("track_id", moov.traks[i].tkhd.track_id).set("default_sample_description_index", 1).set("default_sample_duration", sample_duration).set("default_sample_size", 0).set("default_sample_flags", 1 << 16);
+        for (i2 = 0; i2 < moov.traks.length; i2++) {
+          mvex.add("trex").set("track_id", moov.traks[i2].tkhd.track_id).set("default_sample_description_index", 1).set("default_sample_duration", sample_duration).set("default_sample_size", 0).set("default_sample_flags", 1 << 16);
         }
         moov.write(stream);
         return stream.buffer;
@@ -30090,8 +32206,8 @@
         return stream.buffer;
       };
       ISOFile2.prototype.initializeSegmentation = function() {
-        var i;
-        var j;
+        var i2;
+        var j3;
         var box2;
         var initSegs;
         var trak;
@@ -30105,17 +32221,17 @@
           this.resetTables();
         }
         initSegs = [];
-        for (i = 0; i < this.fragmentedTracks.length; i++) {
+        for (i2 = 0; i2 < this.fragmentedTracks.length; i2++) {
           var moov = new BoxParser2.moovBox();
           moov.mvhd = this.moov.mvhd;
           moov.boxes.push(moov.mvhd);
-          trak = this.getTrackById(this.fragmentedTracks[i].id);
+          trak = this.getTrackById(this.fragmentedTracks[i2].id);
           moov.boxes.push(trak);
           moov.traks.push(trak);
           seg = {};
           seg.id = trak.tkhd.track_id;
-          seg.user = this.fragmentedTracks[i].user;
-          seg.buffer = ISOFile2.writeInitializationSegment(this.ftyp, moov, this.moov.mvex && this.moov.mvex.mehd ? this.moov.mvex.mehd.fragment_duration : void 0, this.moov.traks[i].samples.length > 0 ? this.moov.traks[i].samples[0].duration : 0);
+          seg.user = this.fragmentedTracks[i2].user;
+          seg.buffer = ISOFile2.writeInitializationSegment(this.ftyp, moov, this.moov.mvex && this.moov.mvex.mehd ? this.moov.mvex.mehd.fragment_duration : void 0, this.moov.traks[i2].samples.length > 0 ? this.moov.traks[i2].samples[0].duration : 0);
           initSegs.push(seg);
         }
         return initSegs;
@@ -30142,20 +32258,20 @@
       };
       BoxParser2.ContainerBox.prototype.print = function(output) {
         this.printHeader(output);
-        for (var i = 0; i < this.boxes.length; i++) {
-          if (this.boxes[i]) {
+        for (var i2 = 0; i2 < this.boxes.length; i2++) {
+          if (this.boxes[i2]) {
             var prev_indent = output.indent;
             output.indent += " ";
-            this.boxes[i].print(output);
+            this.boxes[i2].print(output);
             output.indent = prev_indent;
           }
         }
       };
       ISOFile2.prototype.print = function(output) {
         output.indent = "";
-        for (var i = 0; i < this.boxes.length; i++) {
-          if (this.boxes[i]) {
-            this.boxes[i].print(output);
+        for (var i2 = 0; i2 < this.boxes.length; i2++) {
+          if (this.boxes[i2]) {
+            this.boxes[i2].print(output);
           }
         }
       };
@@ -30197,316 +32313,7548 @@
   });
 
   // src/index.tsx
-  var import_react6 = __toESM(require_react());
+  var import_react14 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
-  // src/components/PlayScreenOne.tsx
-  var import_react = __toESM(require_react());
+  // src/pages/index.tsx
+  var import_react13 = __toESM(require_react());
 
-  // icons/Play.tsx
-  var React = __toESM(require_react());
-  var SvgComponent = (props) => /* @__PURE__ */ React.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React.createElement(
-    "g",
-    {
-      stroke: "#FFF",
-      strokeWidth: 1.5,
-      fill: "none",
-      fillRule: "evenodd",
-      strokeLinecap: "round",
-      strokeLinejoin: "round"
-    },
-    /* @__PURE__ */ React.createElement("path", { d: "M12 2.5c5.246 0 9.5 4.253 9.5 9.5s-4.254 9.5-9.5 9.5A9.5 9.5 0 0 1 2.5 12 9.5 9.5 0 0 1 12 2.5Z" }),
-    /* @__PURE__ */ React.createElement("path", { d: "M15 11.995c0-.811-4.157-3.406-4.63-2.94-.47.467-.516 5.369 0 5.88.518.512 4.63-2.129 4.63-2.94Z" })
-  ));
-  var Play_default = SvgComponent;
+  // node_modules/@mui/material/colors/common.js
+  var common = {
+    black: "#000",
+    white: "#fff"
+  };
+  var common_default = common;
 
-  // src/components/PlayScreenOne.tsx
-  function PlayScreenOne({ videoRef }) {
-    const [showContainer, setShowContainer] = (0, import_react.useState)(true);
-    (0, import_react.useEffect)(() => {
-      if (videoRef.current) {
-        let playFunc2 = function(e) {
-          setShowContainer(false);
-          videoRef.current.removeEventListener("play", playFunc2);
-        };
-        var playFunc = playFunc2;
-        videoRef.current.addEventListener("play", playFunc2);
-      }
-    }, []);
-    return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, showContainer && /* @__PURE__ */ import_react.default.createElement("div", { id: "play" }, /* @__PURE__ */ import_react.default.createElement(
-      "div",
-      {
-        onClick: (e) => {
-          videoRef.current && videoRef.current.play();
-          e.preventDefault();
-        },
-        id: "play-btn"
-      },
-      /* @__PURE__ */ import_react.default.createElement(Play_default, { height: 70, width: 70 })
-    )));
+  // node_modules/@mui/material/colors/red.js
+  var red = {
+    50: "#ffebee",
+    100: "#ffcdd2",
+    200: "#ef9a9a",
+    300: "#e57373",
+    400: "#ef5350",
+    500: "#f44336",
+    600: "#e53935",
+    700: "#d32f2f",
+    800: "#c62828",
+    900: "#b71c1c",
+    A100: "#ff8a80",
+    A200: "#ff5252",
+    A400: "#ff1744",
+    A700: "#d50000"
+  };
+  var red_default = red;
+
+  // node_modules/@mui/material/colors/purple.js
+  var purple = {
+    50: "#f3e5f5",
+    100: "#e1bee7",
+    200: "#ce93d8",
+    300: "#ba68c8",
+    400: "#ab47bc",
+    500: "#9c27b0",
+    600: "#8e24aa",
+    700: "#7b1fa2",
+    800: "#6a1b9a",
+    900: "#4a148c",
+    A100: "#ea80fc",
+    A200: "#e040fb",
+    A400: "#d500f9",
+    A700: "#aa00ff"
+  };
+  var purple_default = purple;
+
+  // node_modules/@mui/material/colors/blue.js
+  var blue = {
+    50: "#e3f2fd",
+    100: "#bbdefb",
+    200: "#90caf9",
+    300: "#64b5f6",
+    400: "#42a5f5",
+    500: "#2196f3",
+    600: "#1e88e5",
+    700: "#1976d2",
+    800: "#1565c0",
+    900: "#0d47a1",
+    A100: "#82b1ff",
+    A200: "#448aff",
+    A400: "#2979ff",
+    A700: "#2962ff"
+  };
+  var blue_default = blue;
+
+  // node_modules/@mui/material/colors/lightBlue.js
+  var lightBlue = {
+    50: "#e1f5fe",
+    100: "#b3e5fc",
+    200: "#81d4fa",
+    300: "#4fc3f7",
+    400: "#29b6f6",
+    500: "#03a9f4",
+    600: "#039be5",
+    700: "#0288d1",
+    800: "#0277bd",
+    900: "#01579b",
+    A100: "#80d8ff",
+    A200: "#40c4ff",
+    A400: "#00b0ff",
+    A700: "#0091ea"
+  };
+  var lightBlue_default = lightBlue;
+
+  // node_modules/@mui/material/colors/green.js
+  var green = {
+    50: "#e8f5e9",
+    100: "#c8e6c9",
+    200: "#a5d6a7",
+    300: "#81c784",
+    400: "#66bb6a",
+    500: "#4caf50",
+    600: "#43a047",
+    700: "#388e3c",
+    800: "#2e7d32",
+    900: "#1b5e20",
+    A100: "#b9f6ca",
+    A200: "#69f0ae",
+    A400: "#00e676",
+    A700: "#00c853"
+  };
+  var green_default = green;
+
+  // node_modules/@mui/material/colors/orange.js
+  var orange = {
+    50: "#fff3e0",
+    100: "#ffe0b2",
+    200: "#ffcc80",
+    300: "#ffb74d",
+    400: "#ffa726",
+    500: "#ff9800",
+    600: "#fb8c00",
+    700: "#f57c00",
+    800: "#ef6c00",
+    900: "#e65100",
+    A100: "#ffd180",
+    A200: "#ffab40",
+    A400: "#ff9100",
+    A700: "#ff6d00"
+  };
+  var orange_default = orange;
+
+  // node_modules/@mui/material/colors/grey.js
+  var grey = {
+    50: "#fafafa",
+    100: "#f5f5f5",
+    200: "#eeeeee",
+    300: "#e0e0e0",
+    400: "#bdbdbd",
+    500: "#9e9e9e",
+    600: "#757575",
+    700: "#616161",
+    800: "#424242",
+    900: "#212121",
+    A100: "#f5f5f5",
+    A200: "#eeeeee",
+    A400: "#bdbdbd",
+    A700: "#616161"
+  };
+  var grey_default = grey;
+
+  // node_modules/@mui/utils/esm/chainPropTypes.js
+  function chainPropTypes(propType1, propType2) {
+    if (false) {
+      return () => null;
+    }
+    return function validate(...args) {
+      return propType1(...args) || propType2(...args);
+    };
   }
 
-  // src/components/PlayScreenTwo.tsx
-  var import_react5 = __toESM(require_react());
-
-  // src/components/InfoContainer.tsx
-  var import_react2 = __toESM(require_react());
-
-  // icons/Close.tsx
-  var React3 = __toESM(require_react());
-  var SvgComponent2 = (props) => /* @__PURE__ */ React3.createElement(
-    "svg",
-    {
-      strokeWidth: 0.7,
-      fill: "#FFF",
-      viewBox: "0 0 121.31 122.876",
-      xmlns: "http://www.w3.org/2000/svg",
-      width: 121.31,
-      height: 122.876,
-      xmlSpace: "preserve",
-      ...props
-    },
-    /* @__PURE__ */ React3.createElement(
-      "path",
-      {
-        fillRule: "evenodd",
-        clipRule: "evenodd",
-        d: "M90.914 5.296a17.662 17.662 0 0 1 25.154-.068c6.961 6.995 6.991 18.369.068 25.397L85.743 61.452l30.425 30.855c6.866 6.978 6.773 18.28-.208 25.247-6.983 6.964-18.21 6.946-25.074-.031L60.669 86.881 30.395 117.58a17.662 17.662 0 0 1-25.154.068c-6.961-6.995-6.992-18.369-.068-25.397l30.393-30.827L5.142 30.568c-6.867-6.978-6.773-18.28.208-25.247 6.983-6.963 18.21-6.946 25.074.031l30.217 30.643L90.914 5.296z"
-      }
-    )
-  );
-  var Close_default = SvgComponent2;
-
-  // src/components/InfoContainer.tsx
-  function InfoContainer({ infoRef, latencyMode }) {
-    return /* @__PURE__ */ import_react2.default.createElement(import_react2.default.Fragment, null, /* @__PURE__ */ import_react2.default.createElement(
-      "div",
-      {
-        ref: infoRef,
-        id: "info-container",
-        className: "info-container hide-display"
-      },
-      /* @__PURE__ */ import_react2.default.createElement("div", { id: "close-info-tab" }, /* @__PURE__ */ import_react2.default.createElement(
-        "div",
-        {
-          id: "close-btn",
-          onClick: (e) => {
-            infoRef.current && infoRef.current.classList.add("hide-display");
-            e.preventDefault();
+  // node_modules/@babel/runtime/helpers/esm/extends.js
+  function _extends() {
+    _extends = Object.assign ? Object.assign.bind() : function(target) {
+      for (var i2 = 1; i2 < arguments.length; i2++) {
+        var source = arguments[i2];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
           }
-        },
-        /* @__PURE__ */ import_react2.default.createElement(Close_default, { className: "close-icon", height: 15, width: 15 })
-      )),
-      /* @__PURE__ */ import_react2.default.createElement("div", { id: "name-value-container" }, /* @__PURE__ */ import_react2.default.createElement("div", { id: "duo-containers" }, "Name"), /* @__PURE__ */ import_react2.default.createElement("div", { id: "duo-containers" }, "Value")),
-      /* @__PURE__ */ import_react2.default.createElement("div", { id: "name-value-container", className: "video-codec" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "text-style" }, "Video Codec"), /* @__PURE__ */ import_react2.default.createElement("div", { id: "video-codec", className: "text-style" })),
-      /* @__PURE__ */ import_react2.default.createElement("div", { id: "name-value-container", className: "audio-codec" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "text-style" }, "Audio Codec"), /* @__PURE__ */ import_react2.default.createElement("div", { id: "audio-codec", className: "text-style" })),
-      /* @__PURE__ */ import_react2.default.createElement("div", { id: "name-value-container", className: "video-buffer" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "text-style" }, "Video Buffer"), /* @__PURE__ */ import_react2.default.createElement("div", { id: "video-buffer", className: "buffer-style" })),
-      /* @__PURE__ */ import_react2.default.createElement("div", { id: "name-value-container", className: "audio-buffer" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "text-style" }, "Audio Buffer"), /* @__PURE__ */ import_react2.default.createElement("div", { id: "audio-buffer", className: "buffer-style" })),
-      /* @__PURE__ */ import_react2.default.createElement("div", { id: "name-value-container", className: "latency-source" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "text-style" }, "Latency from source"), /* @__PURE__ */ import_react2.default.createElement("div", { id: "latency-source", className: "text-style" })),
-      /* @__PURE__ */ import_react2.default.createElement("div", { id: "name-value-container", className: "vid-res" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "text-style" }, "Video resolution"), /* @__PURE__ */ import_react2.default.createElement("div", { id: "vid-res", className: "text-style" })),
-      /* @__PURE__ */ import_react2.default.createElement("div", { id: "name-value-container", className: "latency-mode" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "text-style" }, "Latency mode"), /* @__PURE__ */ import_react2.default.createElement("div", { id: "latency-mode", className: "text-style" }, latencyMode))
-    ));
+        }
+      }
+      return target;
+    };
+    return _extends.apply(this, arguments);
   }
 
-  // src/components/SettingsContainer.tsx
-  var import_react3 = __toESM(require_react());
-  function SettingsContainer({ settingsRef, setLatencyMode, player }) {
-    const switchRef = (0, import_react3.useRef)(null);
-    (0, import_react3.useEffect)(() => {
-      if (!switchRef.current) {
-        return;
-      }
-      switchRef.current.addEventListener("change", function(event) {
-        let runForever;
-        if (event.target.checked) {
-          localStorage.setItem("live", true);
-          setLatencyMode("Low");
+  // node_modules/@mui/utils/esm/deepmerge.js
+  function isPlainObject(item) {
+    return item !== null && typeof item === "object" && item.constructor === Object;
+  }
+  function deepClone(source) {
+    if (!isPlainObject(source)) {
+      return source;
+    }
+    const output = {};
+    Object.keys(source).forEach((key) => {
+      output[key] = deepClone(source[key]);
+    });
+    return output;
+  }
+  function deepmerge(target, source, options = {
+    clone: true
+  }) {
+    const output = options.clone ? _extends({}, target) : target;
+    if (isPlainObject(target) && isPlainObject(source)) {
+      Object.keys(source).forEach((key) => {
+        if (key === "__proto__") {
+          return;
+        }
+        if (isPlainObject(source[key]) && key in target && isPlainObject(target[key])) {
+          output[key] = deepmerge(target[key], source[key], options);
+        } else if (options.clone) {
+          output[key] = isPlainObject(source[key]) ? deepClone(source[key]) : source[key];
         } else {
-          localStorage.setItem("live", false);
-          setLatencyMode("Normal");
+          output[key] = source[key];
         }
       });
-      return () => {
-        if (switchRef.current)
-          switchRef.current.removeEventListener("change", function(event) {
-            let runForever;
-            if (event.target.checked) {
-              localStorage.setItem("live", true);
-              setLatencyMode("Low");
-              player.goLive();
-            } else {
-              localStorage.setItem("live", false);
-              setLatencyMode("Normal");
-            }
-          });
-      };
+    }
+    return output;
+  }
+
+  // node_modules/@mui/utils/esm/getDisplayName.js
+  var import_react_is = __toESM(require_react_is2());
+  var fnNameMatchRegex = /^\s*function(?:\s|\s*\/\*.*\*\/\s*)+([^(\s/]*)\s*/;
+  function getFunctionName(fn) {
+    const match2 = `${fn}`.match(fnNameMatchRegex);
+    const name = match2 && match2[1];
+    return name || "";
+  }
+  function getFunctionComponentName(Component, fallback = "") {
+    return Component.displayName || Component.name || getFunctionName(Component) || fallback;
+  }
+  function getWrappedName(outerType, innerType, wrapperName) {
+    const functionName = getFunctionComponentName(innerType);
+    return outerType.displayName || (functionName !== "" ? `${wrapperName}(${functionName})` : wrapperName);
+  }
+  function getDisplayName(Component) {
+    if (Component == null) {
+      return void 0;
+    }
+    if (typeof Component === "string") {
+      return Component;
+    }
+    if (typeof Component === "function") {
+      return getFunctionComponentName(Component, "Component");
+    }
+    if (typeof Component === "object") {
+      switch (Component.$$typeof) {
+        case import_react_is.ForwardRef:
+          return getWrappedName(Component, Component.render, "ForwardRef");
+        case import_react_is.Memo:
+          return getWrappedName(Component, Component.type, "memo");
+        default:
+          return void 0;
+      }
+    }
+    return void 0;
+  }
+
+  // node_modules/@mui/utils/esm/capitalize.js
+  function capitalize(string) {
+    if (typeof string !== "string") {
+      throw new Error(true ? `MUI: \`capitalize(string)\` expects a string argument.` : formatMuiErrorMessage(7));
+    }
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  // node_modules/@mui/utils/esm/ownerDocument.js
+  function ownerDocument(node2) {
+    return node2 && node2.ownerDocument || document;
+  }
+
+  // node_modules/@mui/utils/esm/setRef.js
+  function setRef(ref, value) {
+    if (typeof ref === "function") {
+      ref(value);
+    } else if (ref) {
+      ref.current = value;
+    }
+  }
+
+  // node_modules/@mui/utils/esm/useEnhancedEffect.js
+  var React = __toESM(require_react());
+  var useEnhancedEffect = typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
+  var useEnhancedEffect_default = useEnhancedEffect;
+
+  // node_modules/@mui/utils/esm/useControlled.js
+  var React2 = __toESM(require_react());
+  function useControlled({
+    controlled,
+    default: defaultProp,
+    name,
+    state = "value"
+  }) {
+    const {
+      current: isControlled
+    } = React2.useRef(controlled !== void 0);
+    const [valueState, setValue] = React2.useState(defaultProp);
+    const value = isControlled ? controlled : valueState;
+    if (true) {
+      React2.useEffect(() => {
+        if (isControlled !== (controlled !== void 0)) {
+          console.error([`MUI: A component is changing the ${isControlled ? "" : "un"}controlled ${state} state of ${name} to be ${isControlled ? "un" : ""}controlled.`, "Elements should not switch from uncontrolled to controlled (or vice versa).", `Decide between using a controlled or uncontrolled ${name} element for the lifetime of the component.`, "The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.", "More info: https://fb.me/react-controlled-components"].join("\n"));
+        }
+      }, [state, name, controlled]);
+      const {
+        current: defaultValue
+      } = React2.useRef(defaultProp);
+      React2.useEffect(() => {
+        if (!isControlled && defaultValue !== defaultProp) {
+          console.error([`MUI: A component is changing the default ${state} state of an uncontrolled ${name} after being initialized. To suppress this warning opt to use a controlled ${name}.`].join("\n"));
+        }
+      }, [JSON.stringify(defaultProp)]);
+    }
+    const setValueIfUncontrolled = React2.useCallback((newValue) => {
+      if (!isControlled) {
+        setValue(newValue);
+      }
     }, []);
-    return /* @__PURE__ */ import_react3.default.createElement(
+    return [value, setValueIfUncontrolled];
+  }
+
+  // node_modules/@mui/utils/esm/useEventCallback.js
+  var React3 = __toESM(require_react());
+  function useEventCallback(fn) {
+    const ref = React3.useRef(fn);
+    useEnhancedEffect_default(() => {
+      ref.current = fn;
+    });
+    return React3.useCallback((...args) => (
+      // @ts-expect-error hide `this`
+      // tslint:disable-next-line:ban-comma-operator
+      (0, ref.current)(...args)
+    ), []);
+  }
+
+  // node_modules/@mui/utils/esm/useForkRef.js
+  var React4 = __toESM(require_react());
+  function useForkRef(...refs) {
+    return React4.useMemo(() => {
+      if (refs.every((ref) => ref == null)) {
+        return null;
+      }
+      return (instance) => {
+        refs.forEach((ref) => {
+          setRef(ref, instance);
+        });
+      };
+    }, refs);
+  }
+
+  // node_modules/@mui/utils/esm/useIsFocusVisible.js
+  var React5 = __toESM(require_react());
+  var hadKeyboardEvent = true;
+  var hadFocusVisibleRecently = false;
+  var hadFocusVisibleRecentlyTimeout;
+  var inputTypesWhitelist = {
+    text: true,
+    search: true,
+    url: true,
+    tel: true,
+    email: true,
+    password: true,
+    number: true,
+    date: true,
+    month: true,
+    week: true,
+    time: true,
+    datetime: true,
+    "datetime-local": true
+  };
+  function focusTriggersKeyboardModality(node2) {
+    const {
+      type,
+      tagName
+    } = node2;
+    if (tagName === "INPUT" && inputTypesWhitelist[type] && !node2.readOnly) {
+      return true;
+    }
+    if (tagName === "TEXTAREA" && !node2.readOnly) {
+      return true;
+    }
+    if (node2.isContentEditable) {
+      return true;
+    }
+    return false;
+  }
+  function handleKeyDown(event) {
+    if (event.metaKey || event.altKey || event.ctrlKey) {
+      return;
+    }
+    hadKeyboardEvent = true;
+  }
+  function handlePointerDown() {
+    hadKeyboardEvent = false;
+  }
+  function handleVisibilityChange() {
+    if (this.visibilityState === "hidden") {
+      if (hadFocusVisibleRecently) {
+        hadKeyboardEvent = true;
+      }
+    }
+  }
+  function prepare(doc) {
+    doc.addEventListener("keydown", handleKeyDown, true);
+    doc.addEventListener("mousedown", handlePointerDown, true);
+    doc.addEventListener("pointerdown", handlePointerDown, true);
+    doc.addEventListener("touchstart", handlePointerDown, true);
+    doc.addEventListener("visibilitychange", handleVisibilityChange, true);
+  }
+  function isFocusVisible(event) {
+    const {
+      target
+    } = event;
+    try {
+      return target.matches(":focus-visible");
+    } catch (error) {
+    }
+    return hadKeyboardEvent || focusTriggersKeyboardModality(target);
+  }
+  function useIsFocusVisible() {
+    const ref = React5.useCallback((node2) => {
+      if (node2 != null) {
+        prepare(node2.ownerDocument);
+      }
+    }, []);
+    const isFocusVisibleRef = React5.useRef(false);
+    function handleBlurVisible() {
+      if (isFocusVisibleRef.current) {
+        hadFocusVisibleRecently = true;
+        window.clearTimeout(hadFocusVisibleRecentlyTimeout);
+        hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
+          hadFocusVisibleRecently = false;
+        }, 100);
+        isFocusVisibleRef.current = false;
+        return true;
+      }
+      return false;
+    }
+    function handleFocusVisible(event) {
+      if (isFocusVisible(event)) {
+        isFocusVisibleRef.current = true;
+        return true;
+      }
+      return false;
+    }
+    return {
+      isFocusVisibleRef,
+      onFocus: handleFocusVisible,
+      onBlur: handleBlurVisible,
+      ref
+    };
+  }
+
+  // node_modules/@mui/utils/esm/visuallyHidden.js
+  var visuallyHidden = {
+    border: 0,
+    clip: "rect(0 0 0 0)",
+    height: "1px",
+    margin: -1,
+    overflow: "hidden",
+    padding: 0,
+    position: "absolute",
+    whiteSpace: "nowrap",
+    width: "1px"
+  };
+  var visuallyHidden_default = visuallyHidden;
+
+  // node_modules/@mui/utils/esm/resolveProps.js
+  function resolveProps(defaultProps, props) {
+    const output = _extends({}, props);
+    Object.keys(defaultProps).forEach((propName) => {
+      if (propName.toString().match(/^(components|slots)$/)) {
+        output[propName] = _extends({}, defaultProps[propName], output[propName]);
+      } else if (propName.toString().match(/^(componentsProps|slotProps)$/)) {
+        const defaultSlotProps = defaultProps[propName] || {};
+        const slotProps = props[propName];
+        output[propName] = {};
+        if (!slotProps || !Object.keys(slotProps)) {
+          output[propName] = defaultSlotProps;
+        } else if (!defaultSlotProps || !Object.keys(defaultSlotProps)) {
+          output[propName] = slotProps;
+        } else {
+          output[propName] = _extends({}, slotProps);
+          Object.keys(defaultSlotProps).forEach((slotPropName) => {
+            output[propName][slotPropName] = resolveProps(defaultSlotProps[slotPropName], slotProps[slotPropName]);
+          });
+        }
+      } else if (output[propName] === void 0) {
+        output[propName] = defaultProps[propName];
+      }
+    });
+    return output;
+  }
+
+  // node_modules/@mui/utils/esm/composeClasses/composeClasses.js
+  function composeClasses(slots, getUtilityClass, classes = void 0) {
+    const output = {};
+    Object.keys(slots).forEach(
+      // `Objet.keys(slots)` can't be wider than `T` because we infer `T` from `slots`.
+      // @ts-expect-error https://github.com/microsoft/TypeScript/pull/12253#issuecomment-263132208
+      (slot) => {
+        output[slot] = slots[slot].reduce((acc, key) => {
+          if (key) {
+            const utilityClass = getUtilityClass(key);
+            if (utilityClass !== "") {
+              acc.push(utilityClass);
+            }
+            if (classes && classes[key]) {
+              acc.push(classes[key]);
+            }
+          }
+          return acc;
+        }, []).join(" ");
+      }
+    );
+    return output;
+  }
+
+  // node_modules/@mui/utils/esm/ClassNameGenerator/ClassNameGenerator.js
+  var defaultGenerator = (componentName) => componentName;
+  var createClassNameGenerator = () => {
+    let generate = defaultGenerator;
+    return {
+      configure(generator) {
+        generate = generator;
+      },
+      generate(componentName) {
+        return generate(componentName);
+      },
+      reset() {
+        generate = defaultGenerator;
+      }
+    };
+  };
+  var ClassNameGenerator = createClassNameGenerator();
+  var ClassNameGenerator_default = ClassNameGenerator;
+
+  // node_modules/@mui/utils/esm/generateUtilityClass/generateUtilityClass.js
+  var globalStateClassesMapping = {
+    active: "active",
+    checked: "checked",
+    completed: "completed",
+    disabled: "disabled",
+    readOnly: "readOnly",
+    error: "error",
+    expanded: "expanded",
+    focused: "focused",
+    focusVisible: "focusVisible",
+    required: "required",
+    selected: "selected"
+  };
+  function generateUtilityClass(componentName, slot, globalStatePrefix = "Mui") {
+    const globalStateClass = globalStateClassesMapping[slot];
+    return globalStateClass ? `${globalStatePrefix}-${globalStateClass}` : `${ClassNameGenerator_default.generate(componentName)}-${slot}`;
+  }
+
+  // node_modules/@mui/utils/esm/generateUtilityClasses/generateUtilityClasses.js
+  function generateUtilityClasses(componentName, slots, globalStatePrefix = "Mui") {
+    const result = {};
+    slots.forEach((slot) => {
+      result[slot] = generateUtilityClass(componentName, slot, globalStatePrefix);
+    });
+    return result;
+  }
+
+  // node_modules/@mui/material/styles/identifier.js
+  var identifier_default = "$$material";
+
+  // node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
+  function _objectWithoutPropertiesLoose(source, excluded) {
+    if (source == null)
+      return {};
+    var target = {};
+    var sourceKeys = Object.keys(source);
+    var key, i2;
+    for (i2 = 0; i2 < sourceKeys.length; i2++) {
+      key = sourceKeys[i2];
+      if (excluded.indexOf(key) >= 0)
+        continue;
+      target[key] = source[key];
+    }
+    return target;
+  }
+
+  // node_modules/@emotion/styled/dist/emotion-styled.browser.esm.js
+  var import_react6 = __toESM(require_react());
+
+  // node_modules/@emotion/memoize/dist/emotion-memoize.esm.js
+  function memoize(fn) {
+    var cache = /* @__PURE__ */ Object.create(null);
+    return function(arg) {
+      if (cache[arg] === void 0)
+        cache[arg] = fn(arg);
+      return cache[arg];
+    };
+  }
+  var emotion_memoize_esm_default = memoize;
+
+  // node_modules/@emotion/is-prop-valid/dist/emotion-is-prop-valid.esm.js
+  var reactPropsRegex = /^((children|dangerouslySetInnerHTML|key|ref|autoFocus|defaultValue|defaultChecked|innerHTML|suppressContentEditableWarning|suppressHydrationWarning|valueLink|abbr|accept|acceptCharset|accessKey|action|allow|allowUserMedia|allowPaymentRequest|allowFullScreen|allowTransparency|alt|async|autoComplete|autoPlay|capture|cellPadding|cellSpacing|challenge|charSet|checked|cite|classID|className|cols|colSpan|content|contentEditable|contextMenu|controls|controlsList|coords|crossOrigin|data|dateTime|decoding|default|defer|dir|disabled|disablePictureInPicture|download|draggable|encType|enterKeyHint|form|formAction|formEncType|formMethod|formNoValidate|formTarget|frameBorder|headers|height|hidden|high|href|hrefLang|htmlFor|httpEquiv|id|inputMode|integrity|is|keyParams|keyType|kind|label|lang|list|loading|loop|low|marginHeight|marginWidth|max|maxLength|media|mediaGroup|method|min|minLength|multiple|muted|name|nonce|noValidate|open|optimum|pattern|placeholder|playsInline|poster|preload|profile|radioGroup|readOnly|referrerPolicy|rel|required|reversed|role|rows|rowSpan|sandbox|scope|scoped|scrolling|seamless|selected|shape|size|sizes|slot|span|spellCheck|src|srcDoc|srcLang|srcSet|start|step|style|summary|tabIndex|target|title|translate|type|useMap|value|width|wmode|wrap|about|datatype|inlist|prefix|property|resource|typeof|vocab|autoCapitalize|autoCorrect|autoSave|color|incremental|fallback|inert|itemProp|itemScope|itemType|itemID|itemRef|on|option|results|security|unselectable|accentHeight|accumulate|additive|alignmentBaseline|allowReorder|alphabetic|amplitude|arabicForm|ascent|attributeName|attributeType|autoReverse|azimuth|baseFrequency|baselineShift|baseProfile|bbox|begin|bias|by|calcMode|capHeight|clip|clipPathUnits|clipPath|clipRule|colorInterpolation|colorInterpolationFilters|colorProfile|colorRendering|contentScriptType|contentStyleType|cursor|cx|cy|d|decelerate|descent|diffuseConstant|direction|display|divisor|dominantBaseline|dur|dx|dy|edgeMode|elevation|enableBackground|end|exponent|externalResourcesRequired|fill|fillOpacity|fillRule|filter|filterRes|filterUnits|floodColor|floodOpacity|focusable|fontFamily|fontSize|fontSizeAdjust|fontStretch|fontStyle|fontVariant|fontWeight|format|from|fr|fx|fy|g1|g2|glyphName|glyphOrientationHorizontal|glyphOrientationVertical|glyphRef|gradientTransform|gradientUnits|hanging|horizAdvX|horizOriginX|ideographic|imageRendering|in|in2|intercept|k|k1|k2|k3|k4|kernelMatrix|kernelUnitLength|kerning|keyPoints|keySplines|keyTimes|lengthAdjust|letterSpacing|lightingColor|limitingConeAngle|local|markerEnd|markerMid|markerStart|markerHeight|markerUnits|markerWidth|mask|maskContentUnits|maskUnits|mathematical|mode|numOctaves|offset|opacity|operator|order|orient|orientation|origin|overflow|overlinePosition|overlineThickness|panose1|paintOrder|pathLength|patternContentUnits|patternTransform|patternUnits|pointerEvents|points|pointsAtX|pointsAtY|pointsAtZ|preserveAlpha|preserveAspectRatio|primitiveUnits|r|radius|refX|refY|renderingIntent|repeatCount|repeatDur|requiredExtensions|requiredFeatures|restart|result|rotate|rx|ry|scale|seed|shapeRendering|slope|spacing|specularConstant|specularExponent|speed|spreadMethod|startOffset|stdDeviation|stemh|stemv|stitchTiles|stopColor|stopOpacity|strikethroughPosition|strikethroughThickness|string|stroke|strokeDasharray|strokeDashoffset|strokeLinecap|strokeLinejoin|strokeMiterlimit|strokeOpacity|strokeWidth|surfaceScale|systemLanguage|tableValues|targetX|targetY|textAnchor|textDecoration|textRendering|textLength|to|transform|u1|u2|underlinePosition|underlineThickness|unicode|unicodeBidi|unicodeRange|unitsPerEm|vAlphabetic|vHanging|vIdeographic|vMathematical|values|vectorEffect|version|vertAdvY|vertOriginX|vertOriginY|viewBox|viewTarget|visibility|widths|wordSpacing|writingMode|x|xHeight|x1|x2|xChannelSelector|xlinkActuate|xlinkArcrole|xlinkHref|xlinkRole|xlinkShow|xlinkTitle|xlinkType|xmlBase|xmlns|xmlnsXlink|xmlLang|xmlSpace|y|y1|y2|yChannelSelector|z|zoomAndPan|for|class|autofocus)|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/;
+  var isPropValid = /* @__PURE__ */ emotion_memoize_esm_default(
+    function(prop) {
+      return reactPropsRegex.test(prop) || prop.charCodeAt(0) === 111 && prop.charCodeAt(1) === 110 && prop.charCodeAt(2) < 91;
+    }
+    /* Z+1 */
+  );
+  var emotion_is_prop_valid_esm_default = isPropValid;
+
+  // node_modules/@emotion/styled/base/dist/emotion-styled-base.browser.esm.js
+  var import_react4 = __toESM(require_react());
+
+  // node_modules/@emotion/react/dist/emotion-react.browser.esm.js
+  var import_react3 = __toESM(require_react());
+
+  // node_modules/@emotion/sheet/dist/emotion-sheet.browser.esm.js
+  function sheetForTag(tag) {
+    if (tag.sheet) {
+      return tag.sheet;
+    }
+    for (var i2 = 0; i2 < document.styleSheets.length; i2++) {
+      if (document.styleSheets[i2].ownerNode === tag) {
+        return document.styleSheets[i2];
+      }
+    }
+  }
+  function createStyleElement(options) {
+    var tag = document.createElement("style");
+    tag.setAttribute("data-emotion", options.key);
+    if (options.nonce !== void 0) {
+      tag.setAttribute("nonce", options.nonce);
+    }
+    tag.appendChild(document.createTextNode(""));
+    tag.setAttribute("data-s", "");
+    return tag;
+  }
+  var StyleSheet = /* @__PURE__ */ function() {
+    function StyleSheet2(options) {
+      var _this = this;
+      this._insertTag = function(tag) {
+        var before;
+        if (_this.tags.length === 0) {
+          if (_this.insertionPoint) {
+            before = _this.insertionPoint.nextSibling;
+          } else if (_this.prepend) {
+            before = _this.container.firstChild;
+          } else {
+            before = _this.before;
+          }
+        } else {
+          before = _this.tags[_this.tags.length - 1].nextSibling;
+        }
+        _this.container.insertBefore(tag, before);
+        _this.tags.push(tag);
+      };
+      this.isSpeedy = options.speedy === void 0 ? false : options.speedy;
+      this.tags = [];
+      this.ctr = 0;
+      this.nonce = options.nonce;
+      this.key = options.key;
+      this.container = options.container;
+      this.prepend = options.prepend;
+      this.insertionPoint = options.insertionPoint;
+      this.before = null;
+    }
+    var _proto = StyleSheet2.prototype;
+    _proto.hydrate = function hydrate(nodes) {
+      nodes.forEach(this._insertTag);
+    };
+    _proto.insert = function insert(rule) {
+      if (this.ctr % (this.isSpeedy ? 65e3 : 1) === 0) {
+        this._insertTag(createStyleElement(this));
+      }
+      var tag = this.tags[this.tags.length - 1];
+      if (true) {
+        var isImportRule3 = rule.charCodeAt(0) === 64 && rule.charCodeAt(1) === 105;
+        if (isImportRule3 && this._alreadyInsertedOrderInsensitiveRule) {
+          console.error("You're attempting to insert the following rule:\n" + rule + "\n\n`@import` rules must be before all other types of rules in a stylesheet but other rules have already been inserted. Please ensure that `@import` rules are before all other rules.");
+        }
+        this._alreadyInsertedOrderInsensitiveRule = this._alreadyInsertedOrderInsensitiveRule || !isImportRule3;
+      }
+      if (this.isSpeedy) {
+        var sheet = sheetForTag(tag);
+        try {
+          sheet.insertRule(rule, sheet.cssRules.length);
+        } catch (e2) {
+          if (!/:(-moz-placeholder|-moz-focus-inner|-moz-focusring|-ms-input-placeholder|-moz-read-write|-moz-read-only|-ms-clear|-ms-expand|-ms-reveal){/.test(rule)) {
+            console.error('There was a problem inserting the following rule: "' + rule + '"', e2);
+          }
+        }
+      } else {
+        tag.appendChild(document.createTextNode(rule));
+      }
+      this.ctr++;
+    };
+    _proto.flush = function flush() {
+      this.tags.forEach(function(tag) {
+        return tag.parentNode && tag.parentNode.removeChild(tag);
+      });
+      this.tags = [];
+      this.ctr = 0;
+      if (true) {
+        this._alreadyInsertedOrderInsensitiveRule = false;
+      }
+    };
+    return StyleSheet2;
+  }();
+
+  // node_modules/stylis/src/Enum.js
+  var MS = "-ms-";
+  var MOZ = "-moz-";
+  var WEBKIT = "-webkit-";
+  var COMMENT = "comm";
+  var RULESET = "rule";
+  var DECLARATION = "decl";
+  var IMPORT = "@import";
+  var KEYFRAMES = "@keyframes";
+
+  // node_modules/stylis/src/Utility.js
+  var abs = Math.abs;
+  var from = String.fromCharCode;
+  var assign = Object.assign;
+  function hash(value, length2) {
+    return charat(value, 0) ^ 45 ? (((length2 << 2 ^ charat(value, 0)) << 2 ^ charat(value, 1)) << 2 ^ charat(value, 2)) << 2 ^ charat(value, 3) : 0;
+  }
+  function trim(value) {
+    return value.trim();
+  }
+  function match(value, pattern) {
+    return (value = pattern.exec(value)) ? value[0] : value;
+  }
+  function replace(value, pattern, replacement) {
+    return value.replace(pattern, replacement);
+  }
+  function indexof(value, search) {
+    return value.indexOf(search);
+  }
+  function charat(value, index) {
+    return value.charCodeAt(index) | 0;
+  }
+  function substr(value, begin, end) {
+    return value.slice(begin, end);
+  }
+  function strlen(value) {
+    return value.length;
+  }
+  function sizeof(value) {
+    return value.length;
+  }
+  function append(value, array) {
+    return array.push(value), value;
+  }
+  function combine(array, callback) {
+    return array.map(callback).join("");
+  }
+
+  // node_modules/stylis/src/Tokenizer.js
+  var line = 1;
+  var column = 1;
+  var length = 0;
+  var position = 0;
+  var character = 0;
+  var characters = "";
+  function node(value, root2, parent, type, props, children, length2) {
+    return { value, root: root2, parent, type, props, children, line, column, length: length2, return: "" };
+  }
+  function copy(root2, props) {
+    return assign(node("", null, null, "", null, null, 0), root2, { length: -root2.length }, props);
+  }
+  function char() {
+    return character;
+  }
+  function prev() {
+    character = position > 0 ? charat(characters, --position) : 0;
+    if (column--, character === 10)
+      column = 1, line--;
+    return character;
+  }
+  function next() {
+    character = position < length ? charat(characters, position++) : 0;
+    if (column++, character === 10)
+      column = 1, line++;
+    return character;
+  }
+  function peek() {
+    return charat(characters, position);
+  }
+  function caret() {
+    return position;
+  }
+  function slice(begin, end) {
+    return substr(characters, begin, end);
+  }
+  function token(type) {
+    switch (type) {
+      case 0:
+      case 9:
+      case 10:
+      case 13:
+      case 32:
+        return 5;
+      case 33:
+      case 43:
+      case 44:
+      case 47:
+      case 62:
+      case 64:
+      case 126:
+      case 59:
+      case 123:
+      case 125:
+        return 4;
+      case 58:
+        return 3;
+      case 34:
+      case 39:
+      case 40:
+      case 91:
+        return 2;
+      case 41:
+      case 93:
+        return 1;
+    }
+    return 0;
+  }
+  function alloc(value) {
+    return line = column = 1, length = strlen(characters = value), position = 0, [];
+  }
+  function dealloc(value) {
+    return characters = "", value;
+  }
+  function delimit(type) {
+    return trim(slice(position - 1, delimiter(type === 91 ? type + 2 : type === 40 ? type + 1 : type)));
+  }
+  function whitespace(type) {
+    while (character = peek())
+      if (character < 33)
+        next();
+      else
+        break;
+    return token(type) > 2 || token(character) > 3 ? "" : " ";
+  }
+  function escaping(index, count) {
+    while (--count && next())
+      if (character < 48 || character > 102 || character > 57 && character < 65 || character > 70 && character < 97)
+        break;
+    return slice(index, caret() + (count < 6 && peek() == 32 && next() == 32));
+  }
+  function delimiter(type) {
+    while (next())
+      switch (character) {
+        case type:
+          return position;
+        case 34:
+        case 39:
+          if (type !== 34 && type !== 39)
+            delimiter(character);
+          break;
+        case 40:
+          if (type === 41)
+            delimiter(type);
+          break;
+        case 92:
+          next();
+          break;
+      }
+    return position;
+  }
+  function commenter(type, index) {
+    while (next())
+      if (type + character === 47 + 10)
+        break;
+      else if (type + character === 42 + 42 && peek() === 47)
+        break;
+    return "/*" + slice(index, position - 1) + "*" + from(type === 47 ? type : next());
+  }
+  function identifier(index) {
+    while (!token(peek()))
+      next();
+    return slice(index, position);
+  }
+
+  // node_modules/stylis/src/Parser.js
+  function compile(value) {
+    return dealloc(parse("", null, null, null, [""], value = alloc(value), 0, [0], value));
+  }
+  function parse(value, root2, parent, rule, rules, rulesets, pseudo, points, declarations) {
+    var index = 0;
+    var offset = 0;
+    var length2 = pseudo;
+    var atrule = 0;
+    var property = 0;
+    var previous = 0;
+    var variable = 1;
+    var scanning = 1;
+    var ampersand = 1;
+    var character2 = 0;
+    var type = "";
+    var props = rules;
+    var children = rulesets;
+    var reference = rule;
+    var characters2 = type;
+    while (scanning)
+      switch (previous = character2, character2 = next()) {
+        case 40:
+          if (previous != 108 && charat(characters2, length2 - 1) == 58) {
+            if (indexof(characters2 += replace(delimit(character2), "&", "&\f"), "&\f") != -1)
+              ampersand = -1;
+            break;
+          }
+        case 34:
+        case 39:
+        case 91:
+          characters2 += delimit(character2);
+          break;
+        case 9:
+        case 10:
+        case 13:
+        case 32:
+          characters2 += whitespace(previous);
+          break;
+        case 92:
+          characters2 += escaping(caret() - 1, 7);
+          continue;
+        case 47:
+          switch (peek()) {
+            case 42:
+            case 47:
+              append(comment(commenter(next(), caret()), root2, parent), declarations);
+              break;
+            default:
+              characters2 += "/";
+          }
+          break;
+        case 123 * variable:
+          points[index++] = strlen(characters2) * ampersand;
+        case 125 * variable:
+        case 59:
+        case 0:
+          switch (character2) {
+            case 0:
+            case 125:
+              scanning = 0;
+            case 59 + offset:
+              if (property > 0 && strlen(characters2) - length2)
+                append(property > 32 ? declaration(characters2 + ";", rule, parent, length2 - 1) : declaration(replace(characters2, " ", "") + ";", rule, parent, length2 - 2), declarations);
+              break;
+            case 59:
+              characters2 += ";";
+            default:
+              append(reference = ruleset(characters2, root2, parent, index, offset, rules, points, type, props = [], children = [], length2), rulesets);
+              if (character2 === 123)
+                if (offset === 0)
+                  parse(characters2, root2, reference, reference, props, rulesets, length2, points, children);
+                else
+                  switch (atrule === 99 && charat(characters2, 3) === 110 ? 100 : atrule) {
+                    case 100:
+                    case 109:
+                    case 115:
+                      parse(value, reference, reference, rule && append(ruleset(value, reference, reference, 0, 0, rules, points, type, rules, props = [], length2), children), rules, children, length2, points, rule ? props : children);
+                      break;
+                    default:
+                      parse(characters2, reference, reference, reference, [""], children, 0, points, children);
+                  }
+          }
+          index = offset = property = 0, variable = ampersand = 1, type = characters2 = "", length2 = pseudo;
+          break;
+        case 58:
+          length2 = 1 + strlen(characters2), property = previous;
+        default:
+          if (variable < 1) {
+            if (character2 == 123)
+              --variable;
+            else if (character2 == 125 && variable++ == 0 && prev() == 125)
+              continue;
+          }
+          switch (characters2 += from(character2), character2 * variable) {
+            case 38:
+              ampersand = offset > 0 ? 1 : (characters2 += "\f", -1);
+              break;
+            case 44:
+              points[index++] = (strlen(characters2) - 1) * ampersand, ampersand = 1;
+              break;
+            case 64:
+              if (peek() === 45)
+                characters2 += delimit(next());
+              atrule = peek(), offset = length2 = strlen(type = characters2 += identifier(caret())), character2++;
+              break;
+            case 45:
+              if (previous === 45 && strlen(characters2) == 2)
+                variable = 0;
+          }
+      }
+    return rulesets;
+  }
+  function ruleset(value, root2, parent, index, offset, rules, points, type, props, children, length2) {
+    var post = offset - 1;
+    var rule = offset === 0 ? rules : [""];
+    var size = sizeof(rule);
+    for (var i2 = 0, j3 = 0, k = 0; i2 < index; ++i2)
+      for (var x = 0, y2 = substr(value, post + 1, post = abs(j3 = points[i2])), z = value; x < size; ++x)
+        if (z = trim(j3 > 0 ? rule[x] + " " + y2 : replace(y2, /&\f/g, rule[x])))
+          props[k++] = z;
+    return node(value, root2, parent, offset === 0 ? RULESET : type, props, children, length2);
+  }
+  function comment(value, root2, parent) {
+    return node(value, root2, parent, COMMENT, from(char()), substr(value, 2, -2), 0);
+  }
+  function declaration(value, root2, parent, length2) {
+    return node(value, root2, parent, DECLARATION, substr(value, 0, length2), substr(value, length2 + 1, -1), length2);
+  }
+
+  // node_modules/stylis/src/Serializer.js
+  function serialize(children, callback) {
+    var output = "";
+    var length2 = sizeof(children);
+    for (var i2 = 0; i2 < length2; i2++)
+      output += callback(children[i2], i2, children, callback) || "";
+    return output;
+  }
+  function stringify(element, index, children, callback) {
+    switch (element.type) {
+      case IMPORT:
+      case DECLARATION:
+        return element.return = element.return || element.value;
+      case COMMENT:
+        return "";
+      case KEYFRAMES:
+        return element.return = element.value + "{" + serialize(element.children, callback) + "}";
+      case RULESET:
+        element.value = element.props.join(",");
+    }
+    return strlen(children = serialize(element.children, callback)) ? element.return = element.value + "{" + children + "}" : "";
+  }
+
+  // node_modules/stylis/src/Middleware.js
+  function middleware(collection) {
+    var length2 = sizeof(collection);
+    return function(element, index, children, callback) {
+      var output = "";
+      for (var i2 = 0; i2 < length2; i2++)
+        output += collection[i2](element, index, children, callback) || "";
+      return output;
+    };
+  }
+
+  // node_modules/@emotion/cache/dist/emotion-cache.browser.esm.js
+  var identifierWithPointTracking = function identifierWithPointTracking2(begin, points, index) {
+    var previous = 0;
+    var character2 = 0;
+    while (true) {
+      previous = character2;
+      character2 = peek();
+      if (previous === 38 && character2 === 12) {
+        points[index] = 1;
+      }
+      if (token(character2)) {
+        break;
+      }
+      next();
+    }
+    return slice(begin, position);
+  };
+  var toRules = function toRules2(parsed, points) {
+    var index = -1;
+    var character2 = 44;
+    do {
+      switch (token(character2)) {
+        case 0:
+          if (character2 === 38 && peek() === 12) {
+            points[index] = 1;
+          }
+          parsed[index] += identifierWithPointTracking(position - 1, points, index);
+          break;
+        case 2:
+          parsed[index] += delimit(character2);
+          break;
+        case 4:
+          if (character2 === 44) {
+            parsed[++index] = peek() === 58 ? "&\f" : "";
+            points[index] = parsed[index].length;
+            break;
+          }
+        default:
+          parsed[index] += from(character2);
+      }
+    } while (character2 = next());
+    return parsed;
+  };
+  var getRules = function getRules2(value, points) {
+    return dealloc(toRules(alloc(value), points));
+  };
+  var fixedElements = /* @__PURE__ */ new WeakMap();
+  var compat = function compat2(element) {
+    if (element.type !== "rule" || !element.parent || // positive .length indicates that this rule contains pseudo
+    // negative .length indicates that this rule has been already prefixed
+    element.length < 1) {
+      return;
+    }
+    var value = element.value, parent = element.parent;
+    var isImplicitRule = element.column === parent.column && element.line === parent.line;
+    while (parent.type !== "rule") {
+      parent = parent.parent;
+      if (!parent)
+        return;
+    }
+    if (element.props.length === 1 && value.charCodeAt(0) !== 58 && !fixedElements.get(parent)) {
+      return;
+    }
+    if (isImplicitRule) {
+      return;
+    }
+    fixedElements.set(element, true);
+    var points = [];
+    var rules = getRules(value, points);
+    var parentRules = parent.props;
+    for (var i2 = 0, k = 0; i2 < rules.length; i2++) {
+      for (var j3 = 0; j3 < parentRules.length; j3++, k++) {
+        element.props[k] = points[i2] ? rules[i2].replace(/&\f/g, parentRules[j3]) : parentRules[j3] + " " + rules[i2];
+      }
+    }
+  };
+  var removeLabel = function removeLabel2(element) {
+    if (element.type === "decl") {
+      var value = element.value;
+      if (
+        // charcode for l
+        value.charCodeAt(0) === 108 && // charcode for b
+        value.charCodeAt(2) === 98
+      ) {
+        element["return"] = "";
+        element.value = "";
+      }
+    }
+  };
+  var ignoreFlag = "emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason";
+  var isIgnoringComment = function isIgnoringComment2(element) {
+    return element.type === "comm" && element.children.indexOf(ignoreFlag) > -1;
+  };
+  var createUnsafeSelectorsAlarm = function createUnsafeSelectorsAlarm2(cache) {
+    return function(element, index, children) {
+      if (element.type !== "rule" || cache.compat)
+        return;
+      var unsafePseudoClasses = element.value.match(/(:first|:nth|:nth-last)-child/g);
+      if (unsafePseudoClasses) {
+        var isNested = !!element.parent;
+        var commentContainer = isNested ? element.parent.children : (
+          // global rule at the root level
+          children
+        );
+        for (var i2 = commentContainer.length - 1; i2 >= 0; i2--) {
+          var node2 = commentContainer[i2];
+          if (node2.line < element.line) {
+            break;
+          }
+          if (node2.column < element.column) {
+            if (isIgnoringComment(node2)) {
+              return;
+            }
+            break;
+          }
+        }
+        unsafePseudoClasses.forEach(function(unsafePseudoClass) {
+          console.error('The pseudo class "' + unsafePseudoClass + '" is potentially unsafe when doing server-side rendering. Try changing it to "' + unsafePseudoClass.split("-child")[0] + '-of-type".');
+        });
+      }
+    };
+  };
+  var isImportRule = function isImportRule2(element) {
+    return element.type.charCodeAt(1) === 105 && element.type.charCodeAt(0) === 64;
+  };
+  var isPrependedWithRegularRules = function isPrependedWithRegularRules2(index, children) {
+    for (var i2 = index - 1; i2 >= 0; i2--) {
+      if (!isImportRule(children[i2])) {
+        return true;
+      }
+    }
+    return false;
+  };
+  var nullifyElement = function nullifyElement2(element) {
+    element.type = "";
+    element.value = "";
+    element["return"] = "";
+    element.children = "";
+    element.props = "";
+  };
+  var incorrectImportAlarm = function incorrectImportAlarm2(element, index, children) {
+    if (!isImportRule(element)) {
+      return;
+    }
+    if (element.parent) {
+      console.error("`@import` rules can't be nested inside other rules. Please move it to the top level and put it before regular rules. Keep in mind that they can only be used within global styles.");
+      nullifyElement(element);
+    } else if (isPrependedWithRegularRules(index, children)) {
+      console.error("`@import` rules can't be after other rules. Please put your `@import` rules before your other rules.");
+      nullifyElement(element);
+    }
+  };
+  function prefix(value, length2) {
+    switch (hash(value, length2)) {
+      case 5103:
+        return WEBKIT + "print-" + value + value;
+      case 5737:
+      case 4201:
+      case 3177:
+      case 3433:
+      case 1641:
+      case 4457:
+      case 2921:
+      case 5572:
+      case 6356:
+      case 5844:
+      case 3191:
+      case 6645:
+      case 3005:
+      case 6391:
+      case 5879:
+      case 5623:
+      case 6135:
+      case 4599:
+      case 4855:
+      case 4215:
+      case 6389:
+      case 5109:
+      case 5365:
+      case 5621:
+      case 3829:
+        return WEBKIT + value + value;
+      case 5349:
+      case 4246:
+      case 4810:
+      case 6968:
+      case 2756:
+        return WEBKIT + value + MOZ + value + MS + value + value;
+      case 6828:
+      case 4268:
+        return WEBKIT + value + MS + value + value;
+      case 6165:
+        return WEBKIT + value + MS + "flex-" + value + value;
+      case 5187:
+        return WEBKIT + value + replace(value, /(\w+).+(:[^]+)/, WEBKIT + "box-$1$2" + MS + "flex-$1$2") + value;
+      case 5443:
+        return WEBKIT + value + MS + "flex-item-" + replace(value, /flex-|-self/, "") + value;
+      case 4675:
+        return WEBKIT + value + MS + "flex-line-pack" + replace(value, /align-content|flex-|-self/, "") + value;
+      case 5548:
+        return WEBKIT + value + MS + replace(value, "shrink", "negative") + value;
+      case 5292:
+        return WEBKIT + value + MS + replace(value, "basis", "preferred-size") + value;
+      case 6060:
+        return WEBKIT + "box-" + replace(value, "-grow", "") + WEBKIT + value + MS + replace(value, "grow", "positive") + value;
+      case 4554:
+        return WEBKIT + replace(value, /([^-])(transform)/g, "$1" + WEBKIT + "$2") + value;
+      case 6187:
+        return replace(replace(replace(value, /(zoom-|grab)/, WEBKIT + "$1"), /(image-set)/, WEBKIT + "$1"), value, "") + value;
+      case 5495:
+      case 3959:
+        return replace(value, /(image-set\([^]*)/, WEBKIT + "$1$`$1");
+      case 4968:
+        return replace(replace(value, /(.+:)(flex-)?(.*)/, WEBKIT + "box-pack:$3" + MS + "flex-pack:$3"), /s.+-b[^;]+/, "justify") + WEBKIT + value + value;
+      case 4095:
+      case 3583:
+      case 4068:
+      case 2532:
+        return replace(value, /(.+)-inline(.+)/, WEBKIT + "$1$2") + value;
+      case 8116:
+      case 7059:
+      case 5753:
+      case 5535:
+      case 5445:
+      case 5701:
+      case 4933:
+      case 4677:
+      case 5533:
+      case 5789:
+      case 5021:
+      case 4765:
+        if (strlen(value) - 1 - length2 > 6)
+          switch (charat(value, length2 + 1)) {
+            case 109:
+              if (charat(value, length2 + 4) !== 45)
+                break;
+            case 102:
+              return replace(value, /(.+:)(.+)-([^]+)/, "$1" + WEBKIT + "$2-$3$1" + MOZ + (charat(value, length2 + 3) == 108 ? "$3" : "$2-$3")) + value;
+            case 115:
+              return ~indexof(value, "stretch") ? prefix(replace(value, "stretch", "fill-available"), length2) + value : value;
+          }
+        break;
+      case 4949:
+        if (charat(value, length2 + 1) !== 115)
+          break;
+      case 6444:
+        switch (charat(value, strlen(value) - 3 - (~indexof(value, "!important") && 10))) {
+          case 107:
+            return replace(value, ":", ":" + WEBKIT) + value;
+          case 101:
+            return replace(value, /(.+:)([^;!]+)(;|!.+)?/, "$1" + WEBKIT + (charat(value, 14) === 45 ? "inline-" : "") + "box$3$1" + WEBKIT + "$2$3$1" + MS + "$2box$3") + value;
+        }
+        break;
+      case 5936:
+        switch (charat(value, length2 + 11)) {
+          case 114:
+            return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, "tb") + value;
+          case 108:
+            return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, "tb-rl") + value;
+          case 45:
+            return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, "lr") + value;
+        }
+        return WEBKIT + value + MS + value + value;
+    }
+    return value;
+  }
+  var prefixer = function prefixer2(element, index, children, callback) {
+    if (element.length > -1) {
+      if (!element["return"])
+        switch (element.type) {
+          case DECLARATION:
+            element["return"] = prefix(element.value, element.length);
+            break;
+          case KEYFRAMES:
+            return serialize([copy(element, {
+              value: replace(element.value, "@", "@" + WEBKIT)
+            })], callback);
+          case RULESET:
+            if (element.length)
+              return combine(element.props, function(value) {
+                switch (match(value, /(::plac\w+|:read-\w+)/)) {
+                  case ":read-only":
+                  case ":read-write":
+                    return serialize([copy(element, {
+                      props: [replace(value, /:(read-\w+)/, ":" + MOZ + "$1")]
+                    })], callback);
+                  case "::placeholder":
+                    return serialize([copy(element, {
+                      props: [replace(value, /:(plac\w+)/, ":" + WEBKIT + "input-$1")]
+                    }), copy(element, {
+                      props: [replace(value, /:(plac\w+)/, ":" + MOZ + "$1")]
+                    }), copy(element, {
+                      props: [replace(value, /:(plac\w+)/, MS + "input-$1")]
+                    })], callback);
+                }
+                return "";
+              });
+        }
+    }
+  };
+  var defaultStylisPlugins = [prefixer];
+  var createCache = function createCache2(options) {
+    var key = options.key;
+    if (!key) {
+      throw new Error("You have to configure `key` for your cache. Please make sure it's unique (and not equal to 'css') as it's used for linking styles to your cache.\nIf multiple caches share the same key they might \"fight\" for each other's style elements.");
+    }
+    if (key === "css") {
+      var ssrStyles = document.querySelectorAll("style[data-emotion]:not([data-s])");
+      Array.prototype.forEach.call(ssrStyles, function(node2) {
+        var dataEmotionAttribute = node2.getAttribute("data-emotion");
+        if (dataEmotionAttribute.indexOf(" ") === -1) {
+          return;
+        }
+        document.head.appendChild(node2);
+        node2.setAttribute("data-s", "");
+      });
+    }
+    var stylisPlugins = options.stylisPlugins || defaultStylisPlugins;
+    if (true) {
+      if (/[^a-z-]/.test(key)) {
+        throw new Error('Emotion key must only contain lower case alphabetical characters and - but "' + key + '" was passed');
+      }
+    }
+    var inserted = {};
+    var container;
+    var nodesToHydrate = [];
+    {
+      container = options.container || document.head;
+      Array.prototype.forEach.call(
+        // this means we will ignore elements which don't have a space in them which
+        // means that the style elements we're looking at are only Emotion 11 server-rendered style elements
+        document.querySelectorAll('style[data-emotion^="' + key + ' "]'),
+        function(node2) {
+          var attrib = node2.getAttribute("data-emotion").split(" ");
+          for (var i2 = 1; i2 < attrib.length; i2++) {
+            inserted[attrib[i2]] = true;
+          }
+          nodesToHydrate.push(node2);
+        }
+      );
+    }
+    var _insert;
+    var omnipresentPlugins = [compat, removeLabel];
+    if (true) {
+      omnipresentPlugins.push(createUnsafeSelectorsAlarm({
+        get compat() {
+          return cache.compat;
+        }
+      }), incorrectImportAlarm);
+    }
+    {
+      var currentSheet;
+      var finalizingPlugins = [stringify, true ? function(element) {
+        if (!element.root) {
+          if (element["return"]) {
+            currentSheet.insert(element["return"]);
+          } else if (element.value && element.type !== COMMENT) {
+            currentSheet.insert(element.value + "{}");
+          }
+        }
+      } : rulesheet(function(rule) {
+        currentSheet.insert(rule);
+      })];
+      var serializer = middleware(omnipresentPlugins.concat(stylisPlugins, finalizingPlugins));
+      var stylis = function stylis2(styles) {
+        return serialize(compile(styles), serializer);
+      };
+      _insert = function insert(selector, serialized, sheet, shouldCache) {
+        currentSheet = sheet;
+        if (serialized.map !== void 0) {
+          currentSheet = {
+            insert: function insert2(rule) {
+              sheet.insert(rule + serialized.map);
+            }
+          };
+        }
+        stylis(selector ? selector + "{" + serialized.styles + "}" : serialized.styles);
+        if (shouldCache) {
+          cache.inserted[serialized.name] = true;
+        }
+      };
+    }
+    var cache = {
+      key,
+      sheet: new StyleSheet({
+        key,
+        container,
+        nonce: options.nonce,
+        speedy: options.speedy,
+        prepend: options.prepend,
+        insertionPoint: options.insertionPoint
+      }),
+      nonce: options.nonce,
+      inserted,
+      registered: {},
+      insert: _insert
+    };
+    cache.sheet.hydrate(nodesToHydrate);
+    return cache;
+  };
+  var emotion_cache_browser_esm_default = createCache;
+
+  // node_modules/@emotion/react/dist/emotion-element-6a883da9.browser.esm.js
+  var import_react2 = __toESM(require_react());
+
+  // node_modules/@emotion/utils/dist/emotion-utils.browser.esm.js
+  var isBrowser = true;
+  function getRegisteredStyles(registered, registeredStyles, classNames) {
+    var rawClassName = "";
+    classNames.split(" ").forEach(function(className) {
+      if (registered[className] !== void 0) {
+        registeredStyles.push(registered[className] + ";");
+      } else {
+        rawClassName += className + " ";
+      }
+    });
+    return rawClassName;
+  }
+  var registerStyles = function registerStyles2(cache, serialized, isStringTag2) {
+    var className = cache.key + "-" + serialized.name;
+    if (
+      // we only need to add the styles to the registered cache if the
+      // class name could be used further down
+      // the tree but if it's a string tag, we know it won't
+      // so we don't have to add it to registered cache.
+      // this improves memory usage since we can avoid storing the whole style string
+      (isStringTag2 === false || // we need to always store it if we're in compat mode and
+      // in node since emotion-server relies on whether a style is in
+      // the registered cache to know whether a style is global or not
+      // also, note that this check will be dead code eliminated in the browser
+      isBrowser === false) && cache.registered[className] === void 0
+    ) {
+      cache.registered[className] = serialized.styles;
+    }
+  };
+  var insertStyles = function insertStyles2(cache, serialized, isStringTag2) {
+    registerStyles(cache, serialized, isStringTag2);
+    var className = cache.key + "-" + serialized.name;
+    if (cache.inserted[serialized.name] === void 0) {
+      var current = serialized;
+      do {
+        var maybeStyles = cache.insert(serialized === current ? "." + className : "", current, cache.sheet, true);
+        current = current.next;
+      } while (current !== void 0);
+    }
+  };
+
+  // node_modules/@emotion/hash/dist/emotion-hash.esm.js
+  function murmur2(str) {
+    var h3 = 0;
+    var k, i2 = 0, len = str.length;
+    for (; len >= 4; ++i2, len -= 4) {
+      k = str.charCodeAt(i2) & 255 | (str.charCodeAt(++i2) & 255) << 8 | (str.charCodeAt(++i2) & 255) << 16 | (str.charCodeAt(++i2) & 255) << 24;
+      k = /* Math.imul(k, m): */
+      (k & 65535) * 1540483477 + ((k >>> 16) * 59797 << 16);
+      k ^= /* k >>> r: */
+      k >>> 24;
+      h3 = /* Math.imul(k, m): */
+      (k & 65535) * 1540483477 + ((k >>> 16) * 59797 << 16) ^ /* Math.imul(h, m): */
+      (h3 & 65535) * 1540483477 + ((h3 >>> 16) * 59797 << 16);
+    }
+    switch (len) {
+      case 3:
+        h3 ^= (str.charCodeAt(i2 + 2) & 255) << 16;
+      case 2:
+        h3 ^= (str.charCodeAt(i2 + 1) & 255) << 8;
+      case 1:
+        h3 ^= str.charCodeAt(i2) & 255;
+        h3 = /* Math.imul(h, m): */
+        (h3 & 65535) * 1540483477 + ((h3 >>> 16) * 59797 << 16);
+    }
+    h3 ^= h3 >>> 13;
+    h3 = /* Math.imul(h, m): */
+    (h3 & 65535) * 1540483477 + ((h3 >>> 16) * 59797 << 16);
+    return ((h3 ^ h3 >>> 15) >>> 0).toString(36);
+  }
+  var emotion_hash_esm_default = murmur2;
+
+  // node_modules/@emotion/unitless/dist/emotion-unitless.esm.js
+  var unitlessKeys = {
+    animationIterationCount: 1,
+    borderImageOutset: 1,
+    borderImageSlice: 1,
+    borderImageWidth: 1,
+    boxFlex: 1,
+    boxFlexGroup: 1,
+    boxOrdinalGroup: 1,
+    columnCount: 1,
+    columns: 1,
+    flex: 1,
+    flexGrow: 1,
+    flexPositive: 1,
+    flexShrink: 1,
+    flexNegative: 1,
+    flexOrder: 1,
+    gridRow: 1,
+    gridRowEnd: 1,
+    gridRowSpan: 1,
+    gridRowStart: 1,
+    gridColumn: 1,
+    gridColumnEnd: 1,
+    gridColumnSpan: 1,
+    gridColumnStart: 1,
+    msGridRow: 1,
+    msGridRowSpan: 1,
+    msGridColumn: 1,
+    msGridColumnSpan: 1,
+    fontWeight: 1,
+    lineHeight: 1,
+    opacity: 1,
+    order: 1,
+    orphans: 1,
+    tabSize: 1,
+    widows: 1,
+    zIndex: 1,
+    zoom: 1,
+    WebkitLineClamp: 1,
+    // SVG-related properties
+    fillOpacity: 1,
+    floodOpacity: 1,
+    stopOpacity: 1,
+    strokeDasharray: 1,
+    strokeDashoffset: 1,
+    strokeMiterlimit: 1,
+    strokeOpacity: 1,
+    strokeWidth: 1
+  };
+  var emotion_unitless_esm_default = unitlessKeys;
+
+  // node_modules/@emotion/serialize/dist/emotion-serialize.browser.esm.js
+  var ILLEGAL_ESCAPE_SEQUENCE_ERROR = `You have illegal escape sequence in your template literal, most likely inside content's property value.
+Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
+You can read more about this here:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`;
+  var UNDEFINED_AS_OBJECT_KEY_ERROR = "You have passed in falsy value as style object's key (can happen when in example you pass unexported component as computed key).";
+  var hyphenateRegex = /[A-Z]|^ms/g;
+  var animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g;
+  var isCustomProperty = function isCustomProperty2(property) {
+    return property.charCodeAt(1) === 45;
+  };
+  var isProcessableValue = function isProcessableValue2(value) {
+    return value != null && typeof value !== "boolean";
+  };
+  var processStyleName = /* @__PURE__ */ emotion_memoize_esm_default(function(styleName) {
+    return isCustomProperty(styleName) ? styleName : styleName.replace(hyphenateRegex, "-$&").toLowerCase();
+  });
+  var processStyleValue = function processStyleValue2(key, value) {
+    switch (key) {
+      case "animation":
+      case "animationName": {
+        if (typeof value === "string") {
+          return value.replace(animationRegex, function(match2, p1, p2) {
+            cursor = {
+              name: p1,
+              styles: p2,
+              next: cursor
+            };
+            return p1;
+          });
+        }
+      }
+    }
+    if (emotion_unitless_esm_default[key] !== 1 && !isCustomProperty(key) && typeof value === "number" && value !== 0) {
+      return value + "px";
+    }
+    return value;
+  };
+  if (true) {
+    contentValuePattern = /(var|attr|counters?|url|element|(((repeating-)?(linear|radial))|conic)-gradient)\(|(no-)?(open|close)-quote/;
+    contentValues = ["normal", "none", "initial", "inherit", "unset"];
+    oldProcessStyleValue = processStyleValue;
+    msPattern = /^-ms-/;
+    hyphenPattern = /-(.)/g;
+    hyphenatedCache = {};
+    processStyleValue = function processStyleValue3(key, value) {
+      if (key === "content") {
+        if (typeof value !== "string" || contentValues.indexOf(value) === -1 && !contentValuePattern.test(value) && (value.charAt(0) !== value.charAt(value.length - 1) || value.charAt(0) !== '"' && value.charAt(0) !== "'")) {
+          throw new Error("You seem to be using a value for 'content' without quotes, try replacing it with `content: '\"" + value + "\"'`");
+        }
+      }
+      var processed = oldProcessStyleValue(key, value);
+      if (processed !== "" && !isCustomProperty(key) && key.indexOf("-") !== -1 && hyphenatedCache[key] === void 0) {
+        hyphenatedCache[key] = true;
+        console.error("Using kebab-case for css properties in objects is not supported. Did you mean " + key.replace(msPattern, "ms-").replace(hyphenPattern, function(str, _char) {
+          return _char.toUpperCase();
+        }) + "?");
+      }
+      return processed;
+    };
+  }
+  var contentValuePattern;
+  var contentValues;
+  var oldProcessStyleValue;
+  var msPattern;
+  var hyphenPattern;
+  var hyphenatedCache;
+  var noComponentSelectorMessage = "Component selectors can only be used in conjunction with @emotion/babel-plugin, the swc Emotion plugin, or another Emotion-aware compiler transform.";
+  function handleInterpolation(mergedProps, registered, interpolation) {
+    if (interpolation == null) {
+      return "";
+    }
+    if (interpolation.__emotion_styles !== void 0) {
+      if (interpolation.toString() === "NO_COMPONENT_SELECTOR") {
+        throw new Error(noComponentSelectorMessage);
+      }
+      return interpolation;
+    }
+    switch (typeof interpolation) {
+      case "boolean": {
+        return "";
+      }
+      case "object": {
+        if (interpolation.anim === 1) {
+          cursor = {
+            name: interpolation.name,
+            styles: interpolation.styles,
+            next: cursor
+          };
+          return interpolation.name;
+        }
+        if (interpolation.styles !== void 0) {
+          var next2 = interpolation.next;
+          if (next2 !== void 0) {
+            while (next2 !== void 0) {
+              cursor = {
+                name: next2.name,
+                styles: next2.styles,
+                next: cursor
+              };
+              next2 = next2.next;
+            }
+          }
+          var styles = interpolation.styles + ";";
+          if (interpolation.map !== void 0) {
+            styles += interpolation.map;
+          }
+          return styles;
+        }
+        return createStringFromObject(mergedProps, registered, interpolation);
+      }
+      case "function": {
+        if (mergedProps !== void 0) {
+          var previousCursor = cursor;
+          var result = interpolation(mergedProps);
+          cursor = previousCursor;
+          return handleInterpolation(mergedProps, registered, result);
+        } else if (true) {
+          console.error("Functions that are interpolated in css calls will be stringified.\nIf you want to have a css call based on props, create a function that returns a css call like this\nlet dynamicStyle = (props) => css`color: ${props.color}`\nIt can be called directly with props or interpolated in a styled call like this\nlet SomeComponent = styled('div')`${dynamicStyle}`");
+        }
+        break;
+      }
+      case "string":
+        if (true) {
+          var matched = [];
+          var replaced = interpolation.replace(animationRegex, function(match2, p1, p2) {
+            var fakeVarName = "animation" + matched.length;
+            matched.push("const " + fakeVarName + " = keyframes`" + p2.replace(/^@keyframes animation-\w+/, "") + "`");
+            return "${" + fakeVarName + "}";
+          });
+          if (matched.length) {
+            console.error("`keyframes` output got interpolated into plain string, please wrap it with `css`.\n\nInstead of doing this:\n\n" + [].concat(matched, ["`" + replaced + "`"]).join("\n") + "\n\nYou should wrap it with `css` like this:\n\n" + ("css`" + replaced + "`"));
+          }
+        }
+        break;
+    }
+    if (registered == null) {
+      return interpolation;
+    }
+    var cached = registered[interpolation];
+    return cached !== void 0 ? cached : interpolation;
+  }
+  function createStringFromObject(mergedProps, registered, obj) {
+    var string = "";
+    if (Array.isArray(obj)) {
+      for (var i2 = 0; i2 < obj.length; i2++) {
+        string += handleInterpolation(mergedProps, registered, obj[i2]) + ";";
+      }
+    } else {
+      for (var _key in obj) {
+        var value = obj[_key];
+        if (typeof value !== "object") {
+          if (registered != null && registered[value] !== void 0) {
+            string += _key + "{" + registered[value] + "}";
+          } else if (isProcessableValue(value)) {
+            string += processStyleName(_key) + ":" + processStyleValue(_key, value) + ";";
+          }
+        } else {
+          if (_key === "NO_COMPONENT_SELECTOR" && true) {
+            throw new Error(noComponentSelectorMessage);
+          }
+          if (Array.isArray(value) && typeof value[0] === "string" && (registered == null || registered[value[0]] === void 0)) {
+            for (var _i = 0; _i < value.length; _i++) {
+              if (isProcessableValue(value[_i])) {
+                string += processStyleName(_key) + ":" + processStyleValue(_key, value[_i]) + ";";
+              }
+            }
+          } else {
+            var interpolated = handleInterpolation(mergedProps, registered, value);
+            switch (_key) {
+              case "animation":
+              case "animationName": {
+                string += processStyleName(_key) + ":" + interpolated + ";";
+                break;
+              }
+              default: {
+                if (_key === "undefined") {
+                  console.error(UNDEFINED_AS_OBJECT_KEY_ERROR);
+                }
+                string += _key + "{" + interpolated + "}";
+              }
+            }
+          }
+        }
+      }
+    }
+    return string;
+  }
+  var labelPattern = /label:\s*([^\s;\n{]+)\s*(;|$)/g;
+  var sourceMapPattern;
+  if (true) {
+    sourceMapPattern = /\/\*#\ssourceMappingURL=data:application\/json;\S+\s+\*\//g;
+  }
+  var cursor;
+  var serializeStyles = function serializeStyles2(args, registered, mergedProps) {
+    if (args.length === 1 && typeof args[0] === "object" && args[0] !== null && args[0].styles !== void 0) {
+      return args[0];
+    }
+    var stringMode = true;
+    var styles = "";
+    cursor = void 0;
+    var strings = args[0];
+    if (strings == null || strings.raw === void 0) {
+      stringMode = false;
+      styles += handleInterpolation(mergedProps, registered, strings);
+    } else {
+      if (strings[0] === void 0) {
+        console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR);
+      }
+      styles += strings[0];
+    }
+    for (var i2 = 1; i2 < args.length; i2++) {
+      styles += handleInterpolation(mergedProps, registered, args[i2]);
+      if (stringMode) {
+        if (strings[i2] === void 0) {
+          console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR);
+        }
+        styles += strings[i2];
+      }
+    }
+    var sourceMap;
+    if (true) {
+      styles = styles.replace(sourceMapPattern, function(match3) {
+        sourceMap = match3;
+        return "";
+      });
+    }
+    labelPattern.lastIndex = 0;
+    var identifierName = "";
+    var match2;
+    while ((match2 = labelPattern.exec(styles)) !== null) {
+      identifierName += "-" + // $FlowFixMe we know it's not null
+      match2[1];
+    }
+    var name = emotion_hash_esm_default(styles) + identifierName;
+    if (true) {
+      return {
+        name,
+        styles,
+        map: sourceMap,
+        next: cursor,
+        toString: function toString() {
+          return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop).";
+        }
+      };
+    }
+    return {
+      name,
+      styles,
+      next: cursor
+    };
+  };
+
+  // node_modules/@emotion/use-insertion-effect-with-fallbacks/dist/emotion-use-insertion-effect-with-fallbacks.browser.esm.js
+  var React6 = __toESM(require_react());
+  var import_react = __toESM(require_react());
+  var syncFallback = function syncFallback2(create) {
+    return create();
+  };
+  var useInsertionEffect2 = React6["useInsertionEffect"] ? React6["useInsertionEffect"] : false;
+  var useInsertionEffectAlwaysWithSyncFallback = useInsertionEffect2 || syncFallback;
+  var useInsertionEffectWithLayoutFallback = useInsertionEffect2 || import_react.useLayoutEffect;
+
+  // node_modules/@emotion/react/dist/emotion-element-6a883da9.browser.esm.js
+  var hasOwnProperty = {}.hasOwnProperty;
+  var EmotionCacheContext = /* @__PURE__ */ (0, import_react2.createContext)(
+    // we're doing this to avoid preconstruct's dead code elimination in this one case
+    // because this module is primarily intended for the browser and node
+    // but it's also required in react native and similar environments sometimes
+    // and we could have a special build just for that
+    // but this is much easier and the native packages
+    // might use a different theme context in the future anyway
+    typeof HTMLElement !== "undefined" ? /* @__PURE__ */ emotion_cache_browser_esm_default({
+      key: "css"
+    }) : null
+  );
+  if (true) {
+    EmotionCacheContext.displayName = "EmotionCacheContext";
+  }
+  var CacheProvider = EmotionCacheContext.Provider;
+  var withEmotionCache = function withEmotionCache2(func) {
+    return /* @__PURE__ */ (0, import_react2.forwardRef)(function(props, ref) {
+      var cache = (0, import_react2.useContext)(EmotionCacheContext);
+      return func(props, cache, ref);
+    });
+  };
+  var ThemeContext = /* @__PURE__ */ (0, import_react2.createContext)({});
+  if (true) {
+    ThemeContext.displayName = "EmotionThemeContext";
+  }
+  var typePropName = "__EMOTION_TYPE_PLEASE_DO_NOT_USE__";
+  var labelPropName = "__EMOTION_LABEL_PLEASE_DO_NOT_USE__";
+  var Insertion = function Insertion2(_ref) {
+    var cache = _ref.cache, serialized = _ref.serialized, isStringTag2 = _ref.isStringTag;
+    registerStyles(cache, serialized, isStringTag2);
+    var rules = useInsertionEffectAlwaysWithSyncFallback(function() {
+      return insertStyles(cache, serialized, isStringTag2);
+    });
+    return null;
+  };
+  var Emotion = /* @__PURE__ */ withEmotionCache(function(props, cache, ref) {
+    var cssProp = props.css;
+    if (typeof cssProp === "string" && cache.registered[cssProp] !== void 0) {
+      cssProp = cache.registered[cssProp];
+    }
+    var WrappedComponent = props[typePropName];
+    var registeredStyles = [cssProp];
+    var className = "";
+    if (typeof props.className === "string") {
+      className = getRegisteredStyles(cache.registered, registeredStyles, props.className);
+    } else if (props.className != null) {
+      className = props.className + " ";
+    }
+    var serialized = serializeStyles(registeredStyles, void 0, (0, import_react2.useContext)(ThemeContext));
+    if (serialized.name.indexOf("-") === -1) {
+      var labelFromStack = props[labelPropName];
+      if (labelFromStack) {
+        serialized = serializeStyles([serialized, "label:" + labelFromStack + ";"]);
+      }
+    }
+    className += cache.key + "-" + serialized.name;
+    var newProps = {};
+    for (var key in props) {
+      if (hasOwnProperty.call(props, key) && key !== "css" && key !== typePropName && key !== labelPropName) {
+        newProps[key] = props[key];
+      }
+    }
+    newProps.ref = ref;
+    newProps.className = className;
+    return /* @__PURE__ */ (0, import_react2.createElement)(import_react2.Fragment, null, /* @__PURE__ */ (0, import_react2.createElement)(Insertion, {
+      cache,
+      serialized,
+      isStringTag: typeof WrappedComponent === "string"
+    }), /* @__PURE__ */ (0, import_react2.createElement)(WrappedComponent, newProps));
+  });
+  if (true) {
+    Emotion.displayName = "EmotionCssPropInternal";
+  }
+
+  // node_modules/@emotion/react/dist/emotion-react.browser.esm.js
+  var import_hoist_non_react_statics = __toESM(require_hoist_non_react_statics_cjs());
+  var pkg = {
+    name: "@emotion/react",
+    version: "11.10.6",
+    main: "dist/emotion-react.cjs.js",
+    module: "dist/emotion-react.esm.js",
+    browser: {
+      "./dist/emotion-react.esm.js": "./dist/emotion-react.browser.esm.js"
+    },
+    exports: {
+      ".": {
+        module: {
+          worker: "./dist/emotion-react.worker.esm.js",
+          browser: "./dist/emotion-react.browser.esm.js",
+          "default": "./dist/emotion-react.esm.js"
+        },
+        "default": "./dist/emotion-react.cjs.js"
+      },
+      "./jsx-runtime": {
+        module: {
+          worker: "./jsx-runtime/dist/emotion-react-jsx-runtime.worker.esm.js",
+          browser: "./jsx-runtime/dist/emotion-react-jsx-runtime.browser.esm.js",
+          "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.esm.js"
+        },
+        "default": "./jsx-runtime/dist/emotion-react-jsx-runtime.cjs.js"
+      },
+      "./_isolated-hnrs": {
+        module: {
+          worker: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.worker.esm.js",
+          browser: "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.browser.esm.js",
+          "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.esm.js"
+        },
+        "default": "./_isolated-hnrs/dist/emotion-react-_isolated-hnrs.cjs.js"
+      },
+      "./jsx-dev-runtime": {
+        module: {
+          worker: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.worker.esm.js",
+          browser: "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.browser.esm.js",
+          "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.esm.js"
+        },
+        "default": "./jsx-dev-runtime/dist/emotion-react-jsx-dev-runtime.cjs.js"
+      },
+      "./package.json": "./package.json",
+      "./types/css-prop": "./types/css-prop.d.ts",
+      "./macro": "./macro.js"
+    },
+    types: "types/index.d.ts",
+    files: [
+      "src",
+      "dist",
+      "jsx-runtime",
+      "jsx-dev-runtime",
+      "_isolated-hnrs",
+      "types/*.d.ts",
+      "macro.js",
+      "macro.d.ts",
+      "macro.js.flow"
+    ],
+    sideEffects: false,
+    author: "Emotion Contributors",
+    license: "MIT",
+    scripts: {
+      "test:typescript": "dtslint types"
+    },
+    dependencies: {
+      "@babel/runtime": "^7.18.3",
+      "@emotion/babel-plugin": "^11.10.6",
+      "@emotion/cache": "^11.10.5",
+      "@emotion/serialize": "^1.1.1",
+      "@emotion/use-insertion-effect-with-fallbacks": "^1.0.0",
+      "@emotion/utils": "^1.2.0",
+      "@emotion/weak-memoize": "^0.3.0",
+      "hoist-non-react-statics": "^3.3.1"
+    },
+    peerDependencies: {
+      react: ">=16.8.0"
+    },
+    peerDependenciesMeta: {
+      "@types/react": {
+        optional: true
+      }
+    },
+    devDependencies: {
+      "@definitelytyped/dtslint": "0.0.112",
+      "@emotion/css": "11.10.6",
+      "@emotion/css-prettifier": "1.1.1",
+      "@emotion/server": "11.10.0",
+      "@emotion/styled": "11.10.6",
+      "html-tag-names": "^1.1.2",
+      react: "16.14.0",
+      "svg-tag-names": "^1.1.1",
+      typescript: "^4.5.5"
+    },
+    repository: "https://github.com/emotion-js/emotion/tree/main/packages/react",
+    publishConfig: {
+      access: "public"
+    },
+    "umd:main": "dist/emotion-react.umd.min.js",
+    preconstruct: {
+      entrypoints: [
+        "./index.js",
+        "./jsx-runtime.js",
+        "./jsx-dev-runtime.js",
+        "./_isolated-hnrs.js"
+      ],
+      umdName: "emotionReact",
+      exports: {
+        envConditions: [
+          "browser",
+          "worker"
+        ],
+        extra: {
+          "./types/css-prop": "./types/css-prop.d.ts",
+          "./macro": "./macro.js"
+        }
+      }
+    }
+  };
+  var warnedAboutCssPropForGlobal = false;
+  var Global = /* @__PURE__ */ withEmotionCache(function(props, cache) {
+    if (!warnedAboutCssPropForGlobal && // check for className as well since the user is
+    // probably using the custom createElement which
+    // means it will be turned into a className prop
+    // $FlowFixMe I don't really want to add it to the type since it shouldn't be used
+    (props.className || props.css)) {
+      console.error("It looks like you're using the css prop on Global, did you mean to use the styles prop instead?");
+      warnedAboutCssPropForGlobal = true;
+    }
+    var styles = props.styles;
+    var serialized = serializeStyles([styles], void 0, (0, import_react3.useContext)(ThemeContext));
+    var sheetRef = (0, import_react3.useRef)();
+    useInsertionEffectWithLayoutFallback(function() {
+      var key = cache.key + "-global";
+      var sheet = new cache.sheet.constructor({
+        key,
+        nonce: cache.sheet.nonce,
+        container: cache.sheet.container,
+        speedy: cache.sheet.isSpeedy
+      });
+      var rehydrating = false;
+      var node2 = document.querySelector('style[data-emotion="' + key + " " + serialized.name + '"]');
+      if (cache.sheet.tags.length) {
+        sheet.before = cache.sheet.tags[0];
+      }
+      if (node2 !== null) {
+        rehydrating = true;
+        node2.setAttribute("data-emotion", key);
+        sheet.hydrate([node2]);
+      }
+      sheetRef.current = [sheet, rehydrating];
+      return function() {
+        sheet.flush();
+      };
+    }, [cache]);
+    useInsertionEffectWithLayoutFallback(function() {
+      var sheetRefCurrent = sheetRef.current;
+      var sheet = sheetRefCurrent[0], rehydrating = sheetRefCurrent[1];
+      if (rehydrating) {
+        sheetRefCurrent[1] = false;
+        return;
+      }
+      if (serialized.next !== void 0) {
+        insertStyles(cache, serialized.next, true);
+      }
+      if (sheet.tags.length) {
+        var element = sheet.tags[sheet.tags.length - 1].nextElementSibling;
+        sheet.before = element;
+        sheet.flush();
+      }
+      cache.insert("", serialized, sheet, false);
+    }, [cache, serialized.name]);
+    return null;
+  });
+  if (true) {
+    Global.displayName = "EmotionGlobal";
+  }
+  var classnames = function classnames2(args) {
+    var len = args.length;
+    var i2 = 0;
+    var cls = "";
+    for (; i2 < len; i2++) {
+      var arg = args[i2];
+      if (arg == null)
+        continue;
+      var toAdd = void 0;
+      switch (typeof arg) {
+        case "boolean":
+          break;
+        case "object": {
+          if (Array.isArray(arg)) {
+            toAdd = classnames2(arg);
+          } else {
+            if (arg.styles !== void 0 && arg.name !== void 0) {
+              console.error("You have passed styles created with `css` from `@emotion/react` package to the `cx`.\n`cx` is meant to compose class names (strings) so you should convert those styles to a class name by passing them to the `css` received from <ClassNames/> component.");
+            }
+            toAdd = "";
+            for (var k in arg) {
+              if (arg[k] && k) {
+                toAdd && (toAdd += " ");
+                toAdd += k;
+              }
+            }
+          }
+          break;
+        }
+        default: {
+          toAdd = arg;
+        }
+      }
+      if (toAdd) {
+        cls && (cls += " ");
+        cls += toAdd;
+      }
+    }
+    return cls;
+  };
+  function merge(registered, css2, className) {
+    var registeredStyles = [];
+    var rawClassName = getRegisteredStyles(registered, registeredStyles, className);
+    if (registeredStyles.length < 2) {
+      return className;
+    }
+    return rawClassName + css2(registeredStyles);
+  }
+  var Insertion3 = function Insertion4(_ref) {
+    var cache = _ref.cache, serializedArr = _ref.serializedArr;
+    var rules = useInsertionEffectAlwaysWithSyncFallback(function() {
+      for (var i2 = 0; i2 < serializedArr.length; i2++) {
+        var res = insertStyles(cache, serializedArr[i2], false);
+      }
+    });
+    return null;
+  };
+  var ClassNames = /* @__PURE__ */ withEmotionCache(function(props, cache) {
+    var hasRendered = false;
+    var serializedArr = [];
+    var css2 = function css3() {
+      if (hasRendered && true) {
+        throw new Error("css can only be used during render");
+      }
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+      var serialized = serializeStyles(args, cache.registered);
+      serializedArr.push(serialized);
+      registerStyles(cache, serialized, false);
+      return cache.key + "-" + serialized.name;
+    };
+    var cx = function cx2() {
+      if (hasRendered && true) {
+        throw new Error("cx can only be used during render");
+      }
+      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+      return merge(cache.registered, css2, classnames(args));
+    };
+    var content = {
+      css: css2,
+      cx,
+      theme: (0, import_react3.useContext)(ThemeContext)
+    };
+    var ele = props.children(content);
+    hasRendered = true;
+    return /* @__PURE__ */ (0, import_react3.createElement)(import_react3.Fragment, null, /* @__PURE__ */ (0, import_react3.createElement)(Insertion3, {
+      cache,
+      serializedArr
+    }), ele);
+  });
+  if (true) {
+    ClassNames.displayName = "EmotionClassNames";
+  }
+  if (true) {
+    isBrowser2 = true;
+    isTestEnv = typeof jest !== "undefined" || typeof vi !== "undefined";
+    if (isBrowser2 && !isTestEnv) {
+      globalContext = // $FlowIgnore
+      typeof globalThis !== "undefined" ? globalThis : isBrowser2 ? window : global;
+      globalKey = "__EMOTION_REACT_" + pkg.version.split(".")[0] + "__";
+      if (globalContext[globalKey]) {
+        console.warn("You are loading @emotion/react when it is already loaded. Running multiple instances may cause problems. This can happen if multiple versions are used, or if multiple builds of the same version are used.");
+      }
+      globalContext[globalKey] = true;
+    }
+  }
+  var isBrowser2;
+  var isTestEnv;
+  var globalContext;
+  var globalKey;
+
+  // node_modules/@emotion/styled/base/dist/emotion-styled-base.browser.esm.js
+  var testOmitPropsOnStringTag = emotion_is_prop_valid_esm_default;
+  var testOmitPropsOnComponent = function testOmitPropsOnComponent2(key) {
+    return key !== "theme";
+  };
+  var getDefaultShouldForwardProp = function getDefaultShouldForwardProp2(tag) {
+    return typeof tag === "string" && // 96 is one less than the char code
+    // for "a" so this is checking that
+    // it's a lowercase character
+    tag.charCodeAt(0) > 96 ? testOmitPropsOnStringTag : testOmitPropsOnComponent;
+  };
+  var composeShouldForwardProps = function composeShouldForwardProps2(tag, options, isReal) {
+    var shouldForwardProp2;
+    if (options) {
+      var optionsShouldForwardProp = options.shouldForwardProp;
+      shouldForwardProp2 = tag.__emotion_forwardProp && optionsShouldForwardProp ? function(propName) {
+        return tag.__emotion_forwardProp(propName) && optionsShouldForwardProp(propName);
+      } : optionsShouldForwardProp;
+    }
+    if (typeof shouldForwardProp2 !== "function" && isReal) {
+      shouldForwardProp2 = tag.__emotion_forwardProp;
+    }
+    return shouldForwardProp2;
+  };
+  var ILLEGAL_ESCAPE_SEQUENCE_ERROR2 = `You have illegal escape sequence in your template literal, most likely inside content's property value.
+Because you write your CSS inside a JavaScript string you actually have to do double escaping, so for example "content: '\\00d7';" should become "content: '\\\\00d7';".
+You can read more about this here:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences`;
+  var Insertion5 = function Insertion6(_ref) {
+    var cache = _ref.cache, serialized = _ref.serialized, isStringTag2 = _ref.isStringTag;
+    registerStyles(cache, serialized, isStringTag2);
+    var rules = useInsertionEffectAlwaysWithSyncFallback(function() {
+      return insertStyles(cache, serialized, isStringTag2);
+    });
+    return null;
+  };
+  var createStyled = function createStyled2(tag, options) {
+    if (true) {
+      if (tag === void 0) {
+        throw new Error("You are trying to create a styled element with an undefined component.\nYou may have forgotten to import it.");
+      }
+    }
+    var isReal = tag.__emotion_real === tag;
+    var baseTag = isReal && tag.__emotion_base || tag;
+    var identifierName;
+    var targetClassName;
+    if (options !== void 0) {
+      identifierName = options.label;
+      targetClassName = options.target;
+    }
+    var shouldForwardProp2 = composeShouldForwardProps(tag, options, isReal);
+    var defaultShouldForwardProp = shouldForwardProp2 || getDefaultShouldForwardProp(baseTag);
+    var shouldUseAs = !defaultShouldForwardProp("as");
+    return function() {
+      var args = arguments;
+      var styles = isReal && tag.__emotion_styles !== void 0 ? tag.__emotion_styles.slice(0) : [];
+      if (identifierName !== void 0) {
+        styles.push("label:" + identifierName + ";");
+      }
+      if (args[0] == null || args[0].raw === void 0) {
+        styles.push.apply(styles, args);
+      } else {
+        if (args[0][0] === void 0) {
+          console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR2);
+        }
+        styles.push(args[0][0]);
+        var len = args.length;
+        var i2 = 1;
+        for (; i2 < len; i2++) {
+          if (args[0][i2] === void 0) {
+            console.error(ILLEGAL_ESCAPE_SEQUENCE_ERROR2);
+          }
+          styles.push(args[i2], args[0][i2]);
+        }
+      }
+      var Styled = withEmotionCache(function(props, cache, ref) {
+        var FinalTag = shouldUseAs && props.as || baseTag;
+        var className = "";
+        var classInterpolations = [];
+        var mergedProps = props;
+        if (props.theme == null) {
+          mergedProps = {};
+          for (var key in props) {
+            mergedProps[key] = props[key];
+          }
+          mergedProps.theme = (0, import_react4.useContext)(ThemeContext);
+        }
+        if (typeof props.className === "string") {
+          className = getRegisteredStyles(cache.registered, classInterpolations, props.className);
+        } else if (props.className != null) {
+          className = props.className + " ";
+        }
+        var serialized = serializeStyles(styles.concat(classInterpolations), cache.registered, mergedProps);
+        className += cache.key + "-" + serialized.name;
+        if (targetClassName !== void 0) {
+          className += " " + targetClassName;
+        }
+        var finalShouldForwardProp = shouldUseAs && shouldForwardProp2 === void 0 ? getDefaultShouldForwardProp(FinalTag) : defaultShouldForwardProp;
+        var newProps = {};
+        for (var _key in props) {
+          if (shouldUseAs && _key === "as")
+            continue;
+          if (
+            // $FlowFixMe
+            finalShouldForwardProp(_key)
+          ) {
+            newProps[_key] = props[_key];
+          }
+        }
+        newProps.className = className;
+        newProps.ref = ref;
+        return /* @__PURE__ */ (0, import_react4.createElement)(import_react4.Fragment, null, /* @__PURE__ */ (0, import_react4.createElement)(Insertion5, {
+          cache,
+          serialized,
+          isStringTag: typeof FinalTag === "string"
+        }), /* @__PURE__ */ (0, import_react4.createElement)(FinalTag, newProps));
+      });
+      Styled.displayName = identifierName !== void 0 ? identifierName : "Styled(" + (typeof baseTag === "string" ? baseTag : baseTag.displayName || baseTag.name || "Component") + ")";
+      Styled.defaultProps = tag.defaultProps;
+      Styled.__emotion_real = Styled;
+      Styled.__emotion_base = baseTag;
+      Styled.__emotion_styles = styles;
+      Styled.__emotion_forwardProp = shouldForwardProp2;
+      Object.defineProperty(Styled, "toString", {
+        value: function value() {
+          if (targetClassName === void 0 && true) {
+            return "NO_COMPONENT_SELECTOR";
+          }
+          return "." + targetClassName;
+        }
+      });
+      Styled.withComponent = function(nextTag, nextOptions) {
+        return createStyled2(nextTag, _extends({}, options, nextOptions, {
+          shouldForwardProp: composeShouldForwardProps(Styled, nextOptions, true)
+        })).apply(void 0, styles);
+      };
+      return Styled;
+    };
+  };
+  var emotion_styled_base_browser_esm_default = createStyled;
+
+  // node_modules/@emotion/styled/dist/emotion-styled.browser.esm.js
+  var tags = [
+    "a",
+    "abbr",
+    "address",
+    "area",
+    "article",
+    "aside",
+    "audio",
+    "b",
+    "base",
+    "bdi",
+    "bdo",
+    "big",
+    "blockquote",
+    "body",
+    "br",
+    "button",
+    "canvas",
+    "caption",
+    "cite",
+    "code",
+    "col",
+    "colgroup",
+    "data",
+    "datalist",
+    "dd",
+    "del",
+    "details",
+    "dfn",
+    "dialog",
+    "div",
+    "dl",
+    "dt",
+    "em",
+    "embed",
+    "fieldset",
+    "figcaption",
+    "figure",
+    "footer",
+    "form",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    "head",
+    "header",
+    "hgroup",
+    "hr",
+    "html",
+    "i",
+    "iframe",
+    "img",
+    "input",
+    "ins",
+    "kbd",
+    "keygen",
+    "label",
+    "legend",
+    "li",
+    "link",
+    "main",
+    "map",
+    "mark",
+    "marquee",
+    "menu",
+    "menuitem",
+    "meta",
+    "meter",
+    "nav",
+    "noscript",
+    "object",
+    "ol",
+    "optgroup",
+    "option",
+    "output",
+    "p",
+    "param",
+    "picture",
+    "pre",
+    "progress",
+    "q",
+    "rp",
+    "rt",
+    "ruby",
+    "s",
+    "samp",
+    "script",
+    "section",
+    "select",
+    "small",
+    "source",
+    "span",
+    "strong",
+    "style",
+    "sub",
+    "summary",
+    "sup",
+    "table",
+    "tbody",
+    "td",
+    "textarea",
+    "tfoot",
+    "th",
+    "thead",
+    "time",
+    "title",
+    "tr",
+    "track",
+    "u",
+    "ul",
+    "var",
+    "video",
+    "wbr",
+    // SVG
+    "circle",
+    "clipPath",
+    "defs",
+    "ellipse",
+    "foreignObject",
+    "g",
+    "image",
+    "line",
+    "linearGradient",
+    "mask",
+    "path",
+    "pattern",
+    "polygon",
+    "polyline",
+    "radialGradient",
+    "rect",
+    "stop",
+    "svg",
+    "text",
+    "tspan"
+  ];
+  var newStyled = emotion_styled_base_browser_esm_default.bind();
+  tags.forEach(function(tagName) {
+    newStyled[tagName] = newStyled(tagName);
+  });
+  var emotion_styled_browser_esm_default = newStyled;
+
+  // node_modules/@mui/styled-engine/index.js
+  function styled(tag, options) {
+    const stylesFactory = emotion_styled_browser_esm_default(tag, options);
+    if (true) {
+      return (...styles) => {
+        const component = typeof tag === "string" ? `"${tag}"` : "component";
+        if (styles.length === 0) {
+          console.error([`MUI: Seems like you called \`styled(${component})()\` without a \`style\` argument.`, 'You must provide a `styles` argument: `styled("div")(styleYouForgotToPass)`.'].join("\n"));
+        } else if (styles.some((style3) => style3 === void 0)) {
+          console.error(`MUI: the styled(${component})(...args) API requires all its args to be defined.`);
+        }
+        return stylesFactory(...styles);
+      };
+    }
+    return stylesFactory;
+  }
+  var internal_processStyles = (tag, processor) => {
+    if (Array.isArray(tag.__emotion_styles)) {
+      tag.__emotion_styles = processor(tag.__emotion_styles);
+    }
+  };
+
+  // node_modules/@mui/system/esm/createTheme/createBreakpoints.js
+  var _excluded = ["values", "unit", "step"];
+  var sortBreakpointsValues = (values2) => {
+    const breakpointsAsArray = Object.keys(values2).map((key) => ({
+      key,
+      val: values2[key]
+    })) || [];
+    breakpointsAsArray.sort((breakpoint1, breakpoint2) => breakpoint1.val - breakpoint2.val);
+    return breakpointsAsArray.reduce((acc, obj) => {
+      return _extends({}, acc, {
+        [obj.key]: obj.val
+      });
+    }, {});
+  };
+  function createBreakpoints(breakpoints) {
+    const {
+      // The breakpoint **start** at this value.
+      // For instance with the first breakpoint xs: [xs, sm).
+      values: values2 = {
+        xs: 0,
+        // phone
+        sm: 600,
+        // tablet
+        md: 900,
+        // small laptop
+        lg: 1200,
+        // desktop
+        xl: 1536
+        // large screen
+      },
+      unit = "px",
+      step = 5
+    } = breakpoints, other = _objectWithoutPropertiesLoose(breakpoints, _excluded);
+    const sortedValues = sortBreakpointsValues(values2);
+    const keys = Object.keys(sortedValues);
+    function up(key) {
+      const value = typeof values2[key] === "number" ? values2[key] : key;
+      return `@media (min-width:${value}${unit})`;
+    }
+    function down(key) {
+      const value = typeof values2[key] === "number" ? values2[key] : key;
+      return `@media (max-width:${value - step / 100}${unit})`;
+    }
+    function between(start, end) {
+      const endIndex = keys.indexOf(end);
+      return `@media (min-width:${typeof values2[start] === "number" ? values2[start] : start}${unit}) and (max-width:${(endIndex !== -1 && typeof values2[keys[endIndex]] === "number" ? values2[keys[endIndex]] : end) - step / 100}${unit})`;
+    }
+    function only(key) {
+      if (keys.indexOf(key) + 1 < keys.length) {
+        return between(key, keys[keys.indexOf(key) + 1]);
+      }
+      return up(key);
+    }
+    function not(key) {
+      const keyIndex = keys.indexOf(key);
+      if (keyIndex === 0) {
+        return up(keys[1]);
+      }
+      if (keyIndex === keys.length - 1) {
+        return down(keys[keyIndex]);
+      }
+      return between(key, keys[keys.indexOf(key) + 1]).replace("@media", "@media not all and");
+    }
+    return _extends({
+      keys,
+      values: sortedValues,
+      up,
+      down,
+      between,
+      only,
+      not,
+      unit
+    }, other);
+  }
+
+  // node_modules/@mui/system/esm/createTheme/shape.js
+  var shape = {
+    borderRadius: 4
+  };
+  var shape_default = shape;
+
+  // node_modules/@mui/system/esm/responsivePropType.js
+  var import_prop_types = __toESM(require_prop_types());
+  var responsivePropType = true ? import_prop_types.default.oneOfType([import_prop_types.default.number, import_prop_types.default.string, import_prop_types.default.object, import_prop_types.default.array]) : {};
+  var responsivePropType_default = responsivePropType;
+
+  // node_modules/@mui/system/esm/merge.js
+  function merge2(acc, item) {
+    if (!item) {
+      return acc;
+    }
+    return deepmerge(acc, item, {
+      clone: false
+      // No need to clone deep, it's way faster.
+    });
+  }
+  var merge_default = merge2;
+
+  // node_modules/@mui/system/esm/breakpoints.js
+  var values = {
+    xs: 0,
+    // phone
+    sm: 600,
+    // tablet
+    md: 900,
+    // small laptop
+    lg: 1200,
+    // desktop
+    xl: 1536
+    // large screen
+  };
+  var defaultBreakpoints = {
+    // Sorted ASC by size. That's important.
+    // It can't be configured as it's used statically for propTypes.
+    keys: ["xs", "sm", "md", "lg", "xl"],
+    up: (key) => `@media (min-width:${values[key]}px)`
+  };
+  function handleBreakpoints(props, propValue, styleFromPropValue) {
+    const theme = props.theme || {};
+    if (Array.isArray(propValue)) {
+      const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
+      return propValue.reduce((acc, item, index) => {
+        acc[themeBreakpoints.up(themeBreakpoints.keys[index])] = styleFromPropValue(propValue[index]);
+        return acc;
+      }, {});
+    }
+    if (typeof propValue === "object") {
+      const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
+      return Object.keys(propValue).reduce((acc, breakpoint) => {
+        if (Object.keys(themeBreakpoints.values || values).indexOf(breakpoint) !== -1) {
+          const mediaKey = themeBreakpoints.up(breakpoint);
+          acc[mediaKey] = styleFromPropValue(propValue[breakpoint], breakpoint);
+        } else {
+          const cssKey = breakpoint;
+          acc[cssKey] = propValue[cssKey];
+        }
+        return acc;
+      }, {});
+    }
+    const output = styleFromPropValue(propValue);
+    return output;
+  }
+  function createEmptyBreakpointObject(breakpointsInput = {}) {
+    var _breakpointsInput$key;
+    const breakpointsInOrder = (_breakpointsInput$key = breakpointsInput.keys) == null ? void 0 : _breakpointsInput$key.reduce((acc, key) => {
+      const breakpointStyleKey = breakpointsInput.up(key);
+      acc[breakpointStyleKey] = {};
+      return acc;
+    }, {});
+    return breakpointsInOrder || {};
+  }
+  function removeUnusedBreakpoints(breakpointKeys, style3) {
+    return breakpointKeys.reduce((acc, key) => {
+      const breakpointOutput = acc[key];
+      const isBreakpointUnused = !breakpointOutput || Object.keys(breakpointOutput).length === 0;
+      if (isBreakpointUnused) {
+        delete acc[key];
+      }
+      return acc;
+    }, style3);
+  }
+
+  // node_modules/@mui/system/esm/style.js
+  function getPath(obj, path, checkVars = true) {
+    if (!path || typeof path !== "string") {
+      return null;
+    }
+    if (obj && obj.vars && checkVars) {
+      const val = `vars.${path}`.split(".").reduce((acc, item) => acc && acc[item] ? acc[item] : null, obj);
+      if (val != null) {
+        return val;
+      }
+    }
+    return path.split(".").reduce((acc, item) => {
+      if (acc && acc[item] != null) {
+        return acc[item];
+      }
+      return null;
+    }, obj);
+  }
+  function getStyleValue(themeMapping, transform, propValueFinal, userValue = propValueFinal) {
+    let value;
+    if (typeof themeMapping === "function") {
+      value = themeMapping(propValueFinal);
+    } else if (Array.isArray(themeMapping)) {
+      value = themeMapping[propValueFinal] || userValue;
+    } else {
+      value = getPath(themeMapping, propValueFinal) || userValue;
+    }
+    if (transform) {
+      value = transform(value, userValue, themeMapping);
+    }
+    return value;
+  }
+  function style(options) {
+    const {
+      prop,
+      cssProperty = options.prop,
+      themeKey,
+      transform
+    } = options;
+    const fn = (props) => {
+      if (props[prop] == null) {
+        return null;
+      }
+      const propValue = props[prop];
+      const theme = props.theme;
+      const themeMapping = getPath(theme, themeKey) || {};
+      const styleFromPropValue = (propValueFinal) => {
+        let value = getStyleValue(themeMapping, transform, propValueFinal);
+        if (propValueFinal === value && typeof propValueFinal === "string") {
+          value = getStyleValue(themeMapping, transform, `${prop}${propValueFinal === "default" ? "" : capitalize(propValueFinal)}`, propValueFinal);
+        }
+        if (cssProperty === false) {
+          return value;
+        }
+        return {
+          [cssProperty]: value
+        };
+      };
+      return handleBreakpoints(props, propValue, styleFromPropValue);
+    };
+    fn.propTypes = true ? {
+      [prop]: responsivePropType_default
+    } : {};
+    fn.filterProps = [prop];
+    return fn;
+  }
+  var style_default = style;
+
+  // node_modules/@mui/system/esm/memoize.js
+  function memoize2(fn) {
+    const cache = {};
+    return (arg) => {
+      if (cache[arg] === void 0) {
+        cache[arg] = fn(arg);
+      }
+      return cache[arg];
+    };
+  }
+
+  // node_modules/@mui/system/esm/spacing.js
+  var properties = {
+    m: "margin",
+    p: "padding"
+  };
+  var directions = {
+    t: "Top",
+    r: "Right",
+    b: "Bottom",
+    l: "Left",
+    x: ["Left", "Right"],
+    y: ["Top", "Bottom"]
+  };
+  var aliases = {
+    marginX: "mx",
+    marginY: "my",
+    paddingX: "px",
+    paddingY: "py"
+  };
+  var getCssProperties = memoize2((prop) => {
+    if (prop.length > 2) {
+      if (aliases[prop]) {
+        prop = aliases[prop];
+      } else {
+        return [prop];
+      }
+    }
+    const [a2, b3] = prop.split("");
+    const property = properties[a2];
+    const direction = directions[b3] || "";
+    return Array.isArray(direction) ? direction.map((dir) => property + dir) : [property + direction];
+  });
+  var marginKeys = ["m", "mt", "mr", "mb", "ml", "mx", "my", "margin", "marginTop", "marginRight", "marginBottom", "marginLeft", "marginX", "marginY", "marginInline", "marginInlineStart", "marginInlineEnd", "marginBlock", "marginBlockStart", "marginBlockEnd"];
+  var paddingKeys = ["p", "pt", "pr", "pb", "pl", "px", "py", "padding", "paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "paddingX", "paddingY", "paddingInline", "paddingInlineStart", "paddingInlineEnd", "paddingBlock", "paddingBlockStart", "paddingBlockEnd"];
+  var spacingKeys = [...marginKeys, ...paddingKeys];
+  function createUnaryUnit(theme, themeKey, defaultValue, propName) {
+    var _getPath;
+    const themeSpacing = (_getPath = getPath(theme, themeKey, false)) != null ? _getPath : defaultValue;
+    if (typeof themeSpacing === "number") {
+      return (abs2) => {
+        if (typeof abs2 === "string") {
+          return abs2;
+        }
+        if (true) {
+          if (typeof abs2 !== "number") {
+            console.error(`MUI: Expected ${propName} argument to be a number or a string, got ${abs2}.`);
+          }
+        }
+        return themeSpacing * abs2;
+      };
+    }
+    if (Array.isArray(themeSpacing)) {
+      return (abs2) => {
+        if (typeof abs2 === "string") {
+          return abs2;
+        }
+        if (true) {
+          if (!Number.isInteger(abs2)) {
+            console.error([`MUI: The \`theme.${themeKey}\` array type cannot be combined with non integer values.You should either use an integer value that can be used as index, or define the \`theme.${themeKey}\` as a number.`].join("\n"));
+          } else if (abs2 > themeSpacing.length - 1) {
+            console.error([`MUI: The value provided (${abs2}) overflows.`, `The supported values are: ${JSON.stringify(themeSpacing)}.`, `${abs2} > ${themeSpacing.length - 1}, you need to add the missing values.`].join("\n"));
+          }
+        }
+        return themeSpacing[abs2];
+      };
+    }
+    if (typeof themeSpacing === "function") {
+      return themeSpacing;
+    }
+    if (true) {
+      console.error([`MUI: The \`theme.${themeKey}\` value (${themeSpacing}) is invalid.`, "It should be a number, an array or a function."].join("\n"));
+    }
+    return () => void 0;
+  }
+  function createUnarySpacing(theme) {
+    return createUnaryUnit(theme, "spacing", 8, "spacing");
+  }
+  function getValue(transformer, propValue) {
+    if (typeof propValue === "string" || propValue == null) {
+      return propValue;
+    }
+    const abs2 = Math.abs(propValue);
+    const transformed = transformer(abs2);
+    if (propValue >= 0) {
+      return transformed;
+    }
+    if (typeof transformed === "number") {
+      return -transformed;
+    }
+    return `-${transformed}`;
+  }
+  function getStyleFromPropValue(cssProperties, transformer) {
+    return (propValue) => cssProperties.reduce((acc, cssProperty) => {
+      acc[cssProperty] = getValue(transformer, propValue);
+      return acc;
+    }, {});
+  }
+  function resolveCssProperty(props, keys, prop, transformer) {
+    if (keys.indexOf(prop) === -1) {
+      return null;
+    }
+    const cssProperties = getCssProperties(prop);
+    const styleFromPropValue = getStyleFromPropValue(cssProperties, transformer);
+    const propValue = props[prop];
+    return handleBreakpoints(props, propValue, styleFromPropValue);
+  }
+  function style2(props, keys) {
+    const transformer = createUnarySpacing(props.theme);
+    return Object.keys(props).map((prop) => resolveCssProperty(props, keys, prop, transformer)).reduce(merge_default, {});
+  }
+  function margin(props) {
+    return style2(props, marginKeys);
+  }
+  margin.propTypes = true ? marginKeys.reduce((obj, key) => {
+    obj[key] = responsivePropType_default;
+    return obj;
+  }, {}) : {};
+  margin.filterProps = marginKeys;
+  function padding(props) {
+    return style2(props, paddingKeys);
+  }
+  padding.propTypes = true ? paddingKeys.reduce((obj, key) => {
+    obj[key] = responsivePropType_default;
+    return obj;
+  }, {}) : {};
+  padding.filterProps = paddingKeys;
+  function spacing(props) {
+    return style2(props, spacingKeys);
+  }
+  spacing.propTypes = true ? spacingKeys.reduce((obj, key) => {
+    obj[key] = responsivePropType_default;
+    return obj;
+  }, {}) : {};
+  spacing.filterProps = spacingKeys;
+
+  // node_modules/@mui/system/esm/createTheme/createSpacing.js
+  function createSpacing(spacingInput = 8) {
+    if (spacingInput.mui) {
+      return spacingInput;
+    }
+    const transform = createUnarySpacing({
+      spacing: spacingInput
+    });
+    const spacing2 = (...argsInput) => {
+      if (true) {
+        if (!(argsInput.length <= 4)) {
+          console.error(`MUI: Too many arguments provided, expected between 0 and 4, got ${argsInput.length}`);
+        }
+      }
+      const args = argsInput.length === 0 ? [1] : argsInput;
+      return args.map((argument) => {
+        const output = transform(argument);
+        return typeof output === "number" ? `${output}px` : output;
+      }).join(" ");
+    };
+    spacing2.mui = true;
+    return spacing2;
+  }
+
+  // node_modules/@mui/system/esm/compose.js
+  function compose(...styles) {
+    const handlers = styles.reduce((acc, style3) => {
+      style3.filterProps.forEach((prop) => {
+        acc[prop] = style3;
+      });
+      return acc;
+    }, {});
+    const fn = (props) => {
+      return Object.keys(props).reduce((acc, prop) => {
+        if (handlers[prop]) {
+          return merge_default(acc, handlers[prop](props));
+        }
+        return acc;
+      }, {});
+    };
+    fn.propTypes = true ? styles.reduce((acc, style3) => Object.assign(acc, style3.propTypes), {}) : {};
+    fn.filterProps = styles.reduce((acc, style3) => acc.concat(style3.filterProps), []);
+    return fn;
+  }
+  var compose_default = compose;
+
+  // node_modules/@mui/system/esm/borders.js
+  function borderTransform(value) {
+    if (typeof value !== "number") {
+      return value;
+    }
+    return `${value}px solid`;
+  }
+  var border = style_default({
+    prop: "border",
+    themeKey: "borders",
+    transform: borderTransform
+  });
+  var borderTop = style_default({
+    prop: "borderTop",
+    themeKey: "borders",
+    transform: borderTransform
+  });
+  var borderRight = style_default({
+    prop: "borderRight",
+    themeKey: "borders",
+    transform: borderTransform
+  });
+  var borderBottom = style_default({
+    prop: "borderBottom",
+    themeKey: "borders",
+    transform: borderTransform
+  });
+  var borderLeft = style_default({
+    prop: "borderLeft",
+    themeKey: "borders",
+    transform: borderTransform
+  });
+  var borderColor = style_default({
+    prop: "borderColor",
+    themeKey: "palette"
+  });
+  var borderTopColor = style_default({
+    prop: "borderTopColor",
+    themeKey: "palette"
+  });
+  var borderRightColor = style_default({
+    prop: "borderRightColor",
+    themeKey: "palette"
+  });
+  var borderBottomColor = style_default({
+    prop: "borderBottomColor",
+    themeKey: "palette"
+  });
+  var borderLeftColor = style_default({
+    prop: "borderLeftColor",
+    themeKey: "palette"
+  });
+  var borderRadius = (props) => {
+    if (props.borderRadius !== void 0 && props.borderRadius !== null) {
+      const transformer = createUnaryUnit(props.theme, "shape.borderRadius", 4, "borderRadius");
+      const styleFromPropValue = (propValue) => ({
+        borderRadius: getValue(transformer, propValue)
+      });
+      return handleBreakpoints(props, props.borderRadius, styleFromPropValue);
+    }
+    return null;
+  };
+  borderRadius.propTypes = true ? {
+    borderRadius: responsivePropType_default
+  } : {};
+  borderRadius.filterProps = ["borderRadius"];
+  var borders = compose_default(border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderTopColor, borderRightColor, borderBottomColor, borderLeftColor, borderRadius);
+
+  // node_modules/@mui/system/esm/cssGrid.js
+  var gap = (props) => {
+    if (props.gap !== void 0 && props.gap !== null) {
+      const transformer = createUnaryUnit(props.theme, "spacing", 8, "gap");
+      const styleFromPropValue = (propValue) => ({
+        gap: getValue(transformer, propValue)
+      });
+      return handleBreakpoints(props, props.gap, styleFromPropValue);
+    }
+    return null;
+  };
+  gap.propTypes = true ? {
+    gap: responsivePropType_default
+  } : {};
+  gap.filterProps = ["gap"];
+  var columnGap = (props) => {
+    if (props.columnGap !== void 0 && props.columnGap !== null) {
+      const transformer = createUnaryUnit(props.theme, "spacing", 8, "columnGap");
+      const styleFromPropValue = (propValue) => ({
+        columnGap: getValue(transformer, propValue)
+      });
+      return handleBreakpoints(props, props.columnGap, styleFromPropValue);
+    }
+    return null;
+  };
+  columnGap.propTypes = true ? {
+    columnGap: responsivePropType_default
+  } : {};
+  columnGap.filterProps = ["columnGap"];
+  var rowGap = (props) => {
+    if (props.rowGap !== void 0 && props.rowGap !== null) {
+      const transformer = createUnaryUnit(props.theme, "spacing", 8, "rowGap");
+      const styleFromPropValue = (propValue) => ({
+        rowGap: getValue(transformer, propValue)
+      });
+      return handleBreakpoints(props, props.rowGap, styleFromPropValue);
+    }
+    return null;
+  };
+  rowGap.propTypes = true ? {
+    rowGap: responsivePropType_default
+  } : {};
+  rowGap.filterProps = ["rowGap"];
+  var gridColumn = style_default({
+    prop: "gridColumn"
+  });
+  var gridRow = style_default({
+    prop: "gridRow"
+  });
+  var gridAutoFlow = style_default({
+    prop: "gridAutoFlow"
+  });
+  var gridAutoColumns = style_default({
+    prop: "gridAutoColumns"
+  });
+  var gridAutoRows = style_default({
+    prop: "gridAutoRows"
+  });
+  var gridTemplateColumns = style_default({
+    prop: "gridTemplateColumns"
+  });
+  var gridTemplateRows = style_default({
+    prop: "gridTemplateRows"
+  });
+  var gridTemplateAreas = style_default({
+    prop: "gridTemplateAreas"
+  });
+  var gridArea = style_default({
+    prop: "gridArea"
+  });
+  var grid = compose_default(gap, columnGap, rowGap, gridColumn, gridRow, gridAutoFlow, gridAutoColumns, gridAutoRows, gridTemplateColumns, gridTemplateRows, gridTemplateAreas, gridArea);
+
+  // node_modules/@mui/system/esm/palette.js
+  function paletteTransform(value, userValue) {
+    if (userValue === "grey") {
+      return userValue;
+    }
+    return value;
+  }
+  var color = style_default({
+    prop: "color",
+    themeKey: "palette",
+    transform: paletteTransform
+  });
+  var bgcolor = style_default({
+    prop: "bgcolor",
+    cssProperty: "backgroundColor",
+    themeKey: "palette",
+    transform: paletteTransform
+  });
+  var backgroundColor = style_default({
+    prop: "backgroundColor",
+    themeKey: "palette",
+    transform: paletteTransform
+  });
+  var palette = compose_default(color, bgcolor, backgroundColor);
+
+  // node_modules/@mui/system/esm/sizing.js
+  function sizingTransform(value) {
+    return value <= 1 && value !== 0 ? `${value * 100}%` : value;
+  }
+  var width = style_default({
+    prop: "width",
+    transform: sizingTransform
+  });
+  var maxWidth = (props) => {
+    if (props.maxWidth !== void 0 && props.maxWidth !== null) {
+      const styleFromPropValue = (propValue) => {
+        var _props$theme, _props$theme$breakpoi, _props$theme$breakpoi2;
+        const breakpoint = ((_props$theme = props.theme) == null ? void 0 : (_props$theme$breakpoi = _props$theme.breakpoints) == null ? void 0 : (_props$theme$breakpoi2 = _props$theme$breakpoi.values) == null ? void 0 : _props$theme$breakpoi2[propValue]) || values[propValue];
+        return {
+          maxWidth: breakpoint || sizingTransform(propValue)
+        };
+      };
+      return handleBreakpoints(props, props.maxWidth, styleFromPropValue);
+    }
+    return null;
+  };
+  maxWidth.filterProps = ["maxWidth"];
+  var minWidth = style_default({
+    prop: "minWidth",
+    transform: sizingTransform
+  });
+  var height = style_default({
+    prop: "height",
+    transform: sizingTransform
+  });
+  var maxHeight = style_default({
+    prop: "maxHeight",
+    transform: sizingTransform
+  });
+  var minHeight = style_default({
+    prop: "minHeight",
+    transform: sizingTransform
+  });
+  var sizeWidth = style_default({
+    prop: "size",
+    cssProperty: "width",
+    transform: sizingTransform
+  });
+  var sizeHeight = style_default({
+    prop: "size",
+    cssProperty: "height",
+    transform: sizingTransform
+  });
+  var boxSizing = style_default({
+    prop: "boxSizing"
+  });
+  var sizing = compose_default(width, maxWidth, minWidth, height, maxHeight, minHeight, boxSizing);
+
+  // node_modules/@mui/system/esm/styleFunctionSx/defaultSxConfig.js
+  var defaultSxConfig = {
+    // borders
+    border: {
+      themeKey: "borders",
+      transform: borderTransform
+    },
+    borderTop: {
+      themeKey: "borders",
+      transform: borderTransform
+    },
+    borderRight: {
+      themeKey: "borders",
+      transform: borderTransform
+    },
+    borderBottom: {
+      themeKey: "borders",
+      transform: borderTransform
+    },
+    borderLeft: {
+      themeKey: "borders",
+      transform: borderTransform
+    },
+    borderColor: {
+      themeKey: "palette"
+    },
+    borderTopColor: {
+      themeKey: "palette"
+    },
+    borderRightColor: {
+      themeKey: "palette"
+    },
+    borderBottomColor: {
+      themeKey: "palette"
+    },
+    borderLeftColor: {
+      themeKey: "palette"
+    },
+    borderRadius: {
+      themeKey: "shape.borderRadius",
+      style: borderRadius
+    },
+    // palette
+    color: {
+      themeKey: "palette",
+      transform: paletteTransform
+    },
+    bgcolor: {
+      themeKey: "palette",
+      cssProperty: "backgroundColor",
+      transform: paletteTransform
+    },
+    backgroundColor: {
+      themeKey: "palette",
+      transform: paletteTransform
+    },
+    // spacing
+    p: {
+      style: padding
+    },
+    pt: {
+      style: padding
+    },
+    pr: {
+      style: padding
+    },
+    pb: {
+      style: padding
+    },
+    pl: {
+      style: padding
+    },
+    px: {
+      style: padding
+    },
+    py: {
+      style: padding
+    },
+    padding: {
+      style: padding
+    },
+    paddingTop: {
+      style: padding
+    },
+    paddingRight: {
+      style: padding
+    },
+    paddingBottom: {
+      style: padding
+    },
+    paddingLeft: {
+      style: padding
+    },
+    paddingX: {
+      style: padding
+    },
+    paddingY: {
+      style: padding
+    },
+    paddingInline: {
+      style: padding
+    },
+    paddingInlineStart: {
+      style: padding
+    },
+    paddingInlineEnd: {
+      style: padding
+    },
+    paddingBlock: {
+      style: padding
+    },
+    paddingBlockStart: {
+      style: padding
+    },
+    paddingBlockEnd: {
+      style: padding
+    },
+    m: {
+      style: margin
+    },
+    mt: {
+      style: margin
+    },
+    mr: {
+      style: margin
+    },
+    mb: {
+      style: margin
+    },
+    ml: {
+      style: margin
+    },
+    mx: {
+      style: margin
+    },
+    my: {
+      style: margin
+    },
+    margin: {
+      style: margin
+    },
+    marginTop: {
+      style: margin
+    },
+    marginRight: {
+      style: margin
+    },
+    marginBottom: {
+      style: margin
+    },
+    marginLeft: {
+      style: margin
+    },
+    marginX: {
+      style: margin
+    },
+    marginY: {
+      style: margin
+    },
+    marginInline: {
+      style: margin
+    },
+    marginInlineStart: {
+      style: margin
+    },
+    marginInlineEnd: {
+      style: margin
+    },
+    marginBlock: {
+      style: margin
+    },
+    marginBlockStart: {
+      style: margin
+    },
+    marginBlockEnd: {
+      style: margin
+    },
+    // display
+    displayPrint: {
+      cssProperty: false,
+      transform: (value) => ({
+        "@media print": {
+          display: value
+        }
+      })
+    },
+    display: {},
+    overflow: {},
+    textOverflow: {},
+    visibility: {},
+    whiteSpace: {},
+    // flexbox
+    flexBasis: {},
+    flexDirection: {},
+    flexWrap: {},
+    justifyContent: {},
+    alignItems: {},
+    alignContent: {},
+    order: {},
+    flex: {},
+    flexGrow: {},
+    flexShrink: {},
+    alignSelf: {},
+    justifyItems: {},
+    justifySelf: {},
+    // grid
+    gap: {
+      style: gap
+    },
+    rowGap: {
+      style: rowGap
+    },
+    columnGap: {
+      style: columnGap
+    },
+    gridColumn: {},
+    gridRow: {},
+    gridAutoFlow: {},
+    gridAutoColumns: {},
+    gridAutoRows: {},
+    gridTemplateColumns: {},
+    gridTemplateRows: {},
+    gridTemplateAreas: {},
+    gridArea: {},
+    // positions
+    position: {},
+    zIndex: {
+      themeKey: "zIndex"
+    },
+    top: {},
+    right: {},
+    bottom: {},
+    left: {},
+    // shadows
+    boxShadow: {
+      themeKey: "shadows"
+    },
+    // sizing
+    width: {
+      transform: sizingTransform
+    },
+    maxWidth: {
+      style: maxWidth
+    },
+    minWidth: {
+      transform: sizingTransform
+    },
+    height: {
+      transform: sizingTransform
+    },
+    maxHeight: {
+      transform: sizingTransform
+    },
+    minHeight: {
+      transform: sizingTransform
+    },
+    boxSizing: {},
+    // typography
+    fontFamily: {
+      themeKey: "typography"
+    },
+    fontSize: {
+      themeKey: "typography"
+    },
+    fontStyle: {
+      themeKey: "typography"
+    },
+    fontWeight: {
+      themeKey: "typography"
+    },
+    letterSpacing: {},
+    textTransform: {},
+    lineHeight: {},
+    textAlign: {},
+    typography: {
+      cssProperty: false,
+      themeKey: "typography"
+    }
+  };
+  var defaultSxConfig_default = defaultSxConfig;
+
+  // node_modules/@mui/system/esm/styleFunctionSx/styleFunctionSx.js
+  function objectsHaveSameKeys(...objects) {
+    const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
+    const union = new Set(allKeys);
+    return objects.every((object) => union.size === Object.keys(object).length);
+  }
+  function callIfFn(maybeFn, arg) {
+    return typeof maybeFn === "function" ? maybeFn(arg) : maybeFn;
+  }
+  function unstable_createStyleFunctionSx() {
+    function getThemeValue(prop, val, theme, config) {
+      const props = {
+        [prop]: val,
+        theme
+      };
+      const options = config[prop];
+      if (!options) {
+        return {
+          [prop]: val
+        };
+      }
+      const {
+        cssProperty = prop,
+        themeKey,
+        transform,
+        style: style3
+      } = options;
+      if (val == null) {
+        return null;
+      }
+      if (themeKey === "typography" && val === "inherit") {
+        return {
+          [prop]: val
+        };
+      }
+      const themeMapping = getPath(theme, themeKey) || {};
+      if (style3) {
+        return style3(props);
+      }
+      const styleFromPropValue = (propValueFinal) => {
+        let value = getStyleValue(themeMapping, transform, propValueFinal);
+        if (propValueFinal === value && typeof propValueFinal === "string") {
+          value = getStyleValue(themeMapping, transform, `${prop}${propValueFinal === "default" ? "" : capitalize(propValueFinal)}`, propValueFinal);
+        }
+        if (cssProperty === false) {
+          return value;
+        }
+        return {
+          [cssProperty]: value
+        };
+      };
+      return handleBreakpoints(props, val, styleFromPropValue);
+    }
+    function styleFunctionSx2(props) {
+      var _theme$unstable_sxCon;
+      const {
+        sx,
+        theme = {}
+      } = props || {};
+      if (!sx) {
+        return null;
+      }
+      const config = (_theme$unstable_sxCon = theme.unstable_sxConfig) != null ? _theme$unstable_sxCon : defaultSxConfig_default;
+      function traverse(sxInput) {
+        let sxObject = sxInput;
+        if (typeof sxInput === "function") {
+          sxObject = sxInput(theme);
+        } else if (typeof sxInput !== "object") {
+          return sxInput;
+        }
+        if (!sxObject) {
+          return null;
+        }
+        const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
+        const breakpointsKeys = Object.keys(emptyBreakpoints);
+        let css2 = emptyBreakpoints;
+        Object.keys(sxObject).forEach((styleKey) => {
+          const value = callIfFn(sxObject[styleKey], theme);
+          if (value !== null && value !== void 0) {
+            if (typeof value === "object") {
+              if (config[styleKey]) {
+                css2 = merge_default(css2, getThemeValue(styleKey, value, theme, config));
+              } else {
+                const breakpointsValues = handleBreakpoints({
+                  theme
+                }, value, (x) => ({
+                  [styleKey]: x
+                }));
+                if (objectsHaveSameKeys(breakpointsValues, value)) {
+                  css2[styleKey] = styleFunctionSx2({
+                    sx: value,
+                    theme
+                  });
+                } else {
+                  css2 = merge_default(css2, breakpointsValues);
+                }
+              }
+            } else {
+              css2 = merge_default(css2, getThemeValue(styleKey, value, theme, config));
+            }
+          }
+        });
+        return removeUnusedBreakpoints(breakpointsKeys, css2);
+      }
+      return Array.isArray(sx) ? sx.map(traverse) : traverse(sx);
+    }
+    return styleFunctionSx2;
+  }
+  var styleFunctionSx = unstable_createStyleFunctionSx();
+  styleFunctionSx.filterProps = ["sx"];
+  var styleFunctionSx_default = styleFunctionSx;
+
+  // node_modules/@mui/system/esm/createTheme/createTheme.js
+  var _excluded2 = ["breakpoints", "palette", "spacing", "shape"];
+  function createTheme(options = {}, ...args) {
+    const {
+      breakpoints: breakpointsInput = {},
+      palette: paletteInput = {},
+      spacing: spacingInput,
+      shape: shapeInput = {}
+    } = options, other = _objectWithoutPropertiesLoose(options, _excluded2);
+    const breakpoints = createBreakpoints(breakpointsInput);
+    const spacing2 = createSpacing(spacingInput);
+    let muiTheme = deepmerge({
+      breakpoints,
+      direction: "ltr",
+      components: {},
+      // Inject component definitions.
+      palette: _extends({
+        mode: "light"
+      }, paletteInput),
+      spacing: spacing2,
+      shape: _extends({}, shape_default, shapeInput)
+    }, other);
+    muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
+    muiTheme.unstable_sxConfig = _extends({}, defaultSxConfig_default, other == null ? void 0 : other.unstable_sxConfig);
+    muiTheme.unstable_sx = function sx(props) {
+      return styleFunctionSx_default({
+        sx: props,
+        theme: this
+      });
+    };
+    return muiTheme;
+  }
+  var createTheme_default = createTheme;
+
+  // node_modules/@mui/system/esm/useThemeWithoutDefault.js
+  var React7 = __toESM(require_react());
+  function isObjectEmpty(obj) {
+    return Object.keys(obj).length === 0;
+  }
+  function useTheme2(defaultTheme2 = null) {
+    const contextTheme = React7.useContext(ThemeContext);
+    return !contextTheme || isObjectEmpty(contextTheme) ? defaultTheme2 : contextTheme;
+  }
+  var useThemeWithoutDefault_default = useTheme2;
+
+  // node_modules/@mui/system/esm/useTheme.js
+  var systemDefaultTheme = createTheme_default();
+  function useTheme3(defaultTheme2 = systemDefaultTheme) {
+    return useThemeWithoutDefault_default(defaultTheme2);
+  }
+  var useTheme_default = useTheme3;
+
+  // node_modules/clsx/dist/clsx.m.js
+  function r(e2) {
+    var t2, f3, n3 = "";
+    if ("string" == typeof e2 || "number" == typeof e2)
+      n3 += e2;
+    else if ("object" == typeof e2)
+      if (Array.isArray(e2))
+        for (t2 = 0; t2 < e2.length; t2++)
+          e2[t2] && (f3 = r(e2[t2])) && (n3 && (n3 += " "), n3 += f3);
+      else
+        for (t2 in e2)
+          e2[t2] && (n3 && (n3 += " "), n3 += t2);
+    return n3;
+  }
+  function clsx() {
+    for (var e2, t2, f3 = 0, n3 = ""; f3 < arguments.length; )
+      (e2 = arguments[f3++]) && (t2 = r(e2)) && (n3 && (n3 += " "), n3 += t2);
+    return n3;
+  }
+  var clsx_m_default = clsx;
+
+  // node_modules/@mui/system/esm/propsToClassKey.js
+  var _excluded3 = ["variant"];
+  function isEmpty(string) {
+    return string.length === 0;
+  }
+  function propsToClassKey(props) {
+    const {
+      variant
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded3);
+    let classKey = variant || "";
+    Object.keys(other).sort().forEach((key) => {
+      if (key === "color") {
+        classKey += isEmpty(classKey) ? props[key] : capitalize(props[key]);
+      } else {
+        classKey += `${isEmpty(classKey) ? key : capitalize(key)}${capitalize(props[key].toString())}`;
+      }
+    });
+    return classKey;
+  }
+
+  // node_modules/@mui/system/esm/createStyled.js
+  var _excluded4 = ["name", "slot", "skipVariantsResolver", "skipSx", "overridesResolver"];
+  function isEmpty2(obj) {
+    return Object.keys(obj).length === 0;
+  }
+  function isStringTag(tag) {
+    return typeof tag === "string" && // 96 is one less than the char code
+    // for "a" so this is checking that
+    // it's a lowercase character
+    tag.charCodeAt(0) > 96;
+  }
+  var getStyleOverrides = (name, theme) => {
+    if (theme.components && theme.components[name] && theme.components[name].styleOverrides) {
+      return theme.components[name].styleOverrides;
+    }
+    return null;
+  };
+  var getVariantStyles = (name, theme) => {
+    let variants = [];
+    if (theme && theme.components && theme.components[name] && theme.components[name].variants) {
+      variants = theme.components[name].variants;
+    }
+    const variantsStyles = {};
+    variants.forEach((definition) => {
+      const key = propsToClassKey(definition.props);
+      variantsStyles[key] = definition.style;
+    });
+    return variantsStyles;
+  };
+  var variantsResolver = (props, styles, theme, name) => {
+    var _theme$components, _theme$components$nam;
+    const {
+      ownerState = {}
+    } = props;
+    const variantsStyles = [];
+    const themeVariants = theme == null ? void 0 : (_theme$components = theme.components) == null ? void 0 : (_theme$components$nam = _theme$components[name]) == null ? void 0 : _theme$components$nam.variants;
+    if (themeVariants) {
+      themeVariants.forEach((themeVariant) => {
+        let isMatch = true;
+        Object.keys(themeVariant.props).forEach((key) => {
+          if (ownerState[key] !== themeVariant.props[key] && props[key] !== themeVariant.props[key]) {
+            isMatch = false;
+          }
+        });
+        if (isMatch) {
+          variantsStyles.push(styles[propsToClassKey(themeVariant.props)]);
+        }
+      });
+    }
+    return variantsStyles;
+  };
+  function shouldForwardProp(prop) {
+    return prop !== "ownerState" && prop !== "theme" && prop !== "sx" && prop !== "as";
+  }
+  var systemDefaultTheme2 = createTheme_default();
+  var lowercaseFirstLetter = (string) => {
+    return string.charAt(0).toLowerCase() + string.slice(1);
+  };
+  function resolveTheme({
+    defaultTheme: defaultTheme2,
+    theme,
+    themeId
+  }) {
+    return isEmpty2(theme) ? defaultTheme2 : theme[themeId] || theme;
+  }
+  function createStyled3(input = {}) {
+    const {
+      themeId,
+      defaultTheme: defaultTheme2 = systemDefaultTheme2,
+      rootShouldForwardProp: rootShouldForwardProp2 = shouldForwardProp,
+      slotShouldForwardProp: slotShouldForwardProp2 = shouldForwardProp
+    } = input;
+    const systemSx = (props) => {
+      return styleFunctionSx_default(_extends({}, props, {
+        theme: resolveTheme(_extends({}, props, {
+          defaultTheme: defaultTheme2,
+          themeId
+        }))
+      }));
+    };
+    systemSx.__mui_systemSx = true;
+    return (tag, inputOptions = {}) => {
+      internal_processStyles(tag, (styles) => styles.filter((style3) => !(style3 != null && style3.__mui_systemSx)));
+      const {
+        name: componentName,
+        slot: componentSlot,
+        skipVariantsResolver: inputSkipVariantsResolver,
+        skipSx: inputSkipSx,
+        overridesResolver
+      } = inputOptions, options = _objectWithoutPropertiesLoose(inputOptions, _excluded4);
+      const skipVariantsResolver = inputSkipVariantsResolver !== void 0 ? inputSkipVariantsResolver : componentSlot && componentSlot !== "Root" || false;
+      const skipSx = inputSkipSx || false;
+      let label;
+      if (true) {
+        if (componentName) {
+          label = `${componentName}-${lowercaseFirstLetter(componentSlot || "Root")}`;
+        }
+      }
+      let shouldForwardPropOption = shouldForwardProp;
+      if (componentSlot === "Root") {
+        shouldForwardPropOption = rootShouldForwardProp2;
+      } else if (componentSlot) {
+        shouldForwardPropOption = slotShouldForwardProp2;
+      } else if (isStringTag(tag)) {
+        shouldForwardPropOption = void 0;
+      }
+      const defaultStyledResolver = styled(tag, _extends({
+        shouldForwardProp: shouldForwardPropOption,
+        label
+      }, options));
+      const muiStyledResolver = (styleArg, ...expressions) => {
+        const expressionsWithDefaultTheme = expressions ? expressions.map((stylesArg) => {
+          return typeof stylesArg === "function" && stylesArg.__emotion_real !== stylesArg ? (props) => {
+            return stylesArg(_extends({}, props, {
+              theme: resolveTheme(_extends({}, props, {
+                defaultTheme: defaultTheme2,
+                themeId
+              }))
+            }));
+          } : stylesArg;
+        }) : [];
+        let transformedStyleArg = styleArg;
+        if (componentName && overridesResolver) {
+          expressionsWithDefaultTheme.push((props) => {
+            const theme = resolveTheme(_extends({}, props, {
+              defaultTheme: defaultTheme2,
+              themeId
+            }));
+            const styleOverrides = getStyleOverrides(componentName, theme);
+            if (styleOverrides) {
+              const resolvedStyleOverrides = {};
+              Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
+                resolvedStyleOverrides[slotKey] = typeof slotStyle === "function" ? slotStyle(_extends({}, props, {
+                  theme
+                })) : slotStyle;
+              });
+              return overridesResolver(props, resolvedStyleOverrides);
+            }
+            return null;
+          });
+        }
+        if (componentName && !skipVariantsResolver) {
+          expressionsWithDefaultTheme.push((props) => {
+            const theme = resolveTheme(_extends({}, props, {
+              defaultTheme: defaultTheme2,
+              themeId
+            }));
+            return variantsResolver(props, getVariantStyles(componentName, theme), theme, componentName);
+          });
+        }
+        if (!skipSx) {
+          expressionsWithDefaultTheme.push(systemSx);
+        }
+        const numOfCustomFnsApplied = expressionsWithDefaultTheme.length - expressions.length;
+        if (Array.isArray(styleArg) && numOfCustomFnsApplied > 0) {
+          const placeholders = new Array(numOfCustomFnsApplied).fill("");
+          transformedStyleArg = [...styleArg, ...placeholders];
+          transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
+        } else if (typeof styleArg === "function" && // On the server Emotion doesn't use React.forwardRef for creating components, so the created
+        // component stays as a function. This condition makes sure that we do not interpolate functions
+        // which are basically components used as a selectors.
+        styleArg.__emotion_real !== styleArg) {
+          transformedStyleArg = (props) => styleArg(_extends({}, props, {
+            theme: resolveTheme(_extends({}, props, {
+              defaultTheme: defaultTheme2,
+              themeId
+            }))
+          }));
+        }
+        const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
+        if (true) {
+          let displayName;
+          if (componentName) {
+            displayName = `${componentName}${componentSlot || ""}`;
+          }
+          if (displayName === void 0) {
+            displayName = `Styled(${getDisplayName(tag)})`;
+          }
+          Component.displayName = displayName;
+        }
+        if (tag.muiName) {
+          Component.muiName = tag.muiName;
+        }
+        return Component;
+      };
+      if (defaultStyledResolver.withConfig) {
+        muiStyledResolver.withConfig = defaultStyledResolver.withConfig;
+      }
+      return muiStyledResolver;
+    };
+  }
+
+  // node_modules/@mui/system/esm/useThemeProps/getThemeProps.js
+  function getThemeProps(params) {
+    const {
+      theme,
+      name,
+      props
+    } = params;
+    if (!theme || !theme.components || !theme.components[name] || !theme.components[name].defaultProps) {
+      return props;
+    }
+    return resolveProps(theme.components[name].defaultProps, props);
+  }
+
+  // node_modules/@mui/system/esm/useThemeProps/useThemeProps.js
+  function useThemeProps({
+    props,
+    name,
+    defaultTheme: defaultTheme2,
+    themeId
+  }) {
+    let theme = useTheme_default(defaultTheme2);
+    if (themeId) {
+      theme = theme[themeId] || theme;
+    }
+    const mergedProps = getThemeProps({
+      theme,
+      name,
+      props
+    });
+    return mergedProps;
+  }
+
+  // node_modules/@mui/system/esm/colorManipulator.js
+  function clamp(value, min = 0, max = 1) {
+    if (true) {
+      if (value < min || value > max) {
+        console.error(`MUI: The value provided ${value} is out of range [${min}, ${max}].`);
+      }
+    }
+    return Math.min(Math.max(min, value), max);
+  }
+  function hexToRgb(color2) {
+    color2 = color2.slice(1);
+    const re2 = new RegExp(`.{1,${color2.length >= 6 ? 2 : 1}}`, "g");
+    let colors = color2.match(re2);
+    if (colors && colors[0].length === 1) {
+      colors = colors.map((n3) => n3 + n3);
+    }
+    return colors ? `rgb${colors.length === 4 ? "a" : ""}(${colors.map((n3, index) => {
+      return index < 3 ? parseInt(n3, 16) : Math.round(parseInt(n3, 16) / 255 * 1e3) / 1e3;
+    }).join(", ")})` : "";
+  }
+  function decomposeColor(color2) {
+    if (color2.type) {
+      return color2;
+    }
+    if (color2.charAt(0) === "#") {
+      return decomposeColor(hexToRgb(color2));
+    }
+    const marker = color2.indexOf("(");
+    const type = color2.substring(0, marker);
+    if (["rgb", "rgba", "hsl", "hsla", "color"].indexOf(type) === -1) {
+      throw new Error(true ? `MUI: Unsupported \`${color2}\` color.
+The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().` : formatMuiErrorMessage(9, color2));
+    }
+    let values2 = color2.substring(marker + 1, color2.length - 1);
+    let colorSpace;
+    if (type === "color") {
+      values2 = values2.split(" ");
+      colorSpace = values2.shift();
+      if (values2.length === 4 && values2[3].charAt(0) === "/") {
+        values2[3] = values2[3].slice(1);
+      }
+      if (["srgb", "display-p3", "a98-rgb", "prophoto-rgb", "rec-2020"].indexOf(colorSpace) === -1) {
+        throw new Error(true ? `MUI: unsupported \`${colorSpace}\` color space.
+The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.` : formatMuiErrorMessage(10, colorSpace));
+      }
+    } else {
+      values2 = values2.split(",");
+    }
+    values2 = values2.map((value) => parseFloat(value));
+    return {
+      type,
+      values: values2,
+      colorSpace
+    };
+  }
+  function recomposeColor(color2) {
+    const {
+      type,
+      colorSpace
+    } = color2;
+    let {
+      values: values2
+    } = color2;
+    if (type.indexOf("rgb") !== -1) {
+      values2 = values2.map((n3, i2) => i2 < 3 ? parseInt(n3, 10) : n3);
+    } else if (type.indexOf("hsl") !== -1) {
+      values2[1] = `${values2[1]}%`;
+      values2[2] = `${values2[2]}%`;
+    }
+    if (type.indexOf("color") !== -1) {
+      values2 = `${colorSpace} ${values2.join(" ")}`;
+    } else {
+      values2 = `${values2.join(", ")}`;
+    }
+    return `${type}(${values2})`;
+  }
+  function hslToRgb(color2) {
+    color2 = decomposeColor(color2);
+    const {
+      values: values2
+    } = color2;
+    const h3 = values2[0];
+    const s2 = values2[1] / 100;
+    const l3 = values2[2] / 100;
+    const a2 = s2 * Math.min(l3, 1 - l3);
+    const f3 = (n3, k = (n3 + h3 / 30) % 12) => l3 - a2 * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    let type = "rgb";
+    const rgb = [Math.round(f3(0) * 255), Math.round(f3(8) * 255), Math.round(f3(4) * 255)];
+    if (color2.type === "hsla") {
+      type += "a";
+      rgb.push(values2[3]);
+    }
+    return recomposeColor({
+      type,
+      values: rgb
+    });
+  }
+  function getLuminance(color2) {
+    color2 = decomposeColor(color2);
+    let rgb = color2.type === "hsl" || color2.type === "hsla" ? decomposeColor(hslToRgb(color2)).values : color2.values;
+    rgb = rgb.map((val) => {
+      if (color2.type !== "color") {
+        val /= 255;
+      }
+      return val <= 0.03928 ? val / 12.92 : ((val + 0.055) / 1.055) ** 2.4;
+    });
+    return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3));
+  }
+  function getContrastRatio(foreground, background) {
+    const lumA = getLuminance(foreground);
+    const lumB = getLuminance(background);
+    return (Math.max(lumA, lumB) + 0.05) / (Math.min(lumA, lumB) + 0.05);
+  }
+  function alpha(color2, value) {
+    color2 = decomposeColor(color2);
+    value = clamp(value);
+    if (color2.type === "rgb" || color2.type === "hsl") {
+      color2.type += "a";
+    }
+    if (color2.type === "color") {
+      color2.values[3] = `/${value}`;
+    } else {
+      color2.values[3] = value;
+    }
+    return recomposeColor(color2);
+  }
+  function darken(color2, coefficient) {
+    color2 = decomposeColor(color2);
+    coefficient = clamp(coefficient);
+    if (color2.type.indexOf("hsl") !== -1) {
+      color2.values[2] *= 1 - coefficient;
+    } else if (color2.type.indexOf("rgb") !== -1 || color2.type.indexOf("color") !== -1) {
+      for (let i2 = 0; i2 < 3; i2 += 1) {
+        color2.values[i2] *= 1 - coefficient;
+      }
+    }
+    return recomposeColor(color2);
+  }
+  function lighten(color2, coefficient) {
+    color2 = decomposeColor(color2);
+    coefficient = clamp(coefficient);
+    if (color2.type.indexOf("hsl") !== -1) {
+      color2.values[2] += (100 - color2.values[2]) * coefficient;
+    } else if (color2.type.indexOf("rgb") !== -1) {
+      for (let i2 = 0; i2 < 3; i2 += 1) {
+        color2.values[i2] += (255 - color2.values[i2]) * coefficient;
+      }
+    } else if (color2.type.indexOf("color") !== -1) {
+      for (let i2 = 0; i2 < 3; i2 += 1) {
+        color2.values[i2] += (1 - color2.values[i2]) * coefficient;
+      }
+    }
+    return recomposeColor(color2);
+  }
+
+  // node_modules/@mui/material/styles/createMixins.js
+  function createMixins(breakpoints, mixins) {
+    return _extends({
+      toolbar: {
+        minHeight: 56,
+        [breakpoints.up("xs")]: {
+          "@media (orientation: landscape)": {
+            minHeight: 48
+          }
+        },
+        [breakpoints.up("sm")]: {
+          minHeight: 64
+        }
+      }
+    }, mixins);
+  }
+
+  // node_modules/@mui/material/styles/createPalette.js
+  var _excluded5 = ["mode", "contrastThreshold", "tonalOffset"];
+  var light = {
+    // The colors used to style the text.
+    text: {
+      // The most important text.
+      primary: "rgba(0, 0, 0, 0.87)",
+      // Secondary text.
+      secondary: "rgba(0, 0, 0, 0.6)",
+      // Disabled text have even lower visual prominence.
+      disabled: "rgba(0, 0, 0, 0.38)"
+    },
+    // The color used to divide different elements.
+    divider: "rgba(0, 0, 0, 0.12)",
+    // The background colors used to style the surfaces.
+    // Consistency between these values is important.
+    background: {
+      paper: common_default.white,
+      default: common_default.white
+    },
+    // The colors used to style the action elements.
+    action: {
+      // The color of an active action like an icon button.
+      active: "rgba(0, 0, 0, 0.54)",
+      // The color of an hovered action.
+      hover: "rgba(0, 0, 0, 0.04)",
+      hoverOpacity: 0.04,
+      // The color of a selected action.
+      selected: "rgba(0, 0, 0, 0.08)",
+      selectedOpacity: 0.08,
+      // The color of a disabled action.
+      disabled: "rgba(0, 0, 0, 0.26)",
+      // The background color of a disabled action.
+      disabledBackground: "rgba(0, 0, 0, 0.12)",
+      disabledOpacity: 0.38,
+      focus: "rgba(0, 0, 0, 0.12)",
+      focusOpacity: 0.12,
+      activatedOpacity: 0.12
+    }
+  };
+  var dark = {
+    text: {
+      primary: common_default.white,
+      secondary: "rgba(255, 255, 255, 0.7)",
+      disabled: "rgba(255, 255, 255, 0.5)",
+      icon: "rgba(255, 255, 255, 0.5)"
+    },
+    divider: "rgba(255, 255, 255, 0.12)",
+    background: {
+      paper: "#121212",
+      default: "#121212"
+    },
+    action: {
+      active: common_default.white,
+      hover: "rgba(255, 255, 255, 0.08)",
+      hoverOpacity: 0.08,
+      selected: "rgba(255, 255, 255, 0.16)",
+      selectedOpacity: 0.16,
+      disabled: "rgba(255, 255, 255, 0.3)",
+      disabledBackground: "rgba(255, 255, 255, 0.12)",
+      disabledOpacity: 0.38,
+      focus: "rgba(255, 255, 255, 0.12)",
+      focusOpacity: 0.12,
+      activatedOpacity: 0.24
+    }
+  };
+  function addLightOrDark(intent, direction, shade, tonalOffset) {
+    const tonalOffsetLight = tonalOffset.light || tonalOffset;
+    const tonalOffsetDark = tonalOffset.dark || tonalOffset * 1.5;
+    if (!intent[direction]) {
+      if (intent.hasOwnProperty(shade)) {
+        intent[direction] = intent[shade];
+      } else if (direction === "light") {
+        intent.light = lighten(intent.main, tonalOffsetLight);
+      } else if (direction === "dark") {
+        intent.dark = darken(intent.main, tonalOffsetDark);
+      }
+    }
+  }
+  function getDefaultPrimary(mode = "light") {
+    if (mode === "dark") {
+      return {
+        main: blue_default[200],
+        light: blue_default[50],
+        dark: blue_default[400]
+      };
+    }
+    return {
+      main: blue_default[700],
+      light: blue_default[400],
+      dark: blue_default[800]
+    };
+  }
+  function getDefaultSecondary(mode = "light") {
+    if (mode === "dark") {
+      return {
+        main: purple_default[200],
+        light: purple_default[50],
+        dark: purple_default[400]
+      };
+    }
+    return {
+      main: purple_default[500],
+      light: purple_default[300],
+      dark: purple_default[700]
+    };
+  }
+  function getDefaultError(mode = "light") {
+    if (mode === "dark") {
+      return {
+        main: red_default[500],
+        light: red_default[300],
+        dark: red_default[700]
+      };
+    }
+    return {
+      main: red_default[700],
+      light: red_default[400],
+      dark: red_default[800]
+    };
+  }
+  function getDefaultInfo(mode = "light") {
+    if (mode === "dark") {
+      return {
+        main: lightBlue_default[400],
+        light: lightBlue_default[300],
+        dark: lightBlue_default[700]
+      };
+    }
+    return {
+      main: lightBlue_default[700],
+      light: lightBlue_default[500],
+      dark: lightBlue_default[900]
+    };
+  }
+  function getDefaultSuccess(mode = "light") {
+    if (mode === "dark") {
+      return {
+        main: green_default[400],
+        light: green_default[300],
+        dark: green_default[700]
+      };
+    }
+    return {
+      main: green_default[800],
+      light: green_default[500],
+      dark: green_default[900]
+    };
+  }
+  function getDefaultWarning(mode = "light") {
+    if (mode === "dark") {
+      return {
+        main: orange_default[400],
+        light: orange_default[300],
+        dark: orange_default[700]
+      };
+    }
+    return {
+      main: "#ed6c02",
+      // closest to orange[800] that pass 3:1.
+      light: orange_default[500],
+      dark: orange_default[900]
+    };
+  }
+  function createPalette(palette2) {
+    const {
+      mode = "light",
+      contrastThreshold = 3,
+      tonalOffset = 0.2
+    } = palette2, other = _objectWithoutPropertiesLoose(palette2, _excluded5);
+    const primary = palette2.primary || getDefaultPrimary(mode);
+    const secondary = palette2.secondary || getDefaultSecondary(mode);
+    const error = palette2.error || getDefaultError(mode);
+    const info = palette2.info || getDefaultInfo(mode);
+    const success = palette2.success || getDefaultSuccess(mode);
+    const warning = palette2.warning || getDefaultWarning(mode);
+    function getContrastText(background) {
+      const contrastText = getContrastRatio(background, dark.text.primary) >= contrastThreshold ? dark.text.primary : light.text.primary;
+      if (true) {
+        const contrast = getContrastRatio(background, contrastText);
+        if (contrast < 3) {
+          console.error([`MUI: The contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`, "falls below the WCAG recommended absolute minimum contrast ratio of 3:1.", "https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast"].join("\n"));
+        }
+      }
+      return contrastText;
+    }
+    const augmentColor = ({
+      color: color2,
+      name,
+      mainShade = 500,
+      lightShade = 300,
+      darkShade = 700
+    }) => {
+      color2 = _extends({}, color2);
+      if (!color2.main && color2[mainShade]) {
+        color2.main = color2[mainShade];
+      }
+      if (!color2.hasOwnProperty("main")) {
+        throw new Error(true ? `MUI: The color${name ? ` (${name})` : ""} provided to augmentColor(color) is invalid.
+The color object needs to have a \`main\` property or a \`${mainShade}\` property.` : formatMuiErrorMessage(11, name ? ` (${name})` : "", mainShade));
+      }
+      if (typeof color2.main !== "string") {
+        throw new Error(true ? `MUI: The color${name ? ` (${name})` : ""} provided to augmentColor(color) is invalid.
+\`color.main\` should be a string, but \`${JSON.stringify(color2.main)}\` was provided instead.
+
+Did you intend to use one of the following approaches?
+
+import { green } from "@mui/material/colors";
+
+const theme1 = createTheme({ palette: {
+  primary: green,
+} });
+
+const theme2 = createTheme({ palette: {
+  primary: { main: green[500] },
+} });` : formatMuiErrorMessage(12, name ? ` (${name})` : "", JSON.stringify(color2.main)));
+      }
+      addLightOrDark(color2, "light", lightShade, tonalOffset);
+      addLightOrDark(color2, "dark", darkShade, tonalOffset);
+      if (!color2.contrastText) {
+        color2.contrastText = getContrastText(color2.main);
+      }
+      return color2;
+    };
+    const modes = {
+      dark,
+      light
+    };
+    if (true) {
+      if (!modes[mode]) {
+        console.error(`MUI: The palette mode \`${mode}\` is not supported.`);
+      }
+    }
+    const paletteOutput = deepmerge(_extends({
+      // A collection of common colors.
+      common: _extends({}, common_default),
+      // prevent mutable object.
+      // The palette mode, can be light or dark.
+      mode,
+      // The colors used to represent primary interface elements for a user.
+      primary: augmentColor({
+        color: primary,
+        name: "primary"
+      }),
+      // The colors used to represent secondary interface elements for a user.
+      secondary: augmentColor({
+        color: secondary,
+        name: "secondary",
+        mainShade: "A400",
+        lightShade: "A200",
+        darkShade: "A700"
+      }),
+      // The colors used to represent interface elements that the user should be made aware of.
+      error: augmentColor({
+        color: error,
+        name: "error"
+      }),
+      // The colors used to represent potentially dangerous actions or important messages.
+      warning: augmentColor({
+        color: warning,
+        name: "warning"
+      }),
+      // The colors used to present information to the user that is neutral and not necessarily important.
+      info: augmentColor({
+        color: info,
+        name: "info"
+      }),
+      // The colors used to indicate the successful completion of an action that user triggered.
+      success: augmentColor({
+        color: success,
+        name: "success"
+      }),
+      // The grey colors.
+      grey: grey_default,
+      // Used by `getContrastText()` to maximize the contrast between
+      // the background and the text.
+      contrastThreshold,
+      // Takes a background color and returns the text color that maximizes the contrast.
+      getContrastText,
+      // Generate a rich color object.
+      augmentColor,
+      // Used by the functions below to shift a color's luminance by approximately
+      // two indexes within its tonal palette.
+      // E.g., shift from Red 500 to Red 300 or Red 700.
+      tonalOffset
+    }, modes[mode]), other);
+    return paletteOutput;
+  }
+
+  // node_modules/@mui/material/styles/createTypography.js
+  var _excluded6 = ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "fontWeightBold", "htmlFontSize", "allVariants", "pxToRem"];
+  function round(value) {
+    return Math.round(value * 1e5) / 1e5;
+  }
+  var caseAllCaps = {
+    textTransform: "uppercase"
+  };
+  var defaultFontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
+  function createTypography(palette2, typography) {
+    const _ref = typeof typography === "function" ? typography(palette2) : typography, {
+      fontFamily = defaultFontFamily,
+      // The default font size of the Material Specification.
+      fontSize = 14,
+      // px
+      fontWeightLight = 300,
+      fontWeightRegular = 400,
+      fontWeightMedium = 500,
+      fontWeightBold = 700,
+      // Tell MUI what's the font-size on the html element.
+      // 16px is the default font-size used by browsers.
+      htmlFontSize = 16,
+      // Apply the CSS properties to all the variants.
+      allVariants,
+      pxToRem: pxToRem2
+    } = _ref, other = _objectWithoutPropertiesLoose(_ref, _excluded6);
+    if (true) {
+      if (typeof fontSize !== "number") {
+        console.error("MUI: `fontSize` is required to be a number.");
+      }
+      if (typeof htmlFontSize !== "number") {
+        console.error("MUI: `htmlFontSize` is required to be a number.");
+      }
+    }
+    const coef = fontSize / 14;
+    const pxToRem = pxToRem2 || ((size) => `${size / htmlFontSize * coef}rem`);
+    const buildVariant = (fontWeight, size, lineHeight, letterSpacing, casing) => _extends({
+      fontFamily,
+      fontWeight,
+      fontSize: pxToRem(size),
+      // Unitless following https://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
+      lineHeight
+    }, fontFamily === defaultFontFamily ? {
+      letterSpacing: `${round(letterSpacing / size)}em`
+    } : {}, casing, allVariants);
+    const variants = {
+      h1: buildVariant(fontWeightLight, 96, 1.167, -1.5),
+      h2: buildVariant(fontWeightLight, 60, 1.2, -0.5),
+      h3: buildVariant(fontWeightRegular, 48, 1.167, 0),
+      h4: buildVariant(fontWeightRegular, 34, 1.235, 0.25),
+      h5: buildVariant(fontWeightRegular, 24, 1.334, 0),
+      h6: buildVariant(fontWeightMedium, 20, 1.6, 0.15),
+      subtitle1: buildVariant(fontWeightRegular, 16, 1.75, 0.15),
+      subtitle2: buildVariant(fontWeightMedium, 14, 1.57, 0.1),
+      body1: buildVariant(fontWeightRegular, 16, 1.5, 0.15),
+      body2: buildVariant(fontWeightRegular, 14, 1.43, 0.15),
+      button: buildVariant(fontWeightMedium, 14, 1.75, 0.4, caseAllCaps),
+      caption: buildVariant(fontWeightRegular, 12, 1.66, 0.4),
+      overline: buildVariant(fontWeightRegular, 12, 2.66, 1, caseAllCaps),
+      inherit: {
+        fontFamily: "inherit",
+        fontWeight: "inherit",
+        fontSize: "inherit",
+        lineHeight: "inherit",
+        letterSpacing: "inherit"
+      }
+    };
+    return deepmerge(_extends({
+      htmlFontSize,
+      pxToRem,
+      fontFamily,
+      fontSize,
+      fontWeightLight,
+      fontWeightRegular,
+      fontWeightMedium,
+      fontWeightBold
+    }, variants), other, {
+      clone: false
+      // No need to clone deep
+    });
+  }
+
+  // node_modules/@mui/material/styles/shadows.js
+  var shadowKeyUmbraOpacity = 0.2;
+  var shadowKeyPenumbraOpacity = 0.14;
+  var shadowAmbientShadowOpacity = 0.12;
+  function createShadow(...px) {
+    return [`${px[0]}px ${px[1]}px ${px[2]}px ${px[3]}px rgba(0,0,0,${shadowKeyUmbraOpacity})`, `${px[4]}px ${px[5]}px ${px[6]}px ${px[7]}px rgba(0,0,0,${shadowKeyPenumbraOpacity})`, `${px[8]}px ${px[9]}px ${px[10]}px ${px[11]}px rgba(0,0,0,${shadowAmbientShadowOpacity})`].join(",");
+  }
+  var shadows = ["none", createShadow(0, 2, 1, -1, 0, 1, 1, 0, 0, 1, 3, 0), createShadow(0, 3, 1, -2, 0, 2, 2, 0, 0, 1, 5, 0), createShadow(0, 3, 3, -2, 0, 3, 4, 0, 0, 1, 8, 0), createShadow(0, 2, 4, -1, 0, 4, 5, 0, 0, 1, 10, 0), createShadow(0, 3, 5, -1, 0, 5, 8, 0, 0, 1, 14, 0), createShadow(0, 3, 5, -1, 0, 6, 10, 0, 0, 1, 18, 0), createShadow(0, 4, 5, -2, 0, 7, 10, 1, 0, 2, 16, 1), createShadow(0, 5, 5, -3, 0, 8, 10, 1, 0, 3, 14, 2), createShadow(0, 5, 6, -3, 0, 9, 12, 1, 0, 3, 16, 2), createShadow(0, 6, 6, -3, 0, 10, 14, 1, 0, 4, 18, 3), createShadow(0, 6, 7, -4, 0, 11, 15, 1, 0, 4, 20, 3), createShadow(0, 7, 8, -4, 0, 12, 17, 2, 0, 5, 22, 4), createShadow(0, 7, 8, -4, 0, 13, 19, 2, 0, 5, 24, 4), createShadow(0, 7, 9, -4, 0, 14, 21, 2, 0, 5, 26, 4), createShadow(0, 8, 9, -5, 0, 15, 22, 2, 0, 6, 28, 5), createShadow(0, 8, 10, -5, 0, 16, 24, 2, 0, 6, 30, 5), createShadow(0, 8, 11, -5, 0, 17, 26, 2, 0, 6, 32, 5), createShadow(0, 9, 11, -5, 0, 18, 28, 2, 0, 7, 34, 6), createShadow(0, 9, 12, -6, 0, 19, 29, 2, 0, 7, 36, 6), createShadow(0, 10, 13, -6, 0, 20, 31, 3, 0, 8, 38, 7), createShadow(0, 10, 13, -6, 0, 21, 33, 3, 0, 8, 40, 7), createShadow(0, 10, 14, -6, 0, 22, 35, 3, 0, 8, 42, 7), createShadow(0, 11, 14, -7, 0, 23, 36, 3, 0, 9, 44, 8), createShadow(0, 11, 15, -7, 0, 24, 38, 3, 0, 9, 46, 8)];
+  var shadows_default = shadows;
+
+  // node_modules/@mui/material/styles/createTransitions.js
+  var _excluded7 = ["duration", "easing", "delay"];
+  var easing = {
+    // This is the most common easing curve.
+    easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+    // Objects enter the screen at full velocity from off-screen and
+    // slowly decelerate to a resting point.
+    easeOut: "cubic-bezier(0.0, 0, 0.2, 1)",
+    // Objects leave the screen at full velocity. They do not decelerate when off-screen.
+    easeIn: "cubic-bezier(0.4, 0, 1, 1)",
+    // The sharp curve is used by objects that may return to the screen at any time.
+    sharp: "cubic-bezier(0.4, 0, 0.6, 1)"
+  };
+  var duration = {
+    shortest: 150,
+    shorter: 200,
+    short: 250,
+    // most basic recommended timing
+    standard: 300,
+    // this is to be used in complex animations
+    complex: 375,
+    // recommended when something is entering screen
+    enteringScreen: 225,
+    // recommended when something is leaving screen
+    leavingScreen: 195
+  };
+  function formatMs(milliseconds) {
+    return `${Math.round(milliseconds)}ms`;
+  }
+  function getAutoHeightDuration(height2) {
+    if (!height2) {
+      return 0;
+    }
+    const constant = height2 / 36;
+    return Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10);
+  }
+  function createTransitions(inputTransitions) {
+    const mergedEasing = _extends({}, easing, inputTransitions.easing);
+    const mergedDuration = _extends({}, duration, inputTransitions.duration);
+    const create = (props = ["all"], options = {}) => {
+      const {
+        duration: durationOption = mergedDuration.standard,
+        easing: easingOption = mergedEasing.easeInOut,
+        delay = 0
+      } = options, other = _objectWithoutPropertiesLoose(options, _excluded7);
+      if (true) {
+        const isString = (value) => typeof value === "string";
+        const isNumber = (value) => !isNaN(parseFloat(value));
+        if (!isString(props) && !Array.isArray(props)) {
+          console.error('MUI: Argument "props" must be a string or Array.');
+        }
+        if (!isNumber(durationOption) && !isString(durationOption)) {
+          console.error(`MUI: Argument "duration" must be a number or a string but found ${durationOption}.`);
+        }
+        if (!isString(easingOption)) {
+          console.error('MUI: Argument "easing" must be a string.');
+        }
+        if (!isNumber(delay) && !isString(delay)) {
+          console.error('MUI: Argument "delay" must be a number or a string.');
+        }
+        if (Object.keys(other).length !== 0) {
+          console.error(`MUI: Unrecognized argument(s) [${Object.keys(other).join(",")}].`);
+        }
+      }
+      return (Array.isArray(props) ? props : [props]).map((animatedProp) => `${animatedProp} ${typeof durationOption === "string" ? durationOption : formatMs(durationOption)} ${easingOption} ${typeof delay === "string" ? delay : formatMs(delay)}`).join(",");
+    };
+    return _extends({
+      getAutoHeightDuration,
+      create
+    }, inputTransitions, {
+      easing: mergedEasing,
+      duration: mergedDuration
+    });
+  }
+
+  // node_modules/@mui/material/styles/zIndex.js
+  var zIndex = {
+    mobileStepper: 1e3,
+    fab: 1050,
+    speedDial: 1050,
+    appBar: 1100,
+    drawer: 1200,
+    modal: 1300,
+    snackbar: 1400,
+    tooltip: 1500
+  };
+  var zIndex_default = zIndex;
+
+  // node_modules/@mui/material/styles/createTheme.js
+  var _excluded8 = ["breakpoints", "mixins", "spacing", "palette", "transitions", "typography", "shape"];
+  function createTheme2(options = {}, ...args) {
+    const {
+      mixins: mixinsInput = {},
+      palette: paletteInput = {},
+      transitions: transitionsInput = {},
+      typography: typographyInput = {}
+    } = options, other = _objectWithoutPropertiesLoose(options, _excluded8);
+    if (options.vars) {
+      throw new Error(true ? `MUI: \`vars\` is a private field used for CSS variables support.
+Please use another name.` : formatMuiErrorMessage(18));
+    }
+    const palette2 = createPalette(paletteInput);
+    const systemTheme = createTheme_default(options);
+    let muiTheme = deepmerge(systemTheme, {
+      mixins: createMixins(systemTheme.breakpoints, mixinsInput),
+      palette: palette2,
+      // Don't use [...shadows] until you've verified its transpiled code is not invoking the iterator protocol.
+      shadows: shadows_default.slice(),
+      typography: createTypography(palette2, typographyInput),
+      transitions: createTransitions(transitionsInput),
+      zIndex: _extends({}, zIndex_default)
+    });
+    muiTheme = deepmerge(muiTheme, other);
+    muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
+    if (true) {
+      const stateClasses = ["active", "checked", "completed", "disabled", "error", "expanded", "focused", "focusVisible", "required", "selected"];
+      const traverse = (node2, component) => {
+        let key;
+        for (key in node2) {
+          const child = node2[key];
+          if (stateClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
+            if (true) {
+              const stateClass = generateUtilityClass("", key);
+              console.error([`MUI: The \`${component}\` component increases the CSS specificity of the \`${key}\` internal state.`, "You can not override it like this: ", JSON.stringify(node2, null, 2), "", `Instead, you need to use the '&.${stateClass}' syntax:`, JSON.stringify({
+                root: {
+                  [`&.${stateClass}`]: child
+                }
+              }, null, 2), "", "https://mui.com/r/state-classes-guide"].join("\n"));
+            }
+            node2[key] = {};
+          }
+        }
+      };
+      Object.keys(muiTheme.components).forEach((component) => {
+        const styleOverrides = muiTheme.components[component].styleOverrides;
+        if (styleOverrides && component.indexOf("Mui") === 0) {
+          traverse(styleOverrides, component);
+        }
+      });
+    }
+    muiTheme.unstable_sxConfig = _extends({}, defaultSxConfig_default, other == null ? void 0 : other.unstable_sxConfig);
+    muiTheme.unstable_sx = function sx(props) {
+      return styleFunctionSx_default({
+        sx: props,
+        theme: this
+      });
+    };
+    return muiTheme;
+  }
+  var createTheme_default2 = createTheme2;
+
+  // node_modules/@mui/material/styles/useTheme.js
+  var React8 = __toESM(require_react());
+
+  // node_modules/@mui/material/styles/defaultTheme.js
+  var defaultTheme = createTheme_default2();
+  var defaultTheme_default = defaultTheme;
+
+  // node_modules/@mui/material/styles/useTheme.js
+  function useTheme4() {
+    const theme = useTheme_default(defaultTheme_default);
+    if (true) {
+      React8.useDebugValue(theme);
+    }
+    return theme[identifier_default] || theme;
+  }
+
+  // node_modules/@mui/material/styles/useThemeProps.js
+  function useThemeProps2({
+    props,
+    name
+  }) {
+    return useThemeProps({
+      props,
+      name,
+      defaultTheme: defaultTheme_default,
+      themeId: identifier_default
+    });
+  }
+
+  // node_modules/@mui/material/styles/styled.js
+  var rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== "classes";
+  var slotShouldForwardProp = shouldForwardProp;
+  var styled2 = createStyled3({
+    themeId: identifier_default,
+    defaultTheme: defaultTheme_default,
+    rootShouldForwardProp
+  });
+  var styled_default = styled2;
+
+  // node_modules/@mui/material/utils/capitalize.js
+  var capitalize_default = capitalize;
+
+  // node_modules/@mui/base/utils/isHostComponent.js
+  function isHostComponent(element) {
+    return typeof element === "string";
+  }
+
+  // node_modules/@mui/base/utils/appendOwnerState.js
+  function appendOwnerState(elementType, otherProps, ownerState) {
+    if (elementType === void 0 || isHostComponent(elementType)) {
+      return otherProps;
+    }
+    return _extends({}, otherProps, {
+      ownerState: _extends({}, otherProps.ownerState, ownerState)
+    });
+  }
+
+  // node_modules/@mui/base/utils/extractEventHandlers.js
+  function extractEventHandlers(object, excludeKeys = []) {
+    if (object === void 0) {
+      return {};
+    }
+    const result = {};
+    Object.keys(object).filter((prop) => prop.match(/^on[A-Z]/) && typeof object[prop] === "function" && !excludeKeys.includes(prop)).forEach((prop) => {
+      result[prop] = object[prop];
+    });
+    return result;
+  }
+
+  // node_modules/@mui/base/utils/resolveComponentProps.js
+  function resolveComponentProps(componentProps, ownerState) {
+    if (typeof componentProps === "function") {
+      return componentProps(ownerState);
+    }
+    return componentProps;
+  }
+
+  // node_modules/@mui/base/utils/omitEventHandlers.js
+  function omitEventHandlers(object) {
+    if (object === void 0) {
+      return {};
+    }
+    const result = {};
+    Object.keys(object).filter((prop) => !(prop.match(/^on[A-Z]/) && typeof object[prop] === "function")).forEach((prop) => {
+      result[prop] = object[prop];
+    });
+    return result;
+  }
+
+  // node_modules/@mui/base/utils/mergeSlotProps.js
+  function mergeSlotProps(parameters) {
+    const {
+      getSlotProps,
+      additionalProps,
+      externalSlotProps,
+      externalForwardedProps,
+      className
+    } = parameters;
+    if (!getSlotProps) {
+      const joinedClasses2 = clsx_m_default(externalForwardedProps == null ? void 0 : externalForwardedProps.className, externalSlotProps == null ? void 0 : externalSlotProps.className, className, additionalProps == null ? void 0 : additionalProps.className);
+      const mergedStyle2 = _extends({}, additionalProps == null ? void 0 : additionalProps.style, externalForwardedProps == null ? void 0 : externalForwardedProps.style, externalSlotProps == null ? void 0 : externalSlotProps.style);
+      const props2 = _extends({}, additionalProps, externalForwardedProps, externalSlotProps);
+      if (joinedClasses2.length > 0) {
+        props2.className = joinedClasses2;
+      }
+      if (Object.keys(mergedStyle2).length > 0) {
+        props2.style = mergedStyle2;
+      }
+      return {
+        props: props2,
+        internalRef: void 0
+      };
+    }
+    const eventHandlers = extractEventHandlers(_extends({}, externalForwardedProps, externalSlotProps));
+    const componentsPropsWithoutEventHandlers = omitEventHandlers(externalSlotProps);
+    const otherPropsWithoutEventHandlers = omitEventHandlers(externalForwardedProps);
+    const internalSlotProps = getSlotProps(eventHandlers);
+    const joinedClasses = clsx_m_default(internalSlotProps == null ? void 0 : internalSlotProps.className, additionalProps == null ? void 0 : additionalProps.className, className, externalForwardedProps == null ? void 0 : externalForwardedProps.className, externalSlotProps == null ? void 0 : externalSlotProps.className);
+    const mergedStyle = _extends({}, internalSlotProps == null ? void 0 : internalSlotProps.style, additionalProps == null ? void 0 : additionalProps.style, externalForwardedProps == null ? void 0 : externalForwardedProps.style, externalSlotProps == null ? void 0 : externalSlotProps.style);
+    const props = _extends({}, internalSlotProps, additionalProps, otherPropsWithoutEventHandlers, componentsPropsWithoutEventHandlers);
+    if (joinedClasses.length > 0) {
+      props.className = joinedClasses;
+    }
+    if (Object.keys(mergedStyle).length > 0) {
+      props.style = mergedStyle;
+    }
+    return {
+      props,
+      internalRef: internalSlotProps.ref
+    };
+  }
+
+  // node_modules/@mui/base/utils/useSlotProps.js
+  var _excluded9 = ["elementType", "externalSlotProps", "ownerState"];
+  function useSlotProps(parameters) {
+    var _parameters$additiona;
+    const {
+      elementType,
+      externalSlotProps,
+      ownerState
+    } = parameters, rest = _objectWithoutPropertiesLoose(parameters, _excluded9);
+    const resolvedComponentsProps = resolveComponentProps(externalSlotProps, ownerState);
+    const {
+      props: mergedProps,
+      internalRef
+    } = mergeSlotProps(_extends({}, rest, {
+      externalSlotProps: resolvedComponentsProps
+    }));
+    const ref = useForkRef(internalRef, resolvedComponentsProps == null ? void 0 : resolvedComponentsProps.ref, (_parameters$additiona = parameters.additionalProps) == null ? void 0 : _parameters$additiona.ref);
+    const props = appendOwnerState(elementType, _extends({}, mergedProps, {
+      ref
+    }), ownerState);
+    return props;
+  }
+
+  // node_modules/@mui/base/useSlider/useSlider.js
+  var React9 = __toESM(require_react());
+  var INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
+  function asc(a2, b3) {
+    return a2 - b3;
+  }
+  function clamp2(value, min, max) {
+    if (value == null) {
+      return min;
+    }
+    return Math.min(Math.max(min, value), max);
+  }
+  function findClosest(values2, currentValue) {
+    var _values$reduce;
+    const {
+      index: closestIndex
+    } = (_values$reduce = values2.reduce((acc, value, index) => {
+      const distance = Math.abs(currentValue - value);
+      if (acc === null || distance < acc.distance || distance === acc.distance) {
+        return {
+          distance,
+          index
+        };
+      }
+      return acc;
+    }, null)) != null ? _values$reduce : {};
+    return closestIndex;
+  }
+  function trackFinger(event, touchId) {
+    if (touchId.current !== void 0 && event.changedTouches) {
+      const touchEvent = event;
+      for (let i2 = 0; i2 < touchEvent.changedTouches.length; i2 += 1) {
+        const touch = touchEvent.changedTouches[i2];
+        if (touch.identifier === touchId.current) {
+          return {
+            x: touch.clientX,
+            y: touch.clientY
+          };
+        }
+      }
+      return false;
+    }
+    return {
+      x: event.clientX,
+      y: event.clientY
+    };
+  }
+  function valueToPercent(value, min, max) {
+    return (value - min) * 100 / (max - min);
+  }
+  function percentToValue(percent, min, max) {
+    return (max - min) * percent + min;
+  }
+  function getDecimalPrecision(num) {
+    if (Math.abs(num) < 1) {
+      const parts = num.toExponential().split("e-");
+      const matissaDecimalPart = parts[0].split(".")[1];
+      return (matissaDecimalPart ? matissaDecimalPart.length : 0) + parseInt(parts[1], 10);
+    }
+    const decimalPart = num.toString().split(".")[1];
+    return decimalPart ? decimalPart.length : 0;
+  }
+  function roundValueToStep(value, step, min) {
+    const nearest = Math.round((value - min) / step) * step + min;
+    return Number(nearest.toFixed(getDecimalPrecision(step)));
+  }
+  function setValueIndex({
+    values: values2,
+    newValue,
+    index
+  }) {
+    const output = values2.slice();
+    output[index] = newValue;
+    return output.sort(asc);
+  }
+  function focusThumb({
+    sliderRef,
+    activeIndex,
+    setActive
+  }) {
+    var _sliderRef$current, _doc$activeElement;
+    const doc = ownerDocument(sliderRef.current);
+    if (!((_sliderRef$current = sliderRef.current) != null && _sliderRef$current.contains(doc.activeElement)) || Number(doc == null ? void 0 : (_doc$activeElement = doc.activeElement) == null ? void 0 : _doc$activeElement.getAttribute("data-index")) !== activeIndex) {
+      var _sliderRef$current2;
+      (_sliderRef$current2 = sliderRef.current) == null ? void 0 : _sliderRef$current2.querySelector(`[type="range"][data-index="${activeIndex}"]`).focus();
+    }
+    if (setActive) {
+      setActive(activeIndex);
+    }
+  }
+  var axisProps = {
+    horizontal: {
+      offset: (percent) => ({
+        left: `${percent}%`
+      }),
+      leap: (percent) => ({
+        width: `${percent}%`
+      })
+    },
+    "horizontal-reverse": {
+      offset: (percent) => ({
+        right: `${percent}%`
+      }),
+      leap: (percent) => ({
+        width: `${percent}%`
+      })
+    },
+    vertical: {
+      offset: (percent) => ({
+        bottom: `${percent}%`
+      }),
+      leap: (percent) => ({
+        height: `${percent}%`
+      })
+    }
+  };
+  var Identity = (x) => x;
+  var cachedSupportsTouchActionNone;
+  function doesSupportTouchActionNone() {
+    if (cachedSupportsTouchActionNone === void 0) {
+      if (typeof CSS !== "undefined" && typeof CSS.supports === "function") {
+        cachedSupportsTouchActionNone = CSS.supports("touch-action", "none");
+      } else {
+        cachedSupportsTouchActionNone = true;
+      }
+    }
+    return cachedSupportsTouchActionNone;
+  }
+  function useSlider(parameters) {
+    const {
+      "aria-labelledby": ariaLabelledby,
+      defaultValue,
+      disabled = false,
+      disableSwap = false,
+      isRtl = false,
+      marks: marksProp = false,
+      max = 100,
+      min = 0,
+      name,
+      onChange,
+      onChangeCommitted,
+      orientation = "horizontal",
+      ref,
+      scale = Identity,
+      step = 1,
+      tabIndex,
+      value: valueProp
+    } = parameters;
+    const touchId = React9.useRef();
+    const [active, setActive] = React9.useState(-1);
+    const [open, setOpen] = React9.useState(-1);
+    const [dragging, setDragging] = React9.useState(false);
+    const moveCount = React9.useRef(0);
+    const [valueDerived, setValueState] = useControlled({
+      controlled: valueProp,
+      default: defaultValue != null ? defaultValue : min,
+      name: "Slider"
+    });
+    const handleChange = onChange && ((event, value, thumbIndex) => {
+      const nativeEvent = event.nativeEvent || event;
+      const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+      Object.defineProperty(clonedEvent, "target", {
+        writable: true,
+        value: {
+          value,
+          name
+        }
+      });
+      onChange(clonedEvent, value, thumbIndex);
+    });
+    const range = Array.isArray(valueDerived);
+    let values2 = range ? valueDerived.slice().sort(asc) : [valueDerived];
+    values2 = values2.map((value) => clamp2(value, min, max));
+    const marks = marksProp === true && step !== null ? [...Array(Math.floor((max - min) / step) + 1)].map((_2, index) => ({
+      value: min + step * index
+    })) : marksProp || [];
+    const marksValues = marks.map((mark) => mark.value);
+    const {
+      isFocusVisibleRef,
+      onBlur: handleBlurVisible,
+      onFocus: handleFocusVisible,
+      ref: focusVisibleRef
+    } = useIsFocusVisible();
+    const [focusedThumbIndex, setFocusedThumbIndex] = React9.useState(-1);
+    const sliderRef = React9.useRef();
+    const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
+    const handleRef = useForkRef(ref, handleFocusRef);
+    const createHandleHiddenInputFocus = (otherHandlers) => (event) => {
+      var _otherHandlers$onFocu;
+      const index = Number(event.currentTarget.getAttribute("data-index"));
+      handleFocusVisible(event);
+      if (isFocusVisibleRef.current === true) {
+        setFocusedThumbIndex(index);
+      }
+      setOpen(index);
+      otherHandlers == null ? void 0 : (_otherHandlers$onFocu = otherHandlers.onFocus) == null ? void 0 : _otherHandlers$onFocu.call(otherHandlers, event);
+    };
+    const createHandleHiddenInputBlur = (otherHandlers) => (event) => {
+      var _otherHandlers$onBlur;
+      handleBlurVisible(event);
+      if (isFocusVisibleRef.current === false) {
+        setFocusedThumbIndex(-1);
+      }
+      setOpen(-1);
+      otherHandlers == null ? void 0 : (_otherHandlers$onBlur = otherHandlers.onBlur) == null ? void 0 : _otherHandlers$onBlur.call(otherHandlers, event);
+    };
+    useEnhancedEffect_default(() => {
+      if (disabled && sliderRef.current.contains(document.activeElement)) {
+        var _document$activeEleme;
+        (_document$activeEleme = document.activeElement) == null ? void 0 : _document$activeEleme.blur();
+      }
+    }, [disabled]);
+    if (disabled && active !== -1) {
+      setActive(-1);
+    }
+    if (disabled && focusedThumbIndex !== -1) {
+      setFocusedThumbIndex(-1);
+    }
+    const createHandleHiddenInputChange = (otherHandlers) => (event) => {
+      var _otherHandlers$onChan;
+      (_otherHandlers$onChan = otherHandlers.onChange) == null ? void 0 : _otherHandlers$onChan.call(otherHandlers, event);
+      const index = Number(event.currentTarget.getAttribute("data-index"));
+      const value = values2[index];
+      const marksIndex = marksValues.indexOf(value);
+      let newValue = event.target.valueAsNumber;
+      if (marks && step == null) {
+        newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
+      }
+      newValue = clamp2(newValue, min, max);
+      if (marks && step == null) {
+        const currentMarkIndex = marksValues.indexOf(values2[index]);
+        newValue = newValue < values2[index] ? marksValues[currentMarkIndex - 1] : marksValues[currentMarkIndex + 1];
+      }
+      if (range) {
+        if (disableSwap) {
+          newValue = clamp2(newValue, values2[index - 1] || -Infinity, values2[index + 1] || Infinity);
+        }
+        const previousValue = newValue;
+        newValue = setValueIndex({
+          values: values2,
+          newValue,
+          index
+        });
+        let activeIndex = index;
+        if (!disableSwap) {
+          activeIndex = newValue.indexOf(previousValue);
+        }
+        focusThumb({
+          sliderRef,
+          activeIndex
+        });
+      }
+      setValueState(newValue);
+      setFocusedThumbIndex(index);
+      if (handleChange) {
+        handleChange(event, newValue, index);
+      }
+      if (onChangeCommitted) {
+        onChangeCommitted(event, newValue);
+      }
+    };
+    const previousIndex = React9.useRef();
+    let axis = orientation;
+    if (isRtl && orientation === "horizontal") {
+      axis += "-reverse";
+    }
+    const getFingerNewValue = ({
+      finger,
+      move = false
+    }) => {
+      const {
+        current: slider
+      } = sliderRef;
+      const {
+        width: width2,
+        height: height2,
+        bottom,
+        left
+      } = slider.getBoundingClientRect();
+      let percent;
+      if (axis.indexOf("vertical") === 0) {
+        percent = (bottom - finger.y) / height2;
+      } else {
+        percent = (finger.x - left) / width2;
+      }
+      if (axis.indexOf("-reverse") !== -1) {
+        percent = 1 - percent;
+      }
+      let newValue;
+      newValue = percentToValue(percent, min, max);
+      if (step) {
+        newValue = roundValueToStep(newValue, step, min);
+      } else {
+        const closestIndex = findClosest(marksValues, newValue);
+        newValue = marksValues[closestIndex];
+      }
+      newValue = clamp2(newValue, min, max);
+      let activeIndex = 0;
+      if (range) {
+        if (!move) {
+          activeIndex = findClosest(values2, newValue);
+        } else {
+          activeIndex = previousIndex.current;
+        }
+        if (disableSwap) {
+          newValue = clamp2(newValue, values2[activeIndex - 1] || -Infinity, values2[activeIndex + 1] || Infinity);
+        }
+        const previousValue = newValue;
+        newValue = setValueIndex({
+          values: values2,
+          newValue,
+          index: activeIndex
+        });
+        if (!(disableSwap && move)) {
+          activeIndex = newValue.indexOf(previousValue);
+          previousIndex.current = activeIndex;
+        }
+      }
+      return {
+        newValue,
+        activeIndex
+      };
+    };
+    const handleTouchMove = useEventCallback((nativeEvent) => {
+      const finger = trackFinger(nativeEvent, touchId);
+      if (!finger) {
+        return;
+      }
+      moveCount.current += 1;
+      if (nativeEvent.type === "mousemove" && nativeEvent.buttons === 0) {
+        handleTouchEnd(nativeEvent);
+        return;
+      }
+      const {
+        newValue,
+        activeIndex
+      } = getFingerNewValue({
+        finger,
+        move: true
+      });
+      focusThumb({
+        sliderRef,
+        activeIndex,
+        setActive
+      });
+      setValueState(newValue);
+      if (!dragging && moveCount.current > INTENTIONAL_DRAG_COUNT_THRESHOLD) {
+        setDragging(true);
+      }
+      if (handleChange && newValue !== valueDerived) {
+        handleChange(nativeEvent, newValue, activeIndex);
+      }
+    });
+    const handleTouchEnd = useEventCallback((nativeEvent) => {
+      const finger = trackFinger(nativeEvent, touchId);
+      setDragging(false);
+      if (!finger) {
+        return;
+      }
+      const {
+        newValue
+      } = getFingerNewValue({
+        finger,
+        move: true
+      });
+      setActive(-1);
+      if (nativeEvent.type === "touchend") {
+        setOpen(-1);
+      }
+      if (onChangeCommitted) {
+        onChangeCommitted(nativeEvent, newValue);
+      }
+      touchId.current = void 0;
+      stopListening();
+    });
+    const handleTouchStart = useEventCallback((nativeEvent) => {
+      if (disabled) {
+        return;
+      }
+      if (!doesSupportTouchActionNone()) {
+        nativeEvent.preventDefault();
+      }
+      const touch = nativeEvent.changedTouches[0];
+      if (touch != null) {
+        touchId.current = touch.identifier;
+      }
+      const finger = trackFinger(nativeEvent, touchId);
+      if (finger !== false) {
+        const {
+          newValue,
+          activeIndex
+        } = getFingerNewValue({
+          finger
+        });
+        focusThumb({
+          sliderRef,
+          activeIndex,
+          setActive
+        });
+        setValueState(newValue);
+        if (handleChange) {
+          handleChange(nativeEvent, newValue, activeIndex);
+        }
+      }
+      moveCount.current = 0;
+      const doc = ownerDocument(sliderRef.current);
+      doc.addEventListener("touchmove", handleTouchMove);
+      doc.addEventListener("touchend", handleTouchEnd);
+    });
+    const stopListening = React9.useCallback(() => {
+      const doc = ownerDocument(sliderRef.current);
+      doc.removeEventListener("mousemove", handleTouchMove);
+      doc.removeEventListener("mouseup", handleTouchEnd);
+      doc.removeEventListener("touchmove", handleTouchMove);
+      doc.removeEventListener("touchend", handleTouchEnd);
+    }, [handleTouchEnd, handleTouchMove]);
+    React9.useEffect(() => {
+      const {
+        current: slider
+      } = sliderRef;
+      slider.addEventListener("touchstart", handleTouchStart, {
+        passive: doesSupportTouchActionNone()
+      });
+      return () => {
+        slider.removeEventListener("touchstart", handleTouchStart, {
+          passive: doesSupportTouchActionNone()
+        });
+        stopListening();
+      };
+    }, [stopListening, handleTouchStart]);
+    React9.useEffect(() => {
+      if (disabled) {
+        stopListening();
+      }
+    }, [disabled, stopListening]);
+    const createHandleMouseDown = (otherHandlers) => (event) => {
+      var _otherHandlers$onMous;
+      (_otherHandlers$onMous = otherHandlers.onMouseDown) == null ? void 0 : _otherHandlers$onMous.call(otherHandlers, event);
+      if (disabled) {
+        return;
+      }
+      if (event.defaultPrevented) {
+        return;
+      }
+      if (event.button !== 0) {
+        return;
+      }
+      event.preventDefault();
+      const finger = trackFinger(event, touchId);
+      if (finger !== false) {
+        const {
+          newValue,
+          activeIndex
+        } = getFingerNewValue({
+          finger
+        });
+        focusThumb({
+          sliderRef,
+          activeIndex,
+          setActive
+        });
+        setValueState(newValue);
+        if (handleChange) {
+          handleChange(event, newValue, activeIndex);
+        }
+      }
+      moveCount.current = 0;
+      const doc = ownerDocument(sliderRef.current);
+      doc.addEventListener("mousemove", handleTouchMove);
+      doc.addEventListener("mouseup", handleTouchEnd);
+    };
+    const trackOffset = valueToPercent(range ? values2[0] : min, min, max);
+    const trackLeap = valueToPercent(values2[values2.length - 1], min, max) - trackOffset;
+    const getRootProps = (otherHandlers = {}) => {
+      const ownEventHandlers = {
+        onMouseDown: createHandleMouseDown(otherHandlers || {})
+      };
+      const mergedEventHandlers = _extends({}, otherHandlers, ownEventHandlers);
+      return _extends({
+        ref: handleRef
+      }, mergedEventHandlers);
+    };
+    const createHandleMouseOver = (otherHandlers) => (event) => {
+      var _otherHandlers$onMous2;
+      (_otherHandlers$onMous2 = otherHandlers.onMouseOver) == null ? void 0 : _otherHandlers$onMous2.call(otherHandlers, event);
+      const index = Number(event.currentTarget.getAttribute("data-index"));
+      setOpen(index);
+    };
+    const createHandleMouseLeave = (otherHandlers) => (event) => {
+      var _otherHandlers$onMous3;
+      (_otherHandlers$onMous3 = otherHandlers.onMouseLeave) == null ? void 0 : _otherHandlers$onMous3.call(otherHandlers, event);
+      setOpen(-1);
+    };
+    const getThumbProps = (otherHandlers = {}) => {
+      const ownEventHandlers = {
+        onMouseOver: createHandleMouseOver(otherHandlers || {}),
+        onMouseLeave: createHandleMouseLeave(otherHandlers || {})
+      };
+      return _extends({}, otherHandlers, ownEventHandlers);
+    };
+    const getHiddenInputProps = (otherHandlers = {}) => {
+      var _parameters$step;
+      const ownEventHandlers = {
+        onChange: createHandleHiddenInputChange(otherHandlers || {}),
+        onFocus: createHandleHiddenInputFocus(otherHandlers || {}),
+        onBlur: createHandleHiddenInputBlur(otherHandlers || {})
+      };
+      const mergedEventHandlers = _extends({}, otherHandlers, ownEventHandlers);
+      return _extends({
+        tabIndex,
+        "aria-labelledby": ariaLabelledby,
+        "aria-orientation": orientation,
+        "aria-valuemax": scale(max),
+        "aria-valuemin": scale(min),
+        name,
+        type: "range",
+        min: parameters.min,
+        max: parameters.max,
+        step: (_parameters$step = parameters.step) != null ? _parameters$step : void 0,
+        disabled
+      }, mergedEventHandlers, {
+        style: _extends({}, visuallyHidden_default, {
+          direction: isRtl ? "rtl" : "ltr",
+          // So that VoiceOver's focus indicator matches the thumb's dimensions
+          width: "100%",
+          height: "100%"
+        })
+      });
+    };
+    return {
+      active,
+      axis,
+      axisProps,
+      dragging,
+      focusedThumbIndex,
+      getHiddenInputProps,
+      getRootProps,
+      getThumbProps,
+      marks,
+      open,
+      range,
+      trackLeap,
+      trackOffset,
+      values: values2
+    };
+  }
+
+  // node_modules/@mui/material/Slider/Slider.js
+  var React11 = __toESM(require_react());
+  var import_prop_types3 = __toESM(require_prop_types());
+
+  // node_modules/@mui/material/utils/shouldSpreadAdditionalProps.js
+  var shouldSpreadAdditionalProps = (Slot) => {
+    return !Slot || !isHostComponent(Slot);
+  };
+  var shouldSpreadAdditionalProps_default = shouldSpreadAdditionalProps;
+
+  // node_modules/@mui/material/Slider/SliderValueLabel.js
+  var React10 = __toESM(require_react());
+  var import_prop_types2 = __toESM(require_prop_types());
+
+  // node_modules/@mui/material/Slider/sliderClasses.js
+  function getSliderUtilityClass(slot) {
+    return generateUtilityClass("MuiSlider", slot);
+  }
+  var sliderClasses = generateUtilityClasses("MuiSlider", ["root", "active", "colorPrimary", "colorSecondary", "disabled", "dragging", "focusVisible", "mark", "markActive", "marked", "markLabel", "markLabelActive", "rail", "sizeSmall", "thumb", "thumbColorPrimary", "thumbColorSecondary", "track", "trackInverted", "trackFalse", "thumbSizeSmall", "valueLabel", "valueLabelOpen", "valueLabelCircle", "valueLabelLabel", "vertical"]);
+  var sliderClasses_default = sliderClasses;
+
+  // node_modules/@mui/material/Slider/SliderValueLabel.js
+  var import_jsx_runtime = __toESM(require_jsx_runtime());
+  var import_jsx_runtime2 = __toESM(require_jsx_runtime());
+  var useValueLabelClasses = (props) => {
+    const {
+      open
+    } = props;
+    const utilityClasses = {
+      offset: clsx_m_default(open && sliderClasses_default.valueLabelOpen),
+      circle: sliderClasses_default.valueLabelCircle,
+      label: sliderClasses_default.valueLabelLabel
+    };
+    return utilityClasses;
+  };
+  function SliderValueLabel(props) {
+    const {
+      children,
+      className,
+      value
+    } = props;
+    const classes = useValueLabelClasses(props);
+    if (!children) {
+      return null;
+    }
+    return /* @__PURE__ */ React10.cloneElement(children, {
+      className: clsx_m_default(children.props.className)
+    }, /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(React10.Fragment, {
+      children: [children.props.children, /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+        className: clsx_m_default(classes.offset, className),
+        "aria-hidden": true,
+        children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+          className: classes.circle,
+          children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+            className: classes.label,
+            children: value
+          })
+        })
+      })]
+    }));
+  }
+  true ? SliderValueLabel.propTypes = {
+    children: import_prop_types2.default.element.isRequired,
+    className: import_prop_types2.default.string,
+    value: import_prop_types2.default.node
+  } : void 0;
+
+  // node_modules/@mui/material/Slider/Slider.js
+  var import_jsx_runtime3 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime4 = __toESM(require_jsx_runtime());
+  var _excluded10 = ["aria-label", "aria-valuetext", "aria-labelledby", "component", "components", "componentsProps", "color", "classes", "className", "disableSwap", "disabled", "getAriaLabel", "getAriaValueText", "marks", "max", "min", "name", "onChange", "onChangeCommitted", "orientation", "size", "step", "scale", "slotProps", "slots", "tabIndex", "track", "value", "valueLabelDisplay", "valueLabelFormat"];
+  function Identity2(x) {
+    return x;
+  }
+  var SliderRoot = styled_default("span", {
+    name: "MuiSlider",
+    slot: "Root",
+    overridesResolver: (props, styles) => {
+      const {
+        ownerState
+      } = props;
+      return [styles.root, styles[`color${capitalize_default(ownerState.color)}`], ownerState.size !== "medium" && styles[`size${capitalize_default(ownerState.size)}`], ownerState.marked && styles.marked, ownerState.orientation === "vertical" && styles.vertical, ownerState.track === "inverted" && styles.trackInverted, ownerState.track === false && styles.trackFalse];
+    }
+  })(({
+    theme,
+    ownerState
+  }) => _extends({
+    borderRadius: 12,
+    boxSizing: "content-box",
+    display: "inline-block",
+    position: "relative",
+    cursor: "pointer",
+    touchAction: "none",
+    color: (theme.vars || theme).palette[ownerState.color].main,
+    WebkitTapHighlightColor: "transparent"
+  }, ownerState.orientation === "horizontal" && _extends({
+    height: 4,
+    width: "100%",
+    padding: "13px 0",
+    // The primary input mechanism of the device includes a pointing device of limited accuracy.
+    "@media (pointer: coarse)": {
+      // Reach 42px touch target, about ~8mm on screen.
+      padding: "20px 0"
+    }
+  }, ownerState.size === "small" && {
+    height: 2
+  }, ownerState.marked && {
+    marginBottom: 20
+  }), ownerState.orientation === "vertical" && _extends({
+    height: "100%",
+    width: 4,
+    padding: "0 13px",
+    // The primary input mechanism of the device includes a pointing device of limited accuracy.
+    "@media (pointer: coarse)": {
+      // Reach 42px touch target, about ~8mm on screen.
+      padding: "0 20px"
+    }
+  }, ownerState.size === "small" && {
+    width: 2
+  }, ownerState.marked && {
+    marginRight: 44
+  }), {
+    "@media print": {
+      colorAdjust: "exact"
+    },
+    [`&.${sliderClasses_default.disabled}`]: {
+      pointerEvents: "none",
+      cursor: "default",
+      color: (theme.vars || theme).palette.grey[400]
+    },
+    [`&.${sliderClasses_default.dragging}`]: {
+      [`& .${sliderClasses_default.thumb}, & .${sliderClasses_default.track}`]: {
+        transition: "none"
+      }
+    }
+  }));
+  true ? SliderRoot.propTypes = {
+    // ----------------------------- Warning --------------------------------
+    // | These PropTypes are generated from the TypeScript type definitions |
+    // |     To update them edit the d.ts file and run "yarn proptypes"     |
+    // ----------------------------------------------------------------------
+    /**
+     * @ignore
+     */
+    children: import_prop_types3.default.node
+  } : void 0;
+  var SliderRail = styled_default("span", {
+    name: "MuiSlider",
+    slot: "Rail",
+    overridesResolver: (props, styles) => styles.rail
+  })(({
+    ownerState
+  }) => _extends({
+    display: "block",
+    position: "absolute",
+    borderRadius: "inherit",
+    backgroundColor: "currentColor",
+    opacity: 0.38
+  }, ownerState.orientation === "horizontal" && {
+    width: "100%",
+    height: "inherit",
+    top: "50%",
+    transform: "translateY(-50%)"
+  }, ownerState.orientation === "vertical" && {
+    height: "100%",
+    width: "inherit",
+    left: "50%",
+    transform: "translateX(-50%)"
+  }, ownerState.track === "inverted" && {
+    opacity: 1
+  }));
+  true ? SliderRail.propTypes = {
+    // ----------------------------- Warning --------------------------------
+    // | These PropTypes are generated from the TypeScript type definitions |
+    // |     To update them edit the d.ts file and run "yarn proptypes"     |
+    // ----------------------------------------------------------------------
+    /**
+     * @ignore
+     */
+    children: import_prop_types3.default.node
+  } : void 0;
+  var SliderTrack = styled_default("span", {
+    name: "MuiSlider",
+    slot: "Track",
+    overridesResolver: (props, styles) => styles.track
+  })(({
+    theme,
+    ownerState
+  }) => {
+    const color2 = (
+      // Same logic as the LinearProgress track color
+      theme.palette.mode === "light" ? lighten(theme.palette[ownerState.color].main, 0.62) : darken(theme.palette[ownerState.color].main, 0.5)
+    );
+    return _extends({
+      display: "block",
+      position: "absolute",
+      borderRadius: "inherit",
+      border: "1px solid currentColor",
+      backgroundColor: "currentColor",
+      transition: theme.transitions.create(["left", "width", "bottom", "height"], {
+        duration: theme.transitions.duration.shortest
+      })
+    }, ownerState.size === "small" && {
+      border: "none"
+    }, ownerState.orientation === "horizontal" && {
+      height: "inherit",
+      top: "50%",
+      transform: "translateY(-50%)"
+    }, ownerState.orientation === "vertical" && {
+      width: "inherit",
+      left: "50%",
+      transform: "translateX(-50%)"
+    }, ownerState.track === false && {
+      display: "none"
+    }, ownerState.track === "inverted" && {
+      backgroundColor: theme.vars ? theme.vars.palette.Slider[`${ownerState.color}Track`] : color2,
+      borderColor: theme.vars ? theme.vars.palette.Slider[`${ownerState.color}Track`] : color2
+    });
+  });
+  true ? SliderTrack.propTypes = {
+    // ----------------------------- Warning --------------------------------
+    // | These PropTypes are generated from the TypeScript type definitions |
+    // |     To update them edit the d.ts file and run "yarn proptypes"     |
+    // ----------------------------------------------------------------------
+    /**
+     * @ignore
+     */
+    children: import_prop_types3.default.node
+  } : void 0;
+  var SliderThumb = styled_default("span", {
+    name: "MuiSlider",
+    slot: "Thumb",
+    overridesResolver: (props, styles) => {
+      const {
+        ownerState
+      } = props;
+      return [styles.thumb, styles[`thumbColor${capitalize_default(ownerState.color)}`], ownerState.size !== "medium" && styles[`thumbSize${capitalize_default(ownerState.size)}`]];
+    }
+  })(({
+    theme,
+    ownerState
+  }) => _extends({
+    position: "absolute",
+    width: 20,
+    height: 20,
+    boxSizing: "border-box",
+    borderRadius: "50%",
+    outline: 0,
+    backgroundColor: "currentColor",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transition: theme.transitions.create(["box-shadow", "left", "bottom"], {
+      duration: theme.transitions.duration.shortest
+    })
+  }, ownerState.size === "small" && {
+    width: 12,
+    height: 12
+  }, ownerState.orientation === "horizontal" && {
+    top: "50%",
+    transform: "translate(-50%, -50%)"
+  }, ownerState.orientation === "vertical" && {
+    left: "50%",
+    transform: "translate(-50%, 50%)"
+  }, {
+    "&:before": _extends({
+      position: "absolute",
+      content: '""',
+      borderRadius: "inherit",
+      width: "100%",
+      height: "100%",
+      boxShadow: (theme.vars || theme).shadows[2]
+    }, ownerState.size === "small" && {
+      boxShadow: "none"
+    }),
+    "&::after": {
+      position: "absolute",
+      content: '""',
+      borderRadius: "50%",
+      // 42px is the hit target
+      width: 42,
+      height: 42,
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)"
+    },
+    [`&:hover, &.${sliderClasses_default.focusVisible}`]: {
+      boxShadow: `0px 0px 0px 8px ${theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)` : alpha(theme.palette[ownerState.color].main, 0.16)}`,
+      "@media (hover: none)": {
+        boxShadow: "none"
+      }
+    },
+    [`&.${sliderClasses_default.active}`]: {
+      boxShadow: `0px 0px 0px 14px ${theme.vars ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)` : alpha(theme.palette[ownerState.color].main, 0.16)}`
+    },
+    [`&.${sliderClasses_default.disabled}`]: {
+      "&:hover": {
+        boxShadow: "none"
+      }
+    }
+  }));
+  true ? SliderThumb.propTypes = {
+    // ----------------------------- Warning --------------------------------
+    // | These PropTypes are generated from the TypeScript type definitions |
+    // |     To update them edit the d.ts file and run "yarn proptypes"     |
+    // ----------------------------------------------------------------------
+    /**
+     * @ignore
+     */
+    children: import_prop_types3.default.node
+  } : void 0;
+  var StyledSliderValueLabel = styled_default(SliderValueLabel, {
+    name: "MuiSlider",
+    slot: "ValueLabel",
+    overridesResolver: (props, styles) => styles.valueLabel
+  })(({
+    theme,
+    ownerState
+  }) => _extends({
+    [`&.${sliderClasses_default.valueLabelOpen}`]: {
+      transform: `${ownerState.orientation === "vertical" ? "translateY(-50%)" : "translateY(-100%)"} scale(1)`
+    },
+    zIndex: 1,
+    whiteSpace: "nowrap"
+  }, theme.typography.body2, {
+    fontWeight: 500,
+    transition: theme.transitions.create(["transform"], {
+      duration: theme.transitions.duration.shortest
+    }),
+    transform: `${ownerState.orientation === "vertical" ? "translateY(-50%)" : "translateY(-100%)"} scale(0)`,
+    position: "absolute",
+    backgroundColor: (theme.vars || theme).palette.grey[600],
+    borderRadius: 2,
+    color: (theme.vars || theme).palette.common.white,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0.25rem 0.75rem"
+  }, ownerState.orientation === "horizontal" && {
+    top: "-10px",
+    transformOrigin: "bottom center",
+    "&:before": {
+      position: "absolute",
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: "translate(-50%, 50%) rotate(45deg)",
+      backgroundColor: "inherit",
+      bottom: 0,
+      left: "50%"
+    }
+  }, ownerState.orientation === "vertical" && {
+    right: ownerState.size === "small" ? "20px" : "30px",
+    top: "50%",
+    transformOrigin: "right center",
+    "&:before": {
+      position: "absolute",
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: "translate(-50%, -50%) rotate(45deg)",
+      backgroundColor: "inherit",
+      right: "-20%",
+      top: "50%"
+    }
+  }, ownerState.size === "small" && {
+    fontSize: theme.typography.pxToRem(12),
+    padding: "0.25rem 0.5rem"
+  }));
+  true ? StyledSliderValueLabel.propTypes = {
+    // ----------------------------- Warning --------------------------------
+    // | These PropTypes are generated from the TypeScript type definitions |
+    // |     To update them edit the d.ts file and run "yarn proptypes"     |
+    // ----------------------------------------------------------------------
+    /**
+     * @ignore
+     */
+    children: import_prop_types3.default.node
+  } : void 0;
+  var SliderMark = styled_default("span", {
+    name: "MuiSlider",
+    slot: "Mark",
+    shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== "markActive",
+    overridesResolver: (props, styles) => {
+      const {
+        markActive
+      } = props;
+      return [styles.mark, markActive && styles.markActive];
+    }
+  })(({
+    theme,
+    ownerState,
+    markActive
+  }) => _extends({
+    position: "absolute",
+    width: 2,
+    height: 2,
+    borderRadius: 1,
+    backgroundColor: "currentColor"
+  }, ownerState.orientation === "horizontal" && {
+    top: "50%",
+    transform: "translate(-1px, -50%)"
+  }, ownerState.orientation === "vertical" && {
+    left: "50%",
+    transform: "translate(-50%, 1px)"
+  }, markActive && {
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    opacity: 0.8
+  }));
+  true ? SliderMark.propTypes = {
+    // ----------------------------- Warning --------------------------------
+    // | These PropTypes are generated from the TypeScript type definitions |
+    // |     To update them edit the d.ts file and run "yarn proptypes"     |
+    // ----------------------------------------------------------------------
+    /**
+     * @ignore
+     */
+    children: import_prop_types3.default.node
+  } : void 0;
+  var SliderMarkLabel = styled_default("span", {
+    name: "MuiSlider",
+    slot: "MarkLabel",
+    shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== "markLabelActive",
+    overridesResolver: (props, styles) => styles.markLabel
+  })(({
+    theme,
+    ownerState,
+    markLabelActive
+  }) => _extends({}, theme.typography.body2, {
+    color: (theme.vars || theme).palette.text.secondary,
+    position: "absolute",
+    whiteSpace: "nowrap"
+  }, ownerState.orientation === "horizontal" && {
+    top: 30,
+    transform: "translateX(-50%)",
+    "@media (pointer: coarse)": {
+      top: 40
+    }
+  }, ownerState.orientation === "vertical" && {
+    left: 36,
+    transform: "translateY(50%)",
+    "@media (pointer: coarse)": {
+      left: 44
+    }
+  }, markLabelActive && {
+    color: (theme.vars || theme).palette.text.primary
+  }));
+  true ? SliderMarkLabel.propTypes = {
+    // ----------------------------- Warning --------------------------------
+    // | These PropTypes are generated from the TypeScript type definitions |
+    // |     To update them edit the d.ts file and run "yarn proptypes"     |
+    // ----------------------------------------------------------------------
+    /**
+     * @ignore
+     */
+    children: import_prop_types3.default.node
+  } : void 0;
+  var useUtilityClasses = (ownerState) => {
+    const {
+      disabled,
+      dragging,
+      marked,
+      orientation,
+      track,
+      classes,
+      color: color2,
+      size
+    } = ownerState;
+    const slots = {
+      root: ["root", disabled && "disabled", dragging && "dragging", marked && "marked", orientation === "vertical" && "vertical", track === "inverted" && "trackInverted", track === false && "trackFalse", color2 && `color${capitalize_default(color2)}`, size && `size${capitalize_default(size)}`],
+      rail: ["rail"],
+      track: ["track"],
+      mark: ["mark"],
+      markActive: ["markActive"],
+      markLabel: ["markLabel"],
+      markLabelActive: ["markLabelActive"],
+      valueLabel: ["valueLabel"],
+      thumb: ["thumb", disabled && "disabled", size && `thumbSize${capitalize_default(size)}`, color2 && `thumbColor${capitalize_default(color2)}`],
+      active: ["active"],
+      disabled: ["disabled"],
+      focusVisible: ["focusVisible"]
+    };
+    return composeClasses(slots, getSliderUtilityClass, classes);
+  };
+  var Forward = ({
+    children
+  }) => children;
+  var Slider = /* @__PURE__ */ React11.forwardRef(function Slider2(inputProps, ref) {
+    var _ref, _slots$root, _ref2, _slots$rail, _ref3, _slots$track, _ref4, _slots$thumb, _ref5, _slots$valueLabel, _ref6, _slots$mark, _ref7, _slots$markLabel, _ref8, _slots$input, _slotProps$root, _slotProps$rail, _slotProps$track, _slotProps$thumb, _slotProps$valueLabel, _slotProps$mark, _slotProps$markLabel, _slotProps$input;
+    const props = useThemeProps2({
+      props: inputProps,
+      name: "MuiSlider"
+    });
+    const theme = useTheme4();
+    const isRtl = theme.direction === "rtl";
+    const {
+      "aria-label": ariaLabel,
+      "aria-valuetext": ariaValuetext,
+      "aria-labelledby": ariaLabelledby,
+      // eslint-disable-next-line react/prop-types
+      component = "span",
+      components = {},
+      componentsProps = {},
+      color: color2 = "primary",
+      classes: classesProp,
+      className,
+      disableSwap = false,
+      disabled = false,
+      getAriaLabel,
+      getAriaValueText,
+      marks: marksProp = false,
+      max = 100,
+      min = 0,
+      orientation = "horizontal",
+      size = "medium",
+      step = 1,
+      scale = Identity2,
+      slotProps,
+      slots,
+      track = "normal",
+      valueLabelDisplay = "off",
+      valueLabelFormat = Identity2
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded10);
+    const ownerState = _extends({}, props, {
+      isRtl,
+      max,
+      min,
+      classes: classesProp,
+      disabled,
+      disableSwap,
+      orientation,
+      marks: marksProp,
+      color: color2,
+      size,
+      step,
+      scale,
+      track,
+      valueLabelDisplay,
+      valueLabelFormat
+    });
+    const {
+      axisProps: axisProps2,
+      getRootProps,
+      getHiddenInputProps,
+      getThumbProps,
+      open,
+      active,
+      axis,
+      focusedThumbIndex,
+      range,
+      dragging,
+      marks,
+      values: values2,
+      trackOffset,
+      trackLeap
+    } = useSlider(_extends({}, ownerState, {
+      ref
+    }));
+    ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
+    ownerState.dragging = dragging;
+    ownerState.focusedThumbIndex = focusedThumbIndex;
+    const classes = useUtilityClasses(ownerState);
+    const RootSlot = (_ref = (_slots$root = slots == null ? void 0 : slots.root) != null ? _slots$root : components.Root) != null ? _ref : SliderRoot;
+    const RailSlot = (_ref2 = (_slots$rail = slots == null ? void 0 : slots.rail) != null ? _slots$rail : components.Rail) != null ? _ref2 : SliderRail;
+    const TrackSlot = (_ref3 = (_slots$track = slots == null ? void 0 : slots.track) != null ? _slots$track : components.Track) != null ? _ref3 : SliderTrack;
+    const ThumbSlot = (_ref4 = (_slots$thumb = slots == null ? void 0 : slots.thumb) != null ? _slots$thumb : components.Thumb) != null ? _ref4 : SliderThumb;
+    const ValueLabelSlot = (_ref5 = (_slots$valueLabel = slots == null ? void 0 : slots.valueLabel) != null ? _slots$valueLabel : components.ValueLabel) != null ? _ref5 : StyledSliderValueLabel;
+    const MarkSlot = (_ref6 = (_slots$mark = slots == null ? void 0 : slots.mark) != null ? _slots$mark : components.Mark) != null ? _ref6 : SliderMark;
+    const MarkLabelSlot = (_ref7 = (_slots$markLabel = slots == null ? void 0 : slots.markLabel) != null ? _slots$markLabel : components.MarkLabel) != null ? _ref7 : SliderMarkLabel;
+    const InputSlot = (_ref8 = (_slots$input = slots == null ? void 0 : slots.input) != null ? _slots$input : components.Input) != null ? _ref8 : "input";
+    const rootSlotProps = (_slotProps$root = slotProps == null ? void 0 : slotProps.root) != null ? _slotProps$root : componentsProps.root;
+    const railSlotProps = (_slotProps$rail = slotProps == null ? void 0 : slotProps.rail) != null ? _slotProps$rail : componentsProps.rail;
+    const trackSlotProps = (_slotProps$track = slotProps == null ? void 0 : slotProps.track) != null ? _slotProps$track : componentsProps.track;
+    const thumbSlotProps = (_slotProps$thumb = slotProps == null ? void 0 : slotProps.thumb) != null ? _slotProps$thumb : componentsProps.thumb;
+    const valueLabelSlotProps = (_slotProps$valueLabel = slotProps == null ? void 0 : slotProps.valueLabel) != null ? _slotProps$valueLabel : componentsProps.valueLabel;
+    const markSlotProps = (_slotProps$mark = slotProps == null ? void 0 : slotProps.mark) != null ? _slotProps$mark : componentsProps.mark;
+    const markLabelSlotProps = (_slotProps$markLabel = slotProps == null ? void 0 : slotProps.markLabel) != null ? _slotProps$markLabel : componentsProps.markLabel;
+    const inputSlotProps = (_slotProps$input = slotProps == null ? void 0 : slotProps.input) != null ? _slotProps$input : componentsProps.input;
+    const rootProps = useSlotProps({
+      elementType: RootSlot,
+      getSlotProps: getRootProps,
+      externalSlotProps: rootSlotProps,
+      externalForwardedProps: other,
+      additionalProps: _extends({}, shouldSpreadAdditionalProps_default(RootSlot) && {
+        as: component
+      }),
+      ownerState: _extends({}, ownerState, rootSlotProps == null ? void 0 : rootSlotProps.ownerState),
+      className: [classes.root, className]
+    });
+    const railProps = useSlotProps({
+      elementType: RailSlot,
+      externalSlotProps: railSlotProps,
+      ownerState,
+      className: classes.rail
+    });
+    const trackProps = useSlotProps({
+      elementType: TrackSlot,
+      externalSlotProps: trackSlotProps,
+      additionalProps: {
+        style: _extends({}, axisProps2[axis].offset(trackOffset), axisProps2[axis].leap(trackLeap))
+      },
+      ownerState: _extends({}, ownerState, trackSlotProps == null ? void 0 : trackSlotProps.ownerState),
+      className: classes.track
+    });
+    const thumbProps = useSlotProps({
+      elementType: ThumbSlot,
+      getSlotProps: getThumbProps,
+      externalSlotProps: thumbSlotProps,
+      ownerState: _extends({}, ownerState, thumbSlotProps == null ? void 0 : thumbSlotProps.ownerState),
+      className: classes.thumb
+    });
+    const valueLabelProps = useSlotProps({
+      elementType: ValueLabelSlot,
+      externalSlotProps: valueLabelSlotProps,
+      ownerState: _extends({}, ownerState, valueLabelSlotProps == null ? void 0 : valueLabelSlotProps.ownerState),
+      className: classes.valueLabel
+    });
+    const markProps = useSlotProps({
+      elementType: MarkSlot,
+      externalSlotProps: markSlotProps,
+      ownerState,
+      className: classes.mark
+    });
+    const markLabelProps = useSlotProps({
+      elementType: MarkLabelSlot,
+      externalSlotProps: markLabelSlotProps,
+      ownerState,
+      className: classes.markLabel
+    });
+    const inputSliderProps = useSlotProps({
+      elementType: InputSlot,
+      getSlotProps: getHiddenInputProps,
+      externalSlotProps: inputSlotProps,
+      ownerState
+    });
+    return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(RootSlot, _extends({}, rootProps, {
+      children: [/* @__PURE__ */ (0, import_jsx_runtime3.jsx)(RailSlot, _extends({}, railProps)), /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(TrackSlot, _extends({}, trackProps)), marks.filter((mark) => mark.value >= min && mark.value <= max).map((mark, index) => {
+        const percent = valueToPercent(mark.value, min, max);
+        const style3 = axisProps2[axis].offset(percent);
+        let markActive;
+        if (track === false) {
+          markActive = values2.indexOf(mark.value) !== -1;
+        } else {
+          markActive = track === "normal" && (range ? mark.value >= values2[0] && mark.value <= values2[values2.length - 1] : mark.value <= values2[0]) || track === "inverted" && (range ? mark.value <= values2[0] || mark.value >= values2[values2.length - 1] : mark.value >= values2[0]);
+        }
+        return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(React11.Fragment, {
+          children: [/* @__PURE__ */ (0, import_jsx_runtime3.jsx)(MarkSlot, _extends({
+            "data-index": index
+          }, markProps, !isHostComponent(MarkSlot) && {
+            markActive
+          }, {
+            style: _extends({}, style3, markProps.style),
+            className: clsx_m_default(markProps.className, markActive && classes.markActive)
+          })), mark.label != null ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(MarkLabelSlot, _extends({
+            "aria-hidden": true,
+            "data-index": index
+          }, markLabelProps, !isHostComponent(MarkLabelSlot) && {
+            markLabelActive: markActive
+          }, {
+            style: _extends({}, style3, markLabelProps.style),
+            className: clsx_m_default(classes.markLabel, markLabelProps.className, markActive && classes.markLabelActive),
+            children: mark.label
+          })) : null]
+        }, index);
+      }), values2.map((value, index) => {
+        const percent = valueToPercent(value, min, max);
+        const style3 = axisProps2[axis].offset(percent);
+        const ValueLabelComponent = valueLabelDisplay === "off" ? Forward : ValueLabelSlot;
+        return (
+          /* TODO v6: Change component structure. It will help in avoiding the complicated React.cloneElement API added in SliderValueLabel component. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure. */
+          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(ValueLabelComponent, _extends({}, !isHostComponent(ValueLabelComponent) && {
+            valueLabelFormat,
+            valueLabelDisplay,
+            value: typeof valueLabelFormat === "function" ? valueLabelFormat(scale(value), index) : valueLabelFormat,
+            index,
+            open: open === index || active === index || valueLabelDisplay === "on",
+            disabled
+          }, valueLabelProps, {
+            children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(ThumbSlot, _extends({
+              "data-index": index
+            }, thumbProps, {
+              className: clsx_m_default(classes.thumb, thumbProps.className, active === index && classes.active, focusedThumbIndex === index && classes.focusVisible),
+              style: _extends({}, style3, {
+                pointerEvents: disableSwap && active !== index ? "none" : void 0
+              }, thumbProps.style),
+              children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(InputSlot, _extends({
+                "data-index": index,
+                "aria-label": getAriaLabel ? getAriaLabel(index) : ariaLabel,
+                "aria-valuenow": scale(value),
+                "aria-labelledby": ariaLabelledby,
+                "aria-valuetext": getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext,
+                value: values2[index]
+              }, inputSliderProps))
+            }))
+          }), index)
+        );
+      })]
+    }));
+  });
+  true ? Slider.propTypes = {
+    // ----------------------------- Warning --------------------------------
+    // | These PropTypes are generated from the TypeScript type definitions |
+    // |     To update them edit the d.ts file and run "yarn proptypes"     |
+    // ----------------------------------------------------------------------
+    /**
+     * The label of the slider.
+     */
+    "aria-label": chainPropTypes(import_prop_types3.default.string, (props) => {
+      const range = Array.isArray(props.value || props.defaultValue);
+      if (range && props["aria-label"] != null) {
+        return new Error("MUI: You need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.");
+      }
+      return null;
+    }),
+    /**
+     * The id of the element containing a label for the slider.
+     */
+    "aria-labelledby": import_prop_types3.default.string,
+    /**
+     * A string value that provides a user-friendly name for the current value of the slider.
+     */
+    "aria-valuetext": chainPropTypes(import_prop_types3.default.string, (props) => {
+      const range = Array.isArray(props.value || props.defaultValue);
+      if (range && props["aria-valuetext"] != null) {
+        return new Error("MUI: You need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.");
+      }
+      return null;
+    }),
+    /**
+     * @ignore
+     */
+    children: import_prop_types3.default.node,
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes: import_prop_types3.default.object,
+    /**
+     * @ignore
+     */
+    className: import_prop_types3.default.string,
+    /**
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+     * @default 'primary'
+     */
+    color: import_prop_types3.default.oneOfType([import_prop_types3.default.oneOf(["primary", "secondary"]), import_prop_types3.default.string]),
+    /**
+     * The components used for each slot inside.
+     *
+     * This prop is an alias for the `slots` prop.
+     * It's recommended to use the `slots` prop instead.
+     *
+     * @default {}
+     */
+    components: import_prop_types3.default.shape({
+      Input: import_prop_types3.default.elementType,
+      Mark: import_prop_types3.default.elementType,
+      MarkLabel: import_prop_types3.default.elementType,
+      Rail: import_prop_types3.default.elementType,
+      Root: import_prop_types3.default.elementType,
+      Thumb: import_prop_types3.default.elementType,
+      Track: import_prop_types3.default.elementType,
+      ValueLabel: import_prop_types3.default.elementType
+    }),
+    /**
+     * The extra props for the slot components.
+     * You can override the existing props or add new ones.
+     *
+     * This prop is an alias for the `slotProps` prop.
+     * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+     *
+     * @default {}
+     */
+    componentsProps: import_prop_types3.default.shape({
+      input: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      mark: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      markLabel: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      rail: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      root: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      thumb: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      track: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      valueLabel: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.shape({
+        children: import_prop_types3.default.element,
+        className: import_prop_types3.default.string,
+        open: import_prop_types3.default.bool,
+        style: import_prop_types3.default.object,
+        value: import_prop_types3.default.number,
+        valueLabelDisplay: import_prop_types3.default.oneOf(["auto", "off", "on"])
+      })])
+    }),
+    /**
+     * The default value. Use when the component is not controlled.
+     */
+    defaultValue: import_prop_types3.default.oneOfType([import_prop_types3.default.arrayOf(import_prop_types3.default.number), import_prop_types3.default.number]),
+    /**
+     * If `true`, the component is disabled.
+     * @default false
+     */
+    disabled: import_prop_types3.default.bool,
+    /**
+     * If `true`, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.
+     * @default false
+     */
+    disableSwap: import_prop_types3.default.bool,
+    /**
+     * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
+     * This is important for screen reader users.
+     * @param {number} index The thumb label's index to format.
+     * @returns {string}
+     */
+    getAriaLabel: import_prop_types3.default.func,
+    /**
+     * Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
+     * This is important for screen reader users.
+     * @param {number} value The thumb label's value to format.
+     * @param {number} index The thumb label's index to format.
+     * @returns {string}
+     */
+    getAriaValueText: import_prop_types3.default.func,
+    /**
+     * Marks indicate predetermined values to which the user can move the slider.
+     * If `true` the marks are spaced according the value of the `step` prop.
+     * If an array, it should contain objects with `value` and an optional `label` keys.
+     * @default false
+     */
+    marks: import_prop_types3.default.oneOfType([import_prop_types3.default.arrayOf(import_prop_types3.default.shape({
+      label: import_prop_types3.default.node,
+      value: import_prop_types3.default.number.isRequired
+    })), import_prop_types3.default.bool]),
+    /**
+     * The maximum allowed value of the slider.
+     * Should not be equal to min.
+     * @default 100
+     */
+    max: import_prop_types3.default.number,
+    /**
+     * The minimum allowed value of the slider.
+     * Should not be equal to max.
+     * @default 0
+     */
+    min: import_prop_types3.default.number,
+    /**
+     * Name attribute of the hidden `input` element.
+     */
+    name: import_prop_types3.default.string,
+    /**
+     * Callback function that is fired when the slider's value changed.
+     *
+     * @param {Event} event The event source of the callback.
+     * You can pull out the new value by accessing `event.target.value` (any).
+     * **Warning**: This is a generic event not a change event.
+     * @param {number | number[]} value The new value.
+     * @param {number} activeThumb Index of the currently moved thumb.
+     */
+    onChange: import_prop_types3.default.func,
+    /**
+     * Callback function that is fired when the `mouseup` is triggered.
+     *
+     * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
+     * @param {number | number[]} value The new value.
+     */
+    onChangeCommitted: import_prop_types3.default.func,
+    /**
+     * The component orientation.
+     * @default 'horizontal'
+     */
+    orientation: import_prop_types3.default.oneOf(["horizontal", "vertical"]),
+    /**
+     * A transformation function, to change the scale of the slider.
+     * @param {any} x
+     * @returns {any}
+     * @default function Identity(x) {
+     *   return x;
+     * }
+     */
+    scale: import_prop_types3.default.func,
+    /**
+     * The size of the slider.
+     * @default 'medium'
+     */
+    size: import_prop_types3.default.oneOfType([import_prop_types3.default.oneOf(["small", "medium"]), import_prop_types3.default.string]),
+    /**
+     * The props used for each slot inside the Slider.
+     * @default {}
+     */
+    slotProps: import_prop_types3.default.shape({
+      input: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      mark: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      markLabel: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      rail: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      root: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      thumb: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      track: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object]),
+      valueLabel: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.shape({
+        children: import_prop_types3.default.element,
+        className: import_prop_types3.default.string,
+        open: import_prop_types3.default.bool,
+        style: import_prop_types3.default.object,
+        value: import_prop_types3.default.number,
+        valueLabelDisplay: import_prop_types3.default.oneOf(["auto", "off", "on"])
+      })])
+    }),
+    /**
+     * The components used for each slot inside the Slider.
+     * Either a string to use a HTML element or a component.
+     * @default {}
+     */
+    slots: import_prop_types3.default.shape({
+      input: import_prop_types3.default.elementType,
+      mark: import_prop_types3.default.elementType,
+      markLabel: import_prop_types3.default.elementType,
+      rail: import_prop_types3.default.elementType,
+      root: import_prop_types3.default.elementType,
+      thumb: import_prop_types3.default.elementType,
+      track: import_prop_types3.default.elementType,
+      valueLabel: import_prop_types3.default.elementType
+    }),
+    /**
+     * The granularity with which the slider can step through values. (A "discrete" slider.)
+     * The `min` prop serves as the origin for the valid values.
+     * We recommend (max - min) to be evenly divisible by the step.
+     *
+     * When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
+     * @default 1
+     */
+    step: import_prop_types3.default.number,
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx: import_prop_types3.default.oneOfType([import_prop_types3.default.arrayOf(import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.object, import_prop_types3.default.bool])), import_prop_types3.default.func, import_prop_types3.default.object]),
+    /**
+     * Tab index attribute of the hidden `input` element.
+     */
+    tabIndex: import_prop_types3.default.number,
+    /**
+     * The track presentation:
+     *
+     * - `normal` the track will render a bar representing the slider value.
+     * - `inverted` the track will render a bar representing the remaining slider value.
+     * - `false` the track will render without a bar.
+     * @default 'normal'
+     */
+    track: import_prop_types3.default.oneOf(["inverted", "normal", false]),
+    /**
+     * The value of the slider.
+     * For ranged sliders, provide an array with two values.
+     */
+    value: import_prop_types3.default.oneOfType([import_prop_types3.default.arrayOf(import_prop_types3.default.number), import_prop_types3.default.number]),
+    /**
+     * Controls when the value label is displayed:
+     *
+     * - `auto` the value label will display when the thumb is hovered or focused.
+     * - `on` will display persistently.
+     * - `off` will never display.
+     * @default 'off'
+     */
+    valueLabelDisplay: import_prop_types3.default.oneOf(["auto", "off", "on"]),
+    /**
+     * The format function the value label's value.
+     *
+     * When a function is provided, it should have the following signature:
+     *
+     * - {number} value The value label's value to format
+     * - {number} index The value label's index to format
+     * @param {any} x
+     * @returns {any}
+     * @default function Identity(x) {
+     *   return x;
+     * }
+     */
+    valueLabelFormat: import_prop_types3.default.oneOfType([import_prop_types3.default.func, import_prop_types3.default.string])
+  } : void 0;
+  var Slider_default = Slider;
+
+  // src/components/sidebar.tsx
+  var import_react10 = __toESM(require_react());
+
+  // src/components/streamModal.tsx
+  var React12 = __toESM(require_react());
+  function StreamModal({}) {
+    const buttonsStreamRef = React12.useRef([]);
+    const handleButtonClickStream = (index) => {
+      buttonsStreamRef.current.forEach((button2, i2) => {
+        const buttonSpan2 = button2.querySelector("span.active_indicator");
+        if (i2 !== index && buttonSpan2) {
+          buttonSpan2.remove();
+        }
+      });
+      const button = buttonsStreamRef.current[index];
+      const buttonSpan = button.querySelector("span.active_indicator");
+      if (!buttonSpan) {
+        const newSpan = document.createElement("span");
+        newSpan.classList.add("active_indicator");
+        button.appendChild(newSpan);
+      }
+    };
+    return /* @__PURE__ */ React12.createElement(
       "div",
       {
-        ref: settingsRef,
-        id: "settings-container",
-        className: "settings-container hide-display"
+        className: "drop_menu",
+        style: {
+          top: "unset",
+          bottom: "calc(100% + 10px)",
+          width: 248,
+          opacity: 1,
+          transform: "translateY(0px) scale(1) translateZ(0px)"
+        }
       },
-      /* @__PURE__ */ import_react3.default.createElement("div", { id: "close-settings-tab" }, /* @__PURE__ */ import_react3.default.createElement(
-        "div",
+      /* @__PURE__ */ React12.createElement("h5", null, "Stream Settings"),
+      /* @__PURE__ */ React12.createElement("div", { className: "panel_option stream_format" }, /* @__PURE__ */ React12.createElement("h6", null, "Stream To"), /* @__PURE__ */ React12.createElement("div", { className: "switch" }, /* @__PURE__ */ React12.createElement(
+        "button",
         {
-          onClick: (e) => {
-            settingsRef.current && settingsRef.current.classList.add("hide-display");
-            e.preventDefault();
-          },
-          id: "close-btn"
+          className: "switch_button only_label",
+          onClick: () => handleButtonClickStream(0),
+          ref: (el) => buttonsStreamRef.current[0] = el
         },
-        /* @__PURE__ */ import_react3.default.createElement(Close_default, { className: "close-icon", height: 15, width: 15 })
-      )),
-      /* @__PURE__ */ import_react3.default.createElement("div", { id: "latency-setting" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "settings-text-style" }, "Lowest latency"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "radio-latency-style" }, /* @__PURE__ */ import_react3.default.createElement("label", { className: "switch" }, /* @__PURE__ */ import_react3.default.createElement("input", { ref: switchRef, id: "switch", type: "checkbox" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "slider" }))))
+        /* @__PURE__ */ React12.createElement("p", null, "Youtube"),
+        /* @__PURE__ */ React12.createElement("span", { className: "active_indicator" })
+      ), /* @__PURE__ */ React12.createElement(
+        "button",
+        {
+          className: "switch_button only_label",
+          onClick: () => handleButtonClickStream(1),
+          ref: (el) => buttonsStreamRef.current[1] = el
+        },
+        /* @__PURE__ */ React12.createElement("p", null, "Twitch")
+      ))),
+      /* @__PURE__ */ React12.createElement("div", { style: { position: "relative" }, className: "panel_option stream_url" }, /* @__PURE__ */ React12.createElement("input", { type: "text", className: "input_text", placeholder: "Stream Url" }), /* @__PURE__ */ React12.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", fill: "currentColor", viewBox: "0 0 16 16" }, " ", /* @__PURE__ */ React12.createElement("path", { d: "M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" }), " ", /* @__PURE__ */ React12.createElement("path", { d: "M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z" }), " ")),
+      /* @__PURE__ */ React12.createElement("div", { className: "stream_details" }, /* @__PURE__ */ React12.createElement("div", { className: "row" }, /* @__PURE__ */ React12.createElement("span", null, "Stream Resolution"), /* @__PURE__ */ React12.createElement("p", null, "1920x1080")))
     );
   }
 
-  // src/components/BottomContainer.tsx
-  var import_react4 = __toESM(require_react());
-
-  // icons/Info Square.tsx
-  var React6 = __toESM(require_react());
-  var SvgComponent3 = (props) => /* @__PURE__ */ React6.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React6.createElement(
-    "g",
+  // src/svg/gpad.tsx
+  var React13 = __toESM(require_react());
+  var SvgComponent = (props) => /* @__PURE__ */ React13.createElement(
+    "svg",
     {
-      stroke: "#FFF",
+      xmlns: "http://www.w3.org/2000/svg",
+      width: 600,
+      height: 450,
       fill: "none",
-      fillRule: "evenodd",
-      strokeLinecap: "round",
-      strokeLinejoin: "round"
+      viewBox: "0 0 600 450",
+      ...props
     },
-    /* @__PURE__ */ React6.createElement(
+    /* @__PURE__ */ React13.createElement(
       "path",
       {
-        d: "M16.334 2.75H7.665c-3.02 0-4.915 2.14-4.915 5.166v8.168c0 3.027 1.885 5.166 4.915 5.166h8.668c3.031 0 4.917-2.139 4.917-5.166V7.916c0-3.027-1.886-5.166-4.916-5.166ZM11.995 16v-4",
-        strokeWidth: 1.5
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 3.618,
+        d: "M203.125 76.224v-5.46c0-1.88-1.432-3.437-3.311-3.514-10.82-.438-45.699-.517-67.655 14.945-.927.653-1.452 1.726-1.452 2.86v10.504M397.177 76.224v-5.46c0-1.88 1.431-3.437 3.311-3.514 10.82-.438 45.699-.517 67.655 14.945.926.653 1.452 1.726 1.452 2.86v10.504"
       }
     ),
-    /* @__PURE__ */ React6.createElement("path", { strokeWidth: 2, d: "M11.99 8.204H12" })
-  ));
-  var Info_Square_default = SvgComponent3;
-
-  // icons/Setting.tsx
-  var React7 = __toESM(require_react());
-  var SvgComponent4 = (props) => /* @__PURE__ */ React7.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React7.createElement(
-    "path",
-    {
-      d: "M12.267 2c.716 0 1.412.295 1.911.806.498.514.773 1.218.752 1.933.002.162.055.348.151.51a1.157 1.157 0 0 0 1.583.416 2.67 2.67 0 0 1 3.64.976l.623 1.08a.85.85 0 0 1 .042.085 2.673 2.673 0 0 1-1.01 3.545 1.142 1.142 0 0 0-.424.421 1.174 1.174 0 0 0-.12.883c.08.3.271.55.54.704a2.67 2.67 0 0 1 1.241 1.616 2.674 2.674 0 0 1-.27 2.02l-.665 1.107a2.665 2.665 0 0 1-3.627.959 1.19 1.19 0 0 0-.558-.155h-.006c-.289 0-.586.123-.802.338a1.143 1.143 0 0 0-.337.82 2.67 2.67 0 0 1-2.664 2.657h-1.253a2.666 2.666 0 0 1-2.664-2.663 1.076 1.076 0 0 0-.15-.532 1.158 1.158 0 0 0-.705-.547 1.157 1.157 0 0 0-.872.117 2.706 2.706 0 0 1-2.043.244 2.681 2.681 0 0 1-1.6-1.27l-.625-1.077a2.658 2.658 0 0 1 .97-3.624c.36-.207.582-.594.582-1.008 0-.414-.223-.8-.582-1.008a2.668 2.668 0 0 1-.97-3.632l.677-1.114c.721-1.253 2.351-1.696 3.622-.966.173.104.361.155.552.157.623 0 1.144-.513 1.154-1.146a2.63 2.63 0 0 1 .772-1.87A2.64 2.64 0 0 1 11.014 2h1.253Zm0 1.5h-1.253A1.153 1.153 0 0 0 9.86 4.66a2.677 2.677 0 0 1-2.663 2.638 2.58 2.58 0 0 1-1.299-.362 1.165 1.165 0 0 0-1.576.436l-.677 1.114c-.31.537-.12 1.248.432 1.57a2.674 2.674 0 0 1 1.33 2.306c0 .947-.51 1.83-1.332 2.306a1.155 1.155 0 0 0-.42 1.575l.63 1.088c.156.28.411.483.706.567.294.082.618.047.888-.104a2.625 2.625 0 0 1 1.323-.354 2.633 2.633 0 0 1 2.293 1.33c.226.381.351.826.355 1.28 0 .65.522 1.171 1.164 1.171h1.253c.64 0 1.161-.518 1.164-1.157a2.628 2.628 0 0 1 .777-1.881c.498-.498 1.194-.797 1.89-.777.456.01.895.134 1.282.354a1.17 1.17 0 0 0 1.59-.422l.664-1.107a1.157 1.157 0 0 0-.426-1.572 2.637 2.637 0 0 1-1.242-1.618 2.67 2.67 0 0 1 .271-2.018c.23-.4.567-.737.971-.97a1.166 1.166 0 0 0 .417-1.578.558.558 0 0 1-.035-.068l-.586-1.016a1.165 1.165 0 0 0-1.586-.43 2.616 2.616 0 0 1-2.006.277 2.63 2.63 0 0 1-1.622-1.227 2.554 2.554 0 0 1-.359-1.285 1.193 1.193 0 0 0-.329-.874 1.168 1.168 0 0 0-.835-.351Zm-.622 5.475a3.39 3.39 0 0 1 3.386 3.387 3.389 3.389 0 0 1-3.386 3.385 3.389 3.389 0 0 1-3.386-3.385 3.39 3.39 0 0 1 3.386-3.387Zm0 1.5a1.887 1.887 0 1 0 1.886 1.887c0-1.04-.846-1.887-1.886-1.887Z",
-      fill: "#FFF",
-      fillRule: "evenodd"
-    }
-  ));
-  var Setting_default = SvgComponent4;
-
-  // icons/Volume On.tsx
-  var React8 = __toESM(require_react());
-  var SvgComponent5 = (props) => /* @__PURE__ */ React8.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React8.createElement(
-    "path",
-    {
-      d: "M12.474 4.335a.798.798 0 0 1 .09.062c1.352 1.062 1.45 3.036 1.456 6.978v.375c0 4.194-.062 6.26-1.456 7.355a.722.722 0 0 1-.091.061 2.492 2.492 0 0 1-1.255.336c-1.391 0-2.77-1.095-3.844-1.947-.485-.385-1.218-.967-1.471-.993a14.952 14.952 0 0 0-.754-.037c-.798-.029-1.43-.05-2.171-.662-.893-.735-.975-2.192-.978-3.476v-.42l.002-.217L2 11.534 2 11.114c.003-1.284.085-2.74.978-3.476.743-.612 1.375-.634 2.175-.66.218-.009.465-.017.752-.038.25-.027.984-.609 1.469-.994 1.399-1.11 3.315-2.628 5.1-1.61Zm7.975.892c2.713 3.904 2.713 9.147 0 13.048a.75.75 0 0 1-1.23-.858c2.392-3.44 2.392-7.889 0-11.335a.749.749 0 1 1 1.23-.855Zm-9.241.28c-.868 0-1.978.88-2.902 1.614-.89.705-1.591 1.263-2.291 1.315-.31.022-.576.032-.81.04-.747.025-.936.042-1.273.32-.387.318-.43 1.493-.432 2.375v.356l.002.221v.004l-.001.221v.357c.001.883.044 2.058.43 2.375.337.278.526.294 1.27.321.236.007.503.017.814.04.7.051 1.402.61 2.29 1.314 1.104.875 2.47 1.96 3.376 1.51.733-.636.833-2.288.839-5.784v-.356c0-3.74-.081-5.48-.84-6.139a1.05 1.05 0 0 0-.472-.105Zm6.773 2.185a8.192 8.192 0 0 1 0 8.118.749.749 0 1 1-1.3-.746 6.688 6.688 0 0 0 0-6.626.75.75 0 0 1 1.3-.746Z",
-      fill: "#FFF",
-      fillRule: "evenodd"
-    }
-  ));
-  var Volume_On_default = SvgComponent5;
-
-  // icons/Volume Off.tsx
-  var React9 = __toESM(require_react());
-  var SvgComponent6 = (props) => /* @__PURE__ */ React9.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React9.createElement(
-    "path",
-    {
-      d: "M20.28 3.22a.749.749 0 0 1 0 1.06l-5.463 5.463a.756.756 0 0 1-.004.004l-6.819 6.82-.006.005-3.707 3.708a.744.744 0 0 1-.53.22.749.749 0 0 1-.53-1.28l2.66-2.66c-.68-.032-1.254-.12-1.909-.68-.882-.754-.967-2.251-.972-3.572v-.432l.001-.243v-.242L3 10.959c.005-1.321.09-2.819.973-3.572.74-.633 1.374-.657 2.175-.687.221-.009.47-.018.762-.04.251-.033.98-.633 1.462-1.029 1.406-1.159 3.333-2.745 5.135-1.677a.59.59 0 0 1 .093.064c.864.703 1.205 1.78 1.349 3.473L19.22 3.22a.749.749 0 0 1 1.06 0Zm-5.987 9.697a.75.75 0 0 1 .74.76c-.038 2.955-.27 4.628-1.433 5.573a.79.79 0 0 1-.092.063 2.461 2.461 0 0 1-1.275.353c-1.01 0-1.97-.585-2.68-1.1a.749.749 0 1 1 .879-1.214c1.313.949 1.905.886 2.264.698.582-.52.803-1.687.837-4.393.006-.414.309-.736.76-.74ZM12.23 5.11c-.866 0-1.979.916-2.905 1.678-.89.732-1.592 1.31-2.297 1.366-.315.024-.585.035-.823.044-.739.027-.926.045-1.258.33-.453.386-.449 1.934-.447 2.858l.001.246v.247c-.003.924-.007 2.472.446 2.859.34.29.531.308 1.288.334.23.008.488.017.787.038.086.006.174.02.264.042l6.238-6.238c-.073-2.225-.298-3.223-.828-3.697a1.003 1.003 0 0 0-.466-.107Z",
-      fill: "#FFF",
-      fillRule: "evenodd"
-    }
-  ));
-  var Volume_Off_default = SvgComponent6;
-
-  // icons/Fullscreen.tsx
-  var React10 = __toESM(require_react());
-  var SvgComponent7 = (props) => /* @__PURE__ */ React10.createElement("svg", { width: 24, height: 24, viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", ...props }, /* @__PURE__ */ React10.createElement(
-    "path",
-    {
-      style: {
-        stroke: "none",
-        strokeWidth: 1,
-        strokeDasharray: "none",
-        strokeLinecap: "butt",
-        strokeDashoffset: 0,
-        strokeLinejoin: "miter",
-        strokeMiterlimit: 4,
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
         fill: "#fff",
-        fillRule: "nonzero",
-        opacity: 1
-      },
-      transform: "matrix(.48 0 0 .48 .48 .48)",
-      d: "M8.5 7C5.48 7 3 9.48 3 12.5v23C3 38.52 5.48 41 8.5 41h31c3.02 0 5.5-2.48 5.5-5.5v-23C45 9.48 42.52 7 39.5 7h-31zm0 3h31c1.398 0 2.5 1.102 2.5 2.5v23c0 1.398-1.102 2.5-2.5 2.5H28v-8.5a5.5 5.5 0 0 0-5.5-5.5H6V12.5C6 11.102 7.102 10 8.5 10zm28.97 2.986a1.5 1.5 0 0 0-.16.014H32.5a1.5 1.5 0 1 0 0 3h1.379l-5.44 5.44a1.5 1.5 0 1 0 2.122 2.12L36 18.122V19.5a1.5 1.5 0 1 0 3 0v-4.826a1.5 1.5 0 0 0-1.53-1.688z"
+        fillOpacity: 0.05,
+        d: "M543.493 323.696c-9.208-69.948-28.684-145.871-46.04-191.214-17-45.694-61.98-54.833-104.126-54.833H206.682c-42.146 0-87.125 9.139-104.125 54.833-17 45.695-36.48 121.266-46.041 191.214-5.313 34.798 20.187 55.888 42.853 58.348 22.667 2.46 49.938-5.975 63.397-40.422 13.457-34.095 19.124-63.27 47.457-63.27h179.209c28.333 0 34 29.175 47.458 63.27 13.458 34.095 40.729 42.882 63.393 40.422 22.668-2.46 48.522-23.55 43.21-58.348z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        fillOpacity: 0.2,
+        stroke: "#fff",
+        strokeWidth: 0.546472,
+        strokeOpacity: 1,
+        d: "M543.493 323.696c-9.208-69.948-28.684-145.871-46.04-191.214-17-45.694-61.98-54.833-104.126-54.833H206.682c-42.146 0-87.125 9.139-104.125 54.833-17 45.695-36.48 121.266-46.041 191.214-5.313 34.798 20.187 55.888 42.853 58.348 22.667 2.46 49.938-5.975 63.397-40.422 13.457-34.095 19.124-63.27 47.457-63.27h179.209c28.333 0 34 29.175 47.458 63.27 13.458 34.095 40.729 42.882 63.393 40.422 22.668-2.46 48.522-23.55 43.21-58.348z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        fillOpacity: 0.15,
+        stroke: "#fff",
+        strokeWidth: 0.546472,
+        strokeOpacity: 1,
+        d: "M543.493 323.696c-9.208-69.948-28.684-145.871-46.04-191.214-17-45.694-61.98-54.833-104.126-54.833H206.682c-42.146 0-87.125 9.139-104.125 54.833-17 45.695-36.48 121.266-46.041 191.214-5.313 34.798 20.187 55.888 42.853 58.348 22.667 2.46 49.938-5.975 63.397-40.422 13.457-34.095 19.124-63.27 47.457-63.27h179.209c28.333 0 34 29.175 47.458 63.27 13.458 34.095 40.729 42.882 63.393 40.422 22.668-2.46 48.522-23.55 43.21-58.348z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        strokeMiterlimit: 10,
+        strokeWidth: 4.522,
+        stroke: "#fff",
+        strokeOpacity: 1,
+        d: "M543.493 323.696c-9.208-69.948-28.684-145.871-46.04-191.214-17-45.694-61.98-54.833-104.126-54.833H206.682c-42.146 0-87.125 9.139-104.125 54.833-17 45.695-36.48 121.266-46.041 191.214-5.313 34.798 20.187 55.888 42.853 58.348 22.667 2.46 49.938-5.975 63.397-40.422 13.457-34.095 19.124-63.27 47.457-63.27h179.209c28.333 0 34 29.175 47.458 63.27 13.458 34.095 40.729 42.882 63.393 40.422 22.668-2.46 48.522-23.55 43.21-58.348z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 2.713,
+        d: "M194.006 146.018H179.89c-.999 0-1.809-.81-1.809-1.809v-14.117c0-6.723-5.662-12.386-12.387-12.386-6.724 0-12.386 5.663-12.386 12.386v14.117c0 1-.81 1.81-1.81 1.81H137.38c-6.724 0-12.387 5.662-12.387 12.386 0 6.724 5.663 12.387 12.387 12.387h14.118c.999 0 1.809.81 1.809 1.809v14.117c0 6.724 5.662 12.387 12.386 12.387 6.725 0 12.387-5.663 12.387-12.387V172.6c0-1 .81-1.809 1.81-1.809h14.116c6.725 0 12.387-5.663 12.387-12.387s-5.308-12.387-12.387-12.387z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 0.904,
+        d: "M227.85 257.51c15.983 0 28.941-12.957 28.941-28.941 0-15.984-12.958-28.942-28.942-28.942s-28.942 12.958-28.942 28.942 12.958 28.941 28.942 28.941z",
+        opacity: 0.5
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 2.713,
+        d: "M227.644 250.275c11.988 0 21.707-9.718 21.707-21.706s-9.719-21.707-21.707-21.707c-11.988 0-21.707 9.719-21.707 21.707 0 11.988 9.719 21.706 21.707 21.706z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 1.809,
+        d: "M300 244.849c8.992 0 16.28-7.29 16.28-16.28 0-8.991-7.288-16.28-16.279-16.28s-16.28 7.289-16.28 16.28c0 8.99 7.289 16.28 16.28 16.28z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        d: "M295.84 227.113c5.09-2.296 9.54-.912 11.915.248a.41.41 0 0 0 .569-.239l.695-2.085a.512.512 0 0 0-.262-.623c-2.933-1.432-9.897-3.717-17.585 1.693a.51.51 0 0 0-.17.626l1.622 3.652c.109.246.39.365.643.273 1.857-.68 4.666-1.395 7.577-.974a13.327 13.327 0 0 0-4.769 1.775.512.512 0 0 0-.202.639l.998 2.285a.307.307 0 0 0 .504.089 5.04 5.04 0 0 1 1.123-.877c1.572-.913 3.746-1.589 6.685-1.434.23.012.44-.13.512-.349l.743-2.228a.512.512 0 0 0-.21-.594c-2.18-1.378-5.537-2.525-10.401-1.872z",
+        fill: "#fff",
+        fillOpacity: 1,
+        stroke: "#fff",
+        strokeWidth: 0.546472,
+        strokeOpacity: 1
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 0.904,
+        d: "M372.355 257.51c15.984 0 28.942-12.957 28.942-28.942 0-15.984-12.958-28.94-28.942-28.94s-28.941 12.956-28.941 28.94c0 15.985 12.957 28.942 28.941 28.942z",
+        opacity: 0.5
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 2.713,
+        d: "M372.567 250.498c11.989 0 21.707-9.718 21.707-21.706s-9.718-21.706-21.707-21.706c-11.987 0-21.705 9.718-21.705 21.706s9.718 21.706 21.705 21.706z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 1.809,
+        d: "M251.343 132.327c4.86 0 8.863-4.124 8.863-9.044 0-4.92-4.003-9.044-8.863-9.044H238.32c-4.86 0-8.863 4.123-8.863 9.044 0 4.92 4.003 9.044 8.863 9.044z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        d: "M241.213 123.203a1.809 1.809 0 1 1-3.618 0 1.809 1.809 0 0 1 3.618 0zM246.64 123.203a1.809 1.809 0 1 1-3.618 0 1.809 1.809 0 0 1 3.618 0zM252.067 123.203a1.809 1.809 0 1 1-3.618 0 1.809 1.809 0 0 1 3.618 0z",
+        fill: "#fff",
+        fillOpacity: 1,
+        stroke: "#fff",
+        strokeWidth: 0.546472,
+        strokeOpacity: 1
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 1.809,
+        d: "M265.632 169.795c5.994 0 10.853-4.86 10.853-10.853 0-5.995-4.859-10.854-10.853-10.854-5.993 0-10.853 4.86-10.853 10.854 0 5.993 4.86 10.853 10.853 10.853z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        d: "M270.644 157.345a.797.797 0 0 1-.567-.224.798.798 0 0 1-.224-.567c0-.22.075-.405.224-.554a.774.774 0 0 1 .567-.238c.22 0 .405.08.555.238.158.15.237.334.237.554 0 .22-.08.408-.237.567a.752.752 0 0 1-.555.224zm-2.373 2.638c-.44 0-.814-.154-1.122-.461a1.527 1.527 0 0 1-.462-1.122c0-.44.155-.813.462-1.12a1.527 1.527 0 0 1 1.122-.462c.439 0 .813.154 1.12.461.308.308.462.682.462 1.121 0 .44-.154.814-.462 1.122a1.526 1.526 0 0 1-1.12.461zm0 4.22c-.51 0-.946-.18-1.306-.54a1.78 1.78 0 0 1-.54-1.306c0-.51.179-.945.54-1.305a1.78 1.78 0 0 1 1.306-.541c.51 0 .944.18 1.305.54.36.36.541.796.541 1.306s-.18.946-.54 1.306c-.362.36-.797.54-1.306.54zm-5.277-4.22c-.879 0-1.626-.308-2.242-.923a3.053 3.053 0 0 1-.923-2.242c0-.88.308-1.627.923-2.243a3.054 3.054 0 0 1 2.242-.923c.88 0 1.627.308 2.243.923.615.616.923 1.363.923 2.243 0 .879-.308 1.626-.923 2.242a3.053 3.053 0 0 1-2.243.923z",
+        fill: "#fff",
+        fillOpacity: 1,
+        stroke: "#fff",
+        strokeWidth: 0.546472,
+        strokeOpacity: 1
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 1.809,
+        d: "M334.083 169.795c5.995 0 10.853-4.86 10.853-10.854 0-5.994-4.858-10.853-10.853-10.853-5.994 0-10.853 4.86-10.853 10.853 0 5.994 4.859 10.854 10.853 10.854z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        d: "M329.169 163.676v-3.34h1.187v2.153h2.154v1.187zm0-6.173v-3.323h3.341v1.187h-2.154v2.136zm6.173 6.173v-1.187h2.137v-2.154h1.186v3.341zm2.137-6.173v-2.136h-2.137v-1.187h3.323v3.323z",
+        fill: "#fff",
+        fillOpacity: 1,
+        stroke: "#fff",
+        strokeWidth: 0.546472,
+        strokeOpacity: 1
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 1.809,
+        d: "M361.627 132.327c4.86 0 8.863-4.124 8.863-9.044 0-4.92-4.004-9.044-8.863-9.044h-13.024c-4.86 0-8.864 4.123-8.864 9.044 0 4.92 4.004 9.044 8.864 9.044z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        d: "M349.406 127.047v-1.153h11.53v1.153zm0-3.267v-1.154h11.53v1.154zm0-3.268v-1.153h11.53v1.153z",
+        fill: "#fff",
+        fillOpacity: 1,
+        stroke: "#fff",
+        strokeWidth: 0.546472,
+        strokeOpacity: 1
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 1.809,
+        d: "M438.716 204.15c8.492 0 15.376-6.884 15.376-15.376 0-8.491-6.884-15.375-15.376-15.375-8.49 0-15.375 6.884-15.375 15.375 0 8.492 6.884 15.375 15.375 15.375z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        d: "m434.236 193.748 3.907-10.361h1.809l3.921 10.361h-1.75l-.956-2.662h-4.225l-.955 2.662zm6.396-4.138-1.144-3.17-.39-1.186h-.087l-.39 1.187-1.144 3.169z",
+        fill: "#fff",
+        fillOpacity: 1,
+        stroke: "#fff",
+        strokeWidth: 0.546472,
+        strokeOpacity: 1
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 1.809,
+        d: "M408.08 173.365c8.492 0 15.375-6.884 15.375-15.376 0-8.491-6.883-15.375-15.375-15.375s-15.376 6.884-15.376 15.375c0 8.492 6.884 15.376 15.376 15.376z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        d: "M403.789 152.637h1.954l2.3 3.719h.087l2.316-3.72h1.939l-3.227 4.979 3.458 5.383h-1.939l-2.547-4.038h-.087l-2.546 4.038h-1.94l3.459-5.383z",
+        fill: "#fff",
+        fillOpacity: 1,
+        stroke: "#fff",
+        strokeWidth: 0.546472,
+        strokeOpacity: 1
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 1.809,
+        d: "M438.716 142.648c8.492 0 15.376-6.884 15.376-15.375s-6.884-15.375-15.376-15.375c-8.49 0-15.375 6.884-15.375 15.375s6.884 15.375 15.375 15.375z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        fill: "#fff",
+        fillOpacity: 1,
+        stroke: "#fff",
+        strokeWidth: 0.546472,
+        strokeOpacity: 1,
+        d: "M438.076 132.207v-4.804l-3.502-5.557h1.881l2.36 3.907h.086l2.3-3.907h1.896l-3.444 5.557v4.804z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        stroke: "#fff",
+        strokeOpacity: 1,
+        strokeMiterlimit: 10,
+        strokeWidth: 1.809,
+        d: "M469.582 173.365c8.491 0 15.374-6.884 15.374-15.376 0-8.491-6.883-15.375-15.374-15.375-8.492 0-15.376 6.884-15.376 15.375 0 8.492 6.884 15.376 15.376 15.376z"
+      }
+    ),
+    /* @__PURE__ */ React13.createElement(
+      "path",
+      {
+        fill: "#fff",
+        fillOpacity: 1,
+        stroke: "#fff",
+        strokeWidth: 0.546472,
+        strokeOpacity: 1,
+        d: "M466.45 162.998v-10.361h3.878c.57 0 1.085.12 1.548.361.464.242.83.57 1.1.984.28.415.42.883.42 1.404 0 .531-.13.984-.39 1.36a2.49 2.49 0 0 1-1.014.854v.073c.521.173.945.473 1.274.897.328.424.492.93.492 1.52 0 .578-.15 1.085-.449 1.519-.29.434-.685.776-1.186 1.027a3.628 3.628 0 0 1-1.621.362zm1.592-4.587v3.11h2.46c.347 0 .646-.071.897-.216.25-.145.439-.338.564-.579a1.52 1.52 0 0 0 0-1.52 1.493 1.493 0 0 0-.593-.578c-.25-.145-.56-.217-.926-.217zm0-1.419h2.214c.338 0 .622-.067.853-.202.241-.145.425-.328.55-.55a1.47 1.47 0 0 0 .188-.71c0-.24-.062-.467-.188-.68-.116-.221-.289-.4-.52-.535a1.524 1.524 0 0 0-.825-.217h-2.272z"
+      }
+    )
+  );
+  var gpad_default = SvgComponent;
+
+  // src/svg/logo.tsx
+  var React14 = __toESM(require_react());
+  var SvgComponent2 = (props) => /* @__PURE__ */ React14.createElement(
+    "svg",
+    {
+      xmlns: "http://www.w3.org/2000/svg",
+      xmlnsXlink: "http://www.w3.org/1999/xlink",
+      width: 320,
+      height: 320,
+      viewBox: "0 0 320 320",
+      ...props
+    },
+    /* @__PURE__ */ React14.createElement("defs", null, /* @__PURE__ */ React14.createElement("linearGradient", { id: "a" }, /* @__PURE__ */ React14.createElement(
+      "stop",
+      {
+        offset: 0,
+        style: {
+          stopColor: "#fc4a1f",
+          stopOpacity: 1
+        }
+      }
+    ), /* @__PURE__ */ React14.createElement(
+      "stop",
+      {
+        offset: 1,
+        style: {
+          stopColor: "#ac0d57",
+          stopOpacity: 1
+        }
+      }
+    )), /* @__PURE__ */ React14.createElement(
+      "linearGradient",
+      {
+        xlinkHref: "#a",
+        id: "b",
+        x1: 73.256,
+        x2: 233.505,
+        y1: 74.15,
+        y2: 251.182,
+        gradientUnits: "userSpaceOnUse"
+      }
+    ), /* @__PURE__ */ React14.createElement(
+      "linearGradient",
+      {
+        xlinkHref: "#a",
+        id: "c",
+        x1: 73.256,
+        x2: 233.505,
+        y1: 74.15,
+        y2: 251.182,
+        gradientUnits: "userSpaceOnUse"
+      }
+    ), /* @__PURE__ */ React14.createElement(
+      "linearGradient",
+      {
+        xlinkHref: "#a",
+        id: "d",
+        x1: 73.256,
+        x2: 233.505,
+        y1: 74.15,
+        y2: 251.182,
+        gradientUnits: "userSpaceOnUse"
+      }
+    )),
+    /* @__PURE__ */ React14.createElement("g", { fill: "#C35BA8" }, /* @__PURE__ */ React14.createElement(
+      "path",
+      {
+        d: "M147.224 263.615q11.9 1.4 18-3l71-41 6.5-6.5 4-8v-14q-3.2-9.3-10.5-14.5-2.2-3.8-9-3l-22.5 13.5 16 10-1.5 3.5-59 34-8.5 3v-63.5l-4.5-6.5-20.5-11v86.5q2.1 9.4 8.5 14.5z",
+        opacity: 0.98,
+        style: {
+          fill: "url(#b)",
+          fillOpacity: 1,
+          stroke: "none"
+        }
+      }
+    ), /* @__PURE__ */ React14.createElement(
+      "path",
+      {
+        d: "M91.224 231.615q16.7 1.7 23.5-6.5l-.5-28.5q-7.3 6.5-17.5 9v-78.5l2.5-.5 46 27 8 4h6l21.5-12.5-74.5-43.5q-5.5-2.5-15-1-9.9 3.1-15.5 10.5l-4 9v92q2.4 9.6 9.5 14.5z",
+        opacity: 0.98,
+        style: {
+          fill: "url(#c)",
+          fillOpacity: 1,
+          stroke: "none"
+        }
+      }
+    ), /* @__PURE__ */ React14.createElement(
+      "path",
+      {
+        d: "m162.724 196.615 6.5-2 64-37 9.5-8.5q6.2-6.3 4-21-2.1-9.9-9.5-14.5l-72-42q-6.1-4.4-18-3-10.1 2.4-15.5 9.5l-5 11v10l3.5 3.5 19 11h2.5v-18.5l3.5-.5 65.5 38.5-1.5 3.5-48 27-6.5 5.5-1 2v22z",
+        opacity: 0.98,
+        style: {
+          fill: "url(#d)",
+          fillOpacity: 1,
+          stroke: "none"
+        }
+      }
+    ))
+  );
+  var logo_default = SvgComponent2;
+
+  // src/svg/logoName.tsx
+  var React15 = __toESM(require_react());
+  var SvgComponent3 = (props) => /* @__PURE__ */ React15.createElement(
+    "svg",
+    {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: 400,
+      height: 106.667,
+      viewBox: "0 0 300 80",
+      ...props
+    },
+    /* @__PURE__ */ React15.createElement("path", { d: "M24.1 25.3c-1.6.8-5.5 6.8-11.2 17.2C8 51.3 4 58.8 4 59.2c0 .5 1.8.8 3.9.8 3.4 0 4.2-.5 6.1-3.5l2.2-3.5H40l1.7 3.5c1.5 3.2 2 3.5 6 3.5 2.4 0 4.3-.2 4.3-.3 0-.7-18.1-33.2-18.8-33.8-1.6-1.5-6.8-1.8-9.1-.6zm8.2 13.8c2.2 3.9 3.7 7.3 3.4 7.5-.2.3-4 .4-8.4.2l-7.9-.3 3.9-7.3c2.1-3.9 4.2-7.2 4.5-7.2.4 0 2.4 3.2 4.5 7.1zM57.3 24.7c-1 .3-1.3 4.9-1.3 17.9V60h8V49h16.8l4.1 5.5c4 5.3 4.4 5.5 8.7 5.5h4.6l-4.6-5.7-4.5-5.8 2.4-1.3c3.5-1.8 4.5-4.3 4.5-11 0-7.2-1.8-9.9-7.5-11.2-4.1-1-29-1.2-31.2-.3zM88 34.1c1.3 2.3.5 7-1.3 8.1-.7.4-6 .8-11.9.8H64V32h11.5c10.6 0 11.5.2 12.5 2.1zM111.1 24.9c-6.1 1-8.7 4.3-9.6 11.9-1 8.6.3 16.8 3 20 2.3 2.7 2.4 2.7 18.9 3l16.6.3V53h-13.9c-16.6 0-17.1-.3-17.1-10.5s.5-10.5 17.1-10.5h14l-.3-3.8-.3-3.7-12-.1c-6.6-.1-14 .1-16.4.5zM145.7 24.7c-.4.3-.7 1.9-.7 3.5V31h13.9c14.9 0 16.6.5 15.9 5.2-.3 2.3-.6 2.3-14.8 2.8l-14.5.5-.3 2.7-.3 2.8h13.8c14.7 0 16.3.5 16.3 4.7 0 3.5-3 4.3-16.9 4.3H145v6h16.4c19.9 0 20.8-.4 21-9.2 0-3.2-.5-6.2-1.3-7.1-.9-1.2-1-2.1-.2-3.6 1.5-2.7 1.4-10.3-.2-12.5-.7-.9-3-2.1-5.2-2.6-4.6-1.1-28.8-1.3-29.8-.3zM189.8 24.6c-.5.4-.8 8.5-.8 18.1V60h16c22.8 0 25-1.6 25-18 0-15.2-2.7-17.1-24.5-17.8-8.2-.2-15.3-.1-15.7.4zm30.6 9c1.2 1.1 1.6 3.5 1.6 8.9 0 10.2-.4 10.5-14.1 10.5H197V32h10.9c8.6 0 11.3.3 12.5 1.6zM237.7 24.6c-.4.4-.7 8.5-.7 18.1V60h7l-.2-17.8-.3-17.7-2.5-.3c-1.4-.2-2.9 0-3.3.4zM269.1 25.3c-1.5.7-5.6 7.1-11.2 17.2-4.8 8.8-8.8 16.3-8.9 16.7 0 .5 1.8.8 4 .8 3.6 0 4.3-.4 6.1-3.5l2.1-3.5h23.6l2.1 3.5c1.8 3.1 2.5 3.5 6.1 3.5 2.2 0 4-.2 4-.5 0-.7-18-32.9-18.8-33.6-1.5-1.5-6.8-1.8-9.1-.6zm8.2 13.6c2 3.7 3.7 7.1 3.7 7.5 0 .3-3.6.6-8 .6s-8-.2-8-.5c0-1.3 7.1-14.5 7.8-14.5.4 0 2.4 3.1 4.5 6.9z" })
+  );
+  var logoName_default = SvgComponent3;
+
+  // node_modules/react-hot-toast/dist/index.mjs
+  var import_react8 = __toESM(require_react(), 1);
+  var import_react9 = __toESM(require_react(), 1);
+  var l2 = __toESM(require_react(), 1);
+
+  // node_modules/goober/dist/goober.modern.js
+  var e = { data: "" };
+  var t = (t2) => "object" == typeof window ? ((t2 ? t2.querySelector("#_goober") : window._goober) || Object.assign((t2 || document.head).appendChild(document.createElement("style")), { innerHTML: " ", id: "_goober" })).firstChild : t2 || e;
+  var l = /(?:([\u0080-\uFFFF\w-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(}\s*)/g;
+  var a = /\/\*[^]*?\*\/|  +/g;
+  var n = /\n+/g;
+  var o = (e2, t2) => {
+    let r2 = "", l3 = "", a2 = "";
+    for (let n3 in e2) {
+      let c2 = e2[n3];
+      "@" == n3[0] ? "i" == n3[1] ? r2 = n3 + " " + c2 + ";" : l3 += "f" == n3[1] ? o(c2, n3) : n3 + "{" + o(c2, "k" == n3[1] ? "" : t2) + "}" : "object" == typeof c2 ? l3 += o(c2, t2 ? t2.replace(/([^,])+/g, (e3) => n3.replace(/(^:.*)|([^,])+/g, (t3) => /&/.test(t3) ? t3.replace(/&/g, e3) : e3 ? e3 + " " + t3 : t3)) : n3) : null != c2 && (n3 = /^--/.test(n3) ? n3 : n3.replace(/[A-Z]/g, "-$&").toLowerCase(), a2 += o.p ? o.p(n3, c2) : n3 + ":" + c2 + ";");
     }
-  ));
-  var Fullscreen_default = SvgComponent7;
-
-  // src/components/BottomContainer.tsx
-  function BottomContainer({ infoRef, settingsRef, playerRef, vidRef }) {
-    const [videoMuted, setVideoMuted] = (0, import_react4.useState)(() => vidRef.current ? vidRef.current.muted : true);
-    return /* @__PURE__ */ import_react4.default.createElement("div", { id: "bottom-container" }, /* @__PURE__ */ import_react4.default.createElement("div", { id: "bottom-controls" }, /* @__PURE__ */ import_react4.default.createElement(
-      "div",
-      {
-        onClick: (e) => {
-          infoRef.current && infoRef.current.classList.remove("hide-display");
-          settingsRef.current && settingsRef.current.classList.add("hide-display");
-          e.preventDefault();
-        },
-        id: "bottom-btn"
-      },
-      /* @__PURE__ */ import_react4.default.createElement(Info_Square_default, { className: "bottom-icon", height: 50, width: 50 })
-    ), /* @__PURE__ */ import_react4.default.createElement(
-      "div",
-      {
-        onClick: (e) => {
-          infoRef.current && infoRef.current.classList.add("hide-display");
-          settingsRef.current && settingsRef.current.classList.remove("hide-display");
-          e.preventDefault();
-        },
-        id: "bottom-btn"
-      },
-      /* @__PURE__ */ import_react4.default.createElement(Setting_default, { className: "bottom-icon", height: 50, width: 50 })
-    ), /* @__PURE__ */ import_react4.default.createElement(
-      "div",
-      {
-        onClick: (e) => {
-          setVideoMuted((e2) => !e2);
-          if (vidRef.current)
-            vidRef.current.muted = videoMuted;
-          e.preventDefault();
-        },
-        id: "bottom-btn"
-      },
-      videoMuted ? /* @__PURE__ */ import_react4.default.createElement(Volume_On_default, { className: "bottom-icon", height: 50, width: 50 }) : /* @__PURE__ */ import_react4.default.createElement(Volume_Off_default, { className: "bottom-icon", height: 50, width: 50 })
-    ), /* @__PURE__ */ import_react4.default.createElement(
-      "div",
-      {
-        onClick: (e) => {
-          settingsRef.current && settingsRef.current.classList.add("hide-display");
-          infoRef.current && infoRef.current.classList.add("hide-display");
-          playerRef.current && playerRef.current.requestFullscreen();
-        },
-        id: "bottom-btn"
-      },
-      /* @__PURE__ */ import_react4.default.createElement(Fullscreen_default, { className: "bottom-icon", height: 50, width: 50 })
-    )));
+    return r2 + (t2 && a2 ? t2 + "{" + a2 + "}" : a2) + l3;
+  };
+  var c = {};
+  var s = (e2) => {
+    if ("object" == typeof e2) {
+      let t2 = "";
+      for (let r2 in e2)
+        t2 += r2 + s(e2[r2]);
+      return t2;
+    }
+    return e2;
+  };
+  var i = (e2, t2, r2, i2, p2) => {
+    let u3 = s(e2), d2 = c[u3] || (c[u3] = ((e3) => {
+      let t3 = 0, r3 = 11;
+      for (; t3 < e3.length; )
+        r3 = 101 * r3 + e3.charCodeAt(t3++) >>> 0;
+      return "go" + r3;
+    })(u3));
+    if (!c[d2]) {
+      let t3 = u3 !== e2 ? e2 : ((e3) => {
+        let t4, r3, o2 = [{}];
+        for (; t4 = l.exec(e3.replace(a, "")); )
+          t4[4] ? o2.shift() : t4[3] ? (r3 = t4[3].replace(n, " ").trim(), o2.unshift(o2[0][r3] = o2[0][r3] || {})) : o2[0][t4[1]] = t4[2].replace(n, " ").trim();
+        return o2[0];
+      })(e2);
+      c[d2] = o(p2 ? { ["@keyframes " + d2]: t3 } : t3, r2 ? "" : "." + d2);
+    }
+    let f3 = r2 && c.g ? c.g : null;
+    return r2 && (c.g = c[d2]), ((e3, t3, r3, l3) => {
+      l3 ? t3.data = t3.data.replace(l3, e3) : -1 === t3.data.indexOf(e3) && (t3.data = r3 ? e3 + t3.data : t3.data + e3);
+    })(c[d2], t2, i2, f3), d2;
+  };
+  var p = (e2, t2, r2) => e2.reduce((e3, l3, a2) => {
+    let n3 = t2[a2];
+    if (n3 && n3.call) {
+      let e4 = n3(r2), t3 = e4 && e4.props && e4.props.className || /^go/.test(e4) && e4;
+      n3 = t3 ? "." + t3 : e4 && "object" == typeof e4 ? e4.props ? "" : o(e4, "") : false === e4 ? "" : e4;
+    }
+    return e3 + l3 + (null == n3 ? "" : n3);
+  }, "");
+  function u(e2) {
+    let r2 = this || {}, l3 = e2.call ? e2(r2.p) : e2;
+    return i(l3.unshift ? l3.raw ? p(l3, [].slice.call(arguments, 1), r2.p) : l3.reduce((e3, t2) => Object.assign(e3, t2 && t2.call ? t2(r2.p) : t2), {}) : l3, t(r2.target), r2.g, r2.o, r2.k);
+  }
+  var d;
+  var f;
+  var g;
+  var b = u.bind({ g: 1 });
+  var h = u.bind({ k: 1 });
+  function m(e2, t2, r2, l3) {
+    o.p = t2, d = e2, f = r2, g = l3;
+  }
+  function j(e2, t2) {
+    let r2 = this || {};
+    return function() {
+      let l3 = arguments;
+      function a2(n3, o2) {
+        let c2 = Object.assign({}, n3), s2 = c2.className || a2.className;
+        r2.p = Object.assign({ theme: f && f() }, c2), r2.o = / *go\d+/.test(s2), c2.className = u.apply(r2, l3) + (s2 ? " " + s2 : ""), t2 && (c2.ref = o2);
+        let i2 = e2;
+        return e2[0] && (i2 = c2.as || e2, delete c2.as), g && i2[0] && g(c2), d(i2, c2);
+      }
+      return t2 ? t2(a2) : a2;
+    };
   }
 
-  // src/components/PlayScreenTwo.tsx
-  function PlayScreenTwo({ infoRef, player, playerRef, vidRef }) {
-    const settingsRef = (0, import_react5.useRef)(null);
-    const latency = localStorage.getItem("live");
-    const [latencyMode, setLatencyMode] = (0, import_react5.useState)(() => latency ? "Low" : "Normal");
-    return /* @__PURE__ */ import_react5.default.createElement("div", { id: "play2" }, /* @__PURE__ */ import_react5.default.createElement(InfoContainer, { ...{ infoRef, latencyMode } }), /* @__PURE__ */ import_react5.default.createElement(SettingsContainer, { ...{ settingsRef, setLatencyMode, player } }), /* @__PURE__ */ import_react5.default.createElement(BottomContainer, { ...{ settingsRef, infoRef, playerRef, vidRef } }));
+  // node_modules/react-hot-toast/dist/index.mjs
+  var y = __toESM(require_react(), 1);
+  var f2 = __toESM(require_react(), 1);
+  var W = (e2) => typeof e2 == "function";
+  var T = (e2, t2) => W(e2) ? e2(t2) : e2;
+  var U = (() => {
+    let e2 = 0;
+    return () => (++e2).toString();
+  })();
+  var b2 = (() => {
+    let e2;
+    return () => {
+      if (e2 === void 0 && typeof window < "u") {
+        let t2 = matchMedia("(prefers-reduced-motion: reduce)");
+        e2 = !t2 || t2.matches;
+      }
+      return e2;
+    };
+  })();
+  var Q = 20;
+  var S = /* @__PURE__ */ new Map();
+  var X = 1e3;
+  var $ = (e2) => {
+    if (S.has(e2))
+      return;
+    let t2 = setTimeout(() => {
+      S.delete(e2), u2({ type: 4, toastId: e2 });
+    }, X);
+    S.set(e2, t2);
+  };
+  var J = (e2) => {
+    let t2 = S.get(e2);
+    t2 && clearTimeout(t2);
+  };
+  var v = (e2, t2) => {
+    switch (t2.type) {
+      case 0:
+        return { ...e2, toasts: [t2.toast, ...e2.toasts].slice(0, Q) };
+      case 1:
+        return t2.toast.id && J(t2.toast.id), { ...e2, toasts: e2.toasts.map((r2) => r2.id === t2.toast.id ? { ...r2, ...t2.toast } : r2) };
+      case 2:
+        let { toast: o2 } = t2;
+        return e2.toasts.find((r2) => r2.id === o2.id) ? v(e2, { type: 1, toast: o2 }) : v(e2, { type: 0, toast: o2 });
+      case 3:
+        let { toastId: s2 } = t2;
+        return s2 ? $(s2) : e2.toasts.forEach((r2) => {
+          $(r2.id);
+        }), { ...e2, toasts: e2.toasts.map((r2) => r2.id === s2 || s2 === void 0 ? { ...r2, visible: false } : r2) };
+      case 4:
+        return t2.toastId === void 0 ? { ...e2, toasts: [] } : { ...e2, toasts: e2.toasts.filter((r2) => r2.id !== t2.toastId) };
+      case 5:
+        return { ...e2, pausedAt: t2.time };
+      case 6:
+        let a2 = t2.time - (e2.pausedAt || 0);
+        return { ...e2, pausedAt: void 0, toasts: e2.toasts.map((r2) => ({ ...r2, pauseDuration: r2.pauseDuration + a2 })) };
+    }
+  };
+  var A = [];
+  var P = { toasts: [], pausedAt: void 0 };
+  var u2 = (e2) => {
+    P = v(P, e2), A.forEach((t2) => {
+      t2(P);
+    });
+  };
+  var Y = { blank: 4e3, error: 4e3, success: 2e3, loading: 1 / 0, custom: 4e3 };
+  var I = (e2 = {}) => {
+    let [t2, o2] = (0, import_react8.useState)(P);
+    (0, import_react8.useEffect)(() => (A.push(o2), () => {
+      let a2 = A.indexOf(o2);
+      a2 > -1 && A.splice(a2, 1);
+    }), [t2]);
+    let s2 = t2.toasts.map((a2) => {
+      var r2, c2;
+      return { ...e2, ...e2[a2.type], ...a2, duration: a2.duration || ((r2 = e2[a2.type]) == null ? void 0 : r2.duration) || (e2 == null ? void 0 : e2.duration) || Y[a2.type], style: { ...e2.style, ...(c2 = e2[a2.type]) == null ? void 0 : c2.style, ...a2.style } };
+    });
+    return { ...t2, toasts: s2 };
+  };
+  var G = (e2, t2 = "blank", o2) => ({ createdAt: Date.now(), visible: true, type: t2, ariaProps: { role: "status", "aria-live": "polite" }, message: e2, pauseDuration: 0, ...o2, id: (o2 == null ? void 0 : o2.id) || U() });
+  var h2 = (e2) => (t2, o2) => {
+    let s2 = G(t2, e2, o2);
+    return u2({ type: 2, toast: s2 }), s2.id;
+  };
+  var n2 = (e2, t2) => h2("blank")(e2, t2);
+  n2.error = h2("error");
+  n2.success = h2("success");
+  n2.loading = h2("loading");
+  n2.custom = h2("custom");
+  n2.dismiss = (e2) => {
+    u2({ type: 3, toastId: e2 });
+  };
+  n2.remove = (e2) => u2({ type: 4, toastId: e2 });
+  n2.promise = (e2, t2, o2) => {
+    let s2 = n2.loading(t2.loading, { ...o2, ...o2 == null ? void 0 : o2.loading });
+    return e2.then((a2) => (n2.success(T(t2.success, a2), { id: s2, ...o2, ...o2 == null ? void 0 : o2.success }), a2)).catch((a2) => {
+      n2.error(T(t2.error, a2), { id: s2, ...o2, ...o2 == null ? void 0 : o2.error });
+    }), e2;
+  };
+  var Z = (e2, t2) => {
+    u2({ type: 1, toast: { id: e2, height: t2 } });
+  };
+  var ee = () => {
+    u2({ type: 5, time: Date.now() });
+  };
+  var D = (e2) => {
+    let { toasts: t2, pausedAt: o2 } = I(e2);
+    (0, import_react9.useEffect)(() => {
+      if (o2)
+        return;
+      let r2 = Date.now(), c2 = t2.map((i2) => {
+        if (i2.duration === 1 / 0)
+          return;
+        let d2 = (i2.duration || 0) + i2.pauseDuration - (r2 - i2.createdAt);
+        if (d2 < 0) {
+          i2.visible && n2.dismiss(i2.id);
+          return;
+        }
+        return setTimeout(() => n2.dismiss(i2.id), d2);
+      });
+      return () => {
+        c2.forEach((i2) => i2 && clearTimeout(i2));
+      };
+    }, [t2, o2]);
+    let s2 = (0, import_react9.useCallback)(() => {
+      o2 && u2({ type: 6, time: Date.now() });
+    }, [o2]), a2 = (0, import_react9.useCallback)((r2, c2) => {
+      let { reverseOrder: i2 = false, gutter: d2 = 8, defaultPosition: p2 } = c2 || {}, g2 = t2.filter((m2) => (m2.position || p2) === (r2.position || p2) && m2.height), E = g2.findIndex((m2) => m2.id === r2.id), x = g2.filter((m2, R) => R < E && m2.visible).length;
+      return g2.filter((m2) => m2.visible).slice(...i2 ? [x + 1] : [0, x]).reduce((m2, R) => m2 + (R.height || 0) + d2, 0);
+    }, [t2]);
+    return { toasts: t2, handlers: { updateHeight: Z, startPause: ee, endPause: s2, calculateOffset: a2 } };
+  };
+  var oe = h`
+from {
+  transform: scale(0) rotate(45deg);
+	opacity: 0;
+}
+to {
+ transform: scale(1) rotate(45deg);
+  opacity: 1;
+}`;
+  var re = h`
+from {
+  transform: scale(0);
+  opacity: 0;
+}
+to {
+  transform: scale(1);
+  opacity: 1;
+}`;
+  var se = h`
+from {
+  transform: scale(0) rotate(90deg);
+	opacity: 0;
+}
+to {
+  transform: scale(1) rotate(90deg);
+	opacity: 1;
+}`;
+  var _ = j("div")`
+  width: 20px;
+  opacity: 0;
+  height: 20px;
+  border-radius: 10px;
+  background: ${(e2) => e2.primary || "#ff4b4b"};
+  position: relative;
+  transform: rotate(45deg);
+
+  animation: ${oe} 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    forwards;
+  animation-delay: 100ms;
+
+  &:after,
+  &:before {
+    content: '';
+    animation: ${re} 0.15s ease-out forwards;
+    animation-delay: 150ms;
+    position: absolute;
+    border-radius: 3px;
+    opacity: 0;
+    background: ${(e2) => e2.secondary || "#fff"};
+    bottom: 9px;
+    left: 4px;
+    height: 2px;
+    width: 12px;
   }
 
-  // src/player/source.ts
+  &:before {
+    animation: ${se} 0.15s ease-out forwards;
+    animation-delay: 180ms;
+    transform: rotate(90deg);
+  }
+`;
+  var ne = h`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+  var V = j("div")`
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  border: 2px solid;
+  border-radius: 100%;
+  border-color: ${(e2) => e2.secondary || "#e0e0e0"};
+  border-right-color: ${(e2) => e2.primary || "#616161"};
+  animation: ${ne} 1s linear infinite;
+`;
+  var pe = h`
+from {
+  transform: scale(0) rotate(45deg);
+	opacity: 0;
+}
+to {
+  transform: scale(1) rotate(45deg);
+	opacity: 1;
+}`;
+  var de = h`
+0% {
+	height: 0;
+	width: 0;
+	opacity: 0;
+}
+40% {
+  height: 0;
+	width: 6px;
+	opacity: 1;
+}
+100% {
+  opacity: 1;
+  height: 10px;
+}`;
+  var w = j("div")`
+  width: 20px;
+  opacity: 0;
+  height: 20px;
+  border-radius: 10px;
+  background: ${(e2) => e2.primary || "#61d345"};
+  position: relative;
+  transform: rotate(45deg);
+
+  animation: ${pe} 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    forwards;
+  animation-delay: 100ms;
+  &:after {
+    content: '';
+    box-sizing: border-box;
+    animation: ${de} 0.2s ease-out forwards;
+    opacity: 0;
+    animation-delay: 200ms;
+    position: absolute;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-color: ${(e2) => e2.secondary || "#fff"};
+    bottom: 6px;
+    left: 6px;
+    height: 10px;
+    width: 6px;
+  }
+`;
+  var ue = j("div")`
+  position: absolute;
+`;
+  var le = j("div")`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 20px;
+  min-height: 20px;
+`;
+  var Te = h`
+from {
+  transform: scale(0.6);
+  opacity: 0.4;
+}
+to {
+  transform: scale(1);
+  opacity: 1;
+}`;
+  var fe = j("div")`
+  position: relative;
+  transform: scale(0.6);
+  opacity: 0.4;
+  min-width: 20px;
+  animation: ${Te} 0.3s 0.12s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    forwards;
+`;
+  var M = ({ toast: e2 }) => {
+    let { icon: t2, type: o2, iconTheme: s2 } = e2;
+    return t2 !== void 0 ? typeof t2 == "string" ? y.createElement(fe, null, t2) : t2 : o2 === "blank" ? null : y.createElement(le, null, y.createElement(V, { ...s2 }), o2 !== "loading" && y.createElement(ue, null, o2 === "error" ? y.createElement(_, { ...s2 }) : y.createElement(w, { ...s2 })));
+  };
+  var ye = (e2) => `
+0% {transform: translate3d(0,${e2 * -200}%,0) scale(.6); opacity:.5;}
+100% {transform: translate3d(0,0,0) scale(1); opacity:1;}
+`;
+  var ge = (e2) => `
+0% {transform: translate3d(0,0,-1px) scale(1); opacity:1;}
+100% {transform: translate3d(0,${e2 * -150}%,-1px) scale(.6); opacity:0;}
+`;
+  var he = "0%{opacity:0;} 100%{opacity:1;}";
+  var xe = "0%{opacity:1;} 100%{opacity:0;}";
+  var be = j("div")`
+  display: flex;
+  align-items: center;
+  background: #fff;
+  color: #363636;
+  line-height: 1.3;
+  will-change: transform;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);
+  max-width: 350px;
+  pointer-events: auto;
+  padding: 8px 10px;
+  border-radius: 8px;
+`;
+  var Se = j("div")`
+  display: flex;
+  justify-content: center;
+  margin: 4px 10px;
+  color: inherit;
+  flex: 1 1 auto;
+  white-space: pre-line;
+`;
+  var Ae = (e2, t2) => {
+    let s2 = e2.includes("top") ? 1 : -1, [a2, r2] = b2() ? [he, xe] : [ye(s2), ge(s2)];
+    return { animation: t2 ? `${h(a2)} 0.35s cubic-bezier(.21,1.02,.73,1) forwards` : `${h(r2)} 0.4s forwards cubic-bezier(.06,.71,.55,1)` };
+  };
+  var F = l2.memo(({ toast: e2, position: t2, style: o2, children: s2 }) => {
+    let a2 = e2.height ? Ae(e2.position || t2 || "top-center", e2.visible) : { opacity: 0 }, r2 = l2.createElement(M, { toast: e2 }), c2 = l2.createElement(Se, { ...e2.ariaProps }, T(e2.message, e2));
+    return l2.createElement(be, { className: e2.className, style: { ...a2, ...o2, ...e2.style } }, typeof s2 == "function" ? s2({ icon: r2, message: c2 }) : l2.createElement(l2.Fragment, null, r2, c2));
+  });
+  m(f2.createElement);
+  var Ee = ({ id: e2, className: t2, style: o2, onHeightUpdate: s2, children: a2 }) => {
+    let r2 = f2.useCallback((c2) => {
+      if (c2) {
+        let i2 = () => {
+          let d2 = c2.getBoundingClientRect().height;
+          s2(e2, d2);
+        };
+        i2(), new MutationObserver(i2).observe(c2, { subtree: true, childList: true, characterData: true });
+      }
+    }, [e2, s2]);
+    return f2.createElement("div", { ref: r2, className: t2, style: o2 }, a2);
+  };
+  var Re = (e2, t2) => {
+    let o2 = e2.includes("top"), s2 = o2 ? { top: 0 } : { bottom: 0 }, a2 = e2.includes("center") ? { justifyContent: "center" } : e2.includes("right") ? { justifyContent: "flex-end" } : {};
+    return { left: 0, right: 0, display: "flex", position: "absolute", transition: b2() ? void 0 : "all 230ms cubic-bezier(.21,1.02,.73,1)", transform: `translateY(${t2 * (o2 ? 1 : -1)}px)`, ...s2, ...a2 };
+  };
+  var ve = u`
+  z-index: 9999;
+  > * {
+    pointer-events: auto;
+  }
+`;
+  var O = 16;
+  var Ie = ({ reverseOrder: e2, position: t2 = "top-center", toastOptions: o2, gutter: s2, children: a2, containerStyle: r2, containerClassName: c2 }) => {
+    let { toasts: i2, handlers: d2 } = D(o2);
+    return f2.createElement("div", { style: { position: "fixed", zIndex: 9999, top: O, left: O, right: O, bottom: O, pointerEvents: "none", ...r2 }, className: c2, onMouseEnter: d2.startPause, onMouseLeave: d2.endPause }, i2.map((p2) => {
+      let g2 = p2.position || t2, E = d2.calculateOffset(p2, { reverseOrder: e2, gutter: s2, defaultPosition: t2 }), x = Re(g2, E);
+      return f2.createElement(Ee, { id: p2.id, key: p2.id, onHeightUpdate: d2.updateHeight, className: p2.visible ? ve : "", style: x }, p2.type === "custom" ? T(p2.message, p2) : a2 ? a2(p2) : f2.createElement(F, { toast: p2, position: g2 }));
+    }));
+  };
+
+  // public/audios/notification.mp3
+  var notification_default = "./notification-TYKZUTMO.mp3";
+
+  // src/components/toast.ts
+  var Toast = class {
+    constructor() {
+      this.audio = new Audio(notification_default);
+    }
+    async showError(msg) {
+      n2.error(msg, {
+        className: "toaster_error"
+      });
+      await this.audio.play();
+    }
+    async showSuccess(msg) {
+      n2.error(msg, {
+        className: "toaster_success"
+      });
+      await this.audio.play();
+    }
+  };
+
+  // src/components/sidebar.tsx
+  function Sidebar({ onPressFeedback }) {
+    const toast = new Toast();
+    const buttonsRef = (0, import_react10.useRef)([]);
+    const [sliderValue, setSliderValue] = (0, import_react10.useState)(0);
+    const [openStream, setOpenStream] = (0, import_react10.useState)(false);
+    const handleGitBtnClick = () => {
+      window.open("https://github.com/wanjohiryan/qwantify");
+    };
+    const handleButtonClick = (index, clicked = true) => {
+      buttonsRef.current.forEach((button2, i2) => {
+        const buttonSpan2 = button2.querySelector("span.active_indicator");
+        if (i2 !== index && buttonSpan2) {
+          buttonSpan2.remove();
+        }
+      });
+      const button = buttonsRef.current[index];
+      const buttonSpan = button.querySelector("span.active_indicator");
+      if (!buttonSpan) {
+        const newSpan = document.createElement("span");
+        newSpan.classList.add("active_indicator");
+        button.appendChild(newSpan);
+      }
+      if (clicked) {
+        setSliderValue(index * 50);
+      }
+    };
+    return /* @__PURE__ */ import_react10.default.createElement("div", { className: "sidebar" }, /* @__PURE__ */ import_react10.default.createElement("nav", { className: "navbar" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "name" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "logo_svg" }, /* @__PURE__ */ import_react10.default.createElement(logo_default, { className: "logo" })), /* @__PURE__ */ import_react10.default.createElement("div", { className: "arc3dia_tag" }, /* @__PURE__ */ import_react10.default.createElement(logoName_default, { fill: "currentColor" }), /* @__PURE__ */ import_react10.default.createElement("span", { className: "beta_tag" }, /* @__PURE__ */ import_react10.default.createElement("sup", null, "BETA"))), /* @__PURE__ */ import_react10.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, /* @__PURE__ */ import_react10.default.createElement("path", { fillRule: "evenodd", clipRule: "evenodd", d: "M16.243 22.141a10.606 10.606 0 0 1-4.25.859c-1.498 0-2.91-.286-4.236-.859a11.122 11.122 0 0 1-3.508-2.385 11.364 11.364 0 0 1-2.384-3.517A10.518 10.518 0 0 1 1 12c0-1.5.288-2.912.865-4.24a11.423 11.423 0 0 1 2.377-3.516A11.04 11.04 0 0 1 7.743 1.86 10.572 10.572 0 0 1 11.98 1a10.6 10.6 0 0 1 4.25.859 11.202 11.202 0 0 1 3.514 2.385 11.306 11.306 0 0 1 2.391 3.517C22.712 9.088 23 10.5 23 12s-.288 2.912-.865 4.24a11.364 11.364 0 0 1-2.384 3.516 11.122 11.122 0 0 1-3.508 2.385Zm1.077-9.405c.245-.245.367-.495.367-.75 0-.245-.122-.49-.367-.736l-3.61-3.64c-.164-.163-.382-.244-.654-.244a.886.886 0 0 0-.913.913c0 .245.09.468.272.668l1.172 1.158 1.308 1.05-2.507-.11H7.225a.913.913 0 0 0-.674.267.914.914 0 0 0-.266.674c0 .273.089.498.266.675a.913.913 0 0 0 .674.266h5.163l2.52-.095-1.321 1.05-1.171 1.144a.908.908 0 0 0-.273.668.91.91 0 0 0 .259.661c.172.177.39.266.654.266a.886.886 0 0 0 .654-.26l3.61-3.625Z", fill: "CurrentColor" }))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "right" }, /* @__PURE__ */ import_react10.default.createElement("button", { onClick: onPressFeedback, className: "btn_list_icon tip" }, /* @__PURE__ */ import_react10.default.createElement("svg", { viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg" }, /* @__PURE__ */ import_react10.default.createElement("path", { fill: "currentColor", d: "M17.91 14.32c-.26.25-.38.61-.32.97l.88 4.92c.07.41-.11.83-.45 1.08-.35.25-.8.28-1.17.08l-4.43-2.31c-.16-.09-.33-.13-.5-.14h-.28c-.1.01-.19.04-.27.09l-4.43 2.32c-.22.11-.47.14-.71.11-.6-.12-.99-.68-.89-1.28l.89-4.92a1.14 1.14 0 0 0-.32-.98l-3.611-3.5c-.31-.3-.41-.74-.27-1.13.13-.4.476-.69.88-.75l4.97-.73c.37-.04.71-.27.88-.61l2.18-4.49c.05-.1.11-.2.2-.27l.09-.07c.04-.06.1-.1.16-.13l.1-.04.17-.07h.42c.37.03.7.26.88.6l2.21 4.47c.16.32.47.55.83.6l4.97.72c.42.06.77.35.91.75.13.4.01.84-.29 1.12l-3.74 3.54Z" })), /* @__PURE__ */ import_react10.default.createElement(
+      "div",
+      {
+        className: "tooltip",
+        style: {
+          top: "120%",
+          left: "-100%"
+        }
+      },
+      "Feedback"
+    )), /* @__PURE__ */ import_react10.default.createElement("button", { onClick: handleGitBtnClick, className: "btn_list_icon tip" }, /* @__PURE__ */ import_react10.default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 496 512" }, /* @__PURE__ */ import_react10.default.createElement("path", { fill: "currentColor", d: "M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" })), /* @__PURE__ */ import_react10.default.createElement(
+      "div",
+      {
+        className: "tooltip",
+        style: {
+          top: "120%",
+          left: "-100%"
+        }
+      },
+      "Github"
+    )))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "panel" }, /* @__PURE__ */ import_react10.default.createElement(
+      "div",
+      {
+        className: "fragments",
+        style: {
+          transform: "none",
+          transformOrigin: "50% 50% 0px"
+        }
+      },
+      /* @__PURE__ */ import_react10.default.createElement("div", { className: "panel_fragment controls" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "panel_option gpad" }, /* @__PURE__ */ import_react10.default.createElement("h6", null, "Controller"), /* @__PURE__ */ import_react10.default.createElement("div", { onClick: () => {
+        toast.showError("Controller not implemented yet");
+      }, className: "gpad_background" }, /* @__PURE__ */ import_react10.default.createElement(gpad_default, { height: 150, width: 300 }))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "panel_option buffer" }, /* @__PURE__ */ import_react10.default.createElement("h6", null, "Video Buffer Health"), /* @__PURE__ */ import_react10.default.createElement("div", { className: "slider" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "number_icon" }, /* @__PURE__ */ import_react10.default.createElement("p", null, "0%")), /* @__PURE__ */ import_react10.default.createElement(
+        Slider_default,
+        {
+          "aria-label": "bandwidth"
+        }
+      ), /* @__PURE__ */ import_react10.default.createElement("div", { className: "number_icon" }, /* @__PURE__ */ import_react10.default.createElement("p", null, "100%")))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "panel_option buffer" }, /* @__PURE__ */ import_react10.default.createElement("h6", null, "Audio Buffer Health"), /* @__PURE__ */ import_react10.default.createElement("div", { className: "slider" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "number_icon" }, /* @__PURE__ */ import_react10.default.createElement("p", null, "0%")), /* @__PURE__ */ import_react10.default.createElement(
+        Slider_default,
+        {
+          "aria-label": "bandwidth"
+        }
+      ), /* @__PURE__ */ import_react10.default.createElement("div", { className: "number_icon" }, /* @__PURE__ */ import_react10.default.createElement("p", null, "100%")))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "panel_option bandwidth" }, /* @__PURE__ */ import_react10.default.createElement("h6", null, "Resolution"), /* @__PURE__ */ import_react10.default.createElement("div", { className: "slider" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "number_icon" }, /* @__PURE__ */ import_react10.default.createElement("p", null, "5 mb/s")), /* @__PURE__ */ import_react10.default.createElement(
+        Slider_default,
+        {
+          value: sliderValue,
+          onChange: (e2) => {
+            const v2 = e2.target.value;
+            setSliderValue(v2);
+            if (v2 <= 40) {
+              handleButtonClick(0, false);
+            } else if (v2 >= 50 && v2 < 70) {
+              handleButtonClick(1, false);
+            } else if (v2 >= 70) {
+              handleButtonClick(2, false);
+            }
+          },
+          "aria-label": "bandwidth"
+        }
+      ), /* @__PURE__ */ import_react10.default.createElement("div", { className: "number_icon" }, /* @__PURE__ */ import_react10.default.createElement("p", null, "100 mb/s"))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "switch" }, /* @__PURE__ */ import_react10.default.createElement(
+        "button",
+        {
+          className: "switch_button",
+          onClick: () => handleButtonClick(0),
+          ref: (el) => buttonsRef.current[0] = el
+        },
+        /* @__PURE__ */ import_react10.default.createElement("div", { className: "blur_icon" }),
+        /* @__PURE__ */ import_react10.default.createElement("p", null, "480p"),
+        /* @__PURE__ */ import_react10.default.createElement("span", { className: "active_indicator" })
+      ), /* @__PURE__ */ import_react10.default.createElement(
+        "button",
+        {
+          className: "switch_button",
+          onClick: () => handleButtonClick(1),
+          ref: (el) => buttonsRef.current[1] = el
+        },
+        /* @__PURE__ */ import_react10.default.createElement("div", { className: "medium_icon" }),
+        /* @__PURE__ */ import_react10.default.createElement("p", null, "720p")
+      ), /* @__PURE__ */ import_react10.default.createElement(
+        "button",
+        {
+          className: "switch_button",
+          onClick: () => handleButtonClick(2),
+          ref: (el) => buttonsRef.current[2] = el
+        },
+        /* @__PURE__ */ import_react10.default.createElement("div", { className: "sharp_icon" }),
+        /* @__PURE__ */ import_react10.default.createElement("p", null, "1080p")
+      ))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "panel_option" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "latency_details" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "row" }, /* @__PURE__ */ import_react10.default.createElement("span", { className: "truncate" }, "Latency"), /* @__PURE__ */ import_react10.default.createElement("p", null, "200 ms")))))
+    ), /* @__PURE__ */ import_react10.default.createElement("div", { className: "stream_options" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "wrapper" }, /* @__PURE__ */ import_react10.default.createElement("button", { onClick: () => {
+      toast.showError("Cloud Stream not implemented yet");
+    }, className: "stream_btn btn_lg_mix bg_blur idle " }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "light" }), /* @__PURE__ */ import_react10.default.createElement(
+      "svg",
+      {
+        xmlns: "http://www.w3.org/2000/svg",
+        width: 800,
+        height: 800,
+        viewBox: "0 0 32 32"
+      },
+      /* @__PURE__ */ import_react10.default.createElement("title", null, "signal-stream"),
+      /* @__PURE__ */ import_react10.default.createElement("path", { d: "M16 11.75A4.25 4.25 0 1 0 20.25 16 4.255 4.255 0 0 0 16 11.75zm0 6A1.75 1.75 0 1 1 17.75 16 1.752 1.752 0 0 1 16 17.75zM3.25 16a14.058 14.058 0 0 1 3.784-8.789l-.007.008a1.25 1.25 0 0 0-1.77-1.766A16.337 16.337 0 0 0 .751 15.962L.75 16a16.368 16.368 0 0 0 4.514 10.553l-.006-.006a1.249 1.249 0 1 0 1.767-1.765 13.936 13.936 0 0 1-3.774-8.743l-.002-.038zm6.113 0a9.667 9.667 0 0 1 2.6-6.026l-.005.005a1.25 1.25 0 0 0-1.77-1.765 12.058 12.058 0 0 0-3.323 7.759l-.001.028a12.078 12.078 0 0 0 3.329 7.79l-.005-.005a1.249 1.249 0 1 0 1.767-1.765 9.565 9.565 0 0 1-2.591-5.993l-.001-.027zM26.744 5.453a1.25 1.25 0 1 0-1.772 1.766 14.013 14.013 0 0 1 3.775 8.741l.002.04a14.045 14.045 0 0 1-3.784 8.789l.007-.008a1.25 1.25 0 0 0 1.772 1.766 16.343 16.343 0 0 0 4.504-10.509l.001-.038a16.373 16.373 0 0 0-4.512-10.553l.006.007zm-4.933 2.761a1.25 1.25 0 0 0-1.77 1.766 9.642 9.642 0 0 1 2.594 5.992l.001.028a9.687 9.687 0 0 1-2.601 6.027l.005-.005a1.25 1.25 0 0 0 1.772 1.766 12.073 12.073 0 0 0 3.323-7.759l.001-.028a12.075 12.075 0 0 0-3.331-7.791l.005.005z" })
+    ), "                                    ", /* @__PURE__ */ import_react10.default.createElement("div", null, /* @__PURE__ */ import_react10.default.createElement("span", null, "Stream"), /* @__PURE__ */ import_react10.default.createElement("p", null, "Connect to Twitch or Youtube"))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "dropdown_menu stream_settings_drop" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "button_wrapper" }, /* @__PURE__ */ import_react10.default.createElement("button", { onClick: () => {
+      setOpenStream((f3) => !f3);
+    }, className: "stream_settings_btn btn_lg_icon tip" }, /* @__PURE__ */ import_react10.default.createElement("svg", { viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg" }, /* @__PURE__ */ import_react10.default.createElement("path", { fill: "currentColor", fillRule: "evenodd", d: "M17.38 13.7c1.71 0 3.11 1.38 3.11 3.09 0 1.7-1.4 3.09-3.12 3.09-1.72 0-3.12-1.39-3.12-3.1 0-1.71 1.39-3.1 3.11-3.1Zm0 1.5c-.89 0-1.62.71-1.62 1.59 0 .88.72 1.59 1.61 1.59.88 0 1.61-.72 1.61-1.6 0-.88-.73-1.6-1.62-1.6Zm-7.31.88a.749.749 0 1 1 0 1.5H3.76c-.42 0-.75-.34-.75-.75 0-.42.33-.75.75-.75h6.3ZM6.1 3.98c1.71 0 3.11 1.39 3.11 3.09s-1.4 3.09-3.12 3.09c-1.72 0-3.12-1.388-3.12-3.1 0-1.71 1.39-3.1 3.11-3.1Zm0 1.5c-.89 0-1.62.71-1.62 1.59 0 .88.72 1.59 1.61 1.59.89 0 1.61-.72 1.61-1.6 0-.89-.73-1.6-1.62-1.6Zm13.07.9a.749.749 0 1 1 0 1.5h-6.3c-.42 0-.75-.34-.75-.75 0-.42.33-.75.75-.75h6.3Z" })), /* @__PURE__ */ import_react10.default.createElement("div", { className: "tooltip", style: { top: "-100%", left: "-100%" } }, "Stream Settings"))), openStream && /* @__PURE__ */ import_react10.default.createElement(StreamModal, null))), /* @__PURE__ */ import_react10.default.createElement(
+      "button",
+      {
+        onClick: () => {
+          toast.showError("Save Game State not implemented yet");
+        },
+        style: {
+          borderRadius: 10
+        },
+        className: "btn_lg_icon bg_gray_icon bg_blur state_btn tip"
+      },
+      /* @__PURE__ */ import_react10.default.createElement(
+        "svg",
+        {
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 1024 1024"
+        },
+        /* @__PURE__ */ import_react10.default.createElement("path", { fill: "currentColor", d: "M128 384a42.667 42.667 0 0 0 42.667-42.667v-128a42.667 42.667 0 0 1 42.666-42.666h128a42.667 42.667 0 0 0 0-85.334h-128a128 128 0 0 0-128 128v128A42.667 42.667 0 0 0 128 384zm213.333 469.333h-128a42.667 42.667 0 0 1-42.666-42.666v-128a42.667 42.667 0 0 0-85.334 0v128a128 128 0 0 0 128 128h128a42.667 42.667 0 0 0 0-85.334zm170.667-512A170.667 170.667 0 1 0 682.667 512 170.667 170.667 0 0 0 512 341.333zm0 256A85.333 85.333 0 1 1 597.333 512 85.333 85.333 0 0 1 512 597.333zm298.667-512h-128a42.667 42.667 0 0 0 0 85.334h128a42.667 42.667 0 0 1 42.666 42.666v128a42.667 42.667 0 0 0 85.334 0v-128a128 128 0 0 0-128-128zM896 640a42.667 42.667 0 0 0-42.667 42.667v128a42.667 42.667 0 0 1-42.666 42.666h-128a42.667 42.667 0 0 0 0 85.334h128a128 128 0 0 0 128-128v-128A42.667 42.667 0 0 0 896 640z" })
+      ),
+      /* @__PURE__ */ import_react10.default.createElement("div", { className: "tooltip", style: { top: "-100%", left: "-80%" } }, "Save game state")
+    ))));
+  }
+
+  // src/components/feedbackModal.tsx
+  var import_react11 = __toESM(require_react());
+  var emojiNames = [
+    "face-with-symbols-on-mouth",
+    "neutral-face",
+    "smirking-face",
+    "smiling-face-with-smiling-eyes",
+    "smiling-face-with-heart-eyes"
+  ];
+  function FeedbackModal({ onPressFeedback }) {
+    const buttonsRef = import_react11.default.useRef([]);
+    const handleButtonClick = (index) => {
+      buttonsRef.current.forEach((button2, i2) => {
+        const buttonSpan2 = button2.classList.remove("is_active");
+        if (i2 !== index && buttonSpan2) {
+          buttonSpan2.remove();
+        }
+      });
+      const button = buttonsRef.current[index];
+      const buttonSpan = button.classList.remove("is_active");
+      if (!buttonSpan) {
+        button.classList.add("is_active");
+      }
+    };
+    const renderEmoticon = (name) => {
+      return;
+    };
+    return /* @__PURE__ */ import_react11.default.createElement("div", null, /* @__PURE__ */ import_react11.default.createElement(
+      "div",
+      {
+        className: "modal_container",
+        style: {
+          justifyContent: "center",
+          position: "fixed",
+          inset: 0,
+          zIndex: 9999,
+          opacity: 1
+        }
+      },
+      /* @__PURE__ */ import_react11.default.createElement(
+        "div",
+        {
+          className: "modal_effects feedback_modal",
+          style: {
+            width: "calc(100 % - 24px)",
+            maxWidth: 360,
+            maxHeight: "calc(100vh - 32px)",
+            opacity: 1,
+            transform: "translateY(0px) scale(1) translateZ(0px)"
+          }
+        },
+        /* @__PURE__ */ import_react11.default.createElement("div", { className: "modal_nav modal_close" }, /* @__PURE__ */ import_react11.default.createElement("h4", null), /* @__PURE__ */ import_react11.default.createElement("button", { onClick: onPressFeedback, className: "btn bg_gray_icon bg_blur round" }, /* @__PURE__ */ import_react11.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, /* @__PURE__ */ import_react11.default.createElement("rect", { width: "20.211", height: "2.021", rx: "1.011", transform: "scale(.99137 1.00855) rotate(45 -2.229 8.65)", fill: "currentColor" }), /* @__PURE__ */ import_react11.default.createElement("rect", { width: "20.211", height: "2.021", rx: "1.011", transform: "matrix(.701 -.71316 .701 .71316 4.415 18.414)", fill: "currentColor" })))),
+        /* @__PURE__ */ import_react11.default.createElement("section", { className: "reactions" }, /* @__PURE__ */ import_react11.default.createElement("h1", { className: "h3" }, "Send feedback,", /* @__PURE__ */ import_react11.default.createElement("br", null), /* @__PURE__ */ import_react11.default.createElement("span", { className: "gray_text" }, "We read them all!")), /* @__PURE__ */ import_react11.default.createElement("div", { className: "reactions_list" }, emojiNames.map((name, key) => /* @__PURE__ */ import_react11.default.createElement(
+          "button",
+          {
+            key: `emojif-${key}`,
+            onClick: () => handleButtonClick(key),
+            ref: (el) => buttonsRef.current[key] = el,
+            className: "h1 round reaction_item"
+          },
+          /* @__PURE__ */ import_react11.default.createElement("img", { loading: "eager", src: `https://raw.githubusercontent.com/MKAbuMattar/fluentui-emoji/main/icons/modern/${name}.svg` })
+        ))), /* @__PURE__ */ import_react11.default.createElement("p", { className: "h4" }, "How can we improve your gaming experience?")),
+        /* @__PURE__ */ import_react11.default.createElement("section", { className: "message" }, /* @__PURE__ */ import_react11.default.createElement(
+          "textarea",
+          {
+            placeholder: "Write your feedback...",
+            className: "multiline_input",
+            rows: 1,
+            cols: 1,
+            wrap: "on",
+            style: { resize: "none", height: 198 }
+          }
+        ), /* @__PURE__ */ import_react11.default.createElement("small", { className: "danger" }), /* @__PURE__ */ import_react11.default.createElement("button", { className: "btn_lg_label" }, "Send"))
+      )
+    ));
+  }
+
+  // src/components/chat.tsx
+  var import_react12 = __toESM(require_react());
+
+  // src/components/emojiModal.tsx
+  var React18 = __toESM(require_react());
+  var emojiNames2 = [
+    "grinning-face-with-big-eyes",
+    "grinning-face-with-smiling-eyes",
+    "hot-face",
+    "face-with-peeking-eye",
+    "face-with-steam-from-nose",
+    "zany-face",
+    "hugging-face",
+    "face-screaming-in-fear",
+    "grinning-face-with-sweat",
+    "loudly-crying-face",
+    "money-mouth-face",
+    "thinking-face",
+    "face-with-raised-eyebrow",
+    "angry-face",
+    "face-with-symbols-on-mouth",
+    "confused-face",
+    "anguished-face",
+    "cowboy-hat-face"
+  ];
+  function EmojiModal() {
+    const buttonsStreamRef = React18.useRef([]);
+    const handleButtonClickStream = (index) => {
+      buttonsStreamRef.current.forEach((button2, i2) => {
+        const buttonSpan2 = button2.querySelector("span.active_indicator");
+        if (i2 !== index && buttonSpan2) {
+          buttonSpan2.remove();
+        }
+      });
+      const button = buttonsStreamRef.current[index];
+      const buttonSpan = button.querySelector("span.active_indicator");
+      if (!buttonSpan) {
+        const newSpan = document.createElement("span");
+        newSpan.classList.add("active_indicator");
+        button.appendChild(newSpan);
+      }
+    };
+    return /* @__PURE__ */ React18.createElement(
+      "div",
+      {
+        className: "drop_menu",
+        style: {
+          top: "unset",
+          bottom: "calc(100% + 10px)",
+          width: 270,
+          opacity: 1,
+          transform: "translateY(0px) scale(1) translateZ(0px)"
+        }
+      },
+      /* @__PURE__ */ React18.createElement("h5", null, "Emojis"),
+      /* @__PURE__ */ React18.createElement("div", { className: "panel_option stream_format" }, /* @__PURE__ */ React18.createElement("div", { className: "switch" }, /* @__PURE__ */ React18.createElement("div", { className: "styles_wrapper" }, /* @__PURE__ */ React18.createElement("div", { className: "col-4" }, emojiNames2.map((name, index) => /* @__PURE__ */ React18.createElement("button", { key: `emoji-${index}`, className: "emoji_button" }, /* @__PURE__ */ React18.createElement("img", { loading: "eager", src: `https://raw.githubusercontent.com/MKAbuMattar/fluentui-emoji/main/icons/modern/${name}.svg` })))))))
+    );
+  }
+
+  // src/components/chat.tsx
+  function Chat({}) {
+    const toast = new Toast();
+    const buttonsRef = (0, import_react12.useRef)([]);
+    const [openEmoji, setOpenEmoji] = import_react12.default.useState(false);
+    const handleButtonClick = (index) => {
+      buttonsRef.current.forEach((button2, i2) => {
+        const buttonSpan2 = button2.classList.remove("active");
+        if (i2 !== index && buttonSpan2) {
+          buttonSpan2.remove();
+        }
+      });
+      const button = buttonsRef.current[index];
+      const buttonSpan = button.classList.remove("active");
+      if (!buttonSpan) {
+        button.classList.add("active");
+      }
+    };
+    const handleFriendsInvite = async () => {
+      await toast.showSuccess("Invite message copied to clipboard!");
+    };
+    return /* @__PURE__ */ import_react12.default.createElement("div", { className: "chat_panel", style: { opacity: 1, transform: " translateX(0px) translateZ(0px)" } }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "panel" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "head" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "tabs" }, /* @__PURE__ */ import_react12.default.createElement(
+      "button",
+      {
+        onClick: () => handleButtonClick(0),
+        ref: (el) => buttonsRef.current[0] = el,
+        className: "tab_button active"
+      },
+      /* @__PURE__ */ import_react12.default.createElement(
+        "svg",
+        {
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 950 980"
+        },
+        /* @__PURE__ */ import_react12.default.createElement("path", { fill: "currentColor", d: "M371.5.6c-39.9 2.6-88.8 12.5-122.9 24.9-76.4 27.7-138.4 72.4-183.1 132-36 47.9-56.2 98.6-63.6 159-1.8 14.5-1.5 54.8.5 73.2 5.2 47.9 16.5 87.5 36.2 126.3 18.2 36.1 44.2 70.4 73.5 97l10.4 9.4.5 86.8.5 86.7 19.5-11.3c10.7-6.2 49.4-28.6 86-49.8l66.5-38.5 13.8 1.8c32 4.1 54.3 5.4 90.2 5.4 36.6-.1 45.4-.8 72.5-5.6 140.5-25 248.7-124.6 282.9-260.4 11-43.9 13.8-92.6 7.6-134C743.6 177.9 643.8 64.9 511.6 19.4 488.3 11.4 460.9 5.1 435 2 426.1.9 381.9 0 371.5.6zM208.2 307.1c14.3 3 25.8 12 32.5 25.5 3.7 7.7 3.8 8 3.8 19.3s-.1 11.8-3.7 19.4c-14 29.2-51 35.6-73.8 12.8-3.5-3.5-6.9-8.2-9-12.6-3.1-6.3-3.5-8-3.8-17.5-.3-8.7 0-11.5 1.7-16.4 5.4-15.2 16.7-25.8 32.1-29.8 7.7-2 13-2.2 20.2-.7zm182.9-.1c13.6 2.5 27.5 13.1 33.3 25.4 13.1 27.6-4.2 60.2-34.4 64.9-21.4 3.3-42.2-9-49.8-29.4-12.2-32.8 16.6-67.3 50.9-60.9zm184 0c23.8 4.4 41 28.3 37.1 51.7-4.5 27-30.6 44.4-56.6 37.7-20.1-5.2-34.6-23.8-34.6-44.4 0-28.1 26.5-50.1 54.1-45z" }),
+        /* @__PURE__ */ import_react12.default.createElement("path", { fill: "currentColor", d: "M826.5 332.2c0 55.4-.5 63.1-5.6 93.4-11.1 66.4-37.5 125.7-79 178-13.3 16.8-43.8 47.3-60.9 60.8-66.7 53-150.5 86.4-243 97-28.5 3.3-41.4 3.9-100.5 4.5l-61 .6 12.5 11.4c50.9 46.3 103.5 75.6 163 90.6 31.7 8 52.3 10.5 90.5 11.2 30.6.5 49.6-.5 73-4.1 8.2-1.3 9.3-1.3 12 .3 1.7 1 40 24.6 85.2 52.4C758 956.2 795.4 979 796 979c.7 0 1-28.5 1-86.4v-86.5l8.8-6.3c37.1-26.7 71.1-62.9 95.5-101.5 8.3-13.2 23.3-43.3 28.3-56.8 22.7-61.8 26.1-125.5 9.9-187-11.7-44.6-30.4-81.3-62.5-122.7-6.1-8-48.1-50.8-49.7-50.8-.4 0-.8 23.1-.8 51.2z" })
+      ),
+      "Chat"
+    ), /* @__PURE__ */ import_react12.default.createElement(
+      "button",
+      {
+        onClick: () => handleButtonClick(1),
+        ref: (el) => buttonsRef.current[1] = el,
+        className: "tab_button"
+      },
+      /* @__PURE__ */ import_react12.default.createElement(
+        "svg",
+        {
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 251 201"
+        },
+        /* @__PURE__ */ import_react12.default.createElement("path", { fill: "currentColor", d: "M111.7 15C93.1 21.6 82 37.1 82 56.6c0 29.9 28.3 50.3 57.3 41.4 24.9-7.7 37-37.5 25.1-61.5-3.8-7.6-12.4-15.8-20.8-19.6-6.2-2.9-8.3-3.4-16.6-3.6-7.6-.3-10.7.1-15.3 1.7zM29.2 39.2c-4.7 1.6-12.2 8.5-14.3 13.3-4.3 9.3-1.2 22.8 6.7 29.4 4.9 4 13.2 6.5 19.1 5.7 14-1.9 24.1-15.6 21.3-29C59.5 46.3 51.2 39 39.2 38.4c-3.7-.2-8.2.2-10 .8zM204.7 39.4c-8.2 3-14.7 11-16.2 20.3s4.7 20.8 13.7 25.4c12.2 6.2 27.6.9 33.4-11.5 4.6-10 2.8-20.3-5.1-28.1-7.1-7.2-16.5-9.4-25.8-6.1zM15.4 102.4c-4.5 2-10.2 7.4-12.7 12C.8 118 .5 120.1.5 130.7c0 10.8.2 12.5 2.1 15 3.1 4.2 7.4 5.2 22.1 5.2l13.3.1.6-2.8c3.4-15.4 12.2-29.1 23.6-36.7 2.4-1.6 4.5-3 4.7-3.2.9-.6-2.7-3.8-6.4-5.4-3.4-1.6-6.7-1.9-23-1.8-13.7 0-19.9.4-22.1 1.3zM190.5 102.9c-3.7 1.6-7.3 4.8-6.4 5.4.2.2 2.4 1.6 4.8 3.2 10.3 6.9 19.6 20.6 22.4 33.1l1.4 5.9h14.9c16.7 0 19.4-.9 22-7.2 1.9-4.4 1.8-18.7-.2-25.4-1.9-6.6-9.2-14.2-15.1-15.8-2.1-.6-11.9-1.1-21.8-1.1-15.2 0-18.6.3-22 1.9zM86 114.1c-6.9 1.3-16.5 6.5-21.9 11.8-10.1 9.9-14.7 22.7-13.9 39.5.5 11.5 3.3 17.2 10.1 20.5 4.3 2.1 5.4 2.1 65.2 2.1 59.8 0 60.9 0 65.2-2.1 3-1.5 5.2-3.5 7.1-6.7 2.6-4.5 2.7-5.3 2.6-17.2-.1-9.8-.6-13.7-2.2-18.1-5.9-16.4-18.9-27.2-36-30.1-7.1-1.2-7.5-1.1-15.5 1.7-7.6 2.8-9.2 3-21.7 3-12.3-.1-14.1-.3-20.4-2.8-7.1-2.8-10.9-3.1-18.6-1.6z" })
+      ),
+      "Friends"
+    ))), /* @__PURE__ */ import_react12.default.createElement(
+      "div",
+      {
+        className: "fragments",
+        style: {
+          transform: "none",
+          transformOrigin: "50% 50% 0px"
+        }
+      },
+      /* @__PURE__ */ import_react12.default.createElement("div", { className: "panel_fragment chat controls" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "panel_option chat" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "share_banner" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "h_text" }, /* @__PURE__ */ import_react12.default.createElement("span", null, "Invite friends and other players to your party"), /* @__PURE__ */ import_react12.default.createElement("button", { onClick: handleFriendsInvite }, /* @__PURE__ */ import_react12.default.createElement("p", null, "Copy invite link"))))))
+    ), /* @__PURE__ */ import_react12.default.createElement("div", { className: "chat_pane" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "wrapper" }, /* @__PURE__ */ import_react12.default.createElement("div", { style: { position: "relative" }, className: "panel_option chat_input" }, /* @__PURE__ */ import_react12.default.createElement("input", { type: "text", className: "input_text chat", placeholder: "Send a message" }), /* @__PURE__ */ import_react12.default.createElement("div", { style: { position: "absolute", right: "0px", top: "0px" }, className: "dropdown_menu stream_settings_drop" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "button_wrapper" }, /* @__PURE__ */ import_react12.default.createElement(
+      "button",
+      {
+        onClick: () => {
+          setOpenEmoji((f3) => !f3);
+        },
+        className: "btn_lg_icon tip"
+      },
+      /* @__PURE__ */ import_react12.default.createElement("svg", { fill: "currentColor", version: "1.1", viewBox: "0 0 20 20" }, /* @__PURE__ */ import_react12.default.createElement("g", null, /* @__PURE__ */ import_react12.default.createElement("path", { d: "M7 11a1 1 0 100-2 1 1 0 000 2zM14 10a1 1 0 11-2 0 1 1 0 012 0zM10 14a2 2 0 002-2H8a2 2 0 002 2z" }), /* @__PURE__ */ import_react12.default.createElement("path", { fillRule: "evenodd", d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0a6 6 0 11-12 0 6 6 0 0112 0z", clipRule: "evenodd" }))),
+      /* @__PURE__ */ import_react12.default.createElement("div", { className: "tooltip", style: { top: "-70%", right: 0 } }, "Emojis")
+    )), openEmoji && /* @__PURE__ */ import_react12.default.createElement(EmojiModal, null)))))));
+  }
+
+  // src/api/player/source.ts
   var Source = class {
     constructor(mediaSource) {
       this.mediaSource = mediaSource;
@@ -30514,8 +39862,8 @@
     }
     // (re)initialize the source using the provided init segment.
     initialize(init) {
-      for (let i = this.queue.length - 1; i >= 0; i--) {
-        if (this.queue[i].init == init) {
+      for (let i2 = this.queue.length - 1; i2 >= 0; i2--) {
+        if (this.queue[i2].init == init) {
           return;
         }
       }
@@ -30526,10 +39874,10 @@
         kind: "init",
         init
       });
-      for (let i = 0; i < init.raw.length; i += 1) {
+      for (let i2 = 0; i2 < init.raw.length; i2 += 1) {
         this.queue.push({
           kind: "data",
-          data: init.raw[i]
+          data: init.raw[i2]
         });
       }
       this.flush();
@@ -30550,10 +39898,10 @@
       return this.sourceBuffer.buffered;
     }
     // Delete any media older than x seconds from the buffer.
-    trim(duration) {
+    trim(duration2) {
       this.queue.push({
         kind: "trim",
-        trim: duration
+        trim: duration2
       });
       this.flush();
     }
@@ -30563,31 +39911,31 @@
         if (this.sourceBuffer && this.sourceBuffer.updating) {
           break;
         }
-        const next = this.queue.shift();
-        if (!next) {
+        const next2 = this.queue.shift();
+        if (!next2) {
           break;
         }
-        switch (next.kind) {
+        switch (next2.kind) {
           case "init":
-            this.init = next.init;
+            this.init = next2.init;
             if (!this.sourceBuffer) {
               this.sourceBuffer = this.mediaSource.addSourceBuffer(this.init.info.mime);
               this.sourceBuffer.addEventListener("updateend", this.flush.bind(this));
             } else {
-              this.sourceBuffer.changeType(next.init.info.mime);
+              this.sourceBuffer.changeType(next2.init.info.mime);
             }
             break;
           case "data":
             if (!this.sourceBuffer) {
               throw "failed to call initialize before append";
             }
-            this.sourceBuffer.appendBuffer(next.data);
+            this.sourceBuffer.appendBuffer(next2.data);
             break;
           case "trim":
             if (!this.sourceBuffer) {
               throw "failed to call initailize before trim";
             }
-            const end = this.sourceBuffer.buffered.end(this.sourceBuffer.buffered.length - 1) - next.trim;
+            const end = this.sourceBuffer.buffered.end(this.sourceBuffer.buffered.length - 1) - next2.trim;
             const start = this.sourceBuffer.buffered.start(0);
             if (end > start) {
               this.sourceBuffer.remove(start, end);
@@ -30600,7 +39948,7 @@
     }
   };
 
-  // src/player/stream.ts
+  // src/api/common/stream.ts
   var StreamReader = class {
     constructor(reader, buffer = new Uint8Array(0)) {
       this.reader = reader;
@@ -30676,19 +40024,19 @@
     }
     // Returns a Number using 52-bits, the max Javascript can use for integer math
     async uint52() {
-      const v = await this.uint64();
-      if (v > Number.MAX_SAFE_INTEGER) {
+      const v2 = await this.uint64();
+      if (v2 > Number.MAX_SAFE_INTEGER) {
         throw "overflow";
       }
-      return Number(v);
+      return Number(v2);
     }
     // Returns a Number using 52-bits, the max Javascript can use for integer math
     async vint52() {
-      const v = await this.vint64();
-      if (v > Number.MAX_SAFE_INTEGER) {
+      const v2 = await this.vint64();
+      if (v2 > Number.MAX_SAFE_INTEGER) {
         throw "overflow";
       }
-      return Number(v);
+      return Number(v2);
     }
     // NOTE: Returns a BigInt instead of a Number
     async uint64() {
@@ -30697,8 +40045,8 @@
     }
     // NOTE: Returns a BigInt instead of a Number
     async vint64() {
-      const peek = await this.peek(1);
-      const first = new DataView(peek.buffer, peek.byteOffset, peek.byteLength).getUint8(0);
+      const peek2 = await this.peek(1);
+      const first = new DataView(peek2.buffer, peek2.byteOffset, peek2.byteLength).getUint8(0);
       const size = (first & 192) >> 6;
       switch (size) {
         case 0:
@@ -30719,7 +40067,7 @@
     }
     async done() {
       try {
-        const peek = await this.peek(1);
+        const peek2 = await this.peek(1);
         return false;
       } catch (err) {
         return true;
@@ -30737,65 +40085,65 @@
     async close() {
       return this.writer.close();
     }
-    async uint8(v) {
+    async uint8(v2) {
       const view = new DataView(this.buffer, 0, 1);
-      view.setUint8(0, v);
+      view.setUint8(0, v2);
       return this.writer.write(view);
     }
-    async uint16(v) {
+    async uint16(v2) {
       const view = new DataView(this.buffer, 0, 2);
-      view.setUint16(0, v);
+      view.setUint16(0, v2);
       return this.writer.write(view);
     }
-    async uint24(v) {
-      const v1 = v >> 16 & 255;
-      const v2 = v >> 8 & 255;
-      const v3 = v & 255;
+    async uint24(v2) {
+      const v1 = v2 >> 16 & 255;
+      const v22 = v2 >> 8 & 255;
+      const v3 = v2 & 255;
       const view = new DataView(this.buffer, 0, 3);
       view.setUint8(0, v1);
-      view.setUint8(1, v2);
+      view.setUint8(1, v22);
       view.setUint8(2, v3);
       return this.writer.write(view);
     }
-    async uint32(v) {
+    async uint32(v2) {
       const view = new DataView(this.buffer, 0, 4);
-      view.setUint32(0, v);
+      view.setUint32(0, v2);
       return this.writer.write(view);
     }
-    async uint52(v) {
-      if (v > Number.MAX_SAFE_INTEGER) {
+    async uint52(v2) {
+      if (v2 > Number.MAX_SAFE_INTEGER) {
         throw "value too large";
       }
-      this.uint64(BigInt(v));
+      this.uint64(BigInt(v2));
     }
-    async vint52(v) {
-      if (v > Number.MAX_SAFE_INTEGER) {
+    async vint52(v2) {
+      if (v2 > Number.MAX_SAFE_INTEGER) {
         throw "value too large";
       }
-      if (v < 1 << 6) {
-        return this.uint8(v);
-      } else if (v < 1 << 14) {
-        return this.uint16(v | 16384);
-      } else if (v < 1 << 30) {
-        return this.uint32(v | 2147483648);
+      if (v2 < 1 << 6) {
+        return this.uint8(v2);
+      } else if (v2 < 1 << 14) {
+        return this.uint16(v2 | 16384);
+      } else if (v2 < 1 << 30) {
+        return this.uint32(v2 | 2147483648);
       } else {
-        return this.uint64(BigInt(v) | 0xc000000000000000n);
+        return this.uint64(BigInt(v2) | 0xc000000000000000n);
       }
     }
-    async uint64(v) {
+    async uint64(v2) {
       const view = new DataView(this.buffer, 0, 8);
-      view.setBigUint64(0, v);
+      view.setBigUint64(0, v2);
       return this.writer.write(view);
     }
-    async vint64(v) {
-      if (v < 1 << 6) {
-        return this.uint8(Number(v));
-      } else if (v < 1 << 14) {
-        return this.uint16(Number(v) | 16384);
-      } else if (v < 1 << 30) {
-        return this.uint32(Number(v) | 2147483648);
+    async vint64(v2) {
+      if (v2 < 1 << 6) {
+        return this.uint8(Number(v2));
+      } else if (v2 < 1 << 14) {
+        return this.uint16(Number(v2) | 16384);
+      } else if (v2 < 1 << 30) {
+        return this.uint32(Number(v2) | 2147483648);
       } else {
-        return this.uint64(v | 0xc000000000000000n);
+        return this.uint64(v2 | 0xc000000000000000n);
       }
     }
     async bytes(buffer) {
@@ -30807,10 +40155,10 @@
     }
   };
 
-  // src/player/mp4.ts
+  // src/api/player/mp4.ts
   var import_mp4box = __toESM(require_mp4box_all());
 
-  // src/player/init.ts
+  // src/api/player/init.ts
   var InitParser = class {
     constructor() {
       this.mp4box = (0, import_mp4box.createFile)();
@@ -30843,7 +40191,7 @@
     }
   };
 
-  // src/player/segment.ts
+  // src/api/player/segment.ts
   var Segment = class {
     // The segment has been completed
     constructor(source, init, timestamp) {
@@ -30860,9 +40208,9 @@
         this.input.onSamples = this.onSamples.bind(this);
         this.input.start();
       };
-      for (let i = 0; i < init.raw.length; i += 1) {
-        this.offset = this.input.appendBuffer(init.raw[i]);
-        this.output.appendBuffer(init.raw[i]);
+      for (let i2 = 0; i2 < init.raw.length; i2 += 1) {
+        this.offset = this.input.appendBuffer(init.raw[i2]);
+        this.output.appendBuffer(init.raw[i2]);
       }
       this.input.flush();
       this.output.flush();
@@ -30943,7 +40291,7 @@
     }
   };
 
-  // src/player/track.ts
+  // src/api/player/track.ts
   var Track = class {
     constructor(source) {
       this.source = source;
@@ -30951,17 +40299,17 @@
     }
     add(segment) {
       this.segments.push(segment);
-      this.segments.sort((a, b) => {
-        return a.timestamp - b.timestamp;
+      this.segments.sort((a2, b3) => {
+        return a2.timestamp - b3.timestamp;
       });
     }
     buffered() {
       let ranges = [];
       const buffered = this.source.buffered();
-      for (let i = 0; i < buffered.length; i += 1) {
+      for (let i2 = 0; i2 < buffered.length; i2 += 1) {
         ranges.push({
-          start: buffered.start(i),
-          end: buffered.end(i)
+          start: buffered.start(i2),
+          end: buffered.end(i2)
         });
       }
       for (let segment of this.segments) {
@@ -31008,37 +40356,30 @@
         return;
       while (this.segments.length > 1) {
         const current = this.segments[0];
-        const next = this.segments[1];
-        if (next.dts === void 0 || next.timescale == void 0) {
+        const next2 = this.segments[1];
+        if (next2.dts === void 0 || next2.timescale == void 0) {
           break;
         }
         if (current.dts === void 0) {
           break;
         }
         if (playhead !== void 0) {
-          if (next.dts / next.timescale > playhead) {
+          if (next2.dts / next2.timescale > playhead) {
             return;
           }
         }
-        current.skipTo(next.dts || 0);
+        current.skipTo(next2.dts || 0);
         current.finish();
         this.segments.shift();
       }
     }
   };
 
-  // src/player/index.ts
+  // src/api/player/index.ts
   var Player = class {
     constructor(props) {
       this.vidRef = props.vidRef;
       this.throttleCount = 0;
-      this.infoRef = props.infoRef;
-      this.videoBuffer = this.getElement("video-buffer");
-      this.audioBuffer = this.getElement("audio-buffer");
-      this.videoResolutionRef = this.getElement("vid-res");
-      this.audioCodecRef = this.getElement("audio-codec");
-      this.videoCodecRef = this.getElement("video-codec");
-      this.latencyRef = this.getElement("latency-source");
       this.mediaSource = new MediaSource();
       this.init = /* @__PURE__ */ new Map();
       this.vidRef.current.src = URL.createObjectURL(this.mediaSource);
@@ -31046,7 +40387,7 @@
       this.video = new Track(new Source(this.mediaSource));
       this.interval = setInterval(this.tick.bind(this), 100);
       this.vidRef.current.addEventListener("waiting", this.tick.bind(this));
-      const quic = new WebTransport(props.url);
+      const quic = new WebTransport(this.getUrl("api"));
       this.quic = quic.ready.then(() => {
         return quic;
       });
@@ -31054,15 +40395,6 @@
         return q.createUnidirectionalStream();
       });
       this.receiveStreams();
-    }
-    getElement(element) {
-      const parent = this.infoRef.current.getElementsByClassName(element)[0];
-      const child = parent.querySelector(`#${element}`);
-      if (child) {
-        return child;
-      } else {
-        throw new Error(`found no ${element}`);
-      }
     }
     async close() {
       clearInterval(this.interval);
@@ -31077,6 +40409,10 @@
       await writer.string("warp");
       await writer.string(payload);
       writer.release();
+    }
+    getUrl(path) {
+      let url = location.href.endsWith("/") ? location.href + path : location.href + "/" + path;
+      return url;
     }
     throttle() {
       this.throttleCount += 1;
@@ -31130,8 +40466,8 @@
       if (!ranges.length) {
         return;
       }
-      for (let i = 0; i < ranges.length; i += 1) {
-        const pos = ranges.start(i);
+      for (let i2 = 0; i2 < ranges.length; i2 += 1) {
+        const pos = ranges.start(i2);
         if (this.vidRef.current.currentTime >= pos) {
           continue;
         }
@@ -31163,22 +40499,22 @@
       }
     }
     async handleStream(stream) {
-      let r = new StreamReader(stream.getReader());
-      while (!await r.done()) {
-        const size = await r.uint32();
-        const typ = new TextDecoder("utf-8").decode(await r.bytes(4));
+      let r2 = new StreamReader(stream.getReader());
+      while (!await r2.done()) {
+        const size = await r2.uint32();
+        const typ = new TextDecoder("utf-8").decode(await r2.bytes(4));
         if (typ != "warp")
           throw "expected warp atom";
         if (size < 8)
           throw "atom too small";
-        const payload = new TextDecoder("utf-8").decode(await r.bytes(size - 8));
+        const payload = new TextDecoder("utf-8").decode(await r2.bytes(size - 8));
         const msg = JSON.parse(payload);
         if (msg.init) {
-          return this.handleInit(r, msg.init);
+          return this.handleInit(r2, msg.init);
         } else if (msg.segment) {
-          return this.handleSegment(r, msg.segment);
+          return this.handleSegment(r2, msg.segment);
         } else if (msg.beat) {
-          return this.handleHeartBeat(r, msg.beat);
+          return this.handleHeartBeat(r2, msg.beat);
         }
       }
     }
@@ -31205,12 +40541,8 @@
       let track;
       if (init.info.videoTracks.length) {
         track = this.video;
-        this.videoCodecRef.innerHTML = init.info.videoTracks[0].codec + "";
-        const fps = init.info.videoTracks[0].timescale / init.info.videoTracks[0].movie_timescale;
-        this.videoResolutionRef.innerHTML = `${init.info.videoTracks[0].track_width}x${init.info.videoTracks[0].track_height}@${fps}fps`;
       } else {
         track = this.audio;
-        this.audioCodecRef.innerHTML = init.info.audioTracks[0].codec + "";
       }
       const segment = new Segment(track.source, init, msg.timestamp);
       track.add(segment);
@@ -31229,15 +40561,12 @@
         if (!data)
           break;
         const rightNow = Date.now();
-        const t = new TextDecoder("utf-8").decode(data.slice(data.length - 15, data.length - 2));
-        this.latencyRef.innerHTML = rightNow - Number(t) + "ms";
+        const t2 = new TextDecoder("utf-8").decode(data.slice(data.length - 15, data.length - 2));
       }
     }
     updateStats() {
       const audioRanges = this.audio ? this.audio.buffered() : { length: 0 };
-      this.visualizeBuffer(this.audioBuffer, audioRanges);
       const videoRanges = this.video ? this.video.buffered() : { length: 0 };
-      this.visualizeBuffer(this.videoBuffer, videoRanges);
     }
     visualizeBuffer(element, ranges) {
       if (!this.vidRef.current) {
@@ -31246,10 +40575,10 @@
       const children = element.children;
       const max = 5;
       let index = 0;
-      let prev = 0;
-      for (let i = 0; i < ranges.length; i += 1) {
-        let start = ranges.start(i) - this.vidRef.current.currentTime;
-        let end = ranges.end(i) - this.vidRef.current.currentTime;
+      let prev2 = 0;
+      for (let i2 = 0; i2 < ranges.length; i2 += 1) {
+        let start = ranges.start(i2) - this.vidRef.current.currentTime;
+        let end = ranges.end(i2) - this.vidRef.current.currentTime;
         if (end < 0 || start > max) {
           continue;
         }
@@ -31264,10 +40593,10 @@
         fill.innerHTML = end.toFixed(2);
         fill.setAttribute("style", "left: " + 100 * Math.max(start, 0) / max + "%; right: " + (100 - 100 * Math.min(end, max) / max) + "%");
         index += 1;
-        prev = end;
+        prev2 = end;
       }
-      for (let i = index; i < children.length; i += 1) {
-        element.removeChild(children[i]);
+      for (let i2 = index; i2 < children.length; i2 += 1) {
+        element.removeChild(children[i2]);
       }
     }
   };
@@ -31277,38 +40606,365 @@
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
     const sizes = ["b", "Kb", "Mb", "Gb", "Tb", "Pb", "Eb", "Zb", "Yb"];
-    const i = Math.floor(Math.log(bits) / Math.log(k));
-    return parseFloat((bits / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+    const i2 = Math.floor(Math.log(bits) / Math.log(k));
+    return parseFloat((bits / Math.pow(k, i2)).toFixed(dm)) + " " + sizes[i2];
+  }
+
+  // src/api/input/index.ts
+  var Input = class {
+    constructor() {
+      const quic = new WebTransport(this.getUrl("play"));
+      this.quic = quic.ready.then(() => {
+        return quic;
+      }).catch((e2) => {
+        throw new Error("Someone is already playing");
+      });
+      this.api = this.quic.then((q) => {
+        return q.createUnidirectionalStream();
+      });
+      this.receiveStreams();
+    }
+    async close() {
+      clearInterval(this.interval);
+      (await this.quic).close();
+    }
+    async sendMessage(msg) {
+      const payload = JSON.stringify(msg);
+      const size = payload.length + 8;
+      const stream = await this.api;
+      const writer = new StreamWriter(stream);
+      await writer.uint32(size);
+      await writer.string("warp");
+      await writer.string(payload);
+      writer.release();
+    }
+    getUrl(path) {
+      let url = location.href.endsWith("/") ? location.href + path : location.href + "/" + path;
+      return url;
+    }
+    async receiveStreams() {
+      const q = await this.quic;
+      const streams = q.incomingUnidirectionalStreams.getReader();
+      while (true) {
+        const result = await streams.read();
+        if (result.done)
+          break;
+        const stream = result.value;
+        this.handleStream(stream);
+      }
+    }
+    async handleStream(stream) {
+      let r2 = new StreamReader(stream.getReader());
+      while (!await r2.done()) {
+        const size = await r2.uint32();
+        const typ = new TextDecoder("utf-8").decode(await r2.bytes(4));
+        if (typ != "warp")
+          throw "expected warp atom";
+        if (size < 8)
+          throw "atom too small";
+        const payload = new TextDecoder("utf-8").decode(await r2.bytes(size - 8));
+        const msg = JSON.parse(payload);
+        if (msg.beat) {
+          return this.handleHeartBeat(r2, msg.beat);
+        } else {
+          await this.close();
+        }
+      }
+    }
+    async handleHeartBeat(stream, msg) {
+      while (1) {
+        const data = await stream.read();
+        if (!data)
+          break;
+        const rightNow = Date.now();
+        const t2 = new TextDecoder("utf-8").decode(data.slice(data.length - 15, data.length - 2));
+      }
+    }
+    sendInput() {
+      document.addEventListener("keydown", (e2) => {
+        e2.preventDefault();
+        this.sendMessage({
+          "keyBoard": {
+            "key": e2.key
+          }
+        });
+      });
+      document.addEventListener("mousemove", (e2) => {
+        e2.preventDefault();
+        this.sendMessage({
+          "mouseMove": {
+            x: e2.movementX,
+            y: e2.movementY
+          }
+        });
+      });
+      document.addEventListener("click", (e2) => {
+        e2.preventDefault();
+        let button = "left";
+        switch (e2.button) {
+          case 0:
+            button = "left";
+            break;
+          case 1:
+            button = "center";
+            break;
+          case 2:
+            button = "right";
+            break;
+          default:
+            button = "left";
+        }
+        this.sendMessage({
+          "mouseClick": {
+            button
+          }
+        });
+      });
+      document.addEventListener("wheel", (e2) => {
+        e2.preventDefault();
+        this.sendMessage({
+          "mouseScroll": {
+            x: e2.deltaX,
+            y: e2.deltaY
+          }
+        });
+      });
+    }
+    stopInput() {
+      document.removeEventListener("keydown", (e2) => {
+        e2.preventDefault();
+        this.sendMessage({
+          "keyBoard": {
+            "key": e2.key
+          }
+        });
+      });
+      document.removeEventListener("mousemove", (e2) => {
+        e2.preventDefault();
+        this.sendMessage({
+          "mouseMove": {
+            x: e2.movementX,
+            y: e2.movementY
+          }
+        });
+      });
+      document.removeEventListener("click", (e2) => {
+        e2.preventDefault();
+        let button = "left";
+        switch (e2.button) {
+          case 0:
+            button = "left";
+            break;
+          case 1:
+            button = "center";
+            break;
+          case 2:
+            button = "right";
+            break;
+          default:
+            button = "left";
+        }
+        this.sendMessage({
+          "mouseClick": {
+            button
+          }
+        });
+      });
+      document.removeEventListener("wheel", (e2) => {
+        e2.preventDefault();
+        this.sendMessage({
+          "mouseScroll": {
+            x: e2.deltaX,
+            y: e2.deltaY
+          }
+        });
+      });
+    }
+  };
+
+  // src/pages/index.tsx
+  function Home() {
+    const [isFeedback, setIsFeedback] = (0, import_react13.useState)(false);
+    const [exitedPlay, setExitedPlay] = (0, import_react13.useState)(false);
+    const [isPlaying, setIsPlaying] = (0, import_react13.useState)(false);
+    const isOtherPlaying = (0, import_react13.useRef)(false);
+    const [input, setInput] = (0, import_react13.useState)();
+    const [showSplash, setShowSplash] = (0, import_react13.useState)(true);
+    const canvasRef = (0, import_react13.useRef)(null);
+    const vidRef = (0, import_react13.useRef)(null);
+    const toast = new Toast();
+    try {
+      const inpt = new Input();
+      setInput(inpt);
+    } catch (e2) {
+      isOtherPlaying.current = true;
+    }
+    (0, import_react13.useEffect)(() => {
+      setTimeout(() => {
+        setShowSplash(false);
+      }, 100);
+      if (showSplash) {
+      }
+      async function onFullscreenChange() {
+        if (!document.fullscreenElement) {
+          setExitedPlay(true);
+        }
+      }
+      canvasRef.current?.addEventListener("fullscreenchange", onFullscreenChange);
+      return () => canvasRef.current?.removeEventListener("fullscreenchange", onFullscreenChange);
+    }, []);
+    (0, import_react13.useEffect)(() => {
+      function lockChange() {
+        if (document.pointerLockElement === canvasRef.current) {
+          input?.sendInput();
+        } else {
+          input?.stopInput();
+        }
+      }
+      document.addEventListener("pointerlockchange", lockChange);
+      return () => document.removeEventListener("pointerlockchange", lockChange);
+    }, []);
+    const playGame = () => {
+      if (canvasRef.current) {
+        if (isOtherPlaying) {
+          setIsPlaying(true);
+          toast.showError("someone is already playing");
+          const videoApi = new Player({ vidRef });
+        } else {
+          setIsPlaying(true);
+          const videoApi = new Player({ vidRef });
+          canvasRef.current.requestPointerLock({ unadjustedMovement: true });
+          canvasRef.current.requestFullscreen();
+        }
+      }
+    };
+    return /* @__PURE__ */ import_react13.default.createElement(import_react13.default.Fragment, null, /* @__PURE__ */ import_react13.default.createElement("main", { className: "app_main" }, showSplash && /* @__PURE__ */ import_react13.default.createElement("div", { className: "splash_screen" }, /* @__PURE__ */ import_react13.default.createElement(logo_default, null), /* @__PURE__ */ import_react13.default.createElement("div", { className: "preloader" }, /* @__PURE__ */ import_react13.default.createElement("svg", null, /* @__PURE__ */ import_react13.default.createElement("circle", { cx: "8", cy: "8", r: "8" })))), /* @__PURE__ */ import_react13.default.createElement(import_react13.default.Fragment, null, /* @__PURE__ */ import_react13.default.createElement("div", { className: "top" }, /* @__PURE__ */ import_react13.default.createElement(
+      Ie,
+      {
+        position: "top-center",
+        reverseOrder: false
+      }
+    )), /* @__PURE__ */ import_react13.default.createElement(Sidebar, { onPressFeedback: () => {
+      setIsFeedback(true);
+    } }), /* @__PURE__ */ import_react13.default.createElement("div", { className: "canvas" }, /* @__PURE__ */ import_react13.default.createElement(
+      "div",
+      {
+        ref: canvasRef,
+        className: "video_container preview",
+        style: {
+          aspectRatio: "4 / 3",
+          width: "100%",
+          height: "auto"
+        }
+      },
+      /* @__PURE__ */ import_react13.default.createElement(
+        "video",
+        {
+          ref: vidRef,
+          controls: false,
+          hidden: !isPlaying,
+          style: {
+            aspectRatio: "16 / 9 ",
+            objectFit: "contain",
+            width: "100%"
+          }
+        }
+      ),
+      /* @__PURE__ */ import_react13.default.createElement(
+        "img",
+        {
+          hidden: isPlaying,
+          loading: "eager",
+          src: "../../public/images/canvas.jpg",
+          style: {
+            width: "100%",
+            aspectRatio: "4 / 3",
+            objectFit: "cover"
+          }
+        }
+      )
+    ), !isPlaying && /* @__PURE__ */ import_react13.default.createElement(
+      "button",
+      {
+        onClick: playGame,
+        className: "video-play-button"
+      },
+      /* @__PURE__ */ import_react13.default.createElement(
+        "svg",
+        {
+          xmlns: "http://www.w3.org/2000/svg",
+          xmlSpace: "preserve",
+          viewBox: "0 0 58.752 58.752"
+        },
+        /* @__PURE__ */ import_react13.default.createElement("path", { d: "M52.524 23.925 12.507.824c-1.907-1.1-4.376-1.097-6.276 0a6.294 6.294 0 0 0-3.143 5.44v46.205a6.29 6.29 0 0 0 3.131 5.435 6.263 6.263 0 0 0 6.29.005l40.017-23.103a6.3 6.3 0 0 0 3.138-5.439 6.315 6.315 0 0 0-3.14-5.442zm-3 5.687L9.504 52.716a.27.27 0 0 1-.279-.005.28.28 0 0 1-.137-.242V6.263a.28.28 0 0 1 .421-.243l40.01 23.098a.29.29 0 0 1 .145.249.283.283 0 0 1-.14.245z" })
+      )
+    ), exitedPlay && /* @__PURE__ */ import_react13.default.createElement(
+      "div",
+      {
+        className: "modal_container play"
+      },
+      /* @__PURE__ */ import_react13.default.createElement(
+        "div",
+        {
+          className: "modal_effects feedback_modal",
+          style: {
+            width: "calc(100 % - 24px)",
+            maxWidth: 360,
+            maxHeight: "calc(100vh - 32px)",
+            opacity: 1,
+            transform: "translateY(0px) scale(1) translateZ(0px)"
+          }
+        },
+        /* @__PURE__ */ import_react13.default.createElement("div", { className: "play_modal" }, /* @__PURE__ */ import_react13.default.createElement("button", { onClick: playGame }, /* @__PURE__ */ import_react13.default.createElement("p", null, "Continue playing")), /* @__PURE__ */ import_react13.default.createElement("button", { onClick: () => {
+          setIsFeedback(true);
+        } }, /* @__PURE__ */ import_react13.default.createElement("p", null, "Submit feedback")), /* @__PURE__ */ import_react13.default.createElement(
+          "button",
+          {
+            onClick: () => {
+              setIsPlaying(false);
+            }
+          },
+          /* @__PURE__ */ import_react13.default.createElement("p", null, "Exit game")
+        ))
+      )
+    )), /* @__PURE__ */ import_react13.default.createElement(Chat, null), /* @__PURE__ */ import_react13.default.createElement("div", { className: "command_bar" }, /* @__PURE__ */ import_react13.default.createElement(
+      "button",
+      {
+        className: "tip",
+        onClick: async () => {
+          await toast.showError("Voice chat not implemented yet");
+        }
+      },
+      /* @__PURE__ */ import_react13.default.createElement(
+        "svg",
+        {
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 512 512"
+        },
+        /* @__PURE__ */ import_react13.default.createElement("path", { fill: "currentColor", d: "M243.5 37.1c-25.7 3.2-49.7 18.1-63.4 39.2-3.5 5.4-4.5 8-4.9 12.2-.9 10.6 5.8 17.6 17.2 18.3 7.7.4 10.4-1.2 18-10.7 9.8-12.2 20.7-18.9 35.8-21.9 23.4-4.6 48.1 7.3 58.3 28.1 6.2 12.7 6.5 15.4 6.5 71.5 0 55-.1 54.5 5.9 59.5 8.6 7.2 22.7 5 28-4.4 2.2-3.8 2.2-4 1.9-61.1l-.3-57.3-2.8-8.8c-7.7-24.7-24-44.3-46.2-55.4-8.6-4.4-20.6-7.9-31-9.2-10.1-1.2-13-1.2-23 0zM47.5 38.2c-3.2 1.7-7.6 6.1-9.1 9-1.7 3.2-1.8 10.5-.3 14.5.5 1.5 29.1 30.9 64 65.8l62.9 63v38.3c0 41.9.5 46.8 6 61 10.1 26.1 32.5 46.3 60 54.2 9.3 2.7 30.6 3.8 40.3 2.1 9.7-1.7 19.2-5.2 28.4-10.3l8.1-4.6 12.6 12.7 12.6 12.7-6.3 4.6c-19.1 14.1-46 22.8-70.2 22.8-46.2 0-87.9-23.8-111.3-63.6-10.4-17.6-17.2-42.2-17.2-62.3 0-13.5-7.1-20.6-19.7-19.9-6.6.4-10 2.1-13.6 7-2.9 3.8-3.5 9.1-2.6 22.7 1.6 23.1 7.2 43.2 18.1 64.2 22.2 43.2 66.3 75.9 113.8 84.4 5.2.9 10.5 1.8 11.7 2.1 2.2.4 2.2.6 2.5 23.3.3 25.2.4 25.5 7.2 30.5 4 3 17.2 3 21.2 0 6.8-5 6.9-5.3 7.2-30.4l.3-22.9 5.7-.6c23.6-2.7 50.9-13.6 70.3-27.9l8.6-6.4 43.9 43.9c24.2 24.2 45.3 44.6 47.1 45.4 3.9 1.9 11.6 1.9 15.1.1 3.1-1.6 7.4-6.1 9.1-9.3 1.6-3.1 1.4-10.9-.4-14.6-2-4.3-408.2-410.3-411.8-411.7-3.7-1.3-11.6-1.2-14.2.2zM392.8 240c-6 3.3-8 7.7-8.9 19.9-.4 5.8-1.6 16.1-2.5 22.7-1.7 11.5-1.7 12.4-.1 16.6 1 2.4 3.3 6 5.2 7.8 3.3 3.2 4.2 3.5 10.8 3.8 6.2.3 7.7.1 10.7-2 1.9-1.3 4.3-3.9 5.2-5.8 4-8.3 8.5-41.7 6.8-51-.9-4.7-3.2-8.3-7.3-11.4-4-3-14.9-3.3-19.9-.6z" })
+      ),
+      /* @__PURE__ */ import_react13.default.createElement(
+        "div",
+        {
+          className: "tooltip",
+          style: {
+            bottom: "150%",
+            left: "-60%"
+          }
+        },
+        "Voice Chat"
+      )
+    )))), isFeedback && /* @__PURE__ */ import_react13.default.createElement(FeedbackModal, { onPressFeedback: () => {
+      setIsFeedback(false);
+    } }), /* @__PURE__ */ import_react13.default.createElement("div", { className: "resolution_popup" }, /* @__PURE__ */ import_react13.default.createElement("img", { src: "../../public/images/logo.png", className: "logo", alt: "Arc3dia logo" }), /* @__PURE__ */ import_react13.default.createElement("h2", null, "Arc3dia for mobile is coming soon!"), /* @__PURE__ */ import_react13.default.createElement("img", { src: "../../public/images/res.png", alt: "Mobile devices" }), /* @__PURE__ */ import_react13.default.createElement("p", { className: "gray_text" }, "Please use a laptop or a desktop to visit this page")));
   }
 
   // src/index.tsx
   function App(props) {
-    const [player, setPlayer] = (0, import_react6.useState)();
-    const vidRef = (0, import_react6.useRef)(null);
-    const infoRef = (0, import_react6.useRef)(null);
-    const settingsRef = (0, import_react6.useRef)(null);
-    const playerRef = (0, import_react6.useRef)(null);
-    const params = new URLSearchParams(window.location.search);
-    const getUrl = () => {
-      if (location.href.endsWith("/")) {
-        return location.href + "api";
-      } else {
-        return location.href + "/api";
-      }
-    };
-    const url = params.get("url") || getUrl();
-    (0, import_react6.useEffect)(() => {
-      const p = new Player({
-        url,
-        vidRef,
-        infoRef
-      });
-      setPlayer(p);
-    }, []);
-    return /* @__PURE__ */ import_react6.default.createElement("div", { ref: playerRef, id: "player" }, /* @__PURE__ */ import_react6.default.createElement("div", { id: "screen" }, /* @__PURE__ */ import_react6.default.createElement(PlayScreenOne, { videoRef: vidRef }), /* @__PURE__ */ import_react6.default.createElement(PlayScreenTwo, { ...{ settingsRef, infoRef, player, playerRef, vidRef } }), /* @__PURE__ */ import_react6.default.createElement("video", { ref: vidRef, id: "video" })));
+    return /* @__PURE__ */ import_react14.default.createElement(import_react14.default.Fragment, null, /* @__PURE__ */ import_react14.default.createElement(Home, null));
   }
-  var root = import_client.default.createRoot(document.querySelector("#qwantify-app"));
-  root.render(/* @__PURE__ */ import_react6.default.createElement(App, null));
+  var root = import_client.default.createRoot(document.querySelector("#app"));
+  root.render(/* @__PURE__ */ import_react14.default.createElement(App, null));
 })();
 /*! Bundled license information:
 
@@ -31356,5 +41012,81 @@ react-dom/cjs/react-dom.development.js:
    * @return {boolean} True if the event is supported.
    * @internal
    * @license Modernizr 3.0.0pre (Custom Build) | MIT
+   *)
+
+react-is/cjs/react-is.development.js:
+  (** @license React v16.13.1
+   * react-is.development.js
+   *
+   * Copyright (c) Facebook, Inc. and its affiliates.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   *)
+
+object-assign/index.js:
+  (*
+  object-assign
+  (c) Sindre Sorhus
+  @license MIT
+  *)
+
+react-is/cjs/react-is.development.js:
+  (**
+   * @license React
+   * react-is.development.js
+   *
+   * Copyright (c) Facebook, Inc. and its affiliates.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   *)
+
+react-is/cjs/react-is.development.js:
+  (** @license React v16.13.1
+   * react-is.development.js
+   *
+   * Copyright (c) Facebook, Inc. and its affiliates.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   *)
+
+react/cjs/react-jsx-runtime.development.js:
+  (**
+   * @license React
+   * react-jsx-runtime.development.js
+   *
+   * Copyright (c) Facebook, Inc. and its affiliates.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   *)
+
+@mui/styled-engine/index.js:
+  (**
+   * @mui/styled-engine v5.12.0
+   *
+   * @license MIT
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   *)
+
+@mui/base/index.js:
+  (**
+   * @mui/base v5.0.0-alpha.126
+   *
+   * @license MIT
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   *)
+
+@mui/material/index.js:
+  (**
+   * @mui/material v5.12.1
+   *
+   * @license MIT
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
    *)
 */
