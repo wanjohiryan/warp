@@ -1,8 +1,11 @@
 package input
 
 type Message struct {
-	Input *MessageInput     `json:"input,omitempty"`
-	Beat  *MessageHeartBeat `json:"beat,omitempty"`
+	Input       *MessageInput       `json:"input,omitempty"`
+	MouseMove   *MessageMouseMove   `json:"mousemove,omitempty"`
+	MouseScroll *MessageMouseScroll `json:"mousescroll,omitempty"`
+	Click       *MessageClick       `json:"keyDown,omitempty"`
+	Beat        *MessageHeartBeat   `json:"beat,omitempty"`
 }
 
 type MessageInput struct {
@@ -18,4 +21,21 @@ type MessageInput struct {
 
 type MessageHeartBeat struct {
 	Timestamp int `json:"timestamp"`
+}
+
+type MessageMouseMove struct {
+	x_value float64 `json:"x"`
+	y_value float64 `json:"y"`
+}
+type MessageMouseScroll struct {
+	x_value float64 `json:"x"`
+	y_value float64 `json:"y"`
+}
+
+type MessageMouseClick struct {
+	button string `json:"button"`
+}
+
+type MessageClick struct {
+	key int `json:"keyCode"`
 }

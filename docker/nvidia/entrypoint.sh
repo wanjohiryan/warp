@@ -26,8 +26,8 @@ export PATH="${PATH}:/usr/games:/opt/VirtualGL/bin"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 
 # Run Xvfb server with required extensions
-echo "Starting Xvfb..."
-Xvfb "${DISPLAY}" -ac -screen "0" "8192x4096x24" -dpi "96" +extension "RANDR" +extension "GLX" +iglx +extension "MIT-SHM" +render -nolisten "tcp" -noreset -shmem &
+echo "Starting Xvfb..." #"8192x4096x24"
+Xvfb "${DISPLAY}" -ac -screen "0" "1024x768x24" -dpi "96" +extension "RANDR" +extension "GLX" +iglx +extension "MIT-SHM" +render -nolisten "tcp" -noreset -shmem &
 sleep 0.5
 
 # Wait for X11 to start
@@ -61,14 +61,6 @@ if [[ -z "${GAME_EXE}" ]]; then
   echo "The GAME_EXE environment variable is not set. Exiting."
   exit 0
 fi
-
-#check whether uinput was passed into the container
-if [ ! -e "/dev/uinput" ]; then
-  echo "/dev/uinput does not exist. Exiting..."
-  exit 1
-fi
-
-sudo chown root:input /dev/uinput
 
 wait -n
 
