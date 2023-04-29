@@ -39558,7 +39558,7 @@ to {
         {
           "aria-label": "bandwidth"
         }
-      ), /* @__PURE__ */ import_react10.default.createElement("div", { className: "number_icon" }, /* @__PURE__ */ import_react10.default.createElement("p", null, "100%")))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "panel_option bandwidth" }, /* @__PURE__ */ import_react10.default.createElement("h6", null, "Resolution"), /* @__PURE__ */ import_react10.default.createElement("div", { className: "slider" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "number_icon" }, /* @__PURE__ */ import_react10.default.createElement("p", null, "5 mb/s")), /* @__PURE__ */ import_react10.default.createElement(
+      ), /* @__PURE__ */ import_react10.default.createElement("div", { className: "number_icon" }, /* @__PURE__ */ import_react10.default.createElement("p", null, "100%")))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "panel_option bandwidth" }, /* @__PURE__ */ import_react10.default.createElement("h6", null, "Resolution"), /* @__PURE__ */ import_react10.default.createElement("div", { className: "slider" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "number_icon" }, /* @__PURE__ */ import_react10.default.createElement("p", null, "15 mb/s")), /* @__PURE__ */ import_react10.default.createElement(
         Slider_default,
         {
           value: sliderValue,
@@ -39567,23 +39567,20 @@ to {
             setSliderValue(v2);
             if (v2 <= 40) {
               handleButtonClick(0, false);
-            } else if (v2 >= 50 && v2 < 70) {
+            } else if (v2 >= 50) {
               handleButtonClick(1, false);
-            } else if (v2 >= 70) {
-              handleButtonClick(2, false);
             }
           },
           "aria-label": "bandwidth"
         }
-      ), /* @__PURE__ */ import_react10.default.createElement("div", { className: "number_icon" }, /* @__PURE__ */ import_react10.default.createElement("p", null, "100 mb/s"))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "switch" }, /* @__PURE__ */ import_react10.default.createElement(
+      ), /* @__PURE__ */ import_react10.default.createElement("div", { className: "number_icon" }, /* @__PURE__ */ import_react10.default.createElement("p", null, "30 mb/s"))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "switch" }, /* @__PURE__ */ import_react10.default.createElement(
         "button",
         {
           className: "switch_button",
           onClick: () => handleButtonClick(0),
           ref: (el) => buttonsRef.current[0] = el
         },
-        /* @__PURE__ */ import_react10.default.createElement("div", { className: "blur_icon" }),
-        /* @__PURE__ */ import_react10.default.createElement("p", null, "480p"),
+        /* @__PURE__ */ import_react10.default.createElement("div", null, "720p"),
         /* @__PURE__ */ import_react10.default.createElement("span", { className: "active_indicator" })
       ), /* @__PURE__ */ import_react10.default.createElement(
         "button",
@@ -39592,17 +39589,16 @@ to {
           onClick: () => handleButtonClick(1),
           ref: (el) => buttonsRef.current[1] = el
         },
-        /* @__PURE__ */ import_react10.default.createElement("div", { className: "medium_icon" }),
-        /* @__PURE__ */ import_react10.default.createElement("p", null, "720p")
+        /* @__PURE__ */ import_react10.default.createElement("div", null, "1080p")
       ), /* @__PURE__ */ import_react10.default.createElement(
         "button",
         {
           className: "switch_button",
-          onClick: () => handleButtonClick(2),
-          ref: (el) => buttonsRef.current[2] = el
+          onClick: () => {
+            toast.showError("4k is not implemented yet");
+          }
         },
-        /* @__PURE__ */ import_react10.default.createElement("div", { className: "sharp_icon" }),
-        /* @__PURE__ */ import_react10.default.createElement("p", null, "1080p")
+        /* @__PURE__ */ import_react10.default.createElement("div", null, "2160p")
       ))), /* @__PURE__ */ import_react10.default.createElement("div", { className: "panel_option" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "latency_details" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "row" }, /* @__PURE__ */ import_react10.default.createElement("span", { className: "truncate" }, "Latency"), /* @__PURE__ */ import_react10.default.createElement("p", null, "200 ms")))))
     ), /* @__PURE__ */ import_react10.default.createElement("div", { className: "stream_options" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "wrapper" }, /* @__PURE__ */ import_react10.default.createElement("button", { onClick: () => {
       toast.showError("Cloud Stream not implemented yet");

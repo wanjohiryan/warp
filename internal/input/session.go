@@ -22,7 +22,7 @@ type PlayerSession struct {
 	conn  quic.Connection
 	inner *webtransport.Session
 
-	gpad    *Vgamepad
+	// gpad    *Vgamepad
 	streams invoker.Tasks
 }
 
@@ -30,7 +30,6 @@ func NewPlayerSession(connection quic.Connection, Session *webtransport.Session)
 	s = new(PlayerSession)
 	s.conn = connection
 	s.inner = Session
-	s.gpad = NewGamepad()
 	return s, nil
 }
 
@@ -113,13 +112,15 @@ func (s *PlayerSession) handleStream(ctx context.Context, stream webtransport.Re
 			return fmt.Errorf("failed to decode json payload: %w", err)
 		}
 
-		if msg.Input != nil {
-			s.handleInput(msg.Input)
-		}
+		// if msg.Input != nil {
+		// 	// s.handleInput(msg.Input)
+		// }
 
 		//TODO:implement automatic handling of latency issues
 		if msg.Beat != nil {
 			stream.CancelRead(1)
+		} else {
+			fmt.Print(msg)
 		}
 
 	}
@@ -172,15 +173,15 @@ func (s *PlayerSession) heartBeat(ctx context.Context) (err error) {
 }
 
 // handle input here
-func (s *PlayerSession) handleInput(msg *MessageInput) {
-	for _, str := range msg.Buttons {
-		s.gpad.SetBtn(str)
-	}
+// func (s *PlayerSession) handleInput(msg *MessageInput) {
+// 	for _, str := range msg.Buttons {
+// 		s.gpad.SetBtn(str)
+// 	}
 
-	s.gpad.RightAxis(msg.ThumbRX, msg.ThumbRY)
+// 	s.gpad.RightAxis(msg.ThumbRX, msg.ThumbRY)
 
-	s.gpad.LeftAxis(msg.ThumbLX, msg.ThumbLY)
+// 	s.gpad.LeftAxis(msg.ThumbLX, msg.ThumbLY)
 
-}
+// }
 
 //FIXME: destroy gamepad on player disconnect

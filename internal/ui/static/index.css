@@ -19,7 +19,9 @@
     47,
     63;
   --brand-3:
-    220,24,96;
+    220,
+    24,
+    96;
   --panel:
     28,
     28,
@@ -592,6 +594,7 @@ button {
   position: relative;
   width: 100%;
   display: flex;
+  aspect-ratio: 5/4;
   flex-direction: column;
   align-items: center;
   grid-gap: 10px;
@@ -612,22 +615,18 @@ button {
   }
 }
 .switch .switch_button div {
-  width: 24px;
-  height: 24px;
+  width: max-content;
+  height: -moz-max-content;
+  height: max-content;
+  padding: 7px 6px;
+  font: 500 14px/20px Inter, sans-serif;
+  letter-spacing: -.4px;
+  font-weight: 600;
+  letter-spacing: .4px;
   border-radius: 5px;
   border: 1px solid rgba(var(--primary), .12);
   background: rgba(var(--primary), .12);
   z-index: 1;
-}
-.switch .switch_button .blur_icon {
-  width: 17px;
-  height: 17px;
-  border-radius: 3px;
-}
-.switch .switch_button .medium_icon {
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
 }
 .switch .switch_button .active_indicator {
   background: rgba(var(--panel-active), 1);
@@ -942,14 +941,6 @@ button {
   .switch .switch_button p {
     font: normal 11px/14px Inter, sans-serif;
   }
-}
-.switch .switch_button div {
-  width: 24px;
-  height: 24px;
-  border-radius: 5px;
-  border: 1px solid rgba(var(--primary), .12);
-  background: rgba(var(--primary), .12);
-  z-index: 1;
 }
 .switch .switch_button.only_label p {
   font: 500 14px/20px Inter, sans-serif;

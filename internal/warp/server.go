@@ -12,6 +12,7 @@ import (
 	"os/exec"
 	"path/filepath"
 
+	"github.com/wanjohiryan/warp/internal/input"
 	"github.com/wanjohiryan/warp/internal/ui"
 
 	"github.com/kixelated/invoker"
@@ -112,7 +113,7 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 	})
 
 	//limit players to four per session
-	maxConcurrentConn := 4
+	maxConcurrentConn := 1
 	sem := make(chan struct{}, maxConcurrentConn)
 	mux.HandleFunc("/play", func(w http.ResponseWriter, r *http.Request) {
 
@@ -138,14 +139,14 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 				return
 			}
 
-			err = s.serve(r.Context(), conn, sess)
+			err = s.servePlay(r.Context(), conn, sess)
 			if err != nil {
 				log.Println(err)
 			}
 
 		default:
 			// If the channel is full, return an HTTP error response.
-			http.Error(w, "Slots are full", http.StatusServiceUnavailable)
+			http.Error(w, "Someone is already playing", http.StatusServiceUnavailable)
 		}
 	})
 
@@ -176,6 +177,28 @@ func (s *Server) serve(ctx context.Context, conn quic.Connection, sess *webtrans
 	}()
 
 	ss, err := NewSession(conn, sess, s.media)
+	if err != nil {
+		return fmt.Errorf("failed to create session: %w", err)
+	}
+
+	err = ss.Run(ctx)
+	if err != nil {
+		return fmt.Errorf("terminated session: %w", err)
+	}
+
+	return nil
+}
+
+func (s *Server) servePlay(ctx context.Context, conn quic.Connection, sess *webtransport.Session) (err error) {
+	defer func() {
+		if err != nil {
+			sess.CloseWithError(1, err.Error())
+		} else {
+			sess.CloseWithError(0, "end of broadcast")
+		}
+	}()
+
+	ss, err := input.NewPlayerSession(conn, sess)
 	if err != nil {
 		return fmt.Errorf("failed to create session: %w", err)
 	}

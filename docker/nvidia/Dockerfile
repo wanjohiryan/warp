@@ -24,7 +24,8 @@ ARG USER_GID=${USER_UID}
 # Enable AppImage execution in a container
 ENV APPIMAGE_EXTRACT_AND_RUN 1
 #
-# set vgl-display to headless 3d gpu card/// correct values are egl[n] or /dev/dri/card0:if this is passed into container
+# set vgl-display to headless 3d gpu card 
+#NOTE:correct values are egl[n] or /dev/dri/card0:if this is passed into container
 ENV VGL_DISPLAY egl
 
 ENV REFRESH 60
@@ -66,7 +67,12 @@ RUN dpkg --add-architecture i386 && apt-get update; \
     libvulkan-dev:i386 libxau6 libxau6:i386 libxdmcp6 libxdmcp6:i386 libxcb1 libxcb1:i386 \
     libxext6 libxext6:i386 libx11-6 libx11-6:i386 libxv1 libxv1:i386 libxtst6 libxtst6:i386 \
     xdg-utils dbus-x11 libdbus-c++-1-0v5 xkb-data x11-xkb-utils x11-xserver-utils x11-utils \ 
-    x11-apps xauth xbitmaps xinit libxrandr-dev
+    x11-apps xauth xbitmaps xinit libxrandr-dev \
+    #
+    #For RobotGo
+    #
+    libx11-dev libx11-dev xorg-dev libxtst-dev xsel xclip libpng++-dev xcb libxcb-xkb-dev x11-xkb-utils \
+    libx11-xcb-dev libxkbcommon-x11-dev libxkbcommon-dev
 
 #
 #Install and configure Vulkan and EGL manually
@@ -191,5 +197,13 @@ EXPOSE 8080/udp
 #
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
+
+#
+#Configure wine
+#
+ENV WINEPREFIX=/home/$USERNAME/.local/share/wineprefixes/warp
+ENV WINEARCH=win64
+
+RUN winetricks prefix=warp arch=64 win10
 
 CMD [ "/etc/warp/entrypoint.sh" ]

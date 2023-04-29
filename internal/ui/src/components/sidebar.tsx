@@ -47,14 +47,14 @@ export default function Sidebar({ onPressFeedback }: Props) {
             <nav className="navbar">
                 {/*TODO:add the official arc3dia website link here */}
                 <div className="name">
-                        <div className="logo_svg">
-                            <Logo className="logo" />
-                        </div>
-                        <div className="arc3dia_tag">
-                            {/* ARC3DIA */}
-                            <LogoName fill="currentColor" />
-                            <span className="beta_tag"><sup>BETA</sup></span>
-                        </div>
+                    <div className="logo_svg">
+                        <Logo className="logo" />
+                    </div>
+                    <div className="arc3dia_tag">
+                        {/* ARC3DIA */}
+                        <LogoName fill="currentColor" />
+                        <span className="beta_tag"><sup>BETA</sup></span>
+                    </div>
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M16.243 22.141a10.606 10.606 0 0 1-4.25.859c-1.498 0-2.91-.286-4.236-.859a11.122 11.122 0 0 1-3.508-2.385 11.364 11.364 0 0 1-2.384-3.517A10.518 10.518 0 0 1 1 12c0-1.5.288-2.912.865-4.24a11.423 11.423 0 0 1 2.377-3.516A11.04 11.04 0 0 1 7.743 1.86 10.572 10.572 0 0 1 11.98 1a10.6 10.6 0 0 1 4.25.859 11.202 11.202 0 0 1 3.514 2.385 11.306 11.306 0 0 1 2.391 3.517C22.712 9.088 23 10.5 23 12s-.288 2.912-.865 4.24a11.364 11.364 0 0 1-2.384 3.516 11.122 11.122 0 0 1-3.508 2.385Zm1.077-9.405c.245-.245.367-.495.367-.75 0-.245-.122-.49-.367-.736l-3.61-3.64c-.164-.163-.382-.244-.654-.244a.886.886 0 0 0-.913.913c0 .245.09.468.272.668l1.172 1.158 1.308 1.05-2.507-.11H7.225a.913.913 0 0 0-.674.267.914.914 0 0 0-.266.674c0 .273.089.498.266.675a.913.913 0 0 0 .674.266h5.163l2.52-.095-1.321 1.05-1.171 1.144a.908.908 0 0 0-.273.668.91.91 0 0 0 .259.661c.172.177.39.266.654.266a.886.886 0 0 0 .654-.26l3.61-3.625Z" fill="CurrentColor"></path></svg>
                 </div>
                 <div className="right">
@@ -126,7 +126,7 @@ export default function Sidebar({ onPressFeedback }: Props) {
                                     {
                                         //FIXME: change this values on the server too
                                     }
-                                    <p>5 mb/s</p>
+                                    <p>15 mb/s</p>
                                 </div>
                                 <Slider
                                     value={sliderValue}
@@ -136,16 +136,17 @@ export default function Sidebar({ onPressFeedback }: Props) {
 
                                         if (v <= 40) {
                                             handleButtonClick(0, false)
-                                        } else if (v >= 50 && v < 70) {
+                                        } else if (v >= 50) {
                                             handleButtonClick(1, false)
-                                        } else if (v >= 70) {
-                                            handleButtonClick(2, false)
                                         }
+                                        // } else if (v >= 70) {
+                                        //     handleButtonClick(2, false)
+                                        // }
                                     }}
                                     aria-label="bandwidth"
                                 />
                                 <div className="number_icon" >
-                                    <p>100 mb/s</p>
+                                    <p>30 mb/s</p>
                                 </div>
                             </div>
                             <div className="switch">
@@ -153,32 +154,29 @@ export default function Sidebar({ onPressFeedback }: Props) {
                                     className="switch_button"
                                     onClick={() => handleButtonClick(0)}
                                     ref={(el) => (buttonsRef.current[0] = el)}>
-                                    <div className="blur_icon"></div>
-                                    <p>480p</p>
+                                        <div>720p</div>
                                     <span className="active_indicator" />
                                 </button>
                                 <button
                                     className="switch_button"
                                     onClick={() => handleButtonClick(1)}
                                     ref={(el) => (buttonsRef.current[1] = el)}>
-                                    <div className="medium_icon"></div>
-                                    <p>720p</p>
+                                        <div>1080p</div>
                                 </button>
                                 <button
                                     className="switch_button"
-                                    onClick={() => handleButtonClick(2)}
-                                    ref={(el) => (buttonsRef.current[2] = el)}>
-                                    <div className="sharp_icon"></div>
-                                    <p>1080p</p>
+                                    // ref={(el) => (buttonsRef.current[2] = el)}
+                                    onClick={() => {toast.showError("4k is not implemented yet")}}>
+                                        <div>2160p</div>
                                 </button>
                             </div>
                         </div>
                         <div className="panel_option">
                             <div className="latency_details" >
-                                    <div className="row">
-                                        <span className="truncate">Latency</span>
-                                        <p>200 ms</p>
-                                    </div>
+                                <div className="row">
+                                    <span className="truncate">Latency</span>
+                                    <p>200 ms</p>
+                                </div>
                             </div>
                         </div>
                     </div>
