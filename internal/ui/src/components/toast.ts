@@ -8,6 +8,7 @@ export class Toast {
     audio: HTMLAudioElement;
 
     constructor() {
+
         this.audio = new Audio(Notif);
     }
 
@@ -19,7 +20,7 @@ export class Toast {
     };
 
     async showSuccess(msg: string) {
-        toast.error(msg, {
+        toast.success(msg, {
             className: "toaster_success"
         })
         await this.audio.play()

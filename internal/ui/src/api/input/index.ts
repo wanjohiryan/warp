@@ -1,8 +1,6 @@
-import * as React from "react"
-import { StreamReader, StreamWriter } from "../common/stream"
-import { Message, MessageBeat } from "../common/message"
+import * as Stream from "../stream"
+// import { Message, MessageBeat } from "../src/api/common/message"
 
-///<reference path="./types/webtransport.d.ts"/>
 
 interface InputProps { }
 
@@ -42,7 +40,7 @@ export class Input {
 
 		const stream = await this.api
 
-		const writer = new StreamWriter(stream)
+		const writer = new Stream.Writer(stream)
 		await writer.uint32(size)
 		await writer.string("warp")
 		await writer.string(payload)
@@ -69,7 +67,7 @@ export class Input {
 	}
 
 	async handleStream(stream: ReadableStream) {
-		let r = new StreamReader(stream.getReader())
+		let r = new Stream.Reader(stream.getReader())
 
 		while (!await r.done()) {
 			const size = await r.uint32();
@@ -79,7 +77,7 @@ export class Input {
 			if (size < 8) throw "atom too small"
 
 			const payload = new TextDecoder('utf-8').decode(await r.bytes(size - 8));
-			const msg = JSON.parse(payload) as Message
+			const msg = JSON.parse(payload) as any // Message
 
 			if (msg.beat) {
 				return this.handleHeartBeat(r, msg.beat)
@@ -89,8 +87,8 @@ export class Input {
 			}
 		}
 	}
-
-	async handleHeartBeat(stream: StreamReader, msg: MessageBeat) {
+																				//msg: MessageBeat
+	async handleHeartBeat(stream: Stream.Reader, msg: any) {
 		//TODO: use the initial latency to calculate the network quality over time
 		// const now = Date.now()
 		// console.log("latency:", now - msg.timestamp);

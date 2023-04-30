@@ -359,6 +359,16 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.7.tgz#ccab5c8f7dc557a52ca3288c10075c9ccd37fff7"
   integrity sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==
 
+"@types/audioworklet@^0.0.41":
+  version "0.0.41"
+  resolved "https://registry.yarnpkg.com/@types/audioworklet/-/audioworklet-0.0.41.tgz#ed2e67c7dcbe207974c54812e21819984c74a4f0"
+  integrity sha512-8BWffzGoSRz436IviQVPye75YYWfac4OKdcLgkZxb3APZxSmAOp2SMtsH1yuM1x57/z/J7bsm05Yq98Hzk1t/w==
+
+"@types/dom-webcodecs@^0.1.6":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@types/dom-webcodecs/-/dom-webcodecs-0.1.7.tgz#29d3e7d4e0b9902676c599d74c1b6c15eafce714"
+  integrity sha512-1euwRyJ7rQrddOa24d5ZcoDRMp68xEIwyb7PKb3Wpc2OullUxHQ4a63WPa5V8R+KtCWISKjgS+f83HCUVhXS/w==
+
 "@types/node@^18.15.13":
   version "18.15.13"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.15.13.tgz#f64277c341150c979e42b00e4ac289290c9df469"
@@ -605,6 +615,11 @@ loose-envify@^1.1.0, loose-envify@^1.4.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+mp4box@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/mp4box/-/mp4box-0.5.2.tgz#6a2d36fdd0e2d3f2f2bee446d2067edf0b3871bc"
+  integrity sha512-zRmGlvxy+YdW3Dmt+TR4xPHynbxwXtAQDTN/Fo9N3LMxaUlB2C5KmZpzYyGKy4c7k4Jf3RCR0A2pm9SZELOLXw==
 
 object-assign@^4.1.1:
   version "4.1.1"

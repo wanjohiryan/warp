@@ -5,11 +5,20 @@ import FeedbackModal from "../components/feedbackModal";
 import { Toaster } from "react-hot-toast";
 import Chat from "../components/chat";
 import Logo from "../svg/logo";
-import { Player } from "../api/player/index";
+import Player from "../api/player/index";
 import { Input } from "../api/input/index";
 import { Toast } from "../components/toast";
+// @ts-ignore embed the certificate fingerprint using bundler
+import fingerprintHex from '../../fingerprint.hex';
 
 //FIXME: Image loading animations are needed ASAP!!!
+
+// Convert the hex to binary.
+let fingerprint: any[] = [];
+for (let c = 0; c < fingerprintHex.length - 1; c += 2) {
+    fingerprint.push(parseInt(fingerprintHex.substring(c, c + 2), 16));
+}
+
 
 export default function Home() {
     const [isFeedback, setIsFeedback] = useState(false);
@@ -18,8 +27,8 @@ export default function Home() {
     const isOtherPlaying = useRef(false);
     const [input, setInput] = useState<Input>();
     const [showSplash, setShowSplash] = useState(true);
-    const canvasRef = useRef<HTMLDivElement>(null);
-    const vidRef = useRef<HTMLVideoElement>(null);
+    const vidContainerRef = useRef<HTMLDivElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const toast = new Toast();
 
     try {
@@ -71,12 +80,27 @@ export default function Home() {
 
                 toast.showError("someone is already playing")
                 //just watch not fullscreen
-                const videoApi = new Player({ vidRef });
+                const player = new Player({
+                    fingerprint: { // TODO remove when Chrome accepts the system CA
+                        "algorithm": "sha-256",
+                        "value": new Uint8Array(fingerprint),
+                    },
+                    canvas: canvasRef,
+                })
+
+                player.play()
             } else {
                 setIsPlaying(true);
 
                 //play
-                const videoApi = new Player({ vidRef });
+                const player = new Player({
+                    fingerprint: { // TODO remove when Chrome accepts the system CA
+                        "algorithm": "sha-256",
+                        "value": new Uint8Array(fingerprint),
+                    },
+                    canvas: canvasRef,
+                })
+                player.play();
                 //@ts-ignore For some reason ts thinks this is wrong
                 canvasRef.current.requestPointerLock({ unadjustedMovement: true });
                 canvasRef.current.requestFullscreen();
@@ -106,16 +130,15 @@ export default function Home() {
                     {/*Canvas */}
                     <div className="canvas">
                         <div
-                            ref={canvasRef}
+                            ref={vidContainerRef}
                             className="video_container preview"
                             style={{
                                 aspectRatio: "4 / 3",
                                 width: "100%",
                                 height: "auto",
                             }}>
-                            <video
-                                ref={vidRef}
-                                controls={false}
+                            <canvas
+                                ref={canvasRef}
                                 hidden={!isPlaying}
                                 style={{
                                     aspectRatio: "16 / 9 ",

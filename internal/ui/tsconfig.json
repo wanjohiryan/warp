@@ -1,16 +1,13 @@
 {
   "include": [
-    "src/**/*"
+    "src/**/*",
   ],
   "compilerOptions": {
     "jsx": "react",
-    "target": "es2021",
+    "target": "es2022",
+    "module": "ES2022",
+    "moduleResolution": "node",
     "strict": true,
-    "allowSyntheticDefaultImports":true,
-    "typeRoots": [
-      "src/types",
-      "node_modules/@types"
-    ],
-    "allowJs": true
+    "allowSyntheticDefaultImports": true
   }
 }

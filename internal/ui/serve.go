@@ -62,7 +62,9 @@ func NewClient() (s *http.ServeMux) {
 			w.Header().Set("Content-Length", fmt.Sprintf("%d", stat.Size()))
 		}
 
-		io.Copy(w, file)
+		n, _ := io.Copy(w, file)
+
+		log.Println("file", path, "copied", n, "bytes")
 
 	})
 
