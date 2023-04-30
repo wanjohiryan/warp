@@ -41,6 +41,8 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 
 	quicConfig := &quic.Config{}
 
+	fmt.Println("config logs dir is", config.LogDir)
+
 	if config.LogDir != "" {
 		quicConfig.Tracer = qlog.NewTracer(func(p logging.Perspective, connectionID []byte) io.WriteCloser {
 			path := fmt.Sprintf("%s-%s.qlog", p, hex.EncodeToString(connectionID))
@@ -73,7 +75,8 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 	}
 
 	s.media = media
-	//for webtransport
+
+	//for video
 	mux.HandleFunc("/api", func(w http.ResponseWriter, r *http.Request) {
 
 		gamePath, exists := os.LookupEnv("GAME_EXE")
@@ -112,7 +115,7 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 		}
 	})
 
-	//limit players to four per session
+	//limit players to 1 per session (maybe four, sometime in the future)
 	maxConcurrentConn := 1
 	sem := make(chan struct{}, maxConcurrentConn)
 	mux.HandleFunc("/play", func(w http.ResponseWriter, r *http.Request) {

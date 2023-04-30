@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"time"
 
 	"github.com/kixelated/invoker"
 	"github.com/wanjohiryan/warp/internal/warp"
@@ -61,10 +60,13 @@ func run(ctx context.Context) (err error) {
 func getConfig() Config {
 	//TODO: support config files
 	addr := flag.String("port", ":8080", "HTTPS server address")
-	cert := flag.String("tls-cert", "/certs/localhost.crt", "TLS certificate file path")
-	key := flag.String("tls-key", "/certs/localhost.key", "TLS certificate file path")
-	logDir := flag.String("log-dir", "", "logs will be written to the provided directory")
-	dash := flag.String("media", "/media/playlist.mpd", "DASH playlist path")
+	// cert := flag.String("tls-cert", "/certs/localhost.crt", "TLS certificate file path")
+	cert := flag.String("tls-cert", "./tests/certs/localhost.crt", "TLS certificate file path")
+	// key := flag.String("tls-key", "/certs/localhost.key", "TLS certificate file path")
+	key := flag.String("tls-key", "./tests/certs/localhost.key", "TLS certificate file path")
+	logDir := flag.String("log-dir", "./tests/logs", "logs will be written to the provided directory")
+	// dash := flag.String("media", "/media/playlist.mpd", "DASH playlist path")
+	dash := flag.String("media", "./tests/ffmpeg/playlist.mpd", "DASH playlist path")
 
 	flag.Parse()
 
@@ -100,27 +102,27 @@ func getConfig() Config {
 		conf.media = *dash
 	}
 
-	start := time.Now().UnixNano() / int64(time.Millisecond)
+	// start := time.Now().UnixNano() / int64(time.Millisecond)
 
-	if _, err := os.Stat(conf.media); err != nil {
-		//loop for 10 seconds until we get the media file
-		log.Printf("Media file not found, waiting...")
+	// if _, err := os.Stat(conf.media); err != nil {
+	// 	//loop for 10 seconds until we get the media file
+	// 	log.Printf("Media file not found, waiting...")
 
-		for {
-			now := time.Now().UnixNano() / int64(time.Millisecond)
-			diff := now - start
-			if diff > 10000 {
-				break
-			} else {
-				//if file is found break
-				// conf.media = fmt.Sprintf("%s%d.mpd", conf.media, os.Getpid())
-				if _, err := os.Stat(conf.media); err == nil {
-					break
-				}
-			}
-			time.Sleep(2 * time.Second)
-		}
-	}
+	// 	for {
+	// 		now := time.Now().UnixNano() / int64(time.Millisecond)
+	// 		diff := now - start
+	// 		if diff > 10000 {
+	// 			break
+	// 		} else {
+	// 			//if file is found break
+	// 			// conf.media = fmt.Sprintf("%s%d.mpd", conf.media, os.Getpid())
+	// 			if _, err := os.Stat(conf.media); err == nil {
+	// 				break
+	// 			}
+	// 		}
+	// 		time.Sleep(2 * time.Second)
+	// 	}
+	// }
 
 	return conf
 }
