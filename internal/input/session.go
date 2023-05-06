@@ -7,69 +7,63 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log"
-	"time"
 
+	"github.com/wanjohiryan/warp/internal/config"
+
+	"github.com/go-vgo/robotgo"
 	"github.com/kixelated/invoker"
 	"github.com/kixelated/quic-go"
 	"github.com/kixelated/webtransport-go"
 )
 
-// TODO: create a heartbeat stream, to get the exact latency between the server and client
-
-// A single WebTransport PlayerSession
-type PlayerSession struct {
+// A single WebTransport session
+type Session struct {
 	conn  quic.Connection
 	inner *webtransport.Session
 
-	// gpad    *Vgamepad
 	streams invoker.Tasks
 }
 
-func NewPlayerSession(connection quic.Connection, Session *webtransport.Session) (s *PlayerSession, err error) {
-	s = new(PlayerSession)
+func NewSession(connection quic.Connection, session *webtransport.Session) (s *Session, err error) {
+	s = new(Session)
 	s.conn = connection
-	s.inner = Session
+	s.inner = session
 	return s, nil
 }
 
-func (s *PlayerSession) Run(ctx context.Context) (err error) {
-	if err != nil {
-		return fmt.Errorf("failed to start media: %w", err)
-	}
+func (s *Session) Run(ctx context.Context) (err error) {
 
-	// Once we've validated the PlayerSession, now we can start accessing the streams
-	return invoker.Run(ctx, s.runAccept, s.runAcceptUni, s.streams.Repeat, s.heartBeat)
+	// Once we've validated the session, now we can start accessing the streams
+	return invoker.Run(ctx, s.runAccept, s.runAcceptUni, s.streams.Repeat)
 }
 
-func (s *PlayerSession) runAccept(ctx context.Context) (err error) {
+func (s *Session) runAccept(ctx context.Context) (err error) {
 	for {
 		stream, err := s.inner.AcceptStream(ctx)
 		if err != nil {
 			return fmt.Errorf("failed to accept bidirectional stream: %w", err)
 		}
 
-		s.streams.Add(func(ctx context.Context) (err error) {
-			return s.handleStream(ctx, stream)
-		})
+		// Warp doesn't utilize bidirectional streams so just close them immediately.
+		// We might use them in the future so don't close the connection with an error.
+		stream.CancelRead(1)
 	}
 }
 
-func (s *PlayerSession) runAcceptUni(ctx context.Context) (err error) {
+func (s *Session) runAcceptUni(ctx context.Context) (err error) {
 	for {
 		stream, err := s.inner.AcceptUniStream(ctx)
 		if err != nil {
 			return fmt.Errorf("failed to accept unidirectional stream: %w", err)
 		}
 
-		//We use bidirectional streams for input
 		s.streams.Add(func(ctx context.Context) (err error) {
 			return s.handleStream(ctx, stream)
 		})
 	}
 }
 
-func (s *PlayerSession) handleStream(ctx context.Context, stream webtransport.ReceiveStream) (err error) {
+func (s *Session) handleStream(ctx context.Context, stream webtransport.ReceiveStream) (err error) {
 	defer func() {
 		if err != nil {
 			stream.CancelRead(1)
@@ -103,7 +97,7 @@ func (s *PlayerSession) handleStream(ctx context.Context, stream webtransport.Re
 			return fmt.Errorf("failed to read atom payload: %w", err)
 		}
 
-		log.Println("received message:", string(payload))
+		// log.Println("received message:", string(payload))
 
 		msg := Message{}
 
@@ -112,76 +106,35 @@ func (s *PlayerSession) handleStream(ctx context.Context, stream webtransport.Re
 			return fmt.Errorf("failed to decode json payload: %w", err)
 		}
 
-		// if msg.Input != nil {
-		// 	// s.handleInput(msg.Input)
+		// fmt.Print(msg)
+
+		// if msg.Move != nil {
+		// 	robotgo.Move(int(msg.Move.x), int(msg.Move.x))
 		// }
 
-		//TODO:implement automatic handling of latency issues
-		if msg.Beat != nil {
-			stream.CancelRead(1)
-		} else {
-			fmt.Print(msg)
+		if msg.Press != nil {
+			robotgo.KeyTap(config.RobotGoJSKeyMap[msg.Press.Key])
 		}
 
+		if msg.Click != nil {
+			//TODO: implement double click
+			robotgo.Click(msg.Click.Button)
+		}
+
+		if msg.Move != nil {
+			robotgo.MoveRelative(int(msg.Move.x), int(msg.Move.y))
+		}
+
+		if msg.Scroll != nil {
+			robotgo.Scroll(int(msg.Scroll.x), int(msg.Scroll.y))
+		}
+
+		// if msg.Debug != nil {
+		// 	s.setDebug(msg.Debug)
+		// }
 	}
 }
 
-// get latency between server and client via a heartbeat stream
-func (s *PlayerSession) heartBeat(ctx context.Context) (err error) {
-
-	temp, err := s.inner.OpenUniStreamSync(ctx)
-	if err != nil {
-		return fmt.Errorf("failed to create stream: %w", err)
-	}
-
-	// Wrap the stream in an object that buffers writes instead of blocking.
-	stream := NewStream(temp)
-	s.streams.Add(stream.Run)
-
-	defer func() {
-		if err != nil {
-			stream.WriteCancel(1)
-		}
-	}()
-
-	start := time.Now()
-
-	for {
-		ms := int(time.Since(start).Milliseconds() / 1000)
-
-		// newer heartbeats take priority
-		stream.SetPriority(ms)
-
-		timeNow := int(time.Now().UnixMilli())
-
-		err = stream.WriteMessage(Message{
-			Beat: &MessageHeartBeat{
-				Timestamp: timeNow,
-			},
-		})
-
-		if err != nil {
-			return fmt.Errorf("failed to write heart beat: %w", err)
-		}
-
-		if err != nil {
-			return fmt.Errorf("failed to write init data: %w", err)
-		}
-		//every 2 seconds
-		time.Sleep(2 * time.Second)
-	}
-}
-
-// handle input here
-// func (s *PlayerSession) handleInput(msg *MessageInput) {
-// 	for _, str := range msg.Buttons {
-// 		s.gpad.SetBtn(str)
-// 	}
-
-// 	s.gpad.RightAxis(msg.ThumbRX, msg.ThumbRY)
-
-// 	s.gpad.LeftAxis(msg.ThumbLX, msg.ThumbLY)
-
+// func (s *Session) setDebug(msg *MessageDebug) {
+// 	s.conn.SetMaxBandwidth(uint64(msg.MaxBitrate))
 // }
-
-//FIXME: destroy gamepad on player disconnect

@@ -91,6 +91,38 @@ func (s *Stream) Write(buf []byte) (n int, err error) {
 	return len(buf), nil
 }
 
+func (s *Stream) WriteJson(msg Message) (n int, err error) {
+	s.mutex.Lock()
+	defer s.mutex.Unlock()
+
+	if s.err != nil {
+		return 0, s.err
+	}
+
+	if s.closed {
+		return 0, fmt.Errorf("closed")
+	}
+
+	payload, err := json.Marshal(msg)
+	if err != nil {
+		return 0, fmt.Errorf("failed to marshal message: %w", err)
+	}
+
+	_, err = s.Write(payload)
+	if err != nil {
+		return 0, fmt.Errorf("failed to write payload: %w", err)
+	}
+	// // Make a copy of the buffer so it's long lived
+	// buf = append([]byte{}, buf...)
+	// s.chunks = append(s.chunks, buf)
+
+	// // Wake up the writer
+	// close(s.notify)
+	// s.notify = make(chan struct{})
+
+	return len(payload), nil
+}
+
 func (s *Stream) WriteMessage(msg Message) (err error) {
 	payload, err := json.Marshal(msg)
 	if err != nil {

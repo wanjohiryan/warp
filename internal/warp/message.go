@@ -1,10 +1,10 @@
 package warp
 
 type Message struct {
-	Init    *MessageInit      `json:"init,omitempty"`
-	Segment *MessageSegment   `json:"segment,omitempty"`
-	Debug   *MessageDebug     `json:"debug,omitempty"`
-	Beat    *MessageHeartBeat `json:"beat,omitempty"`
+	Init      *MessageInit      `json:"init,omitempty"`
+	Segment   *MessageSegment   `json:"segment,omitempty"`
+	Beat      *MessageHeartBeat `json:"beat,omitempty"`
+	Bandwidth *MessageBandwidth `json:"bandwidth,omitempty"`
 }
 
 type MessageInit struct {
@@ -16,10 +16,10 @@ type MessageSegment struct {
 	Timestamp int    `json:"timestamp"` // PTS of the first frame in milliseconds
 }
 
-type MessageHeartBeat struct {
-	Timestamp int `json:"timestamp"`
+type MessageBandwidth struct {
+	MaxBitrate int `json:"max_bitrate"` // Artificially limit the QUIC max bitrate
 }
 
-type MessageDebug struct {
-	MaxBitrate int `json:"max_bitrate"` // Artificially limit the QUIC max bitrate
+type MessageHeartBeat struct {
+	Timestamp int `json:"timestamp"` // current timestamp in milliseconds
 }
