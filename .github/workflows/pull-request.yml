@@ -24,7 +24,7 @@ jobs:
           sudo apt-get update; \
           sudo apt-get install -y xvfb \
           libx11-dev libx11-dev xorg-dev libxtst-dev xsel xclip libpng++-dev xcb libxcb-xkb-dev x11-xkb-utils \
-        libx11-xcb-dev libxkbcommon-x11-dev libxkbcommon-dev;
+          libx11-xcb-dev libxkbcommon-x11-dev libxkbcommon-dev;
 
         shell: bash
       - 
