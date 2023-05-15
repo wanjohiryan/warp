@@ -67,8 +67,6 @@ jobs:
           mkdir ./certs && cd ./certs
           
           mkcert -cert-file localhost.crt -key-file localhost.key localhost 127.0.0.1 ::1
-
-          ls -l && cd .. && ls -l 
         
         shell: bash
       -
