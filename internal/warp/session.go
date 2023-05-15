@@ -16,8 +16,6 @@ import (
 	"github.com/kixelated/webtransport-go"
 )
 
-// TODO: create a heartbeat stream, to get the exact latency between the server and client
-
 // A single WebTransport session
 type Session struct {
 	conn  quic.Connection
@@ -46,7 +44,7 @@ func (s *Session) Run(ctx context.Context) (err error) {
 	}
 
 	// Once we've validated the session, now we can start accessing the streams
-	return invoker.Run(ctx, s.runAccept, s.runAcceptUni, s.runInit, s.runAudio, s.runVideo, s.streams.Repeat, s.heartBeat)
+	return invoker.Run(ctx, s.runAccept, s.runAcceptUni, s.runInit, s.runAudio, s.runVideo, s.heartBeat, s.streams.Repeat)
 }
 
 func (s *Session) runAccept(ctx context.Context) (err error) {
@@ -118,9 +116,10 @@ func (s *Session) handleStream(ctx context.Context, stream webtransport.ReceiveS
 			return fmt.Errorf("failed to decode json payload: %w", err)
 		}
 
-		if msg.Debug != nil {
-			s.setDebug(msg.Debug)
+		if msg.Bandwidth != nil {
+			s.setMaxBitrate(msg.Bandwidth)
 		}
+
 	}
 }
 
@@ -178,6 +177,11 @@ func (s *Session) writeInit(ctx context.Context, init *MediaInit) (err error) {
 		return fmt.Errorf("failed to create stream: %w", err)
 	}
 
+	if temp == nil {
+		// Not sure when this happens, perhaps when closing a connection?
+		return fmt.Errorf("received a nil stream from quic-go")
+	}
+
 	// Wrap the stream in an object that buffers writes instead of blocking.
 	stream := NewStream(temp)
 	s.streams.Add(stream.Run)
@@ -202,6 +206,11 @@ func (s *Session) writeInit(ctx context.Context, init *MediaInit) (err error) {
 		return fmt.Errorf("failed to write init data: %w", err)
 	}
 
+	err = stream.Close()
+	if err != nil {
+		return fmt.Errorf("failed to close init stream: %w", err)
+	}
+
 	return nil
 }
 
@@ -210,6 +219,11 @@ func (s *Session) writeSegment(ctx context.Context, segment *MediaSegment) (err 
 	temp, err := s.inner.OpenUniStreamSync(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to create stream: %w", err)
+	}
+
+	if temp == nil {
+		// Not sure when this happens, perhaps when closing a connection?
+		return fmt.Errorf("received a nil stream from quic-go")
 	}
 
 	// Wrap the stream in an object that buffers writes instead of blocking.
@@ -255,18 +269,22 @@ func (s *Session) writeSegment(ctx context.Context, segment *MediaSegment) (err 
 
 	err = stream.Close()
 	if err != nil {
-		return fmt.Errorf("failed to close segment stream: %w", err)
+		return fmt.Errorf("failed to close segemnt stream: %w", err)
 	}
 
 	return nil
 }
 
-//get latency between server and client via a heartbeat uni-stream
+// get latency between server and client via a heartbeat uni-stream
 func (s *Session) heartBeat(ctx context.Context) (err error) {
-
 	temp, err := s.inner.OpenUniStreamSync(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to create stream: %w", err)
+	}
+
+	if temp == nil {
+		// Not sure when this happens, perhaps when closing a connection?
+		return fmt.Errorf("received a nil stream from quic-go")
 	}
 
 	// Wrap the stream in an object that buffers writes instead of blocking.
@@ -280,6 +298,13 @@ func (s *Session) heartBeat(ctx context.Context) (err error) {
 	}()
 
 	start := time.Now()
+	timeThen := int(time.Now().UnixMilli())
+
+	err = stream.WriteMessage(Message{
+		Beat: &MessageHeartBeat{
+			Timestamp: timeThen,
+		},
+	})
 
 	for {
 		ms := int(time.Since(start).Milliseconds() / 1000)
@@ -289,29 +314,30 @@ func (s *Session) heartBeat(ctx context.Context) (err error) {
 
 		timeNow := int(time.Now().UnixMilli())
 
-		err = stream.WriteMessage(Message{
-			Beat: &MessageHeartBeat{
-				Timestamp: timeNow,
-			},
-		})
+		// ts, _ := json.Marshal(Message{
+		// 	Beat: &MessageHeartBeat{
+		// 		Timestamp: timeNow,
+		// 	},
+		// })
+		ts, _ := json.Marshal(timeNow)
+
+		_, err = stream.Write(ts)
+
+		// _, err = stream.WriteJson(Message{
+		// 	Beat: &MessageHeartBeat{
+		// 		Timestamp: timeNow,
+		// 	},
+		// })
 
 		if err != nil {
 			return fmt.Errorf("failed to write heart beat: %w", err)
 		}
 
-		// beat := make([]byte, 8)
-		// binary.LittleEndian.PutUint64(beat, uint64(timeNow))
-
-		// _, err = stream.Write(beat)
-
-		if err != nil {
-			return fmt.Errorf("failed to write init data: %w", err)
-		}
 		//every 2 seconds
 		time.Sleep(2 * time.Second)
 	}
 }
 
-func (s *Session) setDebug(msg *MessageDebug) {
+func (s *Session) setMaxBitrate(msg *MessageBandwidth) {
 	s.conn.SetMaxBandwidth(uint64(msg.MaxBitrate))
 }

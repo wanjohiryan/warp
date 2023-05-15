@@ -17,6 +17,17 @@ jobs:
         name: Checkout repo
         uses: actions/checkout@v3
       - 
+        name: Install robotgo
+        run: |
+          set -o pipefail
+          
+          sudo apt-get update; \
+          sudo apt-get install -y xvfb \
+          libx11-dev libx11-dev xorg-dev libxtst-dev xsel xclip libpng++-dev xcb libxcb-xkb-dev x11-xkb-utils \
+          libx11-xcb-dev libxkbcommon-x11-dev libxkbcommon-dev;
+
+        shell: bash
+      - 
         name: Set up Go
         uses: actions/setup-go@v4
         with:
@@ -56,8 +67,6 @@ jobs:
           mkdir ./certs && cd ./certs
           
           mkcert -cert-file localhost.crt -key-file localhost.key localhost 127.0.0.1 ::1
-
-          ls -l && cd .. && ls -l 
         
         shell: bash
       -

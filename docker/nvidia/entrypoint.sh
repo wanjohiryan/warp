@@ -43,17 +43,11 @@ pacmd set-default-source vsink.monitor
 
 #Start ffmpeg
 source /etc/warp/ffmpeg.sh 2>&1 | awk '{ print "ffmpeg: " $0 }' &
-sleep 10 #ensure this has started before moving on
-
-#create a non-root wineprefix
-export WINEPREFIX=/home/$USER/.local/share/wineprefixes/warp
-export WINEARCH=win64
-
-winetricks prefix=warp arch=64 win10
+sleep 30 #ensure this has started before starting warp
 
 set -e
 #Start warp server
-/usr/bin/warp/warp &
+/usr/bin/warp/warp -cert $CERT_FILE -key $KEY_FILE -dash /media/playlist.mpd &
 sleep 1 #ensure this has started before moving on
 
 #stop running container if game does not exist [on CI]
@@ -61,14 +55,6 @@ if [[ -z "${GAME_EXE}" ]]; then
   echo "The GAME_EXE environment variable is not set. Exiting."
   exit 0
 fi
-
-#check whether uinput was passed into the container
-if [ ! -e "/dev/uinput" ]; then
-  echo "/dev/uinput does not exist. Exiting..."
-  exit 1
-fi
-
-sudo chown root:input /dev/uinput
 
 wait -n
 
