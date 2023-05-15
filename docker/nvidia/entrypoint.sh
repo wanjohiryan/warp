@@ -43,11 +43,11 @@ pacmd set-default-source vsink.monitor
 
 #Start ffmpeg
 source /etc/warp/ffmpeg.sh 2>&1 | awk '{ print "ffmpeg: " $0 }' &
-sleep 10 #ensure this has started before moving on
+sleep 30 #ensure this has started before starting warp
 
 set -e
 #Start warp server
-/usr/bin/warp/warp -cert $CERT_FILE -key $KEY_FILE &
+/usr/bin/warp/warp -cert $CERT_FILE -key $KEY_FILE -dash /media/playlist.mpd &
 sleep 1 #ensure this has started before moving on
 
 #stop running container if game does not exist [on CI]

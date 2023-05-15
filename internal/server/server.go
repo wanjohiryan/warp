@@ -146,7 +146,21 @@ func (s *Server) handleGame(w http.ResponseWriter, r *http.Request) {
 		// 	return
 		// }
 
-		entrypoint := s.gamePath
+		var entrypoint string
+
+		if s.gamePath != "" {
+			entrypoint = s.gamePath
+		} else {
+			gamePath, exists := os.LookupEnv("ENTRYPOINT")
+			if !exists {
+				fmt.Println("ENTRYPOINT environment variable not set")
+
+				w.WriteHeader(http.StatusInternalServerError)
+				w.Write([]byte("ENTRYPOINT environment variable not set"))
+				return
+			}
+			entrypoint = gamePath
+		}
 
 		if _, err := os.Stat(entrypoint); err == nil {
 			fmt.Println("Bash script not found")
