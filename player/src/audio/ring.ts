@@ -50,7 +50,7 @@ export class Ring {
                     planeIndex: i,
                     frameCount: count,
                 })
-            } else {
+            } else if (startIndex  >=  endIndex && endIndex != 0) {
                 const first = channel.subarray(startIndex)
                 const second = channel.subarray(0, endIndex)
 
@@ -59,13 +59,11 @@ export class Ring {
                     frameCount: first.length,
                 })
 
-                if (first.length < second.length) {
                     frame.copyTo(second, {
                         planeIndex: i,
                         frameOffset: first.length,
                         frameCount: second.length,
                     })
-                }
             }
         }
 
