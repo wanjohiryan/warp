@@ -174,6 +174,9 @@ RUN chmod +x /etc/warp/entrypoint.sh
 
 COPY localhost.crt localhost.key /certs/
 
+ENV CERT_FILE /certs/localhost.crt
+ENV KEY_FILE /certs/localhost.key
+
 COPY docker/nvidia/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
 
@@ -204,6 +207,17 @@ WORKDIR /home/${USERNAME}
 ENV WINEPREFIX=/home/$USERNAME/.local/share/wineprefixes/warp
 ENV WINEARCH=win64
 
-RUN winetricks prefix=warp arch=64 win10
+RUN winetricks prefix=warp arch=64 win10 corefonts dxvk
 
+#
+#Install dxvk
+#
+# ARG DXVK_URL="https://github.com/doitsujin/dxvk/releases/download/v2.2/dxvk-2.2.tar.gz"
+# RUN curl -L -o dxvk.tar.gz $DXVK_URL; \
+#         mkdir dxvk; \
+#         tar -zxvf dxvk.tar.gz -C ./dxvk --strip-components=1; \
+#         rm -f dxvk.tar.gz; \
+#         cp ./dxvk/x64/*.dll $WINEPREFIX/drive_c/windows/system32;  \
+#         cp ./dxvk/x32/*.dll $WINEPREFIX/drive_c/windows/syswow64
+        
 CMD [ "/etc/warp/entrypoint.sh" ]

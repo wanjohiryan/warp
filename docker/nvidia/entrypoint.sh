@@ -47,7 +47,7 @@ sleep 10 #ensure this has started before moving on
 
 set -e
 #Start warp server
-/usr/bin/warp/warp &
+/usr/bin/warp/warp -cert $CERT_FILE -key $KEY_FILE &
 sleep 1 #ensure this has started before moving on
 
 #stop running container if game does not exist [on CI]
