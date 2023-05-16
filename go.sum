@@ -75,8 +75,8 @@ github.com/json-iterator/go v1.1.6/go.mod h1:+SdeFBvtyEkXs7REEP0seUULqWtbJapLOCV
 github.com/jstemmer/go-junit-report v0.0.0-20190106144839-af01ea7f8024/go.mod h1:6v2b51hI/fHJwM22ozAgKL4VKDeJcHhJFhtBdhmNjmU=
 github.com/kisielk/errcheck v1.4.0/go.mod h1:pFxgyoBC7bSaBwPgfKdkLd5X25qrDl4LWUI2bnpBCr8=
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
-github.com/kixelated/invoker v1.0.0 h1:0wYlvK39yQPbkwIFy+YN41AhF89WOtGyWqV2pZB39xw=
-github.com/kixelated/invoker v1.0.0/go.mod h1:RjG3iqm/sKwZjOpcW4SGq+l+4DJCDR/yUtc70VjCRB8=
+github.com/kixelated/invoker v1.0.2 h1:bEGHp58sU5tl1FoO2mlAmciyoKdIG3P0fZzG6dT7kAg=
+github.com/kixelated/invoker v1.0.2/go.mod h1:RjG3iqm/sKwZjOpcW4SGq+l+4DJCDR/yUtc70VjCRB8=
 github.com/kixelated/quic-go v1.31.0 h1:p2vq3Otvtmz+0EP23vjumnO/HU4Q/DFxNF6xNryVfmA=
 github.com/kixelated/quic-go v1.31.0/go.mod h1:AO7pURnb8HXHmdalp5e09UxQfsuwseEhl0NLmwiSOFY=
 github.com/kixelated/webtransport-go v1.4.1 h1:ZtY3P7hVe1wK5fAt71b+HHnNISFDcQ913v+bvaNATxA=
@@ -110,6 +110,7 @@ github.com/orcaman/writerseeker v0.0.0-20200621085525-1d3f536ff85e h1:s2RNOM/IGd
 github.com/orcaman/writerseeker v0.0.0-20200621085525-1d3f536ff85e/go.mod h1:nBdnFKj15wFbf94Rwfq4m30eAcyY9V/IyKAGQFtqkW0=
 github.com/otiai10/gosseract v2.2.1+incompatible h1:Ry5ltVdpdp4LAa2bMjsSJH34XHVOV7XMi41HtzL8X2I=
 github.com/otiai10/gosseract v2.2.1+incompatible/go.mod h1:XrzWItCzCpFRZ35n3YtVTgq5bLAhFIkascoRo8G32QE=
+github.com/otiai10/mint v1.3.0 h1:Ady6MKVezQwHBkGzLFbrsywyp09Ah7rkmfjV3Bcr5uc=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
