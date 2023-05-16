@@ -4,10 +4,11 @@ go 1.19
 
 require (
 	github.com/abema/go-mp4 v0.7.2
+	github.com/go-vgo/robotgo v0.100.10
 	github.com/kixelated/invoker v1.0.0
 	github.com/kixelated/quic-go v1.31.0
 	github.com/kixelated/webtransport-go v1.4.1
-	github.com/zencoder/go-dash/v3 v3.0.2
+	github.com/zencoder/go-dash/v3 v3.0.3
 )
 
 require (
@@ -15,7 +16,6 @@ require (
 	github.com/francoispqt/gojay v1.2.13 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0 // indirect
-	github.com/go-vgo/robotgo v0.100.10 // indirect
 	github.com/golang/mock v1.6.0 // indirect
 	github.com/google/pprof v0.0.0-20210407192527-94a9f03dee38 // indirect
 	github.com/google/uuid v1.1.2 // indirect
