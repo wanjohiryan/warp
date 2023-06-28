@@ -73,25 +73,7 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 
 	s.media = media
 	//for webtransport
-	mux.HandleFunc("/api", func(w http.ResponseWriter, r *http.Request) {
-
-		gamePath, exists := os.LookupEnv("GAME_EXE")
-		if !exists {
-			fmt.Println("GAME_EXE environment variable not set")
-			return
-		}
-
-		//TODO: Fix game running check, and use go instead of bash
-		cmd := exec.Command("bash", "/etc/warp/run-wine.sh", gamePath)
-
-		output, err := cmd.CombinedOutput()
-		if err != nil {
-			fmt.Println("Error running game:", err)
-			return
-		}
-
-		fmt.Println("Game started successfully:", string(output))
-
+	mux.HandleFunc("/watch", func(w http.ResponseWriter, r *http.Request) {
 		hijacker, ok := w.(http3.Hijacker)
 		if !ok {
 			panic("unable to hijack connection: must use kixelated/quic-go")
@@ -111,43 +93,43 @@ func NewServer(config ServerConfig, media *Media) (s *Server, err error) {
 		}
 	})
 
-	//limit players to four per session
-	maxConcurrentConn := 4
-	sem := make(chan struct{}, maxConcurrentConn)
-	mux.HandleFunc("/play", func(w http.ResponseWriter, r *http.Request) {
+	// //limit players to four per session
+	// maxConcurrentConn := 4
+	// sem := make(chan struct{}, maxConcurrentConn)
+	// mux.HandleFunc("/play", func(w http.ResponseWriter, r *http.Request) {
 
-		// Try to acquire a slot from the channel.
-		select {
+	// 	// Try to acquire a slot from the channel.
+	// 	select {
 
-		case sem <- struct{}{}:
-			defer func() {
-				// Release the slot back to the channel when the request is done.
-				<-sem
-			}()
+	// 	case sem <- struct{}{}:
+	// 		defer func() {
+	// 			// Release the slot back to the channel when the request is done.
+	// 			<-sem
+	// 		}()
 
-			hijacker, ok := w.(http3.Hijacker)
-			if !ok {
-				panic("unable to hijack connection: must use kixelated/quic-go")
-			}
+	// 		hijacker, ok := w.(http3.Hijacker)
+	// 		if !ok {
+	// 			panic("unable to hijack connection: must use kixelated/quic-go")
+	// 		}
 
-			conn := hijacker.Connection()
+	// 		conn := hijacker.Connection()
 
-			sess, err := s.inner.Upgrade(w, r)
-			if err != nil {
-				http.Error(w, "failed to upgrade session", 500)
-				return
-			}
+	// 		sess, err := s.inner.Upgrade(w, r)
+	// 		if err != nil {
+	// 			http.Error(w, "failed to upgrade session", 500)
+	// 			return
+	// 		}
 
-			err = s.serve(r.Context(), conn, sess)
-			if err != nil {
-				log.Println(err)
-			}
+	// 		err = s.serve(r.Context(), conn, sess)
+	// 		if err != nil {
+	// 			log.Println(err)
+	// 		}
 
-		default:
-			// If the channel is full, return an HTTP error response.
-			http.Error(w, "Slots are full", http.StatusServiceUnavailable)
-		}
-	})
+	// 	default:
+	// 		// If the channel is full, return an HTTP error response.
+	// 		http.Error(w, "Slots are full", http.StatusServiceUnavailable)
+	// 	}
+	// })
 
 	return s, nil
 }
