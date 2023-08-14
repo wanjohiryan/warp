@@ -3,7 +3,7 @@ module github.com/wanjohiryan/warp
 go 1.19
 
 require (
-	github.com/abema/go-mp4 v0.7.2
+	github.com/abema/go-mp4 v0.13.0
 	github.com/go-vgo/robotgo v0.100.10
 	github.com/kixelated/invoker v1.0.2
 	github.com/kixelated/quic-go v1.31.0
