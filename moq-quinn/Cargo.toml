@@ -29,7 +29,7 @@ rustls = "0.21.2"
 rustls-pemfile = "1.0.2"
 
 # Async stuff
-tokio = { version = "1.27", features = ["full"] }
+tokio = { version = "1.32", features = ["full"] }
 
 # Web server to serve the fingerprint
 warp = { version = "0.3.3", features = ["tls"] }

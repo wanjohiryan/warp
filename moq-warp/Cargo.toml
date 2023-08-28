@@ -18,7 +18,7 @@ categories = ["multimedia", "network-programming", "web-programming"]
 moq-transport = { path = "../moq-transport" }
 webtransport-generic = "0.5"
 
-tokio = "1.27"
+tokio = "1.32"
 anyhow = "1.0.70"
 log = "0.4"       # TODO remove
 bytes = "1.4"
