@@ -13,7 +13,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: wanjohiryan/warp
-  BASE_TAG_PREFIX: nvenc
+  BASE_TAG_PREFIX: base
 
 jobs:
   #FIXME: turn this into rust CI
@@ -61,7 +61,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract Container metadata
         id: meta
@@ -80,7 +80,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./
-          file: docker/nvidia/Dockerfile
+          file: docker/base/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
