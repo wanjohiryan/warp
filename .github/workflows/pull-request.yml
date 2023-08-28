@@ -2,15 +2,45 @@ name: Build docker
 
 on:
   pull_request:
-  # push:
-  #   paths-ignore:
-  #     - '.github/**'
-  #     #much of the time it does not affect docker builds
-  #     - 'internal/ui/**'
 
 jobs:
+  build-cargo-windows:
+    name: Build rust code on windows
+    runs-on: windows-latest
+    steps: 
+      -
+        name: Checkout repo
+        uses: actions/checkout@v3
+      - 
+        name: Setup Rust
+        uses:  hecrj/setup-rust-action@v1
+        with:
+          rust-version: stable
+      -
+        name: Build 
+        run: cargo build --release
+
+  build-cargo-ubuntu:
+    name: Build rust code on ubuntu
+    runs-on: ubuntu-latest
+    steps: 
+      -
+        name: Checkout repo
+        uses: actions/checkout@v3
+      - 
+        name: Setup Rust
+        uses:  hecrj/setup-rust-action@v1
+        with:
+          rust-version: stable
+      -
+        name: Build 
+        run: cargo build --release
+
   build-docker-nvidia:
       name: Build base image
+      needs:
+        - build-cargo-ubuntu
+        - build-cargo-windows
       runs-on: ubuntu-latest
       steps:
         -
@@ -28,19 +58,3 @@ jobs:
             push: false
             load: true
             tags: warp:base
-        # - 
-        #   name: Run Docker Container
-        #   #error code 124 is timeout error
-        #   run: |
-        #     set -o pipefail
-        #     output=$(timeout 2m docker run warp:nvenc 2>&1) || exitcode=$?
-
-        #     if [[ $exitcode != 0 && $exitcode != 124 ]]; then
-        #       echo "$output"
-        #       exit $exitcode
-        #     else 
-        #       echo "$output"
-        #      echo -e "\033[01;34mDocker run successful\033[0m"
-        #       exit 0
-        #     fi
-        #   shell: bash
