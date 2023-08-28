@@ -19,17 +19,18 @@
   <a href="">
     <img src="https://img.shields.io/github/commit-activity/m/wanjohiryan/warp" alt="git commit activity" />
   </a>
-</div>
 
 Segmented live media delivery protocol utilizing QUIC streams. See the [Warp draft](https://datatracker.ietf.org/doc/draft-lcurley-warp/)
 
-Warp works by delivering each audio and video segment as a separate QUIC stream. These streams are assigned a priority such that old video will arrive last and can be dropped. This avoids buffering in many cases, offering the viewer a potentially better experience.
+</div>
 
 # How It Works
 
-[Luke Curley - Low-Latency Video over QUIC](https://www.youtube.com/watch?v=hG0nmy3Otg4)  Uploaded: 26th Dec 2021
+- [Luke Curley - Low-Latency Video over QUIC](https://www.youtube.com/watch?v=hG0nmy3Otg4)  Uploaded: 26th Dec 2021
 
-[Live Media Over QUIC | Luke Curley](https://www.youtube.com/watch?v=hG0nmy3Otg4)  Uploaded: 4th May 2023
+- [Live Media Over QUIC | Luke Curley](https://www.youtube.com/watch?v=hG0nmy3Otg4)  Uploaded: 4th May 2023
+
+> **TLDR:** Warp works by delivering each audio and video segment as a separate QUIC stream. These streams are assigned a priority such that old video will arrive last and can be dropped. This avoids buffering in many cases, offering the viewer a potentially better experience.
 
 ## Possible use cases:
 
