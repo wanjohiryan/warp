@@ -38,5 +38,5 @@ hex = "0.4.3"
 # Logging
 clap = { version = "4.0", features = ["derive"] }
 log = { version = "0.4", features = ["std"] }
-env_logger = "0.9.3"
+env_logger = "0.10.0"
 anyhow = "1.0.70"
