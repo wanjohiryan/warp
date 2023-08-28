@@ -24,10 +24,10 @@ jobs:
           uses: docker/build-push-action@v4
           with:
             context: ./
-            file: docker/nvidia/Dockerfile
+            file: docker/base/Dockerfile
             push: false
             load: true
-            tags: warp:nvenc
+            tags: warp:base
         # - 
         #   name: Run Docker Container
         #   #error code 124 is timeout error
