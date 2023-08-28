@@ -6,6 +6,21 @@
 
 </h3>
 
+<div align="center">
+   <a href="https://discord.com/invite/Y6etn3qKZ3">
+      <img src="https://discordapp.com/api/guilds/1080111004698021909/widget.png?style=shield" alt="Chat on discord">
+    </a>
+  <a href="https://github.com/wanjohiryan/warp/releases">
+      <img src="https://img.shields.io/github/v/release/wanjohiryan/warp" alt="release">
+    </a>
+  <a href="https://github.com/wanjohiryan/warp">
+    <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen" alt="PRs welcome!" />
+  </a>
+  <a href="">
+    <img src="https://img.shields.io/github/commit-activity/m/wanjohiryan/warp" alt="git commit activity" />
+  </a>
+</div>
+
 Segmented live media delivery protocol utilizing QUIC streams. See the [Warp draft](https://datatracker.ietf.org/doc/draft-lcurley-warp/)
 
 Warp works by delivering each audio and video segment as a separate QUIC stream. These streams are assigned a priority such that old video will arrive last and can be dropped. This avoids buffering in many cases, offering the viewer a potentially better experience.
