@@ -19,6 +19,6 @@ moq-transport = { path = "../moq-transport" }
 webtransport-generic = "0.5"
 
 tokio = "1.27"
-anyhow = "1.0.70"
+anyhow = "1.0.75"
 log = "0.4"       # TODO remove
 bytes = "1.4"
