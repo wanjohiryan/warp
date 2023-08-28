@@ -20,7 +20,7 @@
     <img src="https://img.shields.io/github/commit-activity/m/wanjohiryan/warp" alt="git commit activity" />
   </a>
 
-Segmented live media delivery protocol utilizing QUIC streams. See the [Warp draft](https://datatracker.ietf.org/doc/draft-lcurley-warp/)
+Segmented live media delivery protocol utilizing QUIC streams. See the [MoQ draft](https://datatracker.ietf.org/doc/draft-lcurley-warp/)
 
 </div>
 
