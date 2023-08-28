@@ -172,19 +172,11 @@ ENTRYPOINT [ "/usr/bin/tini","--" ]
 COPY docker/nvidia/entrypoint.sh /etc/warp/entrypoint.sh
 RUN chmod +x /etc/warp/entrypoint.sh
 
-COPY localhost.crt localhost.key /certs/
-
-ENV CERT_FILE /certs/localhost.crt
-ENV KEY_FILE /certs/localhost.key
-
 COPY docker/nvidia/ffmpeg.sh /etc/warp/ffmpeg.sh
 RUN chmod +x /etc/warp/ffmpeg.sh
 
 COPY docker/nvidia/run-wine.sh /etc/warp/run-wine.sh
 RUN chmod +x /etc/warp/run-wine.sh
-
-COPY warp /usr/bin/warp/warp
-RUN chmod +x /usr/bin/warp/warp
 
 
 ENV USER ${USERNAME}
