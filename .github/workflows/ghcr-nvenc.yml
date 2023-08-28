@@ -16,78 +16,35 @@ env:
   BASE_TAG_PREFIX: nvenc
 
 jobs:
-  build-go:
-    name: Build go binary
-    runs-on: ubuntu-latest
-     #
-    # do not run on forks
-    #
-    if: github.repository_owner == 'wanjohiryan'
-    steps: 
-      -
-        name: Checkout repo
-        uses: actions/checkout@v3
-      - 
-        name: Set up Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: 1.18
-      #TODO: Find a way to test this before building
-      - 
-        name: Build binary
-        run: go build -v ./
-      -
-       name: Upload artifact
-       uses: actions/upload-artifact@v3
-       with:
-         name: gobinary
-         path: ./warp
-         retention-days: 5
-
-  build-certs:
-    name: Build self-signed certs
-     #
-    # do not run on forks
-    #
-    if: github.repository_owner == 'wanjohiryan'
-    runs-on: ubuntu-latest
-    steps: 
-      - 
-        name: Install mkcert
-        run: |
-          set -o pipefail
-          
-          sudo apt-get update; \
-          sudo apt-get install wget; \
-          sudo wget -nv -O /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64; \
-          sudo chmod +x /usr/local/bin/mkcert;
-
-        shell: bash
-      - 
-        name: Create certs
-        run: |
-          set -o pipefail
-
-          mkdir ./certs && cd ./certs
-          
-          mkcert -cert-file localhost.crt -key-file localhost.key localhost 127.0.0.1 ::1
-
-          ls -l && cd .. && ls -l 
-        
-        shell: bash
-      -
-        name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: certfiles
-          path: certs/
-          retention-days: 5
-    
+  #FIXME: turn this into rust CI
+  # build-go:
+  #   name: Build go binary
+  #   runs-on: ubuntu-latest
+  #    #
+  #   # do not run on forks
+  #   #
+  #   steps: 
+  #     -
+  #       name: Checkout repo
+  #       uses: actions/checkout@v3
+  #     - 
+  #       name: Set up Go
+  #       uses: actions/setup-go@v4
+  #       with:
+  #         go-version: 1.18
+  #     #TODO: Find a way to test this before building
+  #     - 
+  #       name: Build binary
+  #       run: go build -v ./
+  #     -
+  #      name: Upload artifact
+  #      uses: actions/upload-artifact@v3
+  #      with:
+  #        name: gobinary
+  #        path: ./warp
+  #        retention-days: 5    
   build-nvidia-base:
     runs-on: ubuntu-latest
-    needs:
-     - build-go
-     - build-certs
     permissions:
       contents: read
       packages: write
@@ -118,19 +75,6 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-      
-      -
-        name: Download go binary
-        uses: actions/download-artifact@v3
-        with:
-          name: gobinary
-          path: ./
-      -
-        name: Download certs folder
-        uses: actions/download-artifact@v3
-        with:
-          name: certfiles
-          path: ./
 
       - name: Build and push image
         uses: docker/build-push-action@v4
