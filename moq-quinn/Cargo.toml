@@ -25,7 +25,7 @@ webtransport-quinn = "0.5"
 
 # Crypto
 ring = "0.16.20"
-rustls = "0.21.2"
+rustls = "0.21.6"
 rustls-pemfile = "1.0.2"
 
 # Async stuff
