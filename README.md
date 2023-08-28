@@ -33,7 +33,7 @@ Warp works by delivering each audio and video segment as a separate QUIC stream.
 # Special Thanks
 This project could not have been possible without the great work done by:
 
- | <a href="https://github.com/kixelated"><img src="https://avatars.githubusercontent.com/u/432854?v=4" width="50" height="50" alt=""/> | </a><a href="https://github.com/matteocontrini"><img src="https://avatars.githubusercontent.com/u/1165411?v=4" width="50" height="50" alt=""/></a> |
+ | <a href="https://github.com/kixelated"><img src="https://avatars.githubusercontent.com/u/432854?v=4" width="50" height="50" alt=""/> | </a><a href="https://github.com/englishm"><img src="https://avatars.githubusercontent.com/u/1165411?v=4" width="50" height="50" alt=""/></a> |
 | :---: | :---: |
 # DOCS
 
