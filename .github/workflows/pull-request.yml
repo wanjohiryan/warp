@@ -11,6 +11,8 @@ jobs:
       -
         name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
       - 
         name: Setup Rust
         uses:  hecrj/setup-rust-action@v1
@@ -18,6 +20,7 @@ jobs:
           rust-version: stable
       -
         name: Build 
+        working-directory: moq-server
         run: cargo build --release
 
   build-cargo-ubuntu:
@@ -27,6 +30,8 @@ jobs:
       -
         name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
       - 
         name: Setup Rust
         uses:  hecrj/setup-rust-action@v1
@@ -34,6 +39,7 @@ jobs:
           rust-version: stable
       -
         name: Build 
+        working-directory: moq-server
         run: cargo build --release
 
   build-docker-nvidia:

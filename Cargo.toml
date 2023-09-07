@@ -1,2 +1,0 @@
-[workspace]
-members = ["moq-transport", "moq-quinn", "moq-warp"]
