@@ -35,7 +35,7 @@ jobs:
         with:
           submodules: recursive
 
-      - name: 'Setup Rust'
+      - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
@@ -46,6 +46,9 @@ jobs:
 
       - name: Install rust target
         run: rustup target add ${{ matrix.target }}
+
+      - name: Build
+        run: cargo build --release 
 
     #   - uses: actions/upload-artifact@v3
     #     if: matrix.os == 'ubuntu-latest'

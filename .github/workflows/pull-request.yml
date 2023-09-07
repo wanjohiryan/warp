@@ -2,6 +2,8 @@ name: Build client exe and docker relay server
 
 on:
   pull_request:
+    paths-ignore:
+      - '.github/**'
 
 jobs:
   build-client-ubuntu:
