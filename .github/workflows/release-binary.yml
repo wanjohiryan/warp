@@ -47,9 +47,6 @@ jobs:
       - name: Install rust target
         run: rustup target add ${{ matrix.target }}
 
-      - name: Build
-        run: cargo build --release 
-
     #   - uses: actions/upload-artifact@v3
     #     if: matrix.os == 'ubuntu-latest'
     #     with:
@@ -75,6 +72,7 @@ jobs:
 
       - run: |
             ls ./
+        working-directory: moq-server
 
   release-warp:
     needs: build-warp
