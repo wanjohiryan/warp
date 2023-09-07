@@ -5,3 +5,5 @@ tests/
 .DS_Store
 target/
 logs/
+
+Cargo.toml

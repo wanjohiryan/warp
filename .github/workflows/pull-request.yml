@@ -1,11 +1,30 @@
-name: Build docker
+name: Build client exe and docker relay server
 
 on:
   pull_request:
 
 jobs:
-  build-cargo-windows:
-    name: Build rust code on windows
+  build-client-ubuntu:
+    name: Build moq-rust/moq-pub client on ubuntu
+    runs-on: ubuntu-latest
+    steps: 
+      -
+        name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - 
+        name: Setup Rust
+        uses:  hecrj/setup-rust-action@v1
+        with:
+          rust-version: stable
+      -
+        name: Build 
+        working-directory: moq-server/moq-pub
+        run: cargo build --release
+
+  build-client-windows:
+    name: Build moq-rust/moq-pub code on windows
     runs-on: windows-latest
     steps: 
       -
@@ -20,11 +39,11 @@ jobs:
           rust-version: stable
       -
         name: Build 
-        working-directory: moq-server
+        working-directory: moq-server/moq-pub
         run: cargo build --release
 
-  build-cargo-ubuntu:
-    name: Build rust code on ubuntu
+  build-relay-ubuntu:
+    name: Build moq-rust relay on ubuntu
     runs-on: ubuntu-latest
     steps: 
       -
@@ -42,11 +61,8 @@ jobs:
         working-directory: moq-server
         run: cargo build --release
 
-  build-docker-nvidia:
-      name: Build base image
-      needs:
-        - build-cargo-ubuntu
-        - build-cargo-windows
+  build-docker-relay:
+      name: Build relay server for moq-rs
       runs-on: ubuntu-latest
       steps:
         -
@@ -63,4 +79,4 @@ jobs:
             file: docker/base/Dockerfile
             push: false
             load: true
-            tags: warp:base
+            tags: warp:relay
