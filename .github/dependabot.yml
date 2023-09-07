@@ -11,11 +11,13 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
+    open-pull-requests-limit: 10
     labels:
       - 'type: dependencies'
   - package-ecosystem: 'gitsubmodule'
     directory: '/'
     schedule:
       interval: 'daily'
+    open-pull-requests-limit: 10
     labels:
       - 'type: dependencies'
