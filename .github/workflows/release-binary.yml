@@ -1,179 +1,69 @@
-name: Publish
+name: Release
 
 on:
-  push:
+  workflow_dispatch:
 
-env:
-  DEBUG: napi:*
-  APP_NAME: swc
-  MACOSX_DEPLOYMENT_TARGET: "10.13"
-  CARGO_INCREMENTAL: 0
-  CARGO_PROFILE_RELEASE_LTO: "fat"
-  CI: "1"
-  DISABLE_PLUGIN_E2E_TESTS: true
 
-permissions:
-  contents: write
-  id-token: write
+
+# NOTE: For Linux builds, we can only build with Ubuntu. It should be the oldest base system we intend to support. See PR-759 & https://tauri.app/v1/guides/building/linux for reference.
 
 jobs:
   build-warp:
-    name: stable - ${{ matrix.settings.target }} - warp
-    runs-on: ${{ matrix.settings.host }}
     defaults:
-        run:
-            working-directory: moq-server/moq-pub
+      run:
+          working-directory: moq-server
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         settings:
-          - host:  macos-latest
+          - host: macos-latest
             target: x86_64-apple-darwin
-            build: |
-              cargo build --manifest-path ./moq-server/moq-pub/Cargo.toml --release
-              ls ./moq-server/moq-pub/target/release
-              cp ./moq-server/moq-pub/target/release/moq-pub ./warp
-              chmod +x ./warp
+            bundles: dmg
+          - host: macos-latest
+            target: aarch64-apple-darwin
+            bundles: dmg
+          - host: windows-latest
+            target: x86_64-pc-windows-msvc
+            bundles: msi
           # - host: windows-latest
-          #   target: x86_64-pc-windows-msvc
-          #   build: |
-          #     export CARGO_PROFILE_RELEASE_LTO=false
-          #     cargo build --manifest-path ./moq-server/moq-pub/Cargo.toml --release
-          #     cp ./moq-server/moq-pub/target/release/moq-pub ./warp
-          # - host: windows-latest
-          #   target: i686-pc-windows-msvc
-          #   build: |
-          #       export DISABLE_PLUGIN_E2E_TESTS=true
-          #       export CARGO_PROFILE_RELEASE_LTO=false
-          #       cargo build --manifest-path ./moq-server/moq-pub/Cargo.toml --release --target i686-pc-windows-msvc
-          #       cp bindings/target/i686-pc-windows-msvc/release/moq-pub ./warp
-          # - host: ubuntu-latest
-          #   target: x86_64-unknown-linux-gnu
-          #   docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
-          #   build: >-
-          #     set -e &&
-          #     unset CC_x86_64_unknown_linux_gnu && unset CC && RUSTFLAGS='-C target-feature=+sse2' cargo build --manifest-path ./moq-server/moq-pub/Cargo.toml --release &&
-          #     rm -rf bindings/target/target/x86_64-unknown-linux-gnu/release/.cargo-lock &&
-          #     cp bindings/target/x86_64-unknown-linux-gnu/release/moq-pub ./warp && chmod +x ./warp
-
+          #   target: aarch64-pc-windows-msvc
+          - host: ubuntu-20.04
+            target: x86_64-unknown-linux-gnu
+            bundles: appimage
+          # - host: ubuntu-20.04
+          #   target: x86_64-unknown-linux-musl
+          # - host: ubuntu-20.04
+          #   target: aarch64-unknown-linux-gnu
+          # - host: ubuntu-20.04
+          #   target: aarch64-unknown-linux-musl
+          # - host: ubuntu-20.04
+          #   target: armv7-unknown-linux-gnueabihf
+    name: Warp for ${{ matrix.settings.target }}
+    runs-on: ${{ matrix.settings.host }}
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Install
-        uses: actions-rs/toolchain@v1
-        if: ${{ !matrix.settings.docker }}
+      - name: Install Rust
+        id: toolchain
+        uses: dtolnay/rust-toolchain@stable
         with:
-          profile: minimal
-          override: true
+          targets: ${{ matrix.settings.targets }}
           toolchain: stable
-          target: ${{ matrix.settings.target }}
+          components: clippy, rustfmt
 
-      - uses: goto-bus-stop/setup-zig@v2
-        if: ${{ matrix.settings.target == 'armv7-unknown-linux-gnueabihf' }}
+      - name: Cache Rust Dependencies
+        uses: Swatinem/rust-cache@v2
         with:
-          version: 0.10.1
+          save-if: false
+          prefix-key: 'v0-rust-deps'
+          shared-key: ${{ matrix.settings.targets }}
 
-      - name: Cache cargo registry
-        uses: actions/cache@v3
-        with:
-          path: ~/.cargo/registry
-          key: ${{ matrix.settings.target }}-cargo-registry-trimmed
-
-      - name: Cache cargo index
-        uses: actions/cache@v3
-        with:
-          path: ~/.cargo/git
-          key: ${{ matrix.settings.target }}-cargo-index-trimmed
-
-        if: ${{ matrix.settings.docker }}
-
-      - name: Setup toolchain
-        run: ${{ matrix.settings.setup }}
-        if: ${{ matrix.settings.setup }}
-        shell: bash
-
-      - name: Install dependencies
-        run: |
-          echo '/usr/local/cargo/bin' >> $GITHUB_PATH
-
-      - name: Build in docker
-        uses: addnab/docker-run-action@v3
-        if: ${{ matrix.settings.docker }}
-        with:
-          image: ${{ matrix.settings.docker }}
-          options: -v ${{ env.HOME }}/.cargo/git:/root/.cargo/git -v ${{ env.HOME }}/.cargo/registry:/root/.cargo/registry -v ${{ github.workspace }}:/build -w /build
-          run: >-
-            ${{ matrix.settings.build }}
       - name: Build
-        if: ${{ !matrix.settings.docker }}
-        run: ${{ matrix.settings.build }}
-        shell: bash
-
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: bindings-${{ matrix.settings.target }}
-      #     path: |
-      #       warp*
-      #     if-no-files-found: error
-
-      - run: |
-            ls ./warp
-
-  release-warp:
-    needs: build-warp
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Query version number
-        run: echo "version=${GITHUB_REF:11}" >> $GITHUB_ENV
-
-      - name: Download x86_64 artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: artifacts-x86_64
-          path: artifacts/x86_64
-
-      - name: Download aarch64 artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: artifacts-aarch64
-          path: artifacts/aarch64
+        run: | 
+          cargo build --target ${{matrix.settings.targets}} --manifest-path ./moq-pub/Cargo.toml --release
         
-      - run: |
-            ls artifacts/aarch64/dmg/
-            ls artifacts/x86_64/dmg/
-            ls artifacts/x86_64/deb/warp
-    #   - name: Rename artifacts
-    #     run: |
-    #       mv "artifacts/aarch64/dmg/warp_${{ env.version }}_aarch64.dmg" "artifacts/warp_${{ env.version }}_macos_aarch64.dmg"
-    #       mv "artifacts/aarch64/macos/warp.app.tar.gz" "artifacts/warp_${{ env.version }}_macos_aarch64.app.tar.gz"
-    #       mv "artifacts/aarch64/macos/warp.app.tar.gz.sig" "artifacts/warp_${{ env.version }}_macos_aarch64.app.tar.gz.sig"
-
-    #       mv "artifacts/x86_64/dmg/warp_${{ env.version }}_x64.dmg" "artifacts/warp_${{ env.version }}_macos_x86_64.dmg"
-    #       mv "artifacts/x86_64/macos/warp.app.tar.gz" "artifacts/warp_${{ env.version }}_macos_x86_64.app.tar.gz"
-    #       mv "artifacts/x86_64/macos/warp.app.tar.gz.sig" "artifacts/warp_${{ env.version }}_macos_x86_64.app.tar.gz.sig"
-
-    #       mv "artifacts/x86_64/deb/warp_${{ env.version }}_amd64.deb" "artifacts/x86_64/deb/warp_${{ env.version }}_linux_x86_64.deb"
-    #       mv "artifacts/x86_64/appimage/warp_${{ env.version }}_amd64.AppImage.tar.gz" "artifacts/warp_${{ env.version }}_linux_x86_64.AppImage.tar.gz"
-    #       mv "artifacts/x86_64/appimage/warp_${{ env.version }}_amd64.AppImage.tar.gz.sig" "artifacts/warp_${{ env.version }}_linux_x86_64.AppImage.tar.gz.sig"
-
-    #       mv "artifacts/x86_64/warp_${{ env.version }}_x64_en-US.msi" "artifacts/warp_${{ env.version }}_windows_x86_64.msi"
-    #       mv "artifacts/x86_64/warp_${{ env.version }}_x64_en-US.msi.zip" "artifacts/warp_${{ env.version }}_windows_x86_64.msi.zip"
-    #       mv "artifacts/x86_64/warp_${{ env.version }}_x64_en-US.msi.zip.sig" "artifacts/warp_${{ env.version }}_windows_x86_64.msi.zip.sig"
-
-    #   - name: Create Release
-    #     uses: softprops/action-gh-release@master
-    #     env:
-    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #     with:
-    #       tag_name: v${{ env.version }}
-    #       name: Warp Alpha v${{ env.version }}
-    #       body: "Download the client below"
-    #       prerelease: false
-    #       generate_release_notes: false
-    #       files: ./artifacts/**/*
-    #       draft: true
+      - name: Publish Artifacts
+        
+        run: |
+          ls -l ./target/${{matrix.settings.targets}}/release/
