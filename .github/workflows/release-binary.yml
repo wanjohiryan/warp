@@ -49,7 +49,7 @@ jobs:
         id: toolchain
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: ${{ matrix.settings.targets }}
+          targets: ${{ matrix.settings.target }}
           toolchain: stable
           components: clippy, rustfmt
 
@@ -58,22 +58,22 @@ jobs:
         with:
           save-if: false
           prefix-key: 'v0-rust-deps'
-          shared-key: ${{ matrix.settings.targets }}
+          shared-key: ${{ matrix.settings.target }}
 
       - name: Build
-        run: cargo build --target ${{ matrix.settings.targets }} --manifest-path ./moq-pub/Cargo.toml --release
+        run: cargo build --target ${{ matrix.settings.target }} --manifest-path ./moq-pub/Cargo.toml --release
       
       - name: Publish artifacts (Linux - AppImage)
         if: ${{ matrix.settings.host == 'ubuntu-20.04' }}
         run: |
-          ls -l target/${{matrix.settings.targets}}/release/
+          ls -l target/${{ matrix.settings.target }}/release/
       
       - name: Publish artifacts (Windows - msi)
         if: ${{ matrix.settings.host == 'windows-latest' }}
         run: |
-          dir "target/${{matrix.settings.targets}}/release"
+          dir "target/${{ matrix.settings.target }}/release"
           
       - name: Publish artifacts (macOS - dmg)
         if: ${{ matrix.settings.host == 'macos-latest' }}
         run: |
-          ls -l target/${{matrix.settings.targets}}/release
+          ls -l target/${{ matrix.settings.target }}/release
