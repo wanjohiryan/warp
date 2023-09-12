@@ -65,17 +65,35 @@ jobs:
       - name: Build
         run: cargo build --target ${{ matrix.settings.target }} --manifest-path ./moq-pub/Cargo.toml --release
       
-      - name: Publish artifacts (Linux - AppImage)
+      - name: Copy and rename artifacts (Linux)
         if: ${{ matrix.settings.host == 'ubuntu-20.04' }}
         run: |
-          ls -l target/${{ matrix.settings.target }}/release/
+          cp target/${{ matrix.settings.target }}/release/moq-pub ./warp
       
-      - name: Publish artifacts (Windows - msi)
+      - name: Copy and rename artifacts (Windows)
         if: ${{ matrix.settings.host == 'windows-latest' }}
         run: |
-          dir "target/${{ matrix.settings.target }}/release"
+          cp "target/${{ matrix.settings.target }}/release/moq-pub.exe" ./warp.exe
           
-      - name: Publish artifacts (macOS - dmg)
+      - name: Copy and rename artifacts (macOS)
         if: ${{ matrix.settings.host == 'macos-latest' }}
         run: |
-          ls -l target/${{ matrix.settings.target }}/release
+          cp target/${{ matrix.settings.target }}/release/moq-pub ./warp
+
+      - name: Publish artifacts (Windows)
+        if: ${{ matrix.settings.host == 'windows-latest' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: Warp-${{ matrix.settings.target }}
+          path: ./warp.exe
+          if-no-files-found: error
+          retention-days: 5
+      
+      - name: Publish artifacts (Windows)
+        if: ${{ matrix.settings.host != 'windows-latest' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: Warp-${{ matrix.settings.target }}
+          path: ./warp
+          if-no-files-found: error
+          retention-days: 5
