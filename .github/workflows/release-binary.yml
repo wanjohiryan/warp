@@ -2,11 +2,12 @@ name: Release
 
 on:
   # workflow_dispatch:
-    push:
+  push:
 
-
-
-# NOTE: For Linux builds, we can only build with Ubuntu. It should be the oldest base system we intend to support. See PR-759 & https://tauri.app/v1/guides/building/linux for reference.
+# Cancel previous runs of the same workflow on the same branch.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-warp:
@@ -84,8 +85,8 @@ jobs:
         if: ${{ matrix.settings.host == 'windows-latest' }}
         uses: actions/upload-artifact@v3
         with:
-          name: Warp-${{ matrix.settings.target }}
-          path: ./warp.exe
+          name: warp-${{ matrix.settings.target }}-
+          path: ./moq-server/warp.exe
           if-no-files-found: error
           retention-days: 5
       
@@ -93,7 +94,7 @@ jobs:
         if: ${{ matrix.settings.host != 'windows-latest' }}
         uses: actions/upload-artifact@v3
         with:
-          name: Warp-${{ matrix.settings.target }}
-          path: ./warp
+          name: warp-${{ matrix.settings.target }}
+          path: ./moq-server/warp
           if-no-files-found: error
           retention-days: 5
