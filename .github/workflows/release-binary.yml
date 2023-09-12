@@ -1,8 +1,11 @@
 name: Release
 
 on:
-  # workflow_dispatch:
-  push:
+  workflow_dispatch:
+  pull_request:
+    paths-ignore:
+      - '.github/**'
+    #FIXME: add support for on release
 
 # Cancel previous runs of the same workflow on the same branch.
 concurrency:
