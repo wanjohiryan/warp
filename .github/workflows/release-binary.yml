@@ -80,22 +80,20 @@ jobs:
         run: |
           cp target/${{ matrix.settings.target }}/release/moq-pub ./warp
 
-      - name: Publish artifacts (Windows)
+      - name: Publish artifacts (${{ matrix.settings.host }})
         if: ${{ matrix.settings.host == 'windows-latest' }}
-        run: dir .
-        # uses: actions/upload-artifact@v3
-        # with:
-        #   name: Warp-${{ matrix.settings.target }}
-        #   path: warp.exe
-        #   if-no-files-found: error
-        #   retention-days: 5
+        uses: actions/upload-artifact@v3
+        with:
+          name: Warp-${{ matrix.settings.target }}
+          path: warp.exe
+          if-no-files-found: error
+          retention-days: 5
       
-      - name: Publish artifacts (Windows)
+      - name: Publish artifacts (${{ matrix.settings.host }})
         if: ${{ matrix.settings.host != 'windows-latest' }}
-        run: ls .
-        # uses: actions/upload-artifact@v3
-        # with:
-        #   name: Warp-${{ matrix.settings.target }}
-        #   path: warp
-        #   if-no-files-found: error
-        #   retention-days: 5
+        uses: actions/upload-artifact@v3
+        with:
+          name: Warp-${{ matrix.settings.target }}
+          path: warp
+          if-no-files-found: error
+          retention-days: 5
