@@ -82,18 +82,20 @@ jobs:
 
       - name: Publish artifacts (Windows)
         if: ${{ matrix.settings.host == 'windows-latest' }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: Warp-${{ matrix.settings.target }}
-          path: warp.exe
-          if-no-files-found: error
-          retention-days: 5
+        run: dir .
+        # uses: actions/upload-artifact@v3
+        # with:
+        #   name: Warp-${{ matrix.settings.target }}
+        #   path: warp.exe
+        #   if-no-files-found: error
+        #   retention-days: 5
       
       - name: Publish artifacts (Windows)
         if: ${{ matrix.settings.host != 'windows-latest' }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: Warp-${{ matrix.settings.target }}
-          path: warp
-          if-no-files-found: error
-          retention-days: 5
+        run: ls .
+        # uses: actions/upload-artifact@v3
+        # with:
+        #   name: Warp-${{ matrix.settings.target }}
+        #   path: warp
+        #   if-no-files-found: error
+        #   retention-days: 5
