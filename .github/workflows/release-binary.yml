@@ -85,7 +85,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Warp-${{ matrix.settings.target }}
-          path: ./warp.exe
+          path: warp.exe
           if-no-files-found: error
           retention-days: 5
       
@@ -94,6 +94,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Warp-${{ matrix.settings.target }}
-          path: ./warp
+          path: warp
           if-no-files-found: error
           retention-days: 5
