@@ -3,6 +3,19 @@ name: Publish
 on:
   push:
 
+env:
+  DEBUG: napi:*
+  APP_NAME: swc
+  MACOSX_DEPLOYMENT_TARGET: "10.13"
+  CARGO_INCREMENTAL: 0
+  CARGO_PROFILE_RELEASE_LTO: "fat"
+  CI: "1"
+  DISABLE_PLUGIN_E2E_TESTS: true
+
+permissions:
+  contents: write
+  id-token: write
+
 jobs:
   build-warp:
     name: stable - ${{ matrix.settings.target }} - warp
@@ -18,29 +31,30 @@ jobs:
             target: x86_64-apple-darwin
             build: |
               cargo build --manifest-path ./moq-server/moq-pub/Cargo.toml --release
+              ls ./moq-server/moq-pub/target/release
               cp ./moq-server/moq-pub/target/release/moq-pub ./warp
               chmod +x ./warp
-          - host: windows-latest
-            target: x86_64-pc-windows-msvc
-            build: |
-              export CARGO_PROFILE_RELEASE_LTO=false
-              cargo build --manifest-path ./moq-server/moq-pub/Cargo.toml --release
-              cp ./moq-server/moq-pub/target/release/moq-pub ./warp
-          - host: windows-latest
-            target: i686-pc-windows-msvc
-            build: |
-                export DISABLE_PLUGIN_E2E_TESTS=true
-                export CARGO_PROFILE_RELEASE_LTO=false
-                cargo build --manifest-path ./moq-server/moq-pub/Cargo.toml --release --target i686-pc-windows-msvc
-                cp bindings/target/i686-pc-windows-msvc/release/moq-pub ./warp
-          - host: ubuntu-latest
-            target: x86_64-unknown-linux-gnu
-            docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
-            build: >-
-              set -e &&
-              unset CC_x86_64_unknown_linux_gnu && unset CC && RUSTFLAGS='-C target-feature=+sse2' cargo build --manifest-path ./moq-server/moq-pub/Cargo.toml --release &&
-              rm -rf bindings/target/target/x86_64-unknown-linux-gnu/release/.cargo-lock &&
-              cp bindings/target/x86_64-unknown-linux-gnu/release/moq-pub ./warp && chmod +x ./warp
+          # - host: windows-latest
+          #   target: x86_64-pc-windows-msvc
+          #   build: |
+          #     export CARGO_PROFILE_RELEASE_LTO=false
+          #     cargo build --manifest-path ./moq-server/moq-pub/Cargo.toml --release
+          #     cp ./moq-server/moq-pub/target/release/moq-pub ./warp
+          # - host: windows-latest
+          #   target: i686-pc-windows-msvc
+          #   build: |
+          #       export DISABLE_PLUGIN_E2E_TESTS=true
+          #       export CARGO_PROFILE_RELEASE_LTO=false
+          #       cargo build --manifest-path ./moq-server/moq-pub/Cargo.toml --release --target i686-pc-windows-msvc
+          #       cp bindings/target/i686-pc-windows-msvc/release/moq-pub ./warp
+          # - host: ubuntu-latest
+          #   target: x86_64-unknown-linux-gnu
+          #   docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
+          #   build: >-
+          #     set -e &&
+          #     unset CC_x86_64_unknown_linux_gnu && unset CC && RUSTFLAGS='-C target-feature=+sse2' cargo build --manifest-path ./moq-server/moq-pub/Cargo.toml --release &&
+          #     rm -rf bindings/target/target/x86_64-unknown-linux-gnu/release/.cargo-lock &&
+          #     cp bindings/target/x86_64-unknown-linux-gnu/release/moq-pub ./warp && chmod +x ./warp
 
     steps:
       - uses: actions/checkout@v3
@@ -53,6 +67,7 @@ jobs:
         with:
           profile: minimal
           override: true
+          toolchain: stable
           target: ${{ matrix.settings.target }}
 
       - uses: goto-bus-stop/setup-zig@v2
