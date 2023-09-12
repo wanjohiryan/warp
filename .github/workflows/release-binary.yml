@@ -14,7 +14,7 @@ jobs:
       run:
           working-directory: moq-server
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         settings:
           - host: macos-latest
@@ -61,8 +61,7 @@ jobs:
           shared-key: ${{ matrix.settings.targets }}
 
       - name: Build
-        run: | 
-          cargo build --target ${{matrix.settings.targets}} --manifest-path ./moq-pub/Cargo.toml --release
+        run: cargo build --target ${{ matrix.settings.targets }} --manifest-path ./moq-pub/Cargo.toml --release
       
       - name: Publish artifacts (Linux - AppImage)
         if: ${{ matrix.settings.host == 'ubuntu-20.04' }}
