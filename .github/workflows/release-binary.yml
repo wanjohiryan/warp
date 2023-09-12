@@ -1,7 +1,8 @@
 name: Release
 
 on:
-  workflow_dispatch:
+  # workflow_dispatch:
+    push:
 
 
 
@@ -62,8 +63,18 @@ jobs:
       - name: Build
         run: | 
           cargo build --target ${{matrix.settings.targets}} --manifest-path ./moq-pub/Cargo.toml --release
-        
-      - name: Publish Artifacts
-        
+      
+      - name: Publish artifacts (Linux - AppImage)
+        if: ${{ matrix.settings.host == 'ubuntu-20.04' }}
         run: |
-          ls -l ./target/${{matrix.settings.targets}}/release/
+          ls -l target/${{matrix.settings.targets}}/release/
+      
+      - name: Publish artifacts (Windows - msi)
+        if: ${{ matrix.settings.host == 'windows-latest' }}
+        run: |
+          dir "target/${{matrix.settings.targets}}/release"
+          
+      - name: Publish artifacts (macOS - dmg)
+        if: ${{ matrix.settings.host == 'macos-latest' }}
+        run: |
+          ls -l target/${{matrix.settings.targets}}/release
