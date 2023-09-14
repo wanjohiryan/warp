@@ -4,72 +4,21 @@ on:
   pull_request:
     paths-ignore:
       - '.github/**'
+# Cancel previous runs of the same workflow on the same branch.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build-client-ubuntu:
-    name: Build moq-rust/moq-pub client on ubuntu
-    runs-on: ubuntu-latest
-    steps: 
-      -
-        name: Checkout repo
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - 
-        name: Setup Rust
-        uses:  hecrj/setup-rust-action@v1
-        with:
-          rust-version: stable
-      -
-        name: Build 
-        working-directory: moq-server/moq-pub
-        run: cargo build --release
-
-  build-client-windows:
-    name: Build moq-rust/moq-pub code on windows
-    runs-on: windows-latest
-    steps: 
-      -
-        name: Checkout repo
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - 
-        name: Setup Rust
-        uses:  hecrj/setup-rust-action@v1
-        with:
-          rust-version: stable
-      -
-        name: Build 
-        working-directory: moq-server/moq-pub
-        run: cargo build --release
-
-  build-relay-ubuntu:
-    name: Build moq-rust relay on ubuntu
-    runs-on: ubuntu-latest
-    steps: 
-      -
-        name: Checkout repo
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - 
-        name: Setup Rust
-        uses:  hecrj/setup-rust-action@v1
-        with:
-          rust-version: stable
-      -
-        name: Build 
-        working-directory: moq-server
-        run: cargo build --release
-
-  build-docker-relay:
+    build-docker-relay:
       name: Build relay server for moq-rs
       runs-on: ubuntu-latest
       steps:
         -
           name: Checkout repo
           uses: actions/checkout@v3
+          with:
+            submodules: recursive
         - 
           name: Setup Docker Buildx
           uses: docker/setup-buildx-action@v3
@@ -77,8 +26,8 @@ jobs:
           name: Build Docker image
           uses: docker/build-push-action@v5
           with:
-            context: ./
-            file: docker/base/Dockerfile
+            context: ./moq-server
+            file: Dockerfile
             push: false
             load: true
             tags: warp:relay

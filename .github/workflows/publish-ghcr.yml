@@ -1,4 +1,4 @@
-name: "Push nvenc image to ghcr"
+name: "Publish relay server image to ghcr"
 
 on:
   push:
@@ -13,7 +13,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: wanjohiryan/warp
-  BASE_TAG_PREFIX: base
+  BASE_TAG_PREFIX: relay
 
 jobs:
   #FIXME: turn this into rust CI
@@ -43,7 +43,7 @@ jobs:
   #        name: gobinary
   #        path: ./warp
   #        retention-days: 5    
-  build-nvidia-base:
+  build-base:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -79,8 +79,8 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v5
         with:
-          context: ./
-          file: docker/base/Dockerfile
+          context: ./moq-server
+          file: Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
