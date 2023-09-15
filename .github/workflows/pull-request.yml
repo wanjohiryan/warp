@@ -13,9 +13,9 @@ jobs:
     build-docker-relay:
       name: Build relay server for moq-rs
       runs-on: ubuntu-latest
-      defaults:
-        run:
-            working-directory: moq-server
+      # defaults:
+      #   run:
+      #       working-directory: moq-server
       steps:
         -
           name: Checkout repo
@@ -29,7 +29,8 @@ jobs:
           name: Build Docker image
           uses: docker/build-push-action@v5
           with:
-            file: Dockerfile
+            context: ./moq-server
+            file: moq-server/Dockerfile
             push: false
             load: true
             tags: warp:relay
