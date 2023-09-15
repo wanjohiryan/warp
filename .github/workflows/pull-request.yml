@@ -23,6 +23,8 @@ jobs:
           with:
             submodules: recursive
         - 
+          run: cd moq-server && ls .
+        - 
           name: Setup Docker Buildx
           uses: docker/setup-buildx-action@v3
         - 
