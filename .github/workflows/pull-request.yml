@@ -1,4 +1,4 @@
-name: Build docker relay server
+name: Docker
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
     build-docker-relay:
-      name: Build relay server for moq-rs
+      name: Build moq-rs relay server
       runs-on: ubuntu-latest
       # defaults:
       #   run:

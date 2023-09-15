@@ -1,4 +1,4 @@
-name: "Publish relay server image to ghcr"
+name: Publish ghcr
 
 on:
   push:
@@ -16,35 +16,9 @@ env:
   BASE_TAG_PREFIX: relay
 
 jobs:
-  #FIXME: turn this into rust CI
-  # build-go:
-  #   name: Build go binary
-  #   runs-on: ubuntu-latest
-  #    #
-  #   # do not run on forks
-  #   #
-  #   steps: 
-  #     -
-  #       name: Checkout repo
-  #       uses: actions/checkout@v3
-  #     - 
-  #       name: Set up Go
-  #       uses: actions/setup-go@v4
-  #       with:
-  #         go-version: 1.18
-  #     #TODO: Find a way to test this before building
-  #     - 
-  #       name: Build binary
-  #       run: go build -v ./
-  #     -
-  #      name: Upload artifact
-  #      uses: actions/upload-artifact@v3
-  #      with:
-  #        name: gobinary
-  #        path: ./warp
-  #        retention-days: 5    
   build-base:
     runs-on: ubuntu-latest
+    name: Publish moq-rs relay server
     permissions:
       contents: read
       packages: write
@@ -80,7 +54,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./moq-server
-          file: Dockerfile
+          file: moq-server/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

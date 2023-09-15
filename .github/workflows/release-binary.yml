@@ -5,7 +5,8 @@ on:
   pull_request:
     paths-ignore:
       - '.github/**'
-    #FIXME: add support for on release
+  release:
+    types: [published]
 
 # Cancel previous runs of the same workflow on the same branch.
 concurrency:
@@ -24,17 +25,21 @@ jobs:
           - host: macos-latest
             target: x86_64-apple-darwin
             bundles: dmg
+            asset_name: warp-macos-amd64
           - host: macos-latest
             target: aarch64-apple-darwin
             bundles: dmg
+            asset_name: warp-macos-apple-silicon
           - host: windows-latest
             target: x86_64-pc-windows-msvc
             bundles: msi
+            asset_name: warp-windows-amd64
           # - host: windows-latest
           #   target: aarch64-pc-windows-msvc
           - host: ubuntu-20.04
             target: x86_64-unknown-linux-gnu
             bundles: appimage
+            asset_name: warp-ubuntu-amd64
           # - host: ubuntu-20.04
           #   target: x86_64-unknown-linux-musl
           # - host: ubuntu-20.04
@@ -85,19 +90,37 @@ jobs:
           cp target/${{ matrix.settings.target }}/release/moq-pub ./warp
 
       - name: Publish artifacts (${{ matrix.settings.host }})
-        if: ${{ matrix.settings.host == 'windows-latest' }}
+        if: ${{ matrix.settings.host == 'windows-latest' && github.event_name != 'release' }}
         uses: actions/upload-artifact@v3
         with:
-          name: warp-${{ matrix.settings.target }}-
+          name: ${{ matrix.settings.asset_name }}
           path: ./moq-server/warp.exe
           if-no-files-found: error
           retention-days: 5
       
       - name: Publish artifacts (${{ matrix.settings.host }})
-        if: ${{ matrix.settings.host != 'windows-latest' }}
+        if: ${{ matrix.settings.host != 'windows-latest' && github.event_name != 'release' }}
         uses: actions/upload-artifact@v3
         with:
-          name: warp-${{ matrix.settings.target }}
+          name: ${{ matrix.settings.asset_name }}
           path: ./moq-server/warp
           if-no-files-found: error
           retention-days: 5
+        
+      - name: Publish release for (${{ matrix.settings.host }})
+        if: ${{ matrix.settings.host == 'windows-latest' && github.event_name == 'release' }}
+        uses: svenstaro/upload-release-action@2.7.0
+        with: 
+          repo_token: ${{ secrets.GITHUB_TOKEN  }}
+          file: ./moq-server/warp.exe
+          asset_name:  ${{ matrix.settings.asset_name }}
+          tag: ${{ github.ref }}
+      
+      - name: Publish release for (${{ matrix.settings.host }})
+        if: ${{ matrix.settings.host != 'windows-latest' && github.event_name == 'release' }}
+        uses: svenstaro/upload-release-action@2.7.0
+        with: 
+          repo_token: ${{ secrets.GITHUB_TOKEN  }}
+          file: ./moq-server/warp.exe
+          asset_name:  ${{ matrix.settings.asset_name }}
+          tag: ${{ github.ref }}
