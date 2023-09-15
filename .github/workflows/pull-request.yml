@@ -23,15 +23,13 @@ jobs:
           with:
             submodules: recursive
         - 
-          run: ls .
-        - 
           name: Setup Docker Buildx
           uses: docker/setup-buildx-action@v3
         - 
           name: Build Docker image
           uses: docker/build-push-action@v5
           with:
-            context: moq-server
+            context: ./
             file: Dockerfile
             push: false
             load: true
