@@ -1,4 +1,4 @@
-name: Build client exe and docker relay server
+name: Build docker relay server
 
 on:
   pull_request:
@@ -23,7 +23,7 @@ jobs:
           with:
             submodules: recursive
         - 
-          run: cd moq-server && ls .
+          run: ls .
         - 
           name: Setup Docker Buildx
           uses: docker/setup-buildx-action@v3
