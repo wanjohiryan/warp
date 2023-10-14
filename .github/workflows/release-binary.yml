@@ -2,11 +2,15 @@ name: Release
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: 0 0 * * * # At the end of everyday
+  push:
+    branches: [main]
+    tags:
+      - v*.*.*
   pull_request:
-    paths-ignore:
-      - '.github/**'
   release:
-    types: [published]
+    types: [created]
 
 # Cancel previous runs of the same workflow on the same branch.
 concurrency:
